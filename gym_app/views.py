@@ -2,6 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import TableData
 
+def index(request):
+    return render(request, 'index.html')
+
 @login_required
 def about_screen(request):
     return render(request, 'about/about_screen.html')

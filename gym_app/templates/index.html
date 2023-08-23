@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta name="theme-color"
           content="#4285f4"/>
-    <title>Barbell | Index </title>
+    <title>{% block title %} Barbell | Index {% endblock %} </title>
     <meta name="description" content="This is the description" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
     <link
@@ -24,11 +26,11 @@
       </nav>
       </header>
       <section class="content-section container main-header">
-      
+        {% block content %}{% endblock %}
       </section>
       <footer class="main-footer">
       <div class="container main-footer-container">
-        <img class="home-screen-image" src="images/barbell_white.png" />    
+        <img class="home-screen-image" src="{% static 'images/barbell_white.png' %}" />    
       </div>
       </footer>
     </div>
