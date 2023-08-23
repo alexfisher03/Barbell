@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="theme-color"
+          content="#4285f4"/>
+    <title>Barbell | Create Group </title>
+    <meta name="description" content="This is the description" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header class="main-header">
+          <br>
+          <br>
+          <br>
+          <br>
+      <nav class="nav main-nav">
+          <li><a href="home_screen.html">HOME</a></li>
+          <li><a href="generalsettings_screen.html">SETTINGS</a></li>
+          <h1 class="barbell barbell-large">Barbell</h1>
+      </nav>
+    </header>
+    <section class="container main-header">
+      <form class="registration-form">
+        <h3 class="section-header">Create Group</h3>
+        <label class="content" for="username">Group Name</label>
+        <input type="text" placeholder="Enter Group Name" id="groupname">
+
+        <label class="content" for="username">Bio</label>
+        <input type="text" placeholder="Enter Bio Content" id="bio_group">
+        <label class="content" for="member-limit-details">Member Limit</label>
+        <div class="member-limit-details">  
+          <input type="radio" name="limit" id="dot-1">
+          <input type="radio" name="limit" id="dot-2">
+          <input type="radio" name="limit" id="dot-3">
+          <div class="category">
+            <label for="dot-1">
+              <span class="dot one"></span>
+              <span class="limit">2</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="limit">3</span>
+            </label>
+            <label for="dot-3">
+              <span class="dot three"></span>
+              <span class="limit">4</span>
+            </label>
+          </div>
+        </div>
+        <br>
+        <button id="create-group" class="login-button" role="button">Create Group</button>
+        <br>
+      </form>
+    </section>
+    <footer class="main-footer">
+      <div class="container main-footer-container">
+        <ul class="footer-nav">
+            <li>
+                <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
+            </li>
+        </ul>
+    </div>
+      <div class="container main-footer-container">
+        <img class="home-screen-image" src="images/barbell_white.png" />    
+      </div>
+    </footer>
+  </div>
+  <script src="{% static 'js/creategroup.js' %}"></script>
+</body>
+</html>

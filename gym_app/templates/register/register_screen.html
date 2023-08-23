@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="theme-color"
+          content="#4285f4"/>
+    <title>Barbell | Register </title>
+    <meta name="description" content="This is the description" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header class="main-header">
+          <br>
+          <br>
+          <br>
+          <br>
+      <nav class="nav main-nav">
+          <li><a href="home_screen.html">HOME</a></li>
+          <li><a href="generalsettings_screen.html">SETTINGS</a></li>
+          <h1 class="barbell barbell-large">Barbell</h1>
+      </nav>
+    </header>
+    <section class="container main-header">
+      <form class="registration-form">
+        <h3 class="section-header">Register</h3>
+        <label class="content" for="username">Username</label>
+        <input type="text" placeholder="Enter Username" id="username">
+
+        <label class="content" for="username">Email</label>
+        <input type="text" placeholder="Enter Email" id="email">
+      
+        <label class="content" for="phone">Phone Number</label>
+        <input type="tel" placeholder="Phone Number" id="phone">
+      
+        <label class="content" for="password">Password</label>
+        <input type="password" placeholder="Password" id="password">
+      
+        <label class="content" for="confirm-password">Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" id="confirm-password">
+      
+        <label class="content" for="gender">Gender</label>
+        <div class="gender-details">  
+            <input type="radio" name="gender" id="dot-1">
+            <input type="radio" name="gender" id="dot-2">
+            <input type="radio" name="gender" id="dot-3">
+            <div class="category">
+              <label for="dot-1">
+                <span class="dot one"></span>
+                <span class="gender">Male</span>
+              </label>
+              <label for="dot-2">
+                <span class="dot two"></span>
+                <span class="gender">Female</span>
+              </label>
+              <label for="dot-3">
+                <span class="dot three"></span>
+                <span class="gender">Other</span>
+              </label>
+            </div>
+          </div>
+          <br>
+        <button id="register-button" class="login-button" role="button">Register</button>
+        <br>
+        <label class="content" for="not-member"> Already a Member?</label>
+        <span><button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button></span>
+      </form>
+    </section>
+    <footer class="main-footer">
+      <div class="container main-footer-container">
+        <img class="home-screen-image" src="images/barbell_white.png" />    
+      </div>
+    </footer>
+  </div>
+  <script src="{% static 'js/register.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="theme-color"
+          content="#4285f4"/>
+    <title>Barbell | Initialize </title>
+    <meta name="description" content="This is the description" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+        <header class="main-header">
+          <br>
+          <br>
+          <br>
+          <br>
+      <nav class="nav main-nav">
+          <li><a href="generalsettings_screen.html">SETTINGS</a></li>
+          <h1 class="barbell barbell-large">Barbell</h1>
+      </nav>
+      </header>
+<!--Buttons are a little wonky, needs refinement-->
+      <section class="content-section container main-header">
+        <li class="content-section container">
+          <a href="signin_screen.html"><button class="login-button" role="button"><strong> Login </strong></button></a>
+        </li>   
+          <a href="register_screen.html"><button class="login-button" role="button"><strong> Sign-Up </strong></button></a>     
+      </section>
+      <footer class="main-footer">
+      <div class="container main-footer-container">
+        <img class="home-screen-image" src="{% static 'images/barbell_white.png' %}" />    
+      </div>
+      </footer>
+    </div>
+</body>
+</html>

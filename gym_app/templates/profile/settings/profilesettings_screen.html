@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Barbell | Profile Settings </title>
+        <meta name="description" content="This is the description" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+        />
+      </head>
+    <body>
+        <div class="page-wrapper">
+            <header class="main-header">
+                <br>
+                <br>
+                <br>
+                <br>
+                <nav class="nav main-nav">
+                    <li><a href="profile_self_screen.html">PROFILE</a></li>
+                    <li><a href="home_screen.html">HOME</a></li>
+                    <li><a href="group_screen.html">GROUP</a></li>
+                    <h1 class="barbell">Profile Settings</h1>
+                </nav>
+            </header>
+            <section class="container main-header">
+              <form>
+                <label class="content" for="profile-picture">Change Profile Picture:</label>
+                <input type="file" id="profile-picture" name="profile-picture">
+
+                <label class="content" for="profile-bio">Change Profile Bio:</label>
+                <input type="text" id="workout-split" name="workout-split">
+
+                <label class="content" for="rep-stats">Input Rep Stats:</label>
+                <button id="input-rep-stats" class="sign-up-button2" role="button">Click Here</button>
+                
+                <label class="content" for="reset-password">Reset Password</label>
+                <button id="reset-password" class="sign-up-button2" role="button">Click Here</button>
+              </form>
+            </section>
+          <footer class="main-footer-container main-footer">
+            <div class="container main-footer-container">
+              <ul class="footer-nav">
+                  <li>
+                      <a href="#"><button id="confirm-profile-settings" class="profile-button" role="button"><strong> Confirm Settings </strong></button></a>
+                  </li>
+              </ul>
+            </div>
+            <div class="container main-footer-container">
+              <ul class="footer-nav">
+                  <li>
+                      <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
+                  </li>
+              </ul>
+            </div>
+              <img class="home-screen-image" src="images/barbell_white.png">
+          </footer>
+    <script src="{% static 'js/profile-settings.js' %}"></script>
+  </body>
+</html>
