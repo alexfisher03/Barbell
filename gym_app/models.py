@@ -1,8 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Permission, Group
 
 class CustomUser(AbstractUser):
     # Additional fields if needed
+    groups = models.ManyToManyField(Group, related_name='user_groups')
+    user_permissions = models.ManyToManyField(Permission, related_name='user_permissions')
+    app_label = 'gym_app'
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
     # Other fields like date_of_birth, bio, etc.
 
