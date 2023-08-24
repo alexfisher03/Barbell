@@ -1,9 +1,12 @@
+{% extends 'index.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta name="theme-color"
           content="#4285f4"/>
-    <title>Barbell | Create Group </title>
+          <title>{% block title %} Barbell | Create Group {% endblock %} </title> 
     <meta name="description" content="This is the description" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
     <link
@@ -21,10 +24,11 @@
       <nav class="nav main-nav">
           <li><a href="home_screen.html">HOME</a></li>
           <li><a href="generalsettings_screen.html">SETTINGS</a></li>
-          <h1 class="barbell barbell-large">Barbell</h1>
+          {% block header %}<h1 class="barbell barbell-large">Barbell</h1> {% endblock %}
       </nav>
     </header>
     <section class="container main-header">
+    {% block content %}
       <form class="registration-form">
         <h3 class="section-header">Create Group</h3>
         <label class="content" for="username">Group Name</label>
@@ -56,19 +60,22 @@
         <button id="create-group" class="login-button" role="button">Create Group</button>
         <br>
       </form>
+    {% endblock %}
     </section>
-    <footer class="main-footer">
-      <div class="container main-footer-container">
-        <ul class="footer-nav">
-            <li>
-                <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
-            </li>
-        </ul>
-    </div>
-      <div class="container main-footer-container">
-        <img class="home-screen-image" src="images/barbell_white.png" />    
-      </div>
-    </footer>
+    {% block additional_footer_content %}
+      <footer class="main-footer">
+        <div class="container main-footer-container">
+          <ul class="footer-nav">
+              <li>
+                  <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
+              </li>
+          </ul>
+        </div>
+        <div class="container main-footer-container">
+          <img class="home-screen-image" src="images/barbell_white.png" />    
+        </div>
+      </footer>
+    {% endblock %}
   </div>
   <script src="{% static 'js/creategroup.js' %}"></script>
 </body>
