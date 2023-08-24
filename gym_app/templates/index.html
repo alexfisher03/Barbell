@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="theme-color"
-          content="#4285f4"/>
+    <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Barbell | Index {% endblock %}</title>
     <meta name="description" content="This is the description" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
@@ -22,13 +21,15 @@
           <br>
       <nav class="nav main-nav">
         {% block nav %}
-          <li><a href="profile_self_screen.html">PROFILE</a></li>
+          <li><a href="signing/signin_screen.html">LOGIN</a></li>
           <h1 class="barbell">{% block header %}{% endblock %}</h1>
         {% endblock %}
       </nav>
       </header>
       <section class="content-section container main-header">
-        {% block content %}{% endblock %}
+        {% block content %}
+        <div class="barbell">WELCOME TO BARBELL</div>
+        {% endblock %}
       </section>
       <footer class="main-footer">
       {% block additional_footer_content %}{% endblock %}
@@ -37,6 +38,8 @@
       </div>
       </footer>
     </div>
+    {% block scripts %}
     <script src="{% static 'js/home.js' %}"></script>
+    {% endblock %}
 </body>
 </html>

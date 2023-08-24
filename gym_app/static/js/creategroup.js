@@ -3,13 +3,17 @@ document.getElementById("back-button").addEventListener("click", function(event)
     history.back();
 });
 
-
-
-
 const createGroup = document.getElementById("create-group");
+console.log(createGroup);
 
-createGroup.addEventListener("click",event =>{
-    event.preventDefault();
-    window.location.href = "group_screen.html";
+document.addEventListener("DOMContentLoaded", function() {
+    const createGroup = document.getElementById("create-group");
+    console.log(createGroup);
+
+    createGroup.addEventListener("click", event => {
+        event.preventDefault();
+        console.log("Button clicked!");
+        window.location.href = "group_screen.html";
+    });
 });
 
