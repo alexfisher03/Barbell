@@ -5,7 +5,7 @@
   <head>
     <meta name="theme-color"
           content="#4285f4"/>
-    <title>{% block title %} Barbell | Index {% endblock %} </title>
+    <title>{% block title %} Barbell | Index {% endblock %}</title>
     <meta name="description" content="This is the description" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
     <link
@@ -21,14 +21,17 @@
           <br>
           <br>
       <nav class="nav main-nav">
+        {% block nav %}
           <li><a href="profile_self_screen.html">PROFILE</a></li>
-          <h1 class="barbell">Home</h1>
+          <h1 class="barbell">{% block header %}{% endblock %}</h1>
+        {% endblock %}
       </nav>
       </header>
       <section class="content-section container main-header">
         {% block content %}{% endblock %}
       </section>
       <footer class="main-footer">
+      {% block additional_footer_content %}{% endblock %}
       <div class="container main-footer-container">
         <img class="home-screen-image" src="{% static 'images/barbell_white.png' %}" />    
       </div>
