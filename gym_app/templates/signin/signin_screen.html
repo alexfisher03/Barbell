@@ -5,9 +5,8 @@
     <title>{% block title %}Barbell | Sign In {% endblock %} </title>
     
         {% block nav %}
-          <a href="home">HOME</a>
-          <a href="general_settings">SETTINGS</a>
-         {% block header %} <h1 class="barbell ">Login</h1> {% endblock %}
+          
+         {% block header %}  {% endblock %}
         
         {% endblock %}
     
@@ -21,12 +20,12 @@
             <br>
             <label class="content" for="password">Password</label>
             <input type="password" placeholder="Password" id="password">
-            <a href="#"><label class="content forgot-password-link">Forgot Password?</label></a>
+            <a href="#" class="forgot-password-link" data-action="forgotPassword" data-url="{% url 'forgot_password' %}">Forgot Password?</a>
             <br>
-            <button id="sign-in-button" class="login-button" role="button">Sign In</button>
+            <button id="sign-in-button" class="login-button" data-action="signIn" data-url="{% url 'profile_self' %}" role="button">Sign In</button>
             <label class="content" for="not-member"> Not a member?</label>
             <br>
-            <span><button id="sign-up-button" class="sign-up-button2" role="button">Sign Up</button></span>
+            <button id="sign-up-button" class="sign-up-button2" data-action="signUp" data-url="{% url 'register' %}" role="button">Sign Up</button>
         </form>
         
       {% endblock %}
@@ -36,7 +35,7 @@
       
           <ul class="footer-nav">
               <li>
-                  <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
+                  <button id="back-button" class="profile-button" role="button"><strong> Back </strong></button>
               </li>
           </ul>
         {% endblock %}

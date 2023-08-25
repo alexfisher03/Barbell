@@ -22,16 +22,16 @@
           <br>
       <nav class="nav main-nav">
         {% block nav %}
-          <li><a href="signing">LOGIN</a></li>
+          <li><a href="/signin">LOGIN</a></li>
           <h1 class="barbell">{% block header %}{% endblock %}</h1>
         {% endblock %}
       </nav>
       </header>
       <section class="container">
         {% block content %}
-      <section class="content-section container main-header">
         <div class="barbell">WELCOME TO BARBELL</div>
-      </section>
+        <section class="content-section container main-header"></section>
+        </section>
         {% endblock %}
       </section>
       <footer class="main-footer">

@@ -1,30 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="theme-color"
-          content="#4285f4"/>
-    <title>Barbell | Register </title>
-    <meta name="description" content="This is the description" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-    />
-  </head>
-  <body>
-    <div class="page-wrapper">
-      <header class="main-header">
-          <br>
-          <br>
-          <br>
-          <br>
-      <nav class="nav main-nav">
-          <li><a href="home_screen.html">HOME</a></li>
-          <li><a href="generalsettings_screen.html">SETTINGS</a></li>
-          <h1 class="barbell barbell-large">Barbell</h1>
-      </nav>
-    </header>
-    <section class="container main-header">
+{% extends 'index.html' %}
+{% load static %}
+    <title>{% block title %}Barbell | Register{% endblock %}</title>
+    {% block nav %}
+         
+          {% block header %}  {% endblock %}
+    {% endblock %}
+      
+    {% block content %}
       <form class="registration-form">
         <h3 class="section-header">Register</h3>
         <label class="content" for="username">Username</label>
@@ -63,18 +45,14 @@
             </div>
           </div>
           <br>
-        <button id="register-button" class="login-button" role="button">Register</button>
+        <a href="{% url 'profile_self' %}"><button id="register-button" class="login-button" role="button">Register</button></a>
         <br>
         <label class="content" for="not-member"> Already a Member?</label>
-        <span><button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button></span>
+        <a href="{% url 'signin' %}"><span><button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button></span></a>
       </form>
-    </section>
-    <footer class="main-footer">
-      <div class="container main-footer-container">
-        <img class="home-screen-image" src="images/barbell_white.png" />    
-      </div>
-    </footer>
-  </div>
+    {% endblock %}
+ {% block additional_footer_content %}{% endblock %}
+{% block scripts %}
   <script src="{% static 'js/register.js' %}"></script>
-</body>
-</html>
+{% endblock %}
+

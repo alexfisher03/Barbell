@@ -676,3 +676,9 @@ form .member-limit-details .limit-val {
   color: #0dccea;
   cursor: pointer;
 }
+
+.forgot-password-link {
+  display:block;
+  text-align: center;
+  margin: 20px 0;
+}

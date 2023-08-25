@@ -1,10 +1,10 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import TableData
 
 def index(request):
     return render(request, 'index.html')
-
 
 def about_screen(request):
     return render(request, 'about/about_screen.html')
@@ -25,7 +25,7 @@ def generalsettings_screen(request):
 def group_screen(request):
     return render(request, 'group/group_screen.html')
 
-
+@login_required
 def group_settings_screen(request):
     return render(request, 'group_settings/group_settings_screen.html')
 
@@ -58,8 +58,11 @@ def register_screen(request):
     return render(request, 'register/register_screen.html')
 
 def signin_screen(request):
-    return render(request, 'signing/signin_screen.html')
+    return render(request, 'signin/signin_screen.html')
 
 
 def stat_screen(request):
     return render(request, 'table/stat_screen.html')
+
+
+        

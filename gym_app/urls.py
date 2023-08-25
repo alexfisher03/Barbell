@@ -16,6 +16,6 @@ urlpatterns = [
     path('profile/other/', views.profile_other_screen, name='profile_other'),
     path('profile/settings/', views.profilesettings_screen, name='profilesettings'),
     path('register/', views.register_screen, name='register'),
-    path('signing/', views.signin_screen, name='signin'),
+    path('signin/', views.signin_screen, name='signin'),
     path('table/', views.stat_screen, name='stat'),
 ]
