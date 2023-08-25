@@ -4,10 +4,11 @@ document.getElementById("back-button").addEventListener("click", function(event)
 });
 
 const confirmButton = document.getElementById("confirm-password");
+const signInUrl = document.getElementById("confirm-password").getAttribute("data-signin-url");
 
 confirmButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "signin_screen.html";
+  event.preventDefault();
+  window.location.href = signInUrl;
 });
 
 const newPasswordInput = document.getElementById('new-password');
@@ -31,11 +32,6 @@ function togglePasswordVisibility(inputElement, toggleButton) {
   inputElement.setAttribute('type', inputType === 'password' ? 'text' : 'password');
   toggleButton.textContent = inputType === 'password' ? 'Hide' : 'Show';
 }
-
-confirmPasswordButton.addEventListener('click', (event) => {
-  event.preventDefault(); 
-  
-});
 
 
 

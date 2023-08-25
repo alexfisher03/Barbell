@@ -1,66 +1,49 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Barbell | Group </title>
-        <meta name="description" content="This is the description" />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-        />
-      </head>
-      <!-- Group Main Content Section -->
-    <body>  
-        <div class="page-wrapper">
-                    <header class="main-header">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <nav class="nav main-nav">
-                            <ul>
-                                <li><a href="profile_self_screen.html">PROFILE</a></li>
-                                <li><a href="home_screen.html">HOME</a></li>
-                            </ul>
-                            <h3 class="barbell">GROUP</h3>
-                        </nav>
-                    </header>
+{% extends 'index.html' %}
+{% load static %}
+    
+        <title> {% block title %} Barbell | Group  {% endblock %}</title>
+         {% block nav %}
+            <ul>
+               <li><a href="/profile/self">PROFILE</a></li>
+                <li><a href="/home">HOME</a></li>
+            </ul>
+            {% block header %}<h3 class="barbell">GROUP</h3> {% endblock %}
+            <br>
+         {% endblock %}
+                {% block content %}
                 <section class="container">
                     <!--Member 1 slot to be used for self if part of the group -->
                    <h1 class="section-header">'User Data (name)'</h1>
                    <div class="content-section-group">
                         <strong>'Input Group Member 1'</strong> 
-                        <img class="home-screen-image" src="images/barbell_blue.png">       
-                        <a href="profile_self_screen.html"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+                        <img class="home-screen-image" src="">       
+                        <a href="{% url 'profile_self' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
                         <br>
                     </div>
                     <div class="content-section-group">
                         <strong>'Input Group Member 2'</strong>
-                        <img class="home-screen-image" src="images/barbell_black.png">                         
-                        <a href="profile_other_screen.html"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+                        <img class="home-screen-image" src="">                         
+                        <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
                         <br>
                     </div>
                     <div class="content-section-group">
                         <strong>'Input Group Member 3'</strong>
-                        <img class="home-screen-image" src="images/barbell_black.png">
-                        <a href="profile_other_screen.html"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+                        <img class="home-screen-image" src="">
+                        <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
                     </div>
                 </section>
-
-                <section class="container">
+                  <section class="container">
                     <br>
                     <nav class="body-nav">
                         <li><a href="">View Group Leaderboard</a></li>
                     </nav>
+                    <br>
                 </section>
-                <br>
-                <hr>
-            <footer class="main-footer">
-                <div class="container main-footer-container">
-                    <img class="home-screen-image" src="images/barbell_white.png" />    
-                </div>
+                {% endblock %}
+                
+                {% block additional_footer_content %}
                 <div>
-                    <a href="group-settings_screen.html"><button class='group-button' role="button"><strong> Settings </strong></button></a>
+                    <a href="{% url 'group_settings' %}"><button class='group-button' role="button"><strong> Settings </strong></button></a>
                 </div>
                 <div class="container main-footer-container">
                     <ul class="footer-nav">
@@ -69,8 +52,8 @@
                         </li>
                     </ul>
                 </div>
-            </footer>
-        </div>
-        </body>
-    <script src="{% static 'js/group.js' %}"></script>
-</html>
+                {% endblock %}
+           
+    {% block script %}
+            <script src="{% static 'js/group.js' %}"></script>
+    {% endblock %}

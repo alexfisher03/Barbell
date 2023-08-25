@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     createGroup.addEventListener("click", event => {
         event.preventDefault();
-        console.log("Button clicked!");
-        window.location.href = "group_screen.html";
+        window.location.href = "/group";
     });
 });
 
