@@ -1,53 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Barbell | Profile </title>
-        <meta name="description" content="This is the description" />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-        />
-      </head>
-
-      <!-- Header-->
-
-    <body>
-        <div class="page-wrapper">
-            <header class="main-header">
-                <br>
-                <br>
-                <br>
-                <br>
-                <nav class="nav main-nav">
-                        <li><a href="home_screen.html">HOME</a></li>
-                        <li><a href="group_screen.html">GROUP</a></li>
-                        <h1 class="barbell">Profile</h1>
-                </nav>
-            </header>
-
-            <!--Main Profile Content-->
-
-          <section class="content-section container"> 
+{% extends 'index.html' %}
+{% load static %}
+    
+        <title>{% block title %} Barbell | Profile {% endblock %} </title>
+                {% block nav %}
+                        <li><a href="/home">HOME</a></li>
+                        <li><a href="/group_screen">GROUP</a></li> 
+                        {% block header %}<h1 class="barbell">Profile</h1> {% endblock %}
+                {% endblock %}
+          {% block content %}
                      <img class="home-screen-image" src="images/barbell_blue.png"> 
                      <h1>'Insert Self Username'</h1>
                      <p>'Insert User Bio'</p>
           </section>
             <section class="content-section-small container button-container">
                 <div class="button-group">
-                    <a href="stat_screen.html"><button class="profile-button" role="button"><strong> View Stats </strong></button></a>
-                    <a href="group_screen.html"><button class="profile-button" role="button"><strong> View Group</strong></button></a>
+                    <a href="{% url 'stat' %}"><button class="profile-button" role="button"><strong> View Stats </strong></button></a>
+                    <a href="{% url 'group_screen' %}"><button class="profile-button" role="button"><strong> View Group</strong></button></a>
                 </div>
-            </section>
-
-            <!-- Footer Content -->
-
-            <footer class="main-footer">
+        {% endblock %}
+            {% block additional_footer_content %}
                 <div class="container main-footer-container">
                     <ul class="footer-nav">
                         <li>
-                            <a href="profilesettings_screen.html"><button class="profile-button" role="button"><strong> Settings </strong></button></a>
-                            <a href="index.html"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
+                            <a href="{% url 'profilesettings' %}"><button class="profile-button" role="button"><strong> Settings </strong></button></a>
+                            <a href="{% url 'index' %}"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
                         </li>
                     </ul>
                 </div>
@@ -58,8 +34,7 @@
                         </li>
                     </ul>
                 </div>
-            </footer> 
-        </div>
+            {% endblock %}
+        {% block scripts %}
         <script src="{% static 'js/profile-self.js' %}"></script>
-    </body> 
-</html>
+        {% endblock %}

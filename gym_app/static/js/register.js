@@ -3,10 +3,11 @@ const signInButton = document.getElementById("sign-in-button");
 
 registerButton.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "profile_self_screen.html";
+    window.location.href = "{% url 'register' %}";
 });
 
 signInButton.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "signin_screen.html";
+    window.location.href = "{% url 'signin' %}";
 });
+
