@@ -64,5 +64,9 @@ def signin_screen(request):
 def stat_screen(request):
     return render(request, 'table/stat_screen.html')
 
+def global_leaderboard(request):
+    return render(request, 'leaderboard/global/global_leaderboard_screen.html')
 
-        
+def group_leaderboard(request):
+    return render(request, 'leaderboard/group/group_leaderboard_screen.html')
+

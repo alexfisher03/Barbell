@@ -18,4 +18,6 @@ urlpatterns = [
     path('register/', views.register_screen, name='register'),
     path('signin/', views.signin_screen, name='signin'),
     path('table/', views.stat_screen, name='stat'),
+    path('leaderboard/global/', views.global_leaderboard, name='global_leaderboard'),
+    path('leaderboard/group/', views.group_leaderboard, name='group_leaderboard'),
 ]

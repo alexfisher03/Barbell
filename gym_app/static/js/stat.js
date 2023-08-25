@@ -8,7 +8,6 @@ const userData = {
 const benchPressMaxCell = document.getElementById('userBenchPressMax');
 benchPressMaxCell.textContent = userData.benchPressMax;
 
-
 //for back button
 document.getElementById("back-button").addEventListener("click", function(event){
     event.preventDefault();
