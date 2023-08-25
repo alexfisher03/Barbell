@@ -10,7 +10,6 @@ urlpatterns = [
     path('group_screen/', views.group_screen, name='group_screen'),
     path('group_settings/', views.group_settings_screen, name='group_settings'),
     path('home/', views.home_screen, name='home'),
-    path('init/', views.init_screen, name='init'),
     path('input_rep_stats/', views.input_rep_stats_screen, name='input_rep_stats'),
     path('privacy_screen/', views.privacy_screen, name='privacy'),
     path('profile/self/', views.profile_self_screen, name='profile_self'),

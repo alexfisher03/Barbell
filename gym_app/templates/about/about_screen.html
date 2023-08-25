@@ -1,21 +1,10 @@
 {% extends 'index.html' %}
 {% load static %}
-<!DOCTYPE html>
-    
+ 
     <title>{% block title %} Barbell | About {% endblock %}</title>
-    <meta name="description" content="This is the description" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-    />
-  <body>
-    <div class="page-wrapper">
-        <header class="main-header">
-        <nav class="nav main-nav">
         {% block nav %}
-          <li><a href="generalsettings_screen.html">SETTINGS</a></li> 
-          <li><a href="profile_self_screen.html">PROFILE</a></li>
+          <li><a href="/general_settings">SETTINGS</a></li> 
+          <li><a href="/profile/self">PROFILE</a></li>
           {% block header %}<h1 class="barbell">About</h1> {% endblock %}
         {% endblock %} 
     {% block content %}
@@ -30,7 +19,6 @@
         More Coming Soon &#9935;
       </div>
     {% endblock %}
-      </section>
         {% block additional_footer_content %} 
           <ul class="footer-nav">
               <li>
@@ -41,5 +29,4 @@
     {% block scripts %}
 <script src="{% static 'js/about.js' %}"></script>
     {% endblock %}
-</body>
 

@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-  <html>
-    <style>
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+  <style>
   table {
     font-family: helvetica, sans-serif;
     border-collapse: collapse;
@@ -14,30 +15,19 @@
   }
   
   </style>
-      <head>
-          <title>Barbell | Input Stats </title>
-          <meta name="description" content="This is the description" />
-          <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-          />
-        </head>
-<body>
-  <div class="page-wrapper">
-    <header class="main-header">
-              <br>
-              <br>
-              <br>
-              <br>
-              <nav class="nav main-nav">
-                      <li><a href="profile_self_screen.html">PROFILE</a></li>
-                      <li><a href="home_screen.html">HOME</a></li>
-                      <li><a href="group_screen.html">GROUP</a></li>
-                      <h1 class="barbell">Input Stats</h1>
-              </nav>
-    </header> 
+{% endblock %}
+          <title> {% block title %} Barbell | Input Stats  {% endblock %}</title>
+          
+          {% block nav %}
+                      <li><a href="/profile/self">PROFILE</a></li>
+                      <li><a href="/home">HOME</a></li>
+                      <li><a href="/group_screen">GROUP</a></li>
+                      {% block header %}<h1 class="barbell">Input Stats</h1> {% endblock %}
+          {% endblock %}
+            
+{% block content %}
   <section class="content-section-stat content-stat">  
+    
     <h1 class="main-header">Chest</h1>
     <div class="container">
       <table>
@@ -52,7 +42,7 @@
         <tbody>
           <tr>
             <th>Top Set Range Max</th>
-<!--Bench-->   <td id="userBenchPressMax"></td>
+<!--Bench-->   <td></td>
 <!--Incline--> <td>'Input User Data'</td>
 <!--Chest P--> <td>'Input User Data'</td>
             
@@ -185,12 +175,10 @@
       </table>
     </div>
   </section> 
-    <footer>
+{% endblock %}
+      {% block additional_footer_content %}
       <div class="button-container">
         <a href="#"><button id="view-global-leaderboard" class="stat-button" role="button"><strong> Confirm Updated Settings </strong></button></a>
-      </div>
-      <div class="image-container">
-        <img class="home-screen-image" src="images/barbell_white.png" />
       </div>
       <div class="container main-footer-container">
         <ul class="footer-nav">
@@ -198,9 +186,10 @@
             <a href="#"><button id="back-button" class="previous" role="button"><strong> Back </strong></button></a>
           </li>
     </ul>
-    </footer>
-</div>
+  {% endblock %}
+
+{% block script %}
     <script src="{% static 'js/stat.js' %}"></script>
-</body>  
-</html>
+{% endblock %}
+
 

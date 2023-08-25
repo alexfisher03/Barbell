@@ -1,37 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="theme-color"
-          content="#4285f4"/>
-    <title>Barbell | Home </title>
-    <meta name="description" content="This is the description" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-    />
-  </head>
-  <body>
-    <div class="page-wrapper">
-        <header class="main-header">
-          <br>
-          <br>
-          <br>
-          <br>
-      <nav class="nav main-nav">
-          <li><a href="profile_self_screen.html">PROFILE</a></li>
-          <h1 class="barbell">Home</h1>
-      </nav>
-      </header>
-      <section class="content-section container main-header">
+{% extends 'index.html' %}
+{% load static %}
+    <title>{% block title %} Barbell | Home {% endblock %} </title>
+          {% block nav %}
+          <li><a href="/profile/self">PROFILE</a></li>
+          {% block header %}<h1 class="barbell">Home</h1> {% endblock %}
+          {% endblock %}
+        {% block content %}
+        <section class="content-section container main-header">
       <h class="section-header">Welcome To Barbell</h>
-      </section>
-      <footer class="main-footer">
-      <div class="container main-footer-container">
-        <img class="home-screen-image" src="images/barbell_white.png" />    
-      </div>
-      </footer>
-    </div>
+      <br>
+      Find Group, Image Share Timeline, & Comment System coming soon &#9935;
+        
+    </section>
+      {% endblock %}
+    {% block script %}
     <script src="{% static 'js/home.js' %}"></script>
-</body>
-</html>
+    {% endblock %}
+

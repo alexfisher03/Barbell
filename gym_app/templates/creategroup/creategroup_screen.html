@@ -2,27 +2,13 @@
 {% load static %}
   
   <title>{% block title %} Barbell | Create Group {% endblock %} </title> 
-  <body>
-    <div class="page-wrapper">
-      <header class="main-header">
-      <nav class="nav main-nav">
         {% block nav %}
-          <li><a href="home_screen.html">HOME</a></li>
-          <li><a href="generalsettings_screen.html">SETTINGS</a></li>
+          <li><a href="/home">HOME</a></li>
+          <li><a href="/general_settings">SETTINGS</a></li>
           {% block header %}<h1 class="barbell ">Create Group</h1> {% endblock %}
-        <br>
-        <br>
-        <br>
-        <br>
-          {% endblock %}
-        </nav>
-    </header>
-    <section class="container main-header">
+          {% endblock %}   
     {% block content %}
-    <br>
-    <br>
-    <br>
-    <br>
+    
       <form class="registration-form">
         <h3 class="section-header">Create Group</h3>
         <label class="content" >Group Name</label>
@@ -53,18 +39,10 @@
         <button id="create-group" class="login-button" type="button">Create Group</button>
         <br>
       </form>
-      <br>
-      <br>
-      <br>
-      <br>
-    {% endblock %}
-    </section>
-      <footer class="main-footer">
+
+    {% endblock %}    
       {% block additional_footer_content %}
-      <br>
-      <br>
-      <br>
-      <br>
+      
         <div class="container main-footer-container">
           <ul class="footer-nav">
               <li>
@@ -73,10 +51,7 @@
           </ul>
         </div>
       {% endblock %}
-      </footer>
-  </div>
   {% block scripts %}
   <script src="{% static 'js/creategroup.js' %}"></script>
   {% endblock %}
-</body>
-</html>
+
