@@ -18,9 +18,9 @@
   {% endblock %}  
   <title>{% block title %} Barbell | Stats {% endblock %} </title>
 {% block nav %}
-  <li><a href="profile_self_screen.html">PROFILE</a></li>
-  <li><a href="home_screen.html">HOME</a></li>
-  <li><a href="group_screen.html">GROUP</a></li>
+  <li><a href="/profile/self">PROFILE</a></li>
+  <li><a href="/home">HOME</a></li>
+  <li><a href="/group_screen">GROUP</a></li>
       {% block header %}<h1 class="barbell">'Insert Username''s Stats</h1> {% endblock %}
 {% endblock %}
 {% block content %}
@@ -174,18 +174,18 @@
 {% endblock %}
        
         
-          {% block footer %}
+          {% block additional_footer_content %}
           <div class="button-container">
-            <a href="#"><button id="view-global-leaderboard" class="stat-button" role="button"><strong> View Global Leaderboard </strong></button></a>
+            <a href="{% url 'global_leaderboard' %}"><button id="view-global-leaderboard" class="stat-button" role="button"><strong> View Global Leaderboard </strong></button></a>
           </div>
           <div class="button-container">
-            <a href="#"><button id="view-group-leaderboard" class="stat-button" role="button"><strong> View Group Leaderboard </strong></button></a>
+            <a href="{% url 'group_leaderboard' %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong> View Group Leaderboard </strong></button></a>
           </div>
           <div class="container main-footer-container">
             <ul class="footer-nav">
               <li>
-                <a href="#"><button id="back-button" class="previous" role="button"><strong> Back </strong></button></a>
-                <span><a href="profile-settings_screen.html"><button class="stat-button" role="button"><strong>Settings </strong></button></a></a></span>
+                <!-- <a href="#"><button id="back-button" class="previous" role="button"><strong> Back </strong></button></a> -->
+                <a href="{% url 'input_rep_stats' %}"><button class="stat-button" role="button"><strong>Settings</strong></button></a>
               </li>
         </ul>
        {% endblock %}

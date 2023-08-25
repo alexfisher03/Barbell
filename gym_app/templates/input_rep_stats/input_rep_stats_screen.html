@@ -178,15 +178,18 @@
 {% endblock %}
       {% block additional_footer_content %}
       <div class="button-container">
-        <a href="#"><button id="view-global-leaderboard" class="stat-button" role="button"><strong> Confirm Updated Settings </strong></button></a>
+        <a href="{% url 'stat' %}"><button id="" class="stat-button" role="button"><strong> Confirm Updated Settings </strong></button></a>
       </div>
+     <!--
       <div class="container main-footer-container">
         <ul class="footer-nav">
           <li>
             <a href="#"><button id="back-button" class="previous" role="button"><strong> Back </strong></button></a>
           </li>
-    </ul>
-  {% endblock %}
+        </ul>
+      </div>
+      --> 
+      {% endblock %}
 
 {% block script %}
     <script src="{% static 'js/stat.js' %}"></script>

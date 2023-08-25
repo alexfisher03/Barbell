@@ -13,7 +13,7 @@
                 {% block content %}
                 <section class="container">
                     <!--Member 1 slot to be used for self if part of the group -->
-                   <h1 class="section-header">'User Data (name)'</h1>
+                   <h1 class="section-header">'User Group Data (Group name)'</h1>
                    <div class="content-section-group">
                         <strong>'Input Group Member 1'</strong> 
                         <img class="home-screen-image" src="">       
@@ -34,8 +34,8 @@
                 </section>
                   <section class="container">
                     <br>
-                    <nav class="body-nav">
-                        <li><a href="">View Group Leaderboard</a></li>
+                    <nav class="content body-nav">
+                        <li><a href="{% url 'group_leaderboard' %}">View Group Leaderboard</a></li>
                     </nav>
                     <br>
                 </section>
