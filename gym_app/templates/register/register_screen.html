@@ -7,29 +7,51 @@
     {% endblock %}
       
     {% block content %}
-      <form class="registration-form">
+      <form class="registration-form" method="post">
+        {% csrf_token %}
+        {% if success %}
+          <div class="success">Registration successful!</div>
+        {% endif %}
         <h3 class="section-header">Register</h3>
         <label class="content" for="username">Username</label>
-        <input type="text" placeholder="Enter Username" id="username">
+        <input type="text" placeholder="Enter Username" id="username" name="username" value="{{ form.username.value|default:'' }}">
+        {% if form.username.errors %}
+          <div class="error">{{ form.username.errors.as_text }}</div>
+        {% endif %}
 
         <label class="content" for="username">Email</label>
-        <input type="text" placeholder="Enter Email" id="email">
+        <input type="text" placeholder="Enter Email" id="email" name="email" value="{{ form.email.value|default:'' }}">
+        {% if form.email.errors %}
+            <div class="error">{{ form.email.errors.as_text }}</div>
+        {% endif %}
       
         <label class="content" for="phone">Phone Number</label>
-        <input type="tel" placeholder="Phone Number" id="phone">
+        <input type="tel" placeholder="Phone Number" id="phone" name="phone" value="{{ form.phone.value|default:'' }}">
+        {% if form.phone.errors %}
+            <div class="error">{{ form.phone.errors.as_text }}</div>
+        {% endif %}
       
         <label class="content" for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" placeholder="Password" id="password" name="password1">
+        {% if form.password1.errors %}
+          <div class="error">{{ form.password1.errors.as_text }}</div>
+        {% endif %}
       
         <label class="content" for="confirm-password">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" id="confirm-password">
+        <input type="password" placeholder="Confirm Password" id="confirm-password" name="password2">
+        {% if form.password2.errors %}
+            <div class="error">{{ form.password2.errors.as_text }}</div>
+        {% endif %}
       
         <label class="content" for="gender">Gender</label>
         <div class="gender-details">  
-            <input type="radio" name="gender" id="dot-1">
-            <input type="radio" name="gender" id="dot-2">
-            <input type="radio" name="gender" id="dot-3">
-            <div class="category">
+          <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
+          <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
+          <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
+          {% if form.gender.errors %}
+          <div class="error">{{ form.gender.errors.as_text }}</div>
+          {% endif %}
+          <div class="category">
               <label for="dot-1">
                 <span class="dot one"></span>
                 <span class="gender">Male</span>
