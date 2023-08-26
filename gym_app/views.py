@@ -1,7 +1,10 @@
+from .models import CustomUser, TableData, ImageMetadata
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from .models import TableData
+from django.shortcuts import render, redirect
+from .forms import RegistrationForm
 
 def index(request):
     return render(request, 'index.html')
@@ -25,7 +28,7 @@ def generalsettings_screen(request):
 def group_screen(request):
     return render(request, 'group/group_screen.html')
 
-@login_required
+
 def group_settings_screen(request):
     return render(request, 'group_settings/group_settings_screen.html')
 
@@ -47,17 +50,45 @@ def profile_other_screen(request):
 
 
 def profile_self_screen(request):
-    return render(request, 'profile/self/profile_self_screen.html')
+    if not request.user.is_authenticated:
+        return redirect('signin_screen')
+    user = request.user
+    custom_user = CustomUser.objects.get(username=user.username)
+    table_data = TableData.objects.filter(user=request.user)
+    images = ImageMetadata.objects.filter(user=request.user)
+    return render(request, 'profile/self/profile_self_screen.html', {
+    'table_data': table_data, 
+    'images': images, 
+    'custom_user': custom_user
+})
 
 
 def profilesettings_screen(request):
     return render(request, 'profile/settings/profilesettings_screen.html')
 
-
 def register_screen(request):
-    return render(request, 'register/register_screen.html')
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return render(request, 'register/register_screen.html', {'form': form, 'success': True})
+    
+    else:
+        form = RegistrationForm()  # Ensure this line is properly indented and is outside of the POST block
+
+    return render(request, 'register/register_screen.html', {'form': form})
 
 def signin_screen(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('profile_self')
+        else:
+            messages.error(request, 'Invalid username or password.')
     return render(request, 'signin/signin_screen.html')
 
 
