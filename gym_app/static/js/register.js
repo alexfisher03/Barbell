@@ -67,3 +67,4 @@ signInButton.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "/signin/"; // Redirects to signin view
 });
+

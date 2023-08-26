@@ -33,12 +33,14 @@
       
         <label class="content" for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password1">
+        <!-- <button id="toggle-new-password" class="password-toggle-button">Show</button> -->
         {% if form.password1.errors %}
           <div class="error">{{ form.password1.errors.as_text }}</div>
         {% endif %}
       
         <label class="content" for="confirm-password">Confirm Password</label>
         <input type="password" placeholder="Confirm Password" id="confirm-password" name="password2">
+       <!-- <button id="toggle-new-password" class="password-toggle-button">Show</button> -->
         {% if form.password2.errors %}
             <div class="error">{{ form.password2.errors.as_text }}</div>
         {% endif %}

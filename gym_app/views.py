@@ -84,10 +84,18 @@ def signin_screen(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
             return redirect('profile_self')
         else:
+            try:
+                user = CustomUser.objects.get(phone=username)
+                if user.check_password(password):
+                    login(request, user)
+                    return redirect('profile_self')
+            except CustomUser.DoesNotExist:
+                pass
             messages.error(request, 'Invalid username or password.')
     return render(request, 'signin/signin_screen.html')
 
