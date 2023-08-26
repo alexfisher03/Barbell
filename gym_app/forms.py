@@ -22,3 +22,12 @@ class RegistrationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+class ProfileSettings(forms.ModelForm):
+    profile_picture = forms.ImageField(label='Change Profile Picture:', widget=forms.FileInput)
+    bio = forms.CharField(label='Change Profile Bio:', widget=forms.TextInput)
+
+    class Meta:
+        model = CustomUser
+        fields = ['bio', 'profile_picture']
+    

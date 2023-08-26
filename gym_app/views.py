@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ProfileSettings
 from django.http import JsonResponse
 
 def index(request):
@@ -74,8 +74,24 @@ def profile_self_screen(request):
     }
     return render(request, 'profile/self/profile_self_screen.html', context)
 
+
+
+
+@login_required
 def profilesettings_screen(request):
-    return render(request, 'profile/settings/profilesettings_screen.html')
+    user = request.user
+    if request.method == 'POST':
+       form = ProfileSettings(request.POST, request.FILES, instance=user)
+       if form.is_valid():
+           form.save()
+           return redirect('profile_self')
+    
+    else:
+        form = ProfileSettings(instance=user)
+
+    return render(request, 'profile/settings/profilesettings_screen.html', {'form': form})
+    
+
 
 def register_screen(request):
     if request.method == 'POST':
@@ -89,6 +105,9 @@ def register_screen(request):
         form = RegistrationForm()  # Ensure this line is properly indented and is outside of the POST block
 
     return render(request, 'register/register_screen.html', {'form': form})
+
+
+
 
 def signin_screen(request):
     if request.method == 'POST':
@@ -111,14 +130,28 @@ def signin_screen(request):
     return render(request, 'signin/signin_screen.html')
 
 
+
+
+
 def stat_screen(request):
     return render(request, 'table/stat_screen.html')
+
+
+
 
 def global_leaderboard(request):
     return render(request, 'leaderboard/global/global_leaderboard_screen.html')
 
+
+
+
+
 def group_leaderboard(request):
     return render(request, 'leaderboard/group/group_leaderboard_screen.html')
+
+
+
+
 
 @login_required
 def reset_password(request):
