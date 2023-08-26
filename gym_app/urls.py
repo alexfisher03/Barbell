@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.urls import path
 from . import views
 
@@ -20,4 +21,5 @@ urlpatterns = [
     path('table/', views.stat_screen, name='stat'),
     path('leaderboard/global/', views.global_leaderboard, name='global_leaderboard'),
     path('leaderboard/group/', views.group_leaderboard, name='group_leaderboard'),
+    path('reset_password/', views.reset_password, name='reset_password'),
 ]

@@ -22,7 +22,6 @@
           <br>
       <nav class="nav main-nav">
         {% block nav %}
-          <li><a href="/signin">LOGIN</a></li>
           <h1 class="barbell">{% block header %}{% endblock %}</h1>
         {% endblock %}
       </nav>
@@ -30,7 +29,15 @@
       <section class="container">
         {% block content %}
         <div class="barbell">WELCOME TO BARBELL</div>
-        <section class="content-section container main-header"></section>
+        <section class="content-section container main-header">
+          <a href="/signin" class="content nav main-nav" >LOGIN</a>
+              <form class="">
+                <label class="content">
+                  <span class="content"> Track Your Gym Progress </span> 
+                  <span class="content"> Create Groups</span> 
+                  <span class="content"> Version 1 &#9935;</span> 
+                </label>
+              </form>
         </section>
         {% endblock %}
       </section>
