@@ -68,3 +68,26 @@ signInButton.addEventListener("click", (event) => {
     window.location.href = "/signin/"; // Redirects to signin view
 });
 
+// Toggle password visibility for password1
+document.getElementById('toggle-password1').addEventListener('click', function () {
+    const passwordInput1 = document.getElementById('password');
+    if (passwordInput1.type === 'password') {
+      passwordInput1.type = 'text';
+      this.textContent = 'Hide';
+    } else {
+      passwordInput1.type = 'password';
+      this.textContent = 'Show';
+    }
+  });
+  
+  // Toggle password visibility for password2
+  document.getElementById('toggle-password2').addEventListener('click', function () {
+    const passwordInput2 = document.getElementById('confirm-password');
+    if (passwordInput2.type === 'password') {
+      passwordInput2.type = 'text';
+      this.textContent = 'Hide';
+    } else {
+      passwordInput2.type = 'password';
+      this.textContent = 'Show';
+    }
+  });
