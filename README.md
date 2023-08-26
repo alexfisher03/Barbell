@@ -1,6 +1,9 @@
-# barbell_backend using Django framework 
+# barbell_backend using Django framework
+
 # ver 1.0
+
 # created by Alex Fisher and Jonathan Salem
+
 # University of Florida and University of Texas
 
 # remember to initialize venv by~ source venv/Scripts/activate ~each instance
