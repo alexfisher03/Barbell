@@ -9,13 +9,16 @@
                     {% block header %}<h1 class="barbell">Profile Settings</h1> {% endblock %}
           {% endblock %}
               {% block content %}
-              <form action="" method="POST">
-                <label class="content" for="profile-picture">Change Profile Picture:</label>
-                <input type="file" id="profile-picture" name="profile-picture">
-
-                <label class="content" for="profile-bio">Change Profile Bio:</label>
-                <input type="text" id="workout-split" name="workout-split">
-
+              <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container">
+                {{ form.profile_picture.label_tag }}
+                {{ form.profile_picture }}
+                <br>
+                {{ form.bio.label_tag }}
+                {{ form.bio }}
+                <br>
+                </div> 
                 <label class="content" for="rep-stats">Input Rep Stats:</label>
                 <button id="input-rep-stats" data-url="{% url 'input_rep_stats' %}" class="sign-up-button2" role="button">Click Here</button>
                 
@@ -27,7 +30,7 @@
             <div class="container main-footer-container">
               <ul class="footer-nav">
                   <li>
-                      <button id="confirm-profile-settings" data-url="{% url 'profile_self' %}" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
+                    <button type="submit" id="confirm-profile-settings" data-url="{% url 'profile_self' %}" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
                   </li>
               </ul>
             </div>
