@@ -1,10 +1,13 @@
 from .models import CustomUser, TableData, ImageMetadata
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
+from django.http import JsonResponse
 
 def index(request):
     return render(request, 'index.html')
@@ -12,56 +15,64 @@ def index(request):
 def about_screen(request):
     return render(request, 'about/about_screen.html')
 
-
 def creategroup_screen(request):
-    return render(request, 'creategroup/creategroup_screen.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+        
+        try:
+            user = CustomUser.objects.get(username=username)
+        except CustomUser.DoesNotExist:
+            messages.error(request, "Username does not exist.")
+            return render(request, 'forgot_password/forgotpassword_screen.html')
 
+        if new_password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+            return render(request, 'forgot_password/forgotpassword_screen.html')
+
+        user.set_password(new_password)
+        user.save()
+        messages.success(request, "Password has been reset.")
+        return redirect('signin')  # Redirect to the login page
+
+    return render(request, 'forgot_password/forgotpassword_screen.html')
 
 def forgotpassword_screen(request):
     return render(request, 'forgot_password/forgotpassword_screen.html')
 
-
 def generalsettings_screen(request):
     return render(request, 'general_settings/generalsettings_screen.html')
-
 
 def group_screen(request):
     return render(request, 'group/group_screen.html')
 
-
 def group_settings_screen(request):
     return render(request, 'group_settings/group_settings_screen.html')
-
 
 def home_screen(request):
     return render(request, 'home/home_screen.html')
 
-
 def input_rep_stats_screen(request):
     return render(request, 'input_rep_stats/input_rep_stats_screen.html')
-
 
 def privacy_screen(request):
     return render(request, 'privacy/privacy_screen.html')
 
-
 def profile_other_screen(request):
     return render(request, 'profile/other/profile_other_screen.html')
 
-
+@login_required
 def profile_self_screen(request):
-    if not request.user.is_authenticated:
-        return redirect('signin_screen')
-    user = request.user
-    custom_user = CustomUser.objects.get(username=user.username)
+    custom_user = request.user
     table_data = TableData.objects.filter(user=request.user)
     images = ImageMetadata.objects.filter(user=request.user)
-    return render(request, 'profile/self/profile_self_screen.html', {
-    'table_data': table_data, 
-    'images': images, 
-    'custom_user': custom_user
-})
-
+    context = {
+        'table_data': table_data, 
+        'images': images, 
+        'custom_user': custom_user
+    }
+    return render(request, 'profile/self/profile_self_screen.html', context)
 
 def profilesettings_screen(request):
     return render(request, 'profile/settings/profilesettings_screen.html')
@@ -109,3 +120,28 @@ def global_leaderboard(request):
 def group_leaderboard(request):
     return render(request, 'leaderboard/group/group_leaderboard_screen.html')
 
+@login_required
+def reset_password(request):
+    if request.method == 'POST':
+        new_password = request.POST['new_password']
+        confirm_password = request.POST['confirm_password']
+
+        if new_password != confirm_password:
+            return JsonResponse({"error": "Passwords do not match"}, status=400)
+
+        User = get_user_model()
+        
+        # Since the user is already logged in, we can get the username from session
+        username = request.user.username
+
+        try:
+            user_to_reset = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return JsonResponse({"error": "Username does not exist"}, status=400)
+
+        user_to_reset.set_password(new_password)
+        user_to_reset.save()
+        update_session_auth_hash(request, user_to_reset)  # Important, to update the session
+        return JsonResponse({"success": "Password successfully updated"})
+    else:
+        return render(request, 'forgot_password/forgotpassword_screen.html')

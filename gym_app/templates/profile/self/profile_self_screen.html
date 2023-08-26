@@ -7,17 +7,23 @@
                         <li><a href="/group_screen">GROUP</a></li> 
                         {% block header %}<h1 class="barbell">Profile</h1> {% endblock %}
                 {% endblock %}
-          {% block content %}
-                     <img class="home-screen-image" src=""> 
-                     <h1>'Insert Self Username'</h1>
-                     <p>'Insert User Bio'</p>
-          </section>
-            <section class="content-section-small container button-container">
-                <div class="button-group">
-                    <a href="{% url 'stat' %}"><button class="profile-button" role="button"><strong> View Stats </strong></button></a>
-                    <a href="{% url 'group_screen' %}"><button class="profile-button" role="button"><strong> View Group</strong></button></a>
-                </div>
-        {% endblock %}
+            {% block content %}
+                <img class="home-screen-image" src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}"{% endif }> 
+                <h1>{{ custom_user.username }}</h1>
+                <p>{{ custom_user.bio|default:"No bio yet."}}</p>
+                <section class="content-section-small container button-container">
+                    <div class="button-group">
+                        <a href="{% url 'stat' %}"><button class="profile-button" role="button"><strong> View Stats </strong></button></a>
+            
+                        {% if custom_user.groups.all %}
+                            <a href="{% url 'group_screen' %}"><button class="profile-button" role="button"><strong> View Group</strong></button></a>
+                        {% else %}
+                            <a href="{% url 'create_group' %}"><button class="profile-button" role="button"><strong> Create Group</strong></button></a>
+                        {% endif %}
+                    </div>
+                </section>
+            {% endif %}
+            {% endblock %}
             {% block additional_footer_content %}
                 <div class="container main-footer-container">
                     <ul class="footer-nav">
