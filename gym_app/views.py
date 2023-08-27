@@ -85,22 +85,24 @@ def profilesettings_screen(request):
        if form.is_valid():
            form.save()
            return redirect('profile_self')
+       
     
     else:
         form = ProfileSettings(instance=user)
-
     return render(request, 'profile/settings/profilesettings_screen.html', {'form': form})
-    
+
 
 
 def register_screen(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            print("form is valid")
             user = form.save()
             login(request, user)
             return render(request, 'register/register_screen.html', {'form': form, 'success': True})
-    
+        else:
+            print("form is invalid", form.errors)
     else:
         form = RegistrationForm()  # Ensure this line is properly indented and is outside of the POST block
 
