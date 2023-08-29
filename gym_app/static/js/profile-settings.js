@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded',function(){
     });
 });
 
-var resetPasswordButton = document.getElementById('reset-password');
+const resetPasswordButton = document.getElementById('reset-password');
 resetPasswordButton.addEventListener('click', function(event){
     event.preventDefault();
     window.location.href = this.getAttribute("data-url");
