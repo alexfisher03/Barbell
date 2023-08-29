@@ -5,6 +5,8 @@ from .models import CustomUser, TableData, ImageMetadata
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ['username', 'email', 'phone', 'gender']
     search_fields = ['username', 'email', 'phone']
+    readonly_fields = ('date_joined', 'last_login')
+    filter_horizontal = ()
     pass
 
 
