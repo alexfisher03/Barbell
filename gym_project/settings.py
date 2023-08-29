@@ -135,3 +135,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = 'gym_app.CustomUser'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

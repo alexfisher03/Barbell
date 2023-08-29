@@ -12,11 +12,6 @@ resetPasswordButton.addEventListener('click', function(event){
     window.location.href = this.getAttribute("data-url");
 });
 
-document.getElementById("confirm-profile-settings").addEventListener("click", function(event){
-    event.preventDefault();
-    window.location.href = this.getAttribute("data-url");
-});
-
 document.getElementById("back-button").addEventListener("click", function(event){
     event.preventDefault();
     history.back();

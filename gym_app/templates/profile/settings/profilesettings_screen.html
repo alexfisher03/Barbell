@@ -11,13 +11,22 @@
               {% block content %}
               <form action="{% url 'profilesettings' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
                 <div class="container">
+              
                 {{ form.profile_picture.label_tag }}
                 {{ form.profile_picture }}
                 <br>
                 {{ form.bio.label_tag }}
                 {{ form.bio }}
                 <br>
+                <p >Fill both fields (v1.0) </p>
                 <button type="submit" id="confirm-profile-settings" data-url="{% url 'profile_self' %}" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
                 </div> 
                 <label class="content" for="rep-stats">Input Rep Stats:</label>

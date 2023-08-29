@@ -8,7 +8,7 @@
                         {% block header %}<h1 class="barbell">Profile</h1> {% endblock %}
                 {% endblock %}
             {% block content %}
-                <img class="home-screen-image" src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}"{% endif }> 
+            <img class="home-screen-image" src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}"> 
                 <h1>{{ custom_user.username }}</h1>
                 <p>{{ custom_user.bio|default:"No bio yet."}}</p>
                 <section class="content-section-small container button-container">
@@ -22,7 +22,6 @@
                         {% endif %}
                     </div>
                 </section>
-            {% endif %}
             {% endblock %}
             {% block additional_footer_content %}
                 <div class="container main-footer-container">

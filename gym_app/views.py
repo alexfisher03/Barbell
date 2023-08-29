@@ -1,8 +1,7 @@
 from .models import CustomUser, TableData, ImageMetadata
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib.auth import get_user_model, authenticate, login, update_session_auth_hash
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -16,6 +15,10 @@ def about_screen(request):
     return render(request, 'about/about_screen.html')
 
 def creategroup_screen(request):
+    return render(request, 'creategroup/creategroup_screen.html')
+
+def forgotpassword_screen(request):
+    context = {}
     if request.method == 'POST':
         username = request.POST.get('username')
         new_password = request.POST.get('new_password')
@@ -34,11 +37,9 @@ def creategroup_screen(request):
         user.set_password(new_password)
         user.save()
         messages.success(request, "Password has been reset.")
+        context['success'] = True
         return redirect('signin')  # Redirect to the login page
 
-    return render(request, 'forgot_password/forgotpassword_screen.html')
-
-def forgotpassword_screen(request):
     return render(request, 'forgot_password/forgotpassword_screen.html')
 
 def generalsettings_screen(request):
@@ -64,6 +65,7 @@ def profile_other_screen(request):
 
 @login_required
 def profile_self_screen(request):
+    print(request.user.is_authenticated)
     custom_user = request.user
     table_data = TableData.objects.filter(user=request.user)
     images = ImageMetadata.objects.filter(user=request.user)
@@ -79,15 +81,23 @@ def profile_self_screen(request):
 
 @login_required
 def profilesettings_screen(request):
+    print('Function Loaded')
+    print(f"Current User: {request.user}")
+    print(f"Request Method: {request.method}")
     user = request.user
     if request.method == 'POST':
+       print('im POST')
        form = ProfileSettings(request.POST, request.FILES, instance=user)
        if form.is_valid():
+           print('Im valid')
            form.save()
            return redirect('profile_self')
-       
-    
+       else:
+           print(form.errors)
+           for error in form.errors:
+               messages.error(request, f"{error}: {form.errors[error]}")
     else:
+        print('I did not post')
         form = ProfileSettings(instance=user)
     return render(request, 'profile/settings/profilesettings_screen.html', {'form': form})
 
