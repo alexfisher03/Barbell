@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.admin.models import LogEntry
 from django.contrib.auth.models import AbstractUser, Permission, Group
 
+
 class CustomUser(AbstractUser):
-    # Additional fields if needed
     MALE = 'M'
     FEMALE = 'F'
     OTHER = 'O'
@@ -25,6 +26,7 @@ class CustomUser(AbstractUser):
     # Other fields like date_of_birth, bio, etc.
     def __str__(self):
         return self.username
+    
 
 class TableData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -34,7 +36,6 @@ class TableData(models.Model):
     class Meta:
         verbose_name = 'Stat Data'
         verbose_name_plural = 'Stat Data'
-    # Other fields as needed
 
     def __str__(self):
         return self.data_title

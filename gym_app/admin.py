@@ -9,7 +9,6 @@ class CustomUserAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     pass
 
-
 admin.site.register(TableData)
 admin.site.register(ImageMetadata)
 
