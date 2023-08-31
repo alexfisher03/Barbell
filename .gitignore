@@ -30,11 +30,6 @@ local_settings.py
 
 # Environment variables file (if you use one)
 .env
-Please note that this is a general guideline, and you should adjust the patterns based on your project's specific structure and requirements. If you're using any other tools or libraries that generate files, make sure to include patterns for those files as well.
-
-As you continue developing your project, if you come across additional files or directories that are generated during development and should not be included in version control, you can simply add them to your .gitignore file.
-
-Remember to always be cautious with sensitive information and not to include any confidential data in your repository. If you're unsure about whether a file should be included in version control or not, it's generally better to err on the side of caution and include it in the .gitignore.
 
 
 
