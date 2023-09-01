@@ -90,7 +90,12 @@ def profilesettings_screen(request):
        form = ProfileSettings(request.POST, request.FILES, instance=user)
        if form.is_valid():
            print('Im valid')
-           form.save()
+           user = form.save(commit=False)
+           if form.cleaned_data['profile_picture']:
+               user.profile_picture = form.cleaned_data['profile_picture']
+           if form.cleaned_data['bio']:
+               user.bio = form.cleaned_data['bio']
+           user.save()
            return redirect('profile_self')
        else:
            print(form.errors)

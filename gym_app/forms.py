@@ -31,29 +31,29 @@ class ProfileSettings(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['bio', 'profile_picture']
-    
+
     def clean_profile_picture(self):
-        image = self.cleaned_data.get('profile_picture')
-        #if not image:
-        #   raise forms.ValidationError("This field is required. ")
+        image = self.cleaned_data.get('profile_picture')        
         if hasattr(image, 'content_type'):
             content_type = image.content_type
         elif hasattr(image, 'file') and hasattr(image.file, 'content_type'):
             content_type = image.file.content_type
         else:
-            raise forms.ValidationError("Could not determine the content type of the image.")
+            return None          
         if content_type not in ['image/jpeg', 'image/png']:
             raise forms.ValidationError("Only JPEG or PNG images allowed.")
+        
         return image
-    
+
     def clean(self):
         cleaned_data = super().clean()
         bio = cleaned_data.get('bio')
         profile_picture = cleaned_data.get('profile_picture')
 
-        if not bio and not profile_picture:
+        # Check that at least one field is filled
+        if not bio and profile_picture is None:
             raise forms.ValidationError("You must select at least one setting to change.")
-
+        
         return cleaned_data
 
     def save(self, commit=True):
