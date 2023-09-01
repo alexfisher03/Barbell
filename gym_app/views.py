@@ -145,8 +145,8 @@ def signin_screen(request):
 
 
 
-def stat_screen(request):
-    return render(request, 'table/stat_screen.html')
+#def stat_screen(request):
+    #return render(request, 'table/stat_screen.html')
 
 
 
