@@ -32,6 +32,7 @@ local_settings.py
 .env
 
 
+.secret_key
 
 
 

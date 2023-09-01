@@ -275,6 +275,7 @@ html {
   height: 300px;
   width: 300px;
   margin: 15px;
+  border-radius: 10%;
 }
 
 .home-screen-text {
@@ -675,4 +676,10 @@ form .member-limit-details .limit-val {
   background: none;
   color: #0dccea;
   cursor: pointer;
+}
+
+.forgot-password-link {
+  display:block;
+  text-align: center;
+  margin: 20px 0;
 }

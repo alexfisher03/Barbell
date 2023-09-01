@@ -275,6 +275,7 @@ html {
   height: 300px;
   width: 300px;
   margin: 15px;
+  border-radius: 50%;
 }
 
 .home-screen-text {
