@@ -18,19 +18,16 @@
         {% if form.username.errors %}
           <div class="error">{{ form.username.errors.as_text }}</div>
         {% endif %}
-
         <label class="content" for="username">Email</label>
         <input type="text" placeholder="Enter Email" id="email" name="email" value="{{ form.email.value|default:'' }}">
         {% if form.email.errors %}
             <div class="error">{{ form.email.errors.as_text }}</div>
         {% endif %}
-      
         <label class="content" for="phone">Phone Number</label>
         <input type="tel" placeholder="Phone Number" id="phone" name="phone" value="{{ form.phone.value|default:'' }}">
         {% if form.phone.errors %}
             <div class="error">{{ form.phone.errors.as_text }}</div>
         {% endif %}
-      
         <label class="content" for="password">Password</label>
         <div class="password-input-container">
           <input type="password" placeholder="Password" id="password" name="password1">

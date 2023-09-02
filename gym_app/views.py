@@ -14,8 +14,8 @@ def index(request):
 def about_screen(request):
     return render(request, 'about/about_screen.html')
 
-def creategroup_screen(request):
-    return render(request, 'creategroup/creategroup_screen.html')
+#where create group goes
+
 
 def forgotpassword_screen(request):
     context = {}
@@ -86,10 +86,8 @@ def profilesettings_screen(request):
     print(f"Request Method: {request.method}")
     user = request.user
     if request.method == 'POST':
-       print('im POST')
        form = ProfileSettings(request.POST, request.FILES, instance=user)
        if form.is_valid():
-           print('Im valid')
            user = form.save(commit=False)
            if form.cleaned_data['profile_picture']:
                user.profile_picture = form.cleaned_data['profile_picture']
@@ -108,6 +106,15 @@ def profilesettings_screen(request):
 
 
 
+#for dev
+@login_required
+def creategroup_screen(request):
+   # user = request.user
+   # if request.method == 'POST':
+
+    return render(request, 'creategroup/creategroup_screen.html')
+
+
 def register_screen(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -119,8 +126,7 @@ def register_screen(request):
         else:
             print("form is invalid", form.errors)
     else:
-        form = RegistrationForm()  # Ensure this line is properly indented and is outside of the POST block
-
+        form = RegistrationForm()
     return render(request, 'register/register_screen.html', {'form': form})
 
 

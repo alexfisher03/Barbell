@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser
+from .models import CustomUser, CustomUserGroup 
 from django.core.exceptions import ValidationError
 
 class RegistrationForm(forms.ModelForm):
@@ -62,14 +62,10 @@ class ProfileSettings(forms.ModelForm):
             user.save()
         return user
     
-#ignore
-    # def clean_profile_picture(self):
-        image = self.cleaned_data.get('profile_picture')
-        if not image:
-            raise forms.ValidationError("This field is required. ")
-        content_type = getattr(image, 'content_type', None)
-        if content_type is None and hasattr(image, 'file'):
-            content_type = getattr(image.file, 'content_type', None)       
-        if content_type not in ['image/jpeg', 'image/png']:
-            raise forms.ValidationError("Only JPEG or PNG images allowed.")
-        return image
+class CreateGroup(forms.ModelForm):
+    group_name = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
+    bio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
+
+    class Meta:
+        model = CustomUserGroup
+        fields = ['']
