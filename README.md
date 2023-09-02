@@ -1,13 +1,13 @@
 # barbell_backend using Django framework
 
-# ver 1.0
+# ver 1.1
 
 # created by Alex Fisher and Jonathan Salem
 
 # University of Florida and University of Texas
 
-# remember to initialize venv by~ source venv/Scripts/activate ~each instance
+# For development environment, venv required
 
-# ensure mysql installed locally, PATH set in Environment settings, and Django installed
+# pip install -r requirements.txt to install necessary modules
 
-# install pillow as well for django image dependencies during development
+# Login, Register, Profile/self, Profile/settings, Create Group functional with mySQL data
