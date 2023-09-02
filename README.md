@@ -1,6 +1,7 @@
 # barbell_backend using Django framework
 
-# ver 1.1
+# ver 1.0
+# ver 1.1 on Experimental Branch
 
 # created by Alex Fisher and Jonathan Salem
 
