@@ -45,8 +45,17 @@ def forgotpassword_screen(request):
 def generalsettings_screen(request):
     return render(request, 'general_settings/generalsettings_screen.html')
 
-def group_screen(request):
-    return render(request, 'group/group_screen.html')
+@login_required
+def group_screen(request, group_id):
+    user = request.user
+    group = Group.objects.get(id=group_id)
+    members = CustomUser.objects.filter(current_group=group)
+    return render(request, 'group/group_screen.html', {'group': group, 'members': members})
+
+def group_leaderboard(request, group_id):
+    group = Group.objects.get(id=group_id)
+    #setup later for group leaderboard
+    return render(request, 'leaderboard/group/group_leaderboard_screen.html')
 
 def group_settings_screen(request):
     return render(request, 'group_settings/group_settings_screen.html')
@@ -69,10 +78,12 @@ def profile_self_screen(request):
     custom_user = request.user
     table_data = TableData.objects.filter(user=request.user)
     images = ImageMetadata.objects.filter(user=request.user)
+    current_group = request.user.current_group
     context = {
         'table_data': table_data, 
         'images': images, 
-        'custom_user': custom_user
+        'custom_user': custom_user,
+        'current_group': current_group
     }
     my_groups = Group.objects.filter(created_by=request.user)
     return render(request, 'profile/self/profile_self_screen.html', context)
@@ -115,15 +126,17 @@ def creategroup_screen(request):
             print("Cleaned Data:", form.cleaned_data)
             new_group = form.save(commit=False)
             new_group.created_by = request.user
-            new_group.privacy = form.cleaned_data['gprivacy']
+            new_group.privacy = form.cleaned_data['privacy']
             new_group.save()
             request.user.current_group = new_group
             request.user.save()
             print("New Group ID: ", new_group.id)
             print("New Group Privacy: ", new_group.privacy)
-            return redirect('profile_self')
+            return redirect('group_screen', group_id=new_group.id)
+        else:
+            print("Form Errors:", form.errors)
     else:
-        print('Not Valid/ not post')
+        print('Not post')
         form = CreateGroup()
     return render(request, 'creategroup/creategroup_screen.html', {'form': form})
 
@@ -168,7 +181,7 @@ def signin_screen(request):
 
 
 
-
+#disintegrated view ------------------------------------
 #def stat_screen(request):
     #return render(request, 'table/stat_screen.html')
 
@@ -177,15 +190,6 @@ def signin_screen(request):
 
 def global_leaderboard(request):
     return render(request, 'leaderboard/global/global_leaderboard_screen.html')
-
-
-
-
-
-def group_leaderboard(request):
-    return render(request, 'leaderboard/group/group_leaderboard_screen.html')
-
-
 
 
 

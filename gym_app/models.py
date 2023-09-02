@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.admin.models import LogEntry
-from django.contrib.auth.models import AbstractUser, Permission, Group
+from django.contrib.auth.models import AbstractUser, Permission, Group as MyGroup
 
 
 class CustomUser(AbstractUser):
@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
         (FEMALE, 'Female'),
         (OTHER, 'Other'),
     ]
-    current_group = models.ForeignKey(Group, related_name='group_members', null=True, blank=True, on_delete=models.SET_NULL)
+    current_group = models.ForeignKey('Group', related_name='group_members', null=True, blank=True, on_delete=models.SET_NULL)
     user_permissions = models.ManyToManyField(Permission, related_name='user_permissions')
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     bio = models.TextField(blank=True)

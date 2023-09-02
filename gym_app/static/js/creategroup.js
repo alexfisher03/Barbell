@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let valid = true;
         //getting the two text inputs
         const groupName = document.getElementById('name');
-        const bio = document.getElementById('biogroup');
+        const bio = document.getElementById('groupbio');
         
         if (!groupName.value.trim()) {
             alert('Please Enter a Group Name');
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
       
         //getting the radio (button) input
-        const privacyRadios = document.querySelectorAll('input[type="radio"][name="gprivacy"]');
+        const privacyRadios = document.querySelectorAll('input[type="radio"][name="privacy"]');
         let privacySelected = false;
         for (const radio of privacyRadios) {
             if (radio.checked) {
