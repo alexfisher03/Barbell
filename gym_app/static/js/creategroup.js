@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(){
         //getting the radio (button) input
         const privacyRadios = document.querySelectorAll('input[type="radio"][name="gprivacy"]');
         let privacySelected = false;
-        for (const radio of privacySelected) {
+        for (const radio of privacyRadios) {
             if (radio.checked) {
                 privacySelected = true;
                 break;
@@ -47,14 +47,4 @@ document.getElementById("back-button").addEventListener("click", function(event)
 
 const createGroup = document.getElementById("create-group");
 console.log(createGroup);
-
-document.addEventListener("DOMContentLoaded", function() {
-    const createGroup = document.getElementById("create-group");
-    console.log(createGroup);
-
-    createGroup.addEventListener("click", event => {
-        event.preventDefault();
-        window.location.href = "/group";
-    });
-});
 

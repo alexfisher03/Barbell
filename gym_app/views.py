@@ -75,7 +75,7 @@ def profile_self_screen(request):
         'custom_user': custom_user
     }
     my_groups = Group.objects.filter(created_by=request.user)
-    return render(request, 'profile/self/profile_self_screen.html', {'my_groups': my_groups})
+    return render(request, 'profile/self/profile_self_screen.html', context)
 
 
 
@@ -119,7 +119,7 @@ def creategroup_screen(request):
             return redirect('profile_self')
     else:
         form = CreateGroup()
-    return render(request, 'creategroup/creategroup_screen.html')
+    return render(request, 'creategroup/creategroup_screen.html', {'form': form})
 
 
 def register_screen(request):
