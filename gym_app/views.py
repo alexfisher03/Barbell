@@ -106,18 +106,24 @@ def profilesettings_screen(request):
     return render(request, 'profile/settings/profilesettings_screen.html', {'form': form})
 
 
-
 #for dev
 @login_required
 def creategroup_screen(request):
     if request.method == 'POST':
         form = CreateGroup(request.POST)
         if form.is_valid():
+            print("Cleaned Data:", form.cleaned_data)
             new_group = form.save(commit=False)
             new_group.created_by = request.user
+            new_group.privacy = form.cleaned_data['gprivacy']
             new_group.save()
+            request.user.current_group = new_group
+            request.user.save()
+            print("New Group ID: ", new_group.id)
+            print("New Group Privacy: ", new_group.privacy)
             return redirect('profile_self')
     else:
+        print('Not Valid/ not post')
         form = CreateGroup()
     return render(request, 'creategroup/creategroup_screen.html', {'form': form})
 

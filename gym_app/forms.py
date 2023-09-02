@@ -63,8 +63,9 @@ class ProfileSettings(forms.ModelForm):
         return user
     
 class CreateGroup(forms.ModelForm):
-    groupname = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
-    biogroup = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
+    # name is in reference to the group name, ambiguous cuz i messed up the sql
+    name = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
+    groupbio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
     gprivacy = forms.ChoiceField(
         choices=[
             ('PUB', 'Public'),
@@ -74,4 +75,4 @@ class CreateGroup(forms.ModelForm):
     )
     class Meta:
         model = Group
-        fields = ['groupname', 'biogroup', 'gprivacy']
+        fields = ['name', 'groupbio', 'privacy']
