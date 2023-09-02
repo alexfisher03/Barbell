@@ -1,11 +1,11 @@
-from .models import CustomUser, TableData, ImageMetadata
+from .models import CustomUser, TableData, ImageMetadata, Group
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, update_session_auth_hash
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, ProfileSettings
+from .forms import RegistrationForm, ProfileSettings, CreateGroup
 from django.http import JsonResponse
 
 def index(request):
@@ -74,7 +74,8 @@ def profile_self_screen(request):
         'images': images, 
         'custom_user': custom_user
     }
-    return render(request, 'profile/self/profile_self_screen.html', context)
+    my_groups = Group.objects.filter(created_by=request.user)
+    return render(request, 'profile/self/profile_self_screen.html', {'my_groups': my_groups})
 
 
 
@@ -109,9 +110,15 @@ def profilesettings_screen(request):
 #for dev
 @login_required
 def creategroup_screen(request):
-   # user = request.user
-   # if request.method == 'POST':
-
+    if request.method == 'POST':
+        form = CreateGroup(request.POST)
+        if form.is_valid():
+            new_group = form.save(commit=False)
+            new_group.created_by = request.user
+            new_group.save()
+            return redirect('profile_self')
+    else:
+        form = CreateGroup()
     return render(request, 'creategroup/creategroup_screen.html')
 
 

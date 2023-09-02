@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser, CustomUserGroup 
+from .models import CustomUser, Group
 from django.core.exceptions import ValidationError
 
 class RegistrationForm(forms.ModelForm):
@@ -67,5 +67,5 @@ class CreateGroup(forms.ModelForm):
     bio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
 
     class Meta:
-        model = CustomUserGroup
-        fields = ['']
+        model = Group
+        fields = ['groupname', 'groupbio', 'privacy']
