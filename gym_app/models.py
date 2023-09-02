@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.admin.models import LogEntry
 from django.contrib.auth.models import AbstractUser, Permission, Group
 
@@ -27,8 +28,18 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
     
+class Group(models.Model):
+    groupname = models.CharField(max_length=255)
+    groupbio = models.TextField()
+    PRIVACY_CHOICES = [
+        ('PUB', 'Public'),
+        ('PRV', 'Private'),
+    ]
+    privacy = models.CharField(max_length=3, choices=PRIVACY_CHOICES)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_groups', on_delete=models.CASCADE)
 
-    
+    def __str__(self):
+        return self.groupname
 
 class TableData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

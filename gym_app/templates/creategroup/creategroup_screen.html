@@ -8,7 +8,7 @@
           {% block header %}<h1 class="barbell ">Create Group</h1> {% endblock %}
           {% endblock %}   
     {% block content %}
-      <form class="create-group-form">
+      <form class="create-group-form" method="post">
         {% csrf_token %}
         <h3 class="section-header">Create Group</h3>
         <label class="content" >Group Name</label>
@@ -40,7 +40,7 @@
           </div>
         </div>
         <br>
-        <button id="create-group" class="login-button" type="button">Create Group</button>
+        <button id="create-group" class="login-button" type="submit">Create Group</button>
         <br>
       </form>
 
