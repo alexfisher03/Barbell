@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
         (FEMALE, 'Female'),
         (OTHER, 'Other'),
     ]
-    groups = models.ManyToManyField(Group, related_name='user_groups')
+    current_group = models.ForeignKey(Group, related_name='group_members', null=True, blank=True, on_delete=models.SET_NULL)
     user_permissions = models.ManyToManyField(Permission, related_name='user_permissions')
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     bio = models.TextField(blank=True)
@@ -29,8 +29,8 @@ class CustomUser(AbstractUser):
         return self.username
     
 class Group(models.Model):
-    groupname = models.CharField(max_length=255)
-    groupbio = models.TextField()
+    name = models.CharField(max_length=255)
+    groupbio = models.TextField(default='')
     PRIVACY_CHOICES = [
         ('PUB', 'Public'),
         ('PRV', 'Private'),
@@ -39,7 +39,7 @@ class Group(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_groups', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.groupname
+        return self.name
 
 class TableData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

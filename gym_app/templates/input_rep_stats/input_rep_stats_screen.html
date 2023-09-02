@@ -1,19 +1,25 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block style %}
-  <style>
+<style>
   table {
     font-family: helvetica, sans-serif;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 15px 15px;
     width: 100%;
+    table-layout: fixed;
   }
   
-  td, th {
-    border: 0.5px solid #dddddd;
-    text-align: left;
-    padding: 15px;
+   td, th {
+    border: 1px dashed rgba(255,255,255,0.13); 
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    line-height: 20px;
+    width: 235px;
+    height: 15px;
   }
-  
+
   </style>
 {% endblock %}
           <title> {% block title %} Barbell | Input Stats  {% endblock %}</title>

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
     createGroupForm.addEventListener('submit', function(e) {
         let valid = true;
         //getting the two text inputs
-        const groupName = document.getElementById('groupname');
+        const groupName = document.getElementById('name');
         const bio = document.getElementById('biogroup');
         
         if (!groupName.value.trim()) {
@@ -45,6 +45,4 @@ document.getElementById("back-button").addEventListener("click", function(event)
     history.back();
 });
 
-const createGroup = document.getElementById("create-group");
-console.log(createGroup);
 
