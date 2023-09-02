@@ -18,24 +18,24 @@
         {% endif %}
         <label class="content" >Bio</label>
         <input type="text" placeholder="Enter Bio Content" id="groupbio" name="groupbio" value="{{ form.groupbio.value|default:''}}">
-        {% if form.biogroup.errors %}
-          <div class="error">{{ form.biogroup.errors.as_text }}</div>
+        {% if form.groupbio.errors %}
+          <div class="error">{{ form.groupbio.errors.as_text }}</div>
         {% endif %}
-        <label class="content" for="gprivacy">Privacy Settings</label>
+        <label class="content" for="privacy">Privacy Settings</label>
         <div class="group-privacy-radios">  
-          <input type="radio" name="gprivacy" id="dot-1" value="PUB" {% if form.gprivacy.value == 'PUB' %}checked{% endif %}>
-          <input type="radio" name="gprivacy" id="dot-2" value="PRV" {% if form.gprivacy.value == 'PRV' %}checked{% endif %}>
-          {% if form.gprivacy.errors %}
-          <div class="error">{{ form.gprivacy.errors.as_text }}</div>
+          <input type="radio" name="privacy" id="dot-1" value="PUB" {% if form.gprivacy.value == 'PUB' %}checked{% endif %}>
+          <input type="radio" name="privacy" id="dot-2" value="PRV" {% if form.gprivacy.value == 'PRV' %}checked{% endif %}>
+          {% if form.privacy.errors %}
+          <div class="error">{{ form.privacy.errors.as_text }}</div>
           {% endif %}
           <div class="category">
             <label for="dot-1">
               <span class="dot one"></span>
-              <span class="gprivacy">Public</span>
+              <span class="privacy">Public</span>
             </label>
             <label for="dot-2">
               <span class="dot two"></span>
-              <span class="gprivacy">Private</span>
+              <span class="privacy">Private</span>
             </label>
           </div>
         </div>

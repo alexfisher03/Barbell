@@ -7,8 +7,8 @@ class GymAppConfig(AppConfig):
     name = 'gym_app'
 
     def ready(self):
-        print("..----''''''''''''''''''''''''''''''''----..")
-        print("**----______ Welcome To Barbell ______----**")
+        print("..----'''''''Welcome To Barbell'''''''----..")
+        print("**----________________________________----**")
         from gym_app.models import CustomUser
         from gym_app.signals import delete_related_logs
         pre_delete.connect(delete_related_logs, sender=CustomUser)

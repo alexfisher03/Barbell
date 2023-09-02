@@ -66,7 +66,7 @@ class CreateGroup(forms.ModelForm):
     # name is in reference to the group name, ambiguous cuz i messed up the sql
     name = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
     groupbio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
-    gprivacy = forms.ChoiceField(
+    privacy = forms.ChoiceField(
         choices=[
             ('PUB', 'Public'),
             ('PRV', 'Private')
