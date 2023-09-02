@@ -63,9 +63,15 @@ class ProfileSettings(forms.ModelForm):
         return user
     
 class CreateGroup(forms.ModelForm):
-    group_name = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
-    bio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
-
+    groupname = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
+    biogroup = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
+    gprivacy = forms.ChoiceField(
+        choices=[
+            ('PUB', 'Public'),
+            ('PRV', 'Private')
+        ],
+        widget=forms.RadioSelect
+    )
     class Meta:
         model = Group
-        fields = ['groupname', 'groupbio', 'privacy']
+        fields = ['groupname', 'biogroup', 'gprivacy']
