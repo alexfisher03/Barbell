@@ -28,6 +28,8 @@ class CustomUser(AbstractUser):
         return self.username
     
 
+    
+
 class TableData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     date = models.DateField()

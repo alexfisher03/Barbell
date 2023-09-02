@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Check if fields are empty
         if (!username.value.trim()) {
-            alert('Username cannot be empty.');
+            alert('Please Enter a Username');
             valid = false;
         }
         
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         if (!genderSelected) {
-            alert('Please select a gender.');
+            alert('Please select a gender');
             valid = false;
         }
 

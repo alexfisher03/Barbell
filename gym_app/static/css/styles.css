@@ -416,15 +416,33 @@ html {
 .sign-up-button2 {  
   background-image: linear-gradient(#0dccea, #e074d9);
   border: 0;
-  border-radius: 8px;
-  box-shadow: rgba(122, 113, 189, 0.6) 0 5px 15px;
+  border-radius: 6px;
+  box-shadow: rgba(122, 113, 189, 0.6) 0 10px 30px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   font-family: Montserrat, sans-serif;
   font-size: 0.8em;
   margin: 0;
-  padding: 8px 12px;
+  padding: 16px 24px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.back-button2  {  
+  background-image: linear-gradient(#0dccea, #0d70ea );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(122, 113, 189, 0.6) 0 10px 30px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat, sans-serif;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 16px 32px;
   text-align: center;
   user-select: none;
   -webkit-user-select: none;
@@ -537,10 +555,10 @@ body{
 
 form{
   background-color: rgba(255,255,255,0.13);
-  width: 400px;
+  width: 900px;
   top: 100%;
   left: 50%;
-  border-radius: 10px;
+  border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255,255,255,0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
@@ -640,10 +658,10 @@ button{
 
 .registration-form {
   background-color: rgba(255,255,255,0.13);
-  width: 800px;
+  width: 900px;
   top: 100%;
   left: 50%;
-  border-radius: 10px;
+  border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255,255,255,0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
@@ -652,7 +670,36 @@ button{
   margin-bottom: 2em;
 }
 
-.member-limit-details {
+.create-group-form {
+  background-color: rgba(255,255,255,0.13);
+  width: 900px;
+  top: 100%;
+  left: 50%;
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.index-form {
+  background-color: rgba(95, 82, 98, 0.311);
+  width: 300px;
+  top: 100%;
+  left: 50%;
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+
+.group-privacy-radios {
   display: flex;
   flex-direction: column;
   align-items: center;
