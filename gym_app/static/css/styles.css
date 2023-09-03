@@ -807,3 +807,36 @@ form .member-limit-details .limit-val {
   box-shadow: rgba(122, 113, 189, 0.6) 0 10px 20px; /* similar shadow to existing buttons */
   margin-bottom: 2em;
 }
+
+
+.custom-radio {
+  display: flex;
+  flex-direction: colum;
+}
+
+.custom-radio input[type="radio"] {
+  display: inline;
+  margin-right: 10px;
+  appearance: none;
+  outline: none;
+}
+
+.custom-radio label {
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile-button {
+  background-color: rgba(122, 113, 189, 0.8);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+  background-color: rgba(122, 113, 189, 1);
+}

@@ -158,6 +158,21 @@ html {
   color: white;
 }
 
+.barbell-username {
+  text-align: center;
+  font-size: 3em;
+  font-family: "Bebas Neue", cursive;
+  font-weight: normal;
+  color: white;
+}
+
+.barbell-lite {
+  text-align: center;
+  font-size: 2.75em;
+  font-family: "Bebas Neue", cursive;
+  font-weight: normal;
+  color: rgba(122, 113, 189, 0.89);
+}
 
 .barbell-large {
   font-size: 9em;
@@ -271,11 +286,28 @@ html {
   margin-bottom: 100px;
 }
 
+.static-logo-white {
+height: 300px;
+  width: 300px;
+  margin: 15px;
+  border-radius: 50%;
+}
+
 .home-screen-image {
   height: 300px;
   width: 300px;
   margin: 15px;
-  border-radius: 10%;
+  border-radius: 50%;
+  box-shadow:
+  0 0 5px rgba(122, 113, 189, 0.6),
+  0 0 10px rgba(122, 113, 189, 0.6),
+  0 0 15px rgba(122, 113, 189, 0.6),
+  0 0 20px rgba(122, 113, 189, 0.6),
+  0 0 25px rgba(122, 113, 189, 0.6),
+  0 0 35px rgba(122, 113, 189, 0.6),
+  0 0 40px rgba(122, 113, 189, 0.6),
+  0 0 50px rgba(122, 113, 189, 0.6),
+  0 0 75px rgba(122, 113, 189, 0.6);    
 }
 
 .home-screen-text {
@@ -341,10 +373,10 @@ html {
 
 
 .profile-button {
-  background-image: linear-gradient(#0dccea, #0d70ea);
+  background-image: linear-gradient(#bba9da, #30a2c5);
   border: 0;
   border-radius: 8px;
-  box-shadow: rgba(66, 45, 222, 0.6) 3px 12px 15px;
+  box-shadow: rgba(122, 113, 189, 0.6) 3px 12px 15px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -359,10 +391,10 @@ html {
 }
 
 .stat-button {
-  background-image: linear-gradient(#0dccea, #0d70ea);
+  background-image: linear-gradient(#bba9da, #30a2c5);
   border: 0;
   border-radius: 6px;
-  box-shadow: rgba(66, 45, 222, 0.6) 3px 12px 15px;
+  box-shadow: rgba(122, 113, 189, 0.6) 3px 12px 15px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -378,10 +410,10 @@ html {
 }
 
 .login-button {
-  background-image: linear-gradient(#0dccea, #0d70ea);
+  background-image: linear-gradient(#bba9da, #30a2c5);
   border: 0;
   border-radius: 8px;
-  box-shadow: rgba(66, 45, 222, 0.6) 3px 12px 15px;
+  box-shadow: rgba(122, 113, 189, 0.6) 3px 12px 15px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -396,7 +428,7 @@ html {
 }
 
 .sign-up-button {
-  background-image: linear-gradient(#0dccea, #0d70ea);
+  background-image: linear-gradient(#bba9da, #30a2c5);
   border: 0;
   border-radius: 8px;
   box-shadow: rgba(122, 113, 189, 0.6) 0 5px 15px;
@@ -416,15 +448,33 @@ html {
 .sign-up-button2 {  
   background-image: linear-gradient(#0dccea, #e074d9);
   border: 0;
-  border-radius: 8px;
-  box-shadow: rgba(122, 113, 189, 0.6) 0 5px 15px;
+  border-radius: 6px;
+  box-shadow: rgba(122, 113, 189, 0.6) 0 10px 30px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   font-family: Montserrat, sans-serif;
   font-size: 0.8em;
   margin: 0;
-  padding: 8px 12px;
+  padding: 16px 24px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.back-button2  {  
+  background-image: linear-gradient(#0dccea, #0d70ea );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(122, 113, 189, 0.6) 0 10px 30px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat, sans-serif;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 16px 32px;
   text-align: center;
   user-select: none;
   -webkit-user-select: none;
@@ -432,10 +482,10 @@ html {
 }
 
 .group-button {
-  background-image: linear-gradient(#0dccea, #0d70ea);
+  background-image: linear-gradient(#bba9da, #30a2c5);
   border: 0;
   border-radius: 6px;
-  box-shadow: rgba(66, 45, 222, 0.6) 3px 12px 15px;
+  box-shadow: rgba(122, 113, 189, 0.6) 3px 12px 15px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -453,10 +503,10 @@ html {
 
 /* THIS IS FOR BACK BUTTONS IN THE FOOTER */
 .previous {
-  background-image: linear-gradient(#0dccea, #0d70ea);
+  background-image: linear-gradient(#bba9da, #30a2c5);
   border: 0;
   border-radius: 6px;
-  box-shadow: rgba(66, 45, 222, 0.6) 3px 12px 15px;
+  box-shadow: rgba(122, 113, 189, 0.6) 3px 12px 15px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -537,10 +587,10 @@ body{
 
 form{
   background-color: rgba(255,255,255,0.13);
-  width: 400px;
+  width: 900px;
   top: 100%;
   left: 50%;
-  border-radius: 10px;
+  border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255,255,255,0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
@@ -640,10 +690,10 @@ button{
 
 .registration-form {
   background-color: rgba(255,255,255,0.13);
-  width: 800px;
+  width: 900px;
   top: 100%;
   left: 50%;
-  border-radius: 10px;
+  border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255,255,255,0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
@@ -652,7 +702,36 @@ button{
   margin-bottom: 2em;
 }
 
-.member-limit-details {
+.create-group-form {
+  background-color: rgba(255,255,255,0.13);
+  width: 900px;
+  top: 100%;
+  left: 50%;
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.index-form {
+  background-color: rgba(95, 82, 98, 0.311);
+  width: 300px;
+  top: 100%;
+  left: 50%;
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+
+.group-privacy-radios {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -682,4 +761,82 @@ form .member-limit-details .limit-val {
   display:block;
   text-align: center;
   margin: 20px 0;
+}
+
+.backdrop-form-style {
+  background-color: rgba(255,255,255,0.13);
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.backdrop-form-style-bio {
+  background-color: rgba(255,255,255,0.13);
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+  width: 250px;
+}
+
+.backdrop-form-style-small {
+  background-color: rgba(255,255,255,0.13);
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+  width: 450px;
+}
+
+.form-content {
+  background-color: rgba(255,255,255,0.13); /* Add some opacity */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto; /* centering the form content */
+  box-shadow: rgba(122, 113, 189, 0.6) 0 10px 20px; /* similar shadow to existing buttons */
+  margin-bottom: 2em;
+}
+
+
+.custom-radio {
+  display: flex;
+  flex-direction: colum;
+}
+
+.custom-radio input[type="radio"] {
+  display: inline;
+  margin-right: 10px;
+  appearance: none;
+  outline: none;
+}
+
+.custom-radio label {
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile-button {
+  background-color: rgba(122, 113, 189, 0.8);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+  background-color: rgba(122, 113, 189, 1);
 }

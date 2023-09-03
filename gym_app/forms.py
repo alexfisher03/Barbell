@@ -81,3 +81,15 @@ class GroupSettings(forms.ModelForm):
     class Meta:
         model = Group
         fields = ['name', 'groupbio']
+
+    members_to_remove = forms.ModelMultipleChoiceField(
+        queryset=None,
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+    
+    def __init__(self, *args, **kwargs):
+        group = kwargs.pop('group', None)
+        super(GroupSettings, self).__init__(*args, **kwargs)
+        if group:
+            self.fields['members_to_remove'].queryset = group.group_members.all()
