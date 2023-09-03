@@ -797,3 +797,13 @@ form .member-limit-details .limit-val {
   margin-bottom: 2em;
   width: 450px;
 }
+
+.form-content {
+  background-color: rgba(255,255,255,0.13); /* Add some opacity */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto; /* centering the form content */
+  box-shadow: rgba(122, 113, 189, 0.6) 0 10px 20px; /* similar shadow to existing buttons */
+  margin-bottom: 2em;
+}

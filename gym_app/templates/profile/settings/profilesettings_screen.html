@@ -32,6 +32,7 @@
          {% block additional_footer_content %}
             <div class="container main-footer-container">
               <ul class="footer-nav">
+                <div class="backdrop-form-style-bio">
                 <li>
                     <label class="content" for="rep-stats">Input Rep Stats:</label>
                     <button id="input-rep-stats" data-url="{% url 'input_rep_stats' %}" class="sign-up-button2" role="button">Click Here</button>
@@ -40,6 +41,7 @@
                 <label class="content" for="reset-password">Reset Password</label>
                 <button id="reset-password" data-url="{% url 'forgot_password' %}" class="sign-up-button2" role="button">Click Here</button>
                   </li>
+                </div>
                 <li>
                 <label class="content" for="back-button"></label>
                 <button id="back-button"  class="back-button2" role="button"><strong> Back </strong></button>

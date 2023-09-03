@@ -3,25 +3,25 @@
 
 {% block style %}
     <style>
-  table {
-    font-family: helvetica, sans-serif;
-    border-collapse: separate;
-    border-spacing: 15px 15px;
-    width: 100%;
-    table-layout: fixed;
-  }
-  
-   td, th {
-    /*border: 1px solid rgba(255,255,255,0.13); */
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    line-height: 20px;
-    width: 235px;
-    height: 15px;
-  }
+      table {
+        font-family: helvetica, sans-serif;
+        border-collapse: separate;
+        border-spacing: 15px 15px;
+        width: 100%;
+        table-layout: fixed;
+      }
+      
+      td, th {
+        /*border: 1px solid rgba(255,255,255,0.13); */
+        text-align: center;
+        padding: 20px;
+        border-radius: 15px;
+        line-height: 20px;
+        width: 235px;
+        height: 15px;
+      }
 
-  </style>
+      </style>
   {% endblock %}
     
         <title>{% block title %} Barbell | Profile {% endblock %} </title>
@@ -34,10 +34,12 @@
                         {% endif %} 
                         {% block header %}<h1 class="barbell">Profile</h1> {% endblock %}
                 {% endblock %}
-            {% block content %}
+        {% block content %}
+          <div class="backdrop-form-style">
             <img class="home-screen-image" src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}"> 
                 <h1 class="barbell-username">{{ custom_user.username }}</h1>
-                <p>{{ custom_user.bio|default:"No bio yet."}}</p>
+                <p class="content">{{ custom_user.bio|default:"No bio yet."}}</p>
+              </div>
                 <section class="content-section-small container button-container">
                     <div class ='button-group content'>
                         <a href="{% url 'input_rep_stats' %}"><button class="profile-button" role="button"><strong>Choose Your Split</strong></button></a>

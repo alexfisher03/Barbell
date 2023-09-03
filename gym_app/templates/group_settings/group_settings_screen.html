@@ -6,30 +6,25 @@
                       <li><a href="/home">HOME</a></li>
                       {% block header %}<h3 class="barbell">Group Settings</h3> {% endblock %}
               {% endblock %}
+
               {% block content %}
-           
               <section class="content-section container main-header">
                 <form action="{% url 'group_settings' group.id %}" method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
             
-                  <div class="container">
-                  {{ form.name.label_tag }}
-                  {{ form.name }}
-                  </div> 
-
-                  <div class="container">
-                    {{ form.groupbio.label_tag }}
-                    {{ form.groupbio }}
-                    </div> 
-
-                  
-                  <div class="container">
+              <div class="container">
+                  <label for="id_name">{{ form.name.label }}</label>
+                  <input id="id_name" type="text" name="{{ form.name.name }}" value="{{ form.name.value|default_if_none:"" }}" class="form-content" />
+              </div>
+              <div class="container">
+                  <label for="id_groupbio">{{ form.groupbio.label }}</label>
+                  <input id="id_groupbio" type="text" name="{{ form.groupbio.name }}" value="{{ form.groupbio.value|default_if_none:"" }}" class="form-content" />
+              </div>
+              <div class="container">
                   <button type="submit" id="confirm-group-settings" data-url="" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
-                </div> 
-                </form>
-            
+              </div>
+              </form>
               </section>
-
               {% endblock %}
               {% block additional_footer_content %}
               <div class="container main-footer-container">
