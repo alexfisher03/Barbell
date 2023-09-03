@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, update_session_auth_hash
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings
 from django.http import JsonResponse
 
@@ -14,7 +14,28 @@ def index(request):
 def about_screen(request):
     return render(request, 'about/about_screen.html')
 
-#where create group goes
+@login_required
+def creategroup_screen(request):
+    if request.method == 'POST':
+        form = CreateGroup(request.POST)
+        if form.is_valid():
+            print("Cleaned Data:", form.cleaned_data)
+            new_group = form.save(commit=False)
+            new_group.created_by = request.user
+            new_group.privacy = form.cleaned_data['privacy']
+            new_group.save()
+            request.user.current_group = new_group
+            request.user.save()
+            print("New Group ID: ", new_group.id)
+            print("New Group Privacy: ", new_group.privacy)
+            return redirect('group_screen', group_id=new_group.id)
+        else:
+            print("Form Errors:", form.errors)
+    else:
+        print('Not post')
+        form = CreateGroup()
+    return render(request, 'creategroup/creategroup_screen.html', {'form': form})
+
 
 
 def forgotpassword_screen(request):
@@ -69,18 +90,33 @@ def group_leaderboard(request, group_id):
 
 @login_required
 def group_settings_screen(request, group_id):
-    group = Group.objects.get(id=group_id)
+    group = get_object_or_404(Group, id=group_id)
+    print("debug group fetched:", group)
+
+    if request.user != group.created_by:
+        return redirect('group_screen') # eventually create a message screen saying user cannot access 
+
+    members = group.group_members.all()
+    print("members fetched:", members)
+    if len(members) < 1:
+        return redirect('group_screen', group_id=group_id)
+
     if request.method == 'POST':
         form = GroupSettings(request.POST, instance=group)
         if form.is_valid():
             form.save()
             return redirect('group_screen', group_id=group_id)
+        else:
+            print(form.errors)
+    if not group:
+        return redirect('group_screen')
     else:
-        form = GroupSettings(instance=group)
+        form = GroupSettings(instance=group, group=group)
 
     context = {
         'form': form,
         'group': group,
+        'members': members
     }
 
     return render(request, 'group_settings/group_settings_screen.html', context)
@@ -140,31 +176,6 @@ def profilesettings_screen(request):
         print('I did not post')
         form = ProfileSettings(instance=user)
     return render(request, 'profile/settings/profilesettings_screen.html', {'form': form})
-
-
-#for dev
-@login_required
-def creategroup_screen(request):
-    if request.method == 'POST':
-        form = CreateGroup(request.POST)
-        if form.is_valid():
-            print("Cleaned Data:", form.cleaned_data)
-            new_group = form.save(commit=False)
-            new_group.created_by = request.user
-            new_group.privacy = form.cleaned_data['privacy']
-            new_group.save()
-            request.user.current_group = new_group
-            request.user.save()
-            print("New Group ID: ", new_group.id)
-            print("New Group Privacy: ", new_group.privacy)
-            return redirect('group_screen', group_id=new_group.id)
-        else:
-            print("Form Errors:", form.errors)
-    else:
-        print('Not post')
-        form = CreateGroup()
-    return render(request, 'creategroup/creategroup_screen.html', {'form': form})
-
 
 def register_screen(request):
     if request.method == 'POST':
