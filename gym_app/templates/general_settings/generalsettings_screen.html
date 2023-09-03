@@ -5,16 +5,15 @@
                 {% block nav %}
                         <li><a href="/profile/self">PROFILE</a></li>
                         <li><a href="/home">HOME</a></li>
-                        <li><a href="/group_screen">GROUP</a></li>
                         {% block header %}<h3 class="barbell">App Settings</h3> {% endblock %}
                 {% endblock %}
             {% block content %}
-              <form>
+            <div class="backdrop-form-style-small">
                 <a href="{% url 'privacy' %}"><div class="content-settings privacy-link">Privacy</div></a>
                 <br>
                 <a href="{% url 'about' %}"><div class="content-settings about-link">About</div></a>
                 <br>
-              </form>
+            </div>
             {% endblock %}
             {% block additional_footer_content %}
                 <div class="container main-footer-container">

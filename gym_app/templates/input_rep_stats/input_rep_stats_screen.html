@@ -11,7 +11,7 @@
   }
   
    td, th {
-    border: 1px dashed rgba(255,255,255,0.13); 
+    border: 1px rgba(255,255,255,0.13); 
     text-align: center;
     padding: 20px;
     border-radius: 15px;
@@ -27,13 +27,12 @@
           {% block nav %}
                       <li><a href="/profile/self">PROFILE</a></li>
                       <li><a href="/home">HOME</a></li>
-                      <li><a href="/group_screen">GROUP</a></li>
                       {% block header %}<h1 class="barbell">Input Stats</h1> {% endblock %}
           {% endblock %}
             
 {% block content %}
-  <section class="content-section-stat content-stat">  
-    
+  <div class="backdrop-form-style">
+    <section class="content-section-stat content-stat">  
     <h1 class="main-header">Chest</h1>
     <div class="container">
       <table>
@@ -69,7 +68,7 @@
           </tbody>
       </table>
     </div>
-  </section>  
+    </section>  
   <section class="content-section-stat content-stat">  
     <h1 class="main-header">Back</h1>
     <div class="container">
@@ -181,6 +180,7 @@
       </table>
     </div>
   </section> 
+</div>
 {% endblock %}
       {% block additional_footer_content %}
       <div class="button-container">

@@ -76,3 +76,8 @@ class CreateGroup(forms.ModelForm):
     class Meta:
         model = Group
         fields = ['name', 'groupbio', 'privacy']
+
+class GroupSettings(forms.ModelForm):
+    class Meta:
+        model = Group
+        fields = ['name', 'groupbio']

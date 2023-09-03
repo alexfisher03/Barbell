@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model, authenticate, login, update_sess
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, ProfileSettings, CreateGroup
+from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings
 from django.http import JsonResponse
 
 def index(request):
@@ -49,16 +49,41 @@ def generalsettings_screen(request):
 def group_screen(request, group_id):
     user = request.user
     group = Group.objects.get(id=group_id)
-    members = CustomUser.objects.filter(current_group=group)
-    return render(request, 'group/group_screen.html', {'group': group, 'members': members})
+    members = group.group_members.all()
+    
+    is_user_in_group = user in members #this is checking to see if the logged in user is in the group
+    other_members = [member for member in members if member != user]
+
+    context = {
+        'group': group,
+        'self_user': user if is_user_in_group else None,
+        'other_members': other_members,
+        'current_group': group,
+    }
+    return render(request, 'group/group_screen.html', context)
 
 def group_leaderboard(request, group_id):
     group = Group.objects.get(id=group_id)
     #setup later for group leaderboard
     return render(request, 'leaderboard/group/group_leaderboard_screen.html')
 
-def group_settings_screen(request):
-    return render(request, 'group_settings/group_settings_screen.html')
+@login_required
+def group_settings_screen(request, group_id):
+    group = Group.objects.get(id=group_id)
+    if request.method == 'POST':
+        form = GroupSettings(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+            return redirect('group_screen', group_id=group_id)
+    else:
+        form = GroupSettings(instance=group)
+
+    context = {
+        'form': form,
+        'group': group,
+    }
+
+    return render(request, 'group_settings/group_settings_screen.html', context)
 
 def home_screen(request):
     return render(request, 'home/home_screen.html')
