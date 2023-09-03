@@ -1,49 +1,74 @@
 {% extends 'index.html' %}
-{% load static %}
-    
+{% load static %}   
         <title> {% block title %} Barbell | Group  {% endblock %}</title>
          {% block nav %}
             <ul>
                <li><a href="/profile/self">PROFILE</a></li>
                 <li><a href="/home">HOME</a></li>
             </ul>
-            {% block header %}<h3 class="barbell">GROUP</h3> {% endblock %}
-            <br>
-         {% endblock %}
+            {% block header %}<h3 class="barbell">{{ group.name }}</h3> {% endblock %}
+                <p class="barbell-lite">{{ group.groupbio }}</p>
+            {% endblock %}
                 {% block content %}
                 <section class="container">
-                    <!--Member 1 slot to be used for self if part of the group -->
-                   <h1 class="section-header">'User Group Data (Group name)'</h1>
+                <div class="backdrop-form-style-bio content">
+                    <p>Privacy: {{ group.get_privacy_display }}</p>
+                    <p>Leader: {{ group.created_by.username }}</p>
+                </div>
+                    <br>
+                   <br>
+                   <h2 class="section-header">Members</h2>
+
+                <div class="backdrop-form-style">
+                   {% if self_user %}
                    <div class="content-section-group">
-                        <strong>'Input Group Member 1'</strong> 
-                        <img class="home-screen-image" src="">       
+                        {% if self_user.profile_picture %}
+                            <img class="home-screen-image" src="{{ self_user.profile_picture.url }}"> 
+                        {% endif %} 
+                        <strong class="barbell-username">{{ self_user.username }}</strong> 
                         <a href="{% url 'profile_self' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
                         <br>
                     </div>
-                    <div class="content-section-group">
-                        <strong>'Input Group Member 2'</strong>
-                        <img class="home-screen-image" src="">                         
-                        <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
-                        <br>
-                    </div>
-                    <div class="content-section-group">
-                        <strong>'Input Group Member 3'</strong>
-                        <img class="home-screen-image" src="">
-                        <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
-                    </div>
+                    {% endif %}
+                </div>
+            {% if other_members %}
+                <div class="backdrop-form-style">
+                    {% for member in other_members %}
+                        <div class="content-section-group">
+                            {% if member.profile_picture %}
+                                <img class="home-screen-image" src="{{ member.profile_picture.url }}"> 
+                            {% endif %}
+                            <strong class="barbell">{{ member.username }}</strong>
+                            <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if other_members %}
+                <div class="backdrop-form-style">
+                    {% for member in other_members %}
+                        <div class="content-section-group">
+                            {% if member.profile_picture %}
+                                <img class="home-screen-image" src="{{ member.profile_picture.url }}"> 
+                            {% endif %}
+                            <strong class="barbell">{{ member.username }}</strong>
+                            <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
                 </section>
                   <section class="container">
                     <br>
-                    <nav class="content body-nav">
-                        <li><a href="{% url 'group_leaderboard' %}">View Group Leaderboard</a></li>
-                    </nav>
+                    <div class="button-container">
+                        <a href="{% url 'group_leaderboard' %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong> View Group Leaderboard </strong></button></a>
+                    </div>
                     <br>
                 </section>
                 {% endblock %}
-                
                 {% block additional_footer_content %}
                 <div>
-                    <a href="{% url 'group_settings' %}"><button class='group-button' role="button"><strong> Settings </strong></button></a>
+                    <a href="{% url 'group_settings' group_id=current_group.id %}"><button class='group-button' role="button"><strong> Settings </strong></button></a>
                 </div>
                 <div class="container main-footer-container">
                     <ul class="footer-nav">
@@ -52,8 +77,7 @@
                         </li>
                     </ul>
                 </div>
-                {% endblock %}
-           
+                {% endblock %}          
     {% block script %}
             <script src="{% static 'js/group.js' %}"></script>
     {% endblock %}
