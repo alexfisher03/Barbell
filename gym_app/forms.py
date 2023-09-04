@@ -83,13 +83,23 @@ class GroupSettings(forms.ModelForm):
         fields = ['name', 'groupbio']
 
     members_to_remove = forms.ModelMultipleChoiceField(
-        queryset=None,
+        queryset=CustomUser.objects.none(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
     
+    privacy = forms.ChoiceField(
+        choices=[
+            ('PUB', 'Public'),
+            ('PRV', 'Private')
+        ],
+        widget=forms.RadioSelect,
+        required=True,
+    )
+
     def __init__(self, *args, **kwargs):
         group = kwargs.pop('group', None)
         super(GroupSettings, self).__init__(*args, **kwargs)
         if group:
             self.fields['members_to_remove'].queryset = group.group_members.all()
+            self.fields['privacy'].initial = group.privacy

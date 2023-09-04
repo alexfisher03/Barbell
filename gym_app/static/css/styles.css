@@ -147,9 +147,12 @@ html {
   flex-direction: column;
   align-items: center;
   
-  
-  
 }
+
+.page-header {
+  margin-bottom: 2em;
+}
+
 .barbell {
   text-align: center;
   font-size: 4em;
@@ -702,6 +705,21 @@ button{
   margin-bottom: 2em;
 }
 
+
+.group-settings-form {
+  background-color: rgba(255,255,255,0.13);
+  width: 900px;
+  top: 100%;
+  left: 50%;
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
 .create-group-form {
   background-color: rgba(255,255,255,0.13);
   width: 900px;
@@ -839,4 +857,8 @@ form .member-limit-details .limit-val {
 
 .profile-button:hover {
   background-color: rgba(122, 113, 189, 1);
+}
+
+.above-space {
+  margin-top: 240px;
 }

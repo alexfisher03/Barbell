@@ -36,8 +36,6 @@ def creategroup_screen(request):
         form = CreateGroup()
     return render(request, 'creategroup/creategroup_screen.html', {'form': form})
 
-
-
 def forgotpassword_screen(request):
     context = {}
     if request.method == 'POST':
@@ -104,7 +102,9 @@ def group_settings_screen(request, group_id):
     if request.method == 'POST':
         form = GroupSettings(request.POST, instance=group)
         if form.is_valid():
-            form.save()
+            updated_group = form.save(commit=False)
+            updated_group.privacy = form.cleaned_data['privacy']
+            updated_group.save()
             return redirect('group_screen', group_id=group_id)
         else:
             print(form.errors)
@@ -148,8 +148,6 @@ def profile_self_screen(request):
     }
     my_groups = Group.objects.filter(created_by=request.user)
     return render(request, 'profile/self/profile_self_screen.html', context)
-
-
 
 
 @login_required
