@@ -174,7 +174,7 @@ html {
   font-size: 2.75em;
   font-family: "Bebas Neue", cursive;
   font-weight: normal;
-  color: rgba(122, 113, 189, 0.89);
+  color: rgba(11, 186, 244, 0.89);
 }
 
 .barbell-large {
@@ -256,6 +256,16 @@ html {
   margin: 0 auto;
   padding: 0 1.5em;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.small-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 1.5em;
+  display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
 }

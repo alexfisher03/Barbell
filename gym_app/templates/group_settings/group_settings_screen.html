@@ -4,10 +4,10 @@
               {% block nav %}
                       <li><a href="/profile/self">PROFILE</a></li>
                       <li><a href="/home">HOME</a></li>
-                      {% block header %}<h3 class="barbell page-header">Group Settings</h3> {% endblock %}
+                      {% block header %}<h3 class="barbell ">Group Settings</h3> {% endblock %}
               {% endblock %}
               {% block content %}
-              <section class="content-section container main-header">
+              
                 <form class="group-settings-form" action="{% url 'group_settings' group.id %}" method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
               <div class="container">
@@ -44,10 +44,10 @@
                   <button type="submit" id="confirm-group-settings" data-url="" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
               </div>
               </form>
-              </section>
+            
               {% endblock %}
               {% block additional_footer_content %}
-              <div class="container above-space main-footer-container">
+              <div class="container  main-footer-container">
                 <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
               </div>
               {% endblock %}
