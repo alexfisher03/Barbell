@@ -18,12 +18,15 @@
                   {% endfor %}
                 {% endif %}
                 <div class="container">
-              
-                {{ form.profile_picture.label_tag }}
-                {{ form.profile_picture }}
-                <br>
+                  <div class="small-container">
+                  {{ form.profile_picture.label_tag }}
+                  {{ form.profile_picture }}
+                  <br>
+                  </div>
+                
                 {{ form.bio.label_tag }}
                 {{ form.bio }}
+                
                 <br>
                 <button type="submit" id="confirm-profile-settings" data-url="{% url 'profile_self' %}" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
                 </div> 
