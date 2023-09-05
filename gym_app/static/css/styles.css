@@ -872,3 +872,15 @@ form .member-limit-details .limit-val {
 .above-space {
   margin-top: 240px;
 }
+
+.all-space {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  
+}
+
+.all-space-small {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  
+}
