@@ -26,10 +26,9 @@
                 
                 {{ form.bio.label_tag }}
                 {{ form.bio }}
-                
                 <br>
                 <button type="submit" id="confirm-profile-settings" data-url="{% url 'profile_self' %}" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
-                </div> 
+              </div> 
               </form>
               {% endblock %}
          {% block additional_footer_content %}
