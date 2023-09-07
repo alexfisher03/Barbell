@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html> 
   <head>
@@ -16,11 +15,11 @@
   </head>
   <body>
     <div class="page-wrapper">
+      <br> <!-- These are for spacing inbetween the top of the screen and page contents-->
+      <br>
+      <br>
+      <br>
         <header class="main-header">
-          <br>
-          <br>
-          <br>
-          <br>
       <nav class="nav main-nav">
         {% block nav %}
           <h1 class="barbell">{% block header %}{% endblock %}</h1>
@@ -33,11 +32,11 @@
         <section class="content-section container main-header">
               <div class="backdrop-form-style all-space-small">
                 <label class="content all-space-small">
-                  <span class="barbell-username"> Track Your Gym Progress </span> 
-                  <span class="barbell-username"> Create Groups</span> 
+                  <span class="content"> Track Your Gym Progress </span> 
+                  <span class="content"> Create Groups</span> 
                   <div class="content">
-                    <br>
-                  <span class="barbell-username"> Version 1 &#127757;</span> 
+                  
+                  <span class="content"> Version 1 </span> 
                 </div>
                 <a href="/signin" ><button class="sign-up-button2 ">Get Started</button></a>
               </label>
@@ -52,10 +51,12 @@
       <div class="container main-footer-container">
         <img class="static-logo-white" src="{% static 'images/barbell_white.png' %}" />    
       </div>
+
       </footer>
     </div>
     {% block scripts %}
     <script src="{% static 'js/home.js' %}"></script>
     {% endblock %}
-</body>
+  
+  </body>
 </html>

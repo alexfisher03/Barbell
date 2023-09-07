@@ -49,6 +49,13 @@ def forgotpassword_screen(request):
             messages.error(request, "Username does not exist.")
             return render(request, 'forgot_password/forgotpassword_screen.html')
 
+        if len(new_password) < 6:
+            messages.error(request, "Password must be at least 6 characters long.")
+            return render(request, 'forgot_password/forgotpassword_screen.html')
+        if len(set(new_password)) < 2:
+            messages.error(request, "Password must have at least 1 unique character.")
+            return render(request, 'forgot_password/forgotpassword_screen.html')
+        
         if new_password != confirm_password:
             messages.error(request, "Passwords do not match.")
             return render(request, 'forgot_password/forgotpassword_screen.html')
@@ -97,7 +104,7 @@ def group_settings_screen(request, group_id):
     members = group.group_members.all()
     print("members fetched:", members)
     if len(members) < 1:
-        return redirect('group_screen', group_id=group_id)
+        return redirect('group_screen', group_id=group_id) # if group was deleted add message screen
 
     if request.method == 'POST':
         form = GroupSettings(request.POST, instance=group)
