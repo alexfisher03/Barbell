@@ -42,6 +42,8 @@ def forgotpassword_screen(request):
         username = request.POST.get('username')
         new_password = request.POST.get('new_password')
         confirm_password = request.POST.get('confirm_password')
+        allowed_special_characters = set("!@#$%&*")
+        disallowed_characters = set("()^=+")
         
         try:
             user = CustomUser.objects.get(username=username)
@@ -49,13 +51,18 @@ def forgotpassword_screen(request):
             messages.error(request, "Username does not exist.")
             return render(request, 'forgot_password/forgotpassword_screen.html')
 
+        if any(char in disallowed_characters for char in new_password):
+            messages.error(request, "Invalid special characters used. Please refrain from using (, ), ^, =, or +.")
+            return render(request, 'forgot_password/forgotpassword_screen.html')
+                        
+        if not any(char in allowed_special_characters for char in new_password):
+            messages.error(request, "Password must contain at least one of the following special characters: !, @, #, $, %, &, *.")
+            return render(request, 'forgot_password/forgotpassword_screen.html')
+
         if len(new_password) < 6:
             messages.error(request, "Password must be at least 6 characters long.")
             return render(request, 'forgot_password/forgotpassword_screen.html')
-        if len(set(new_password)) < 2:
-            messages.error(request, "Password must have at least 1 unique character.")
-            return render(request, 'forgot_password/forgotpassword_screen.html')
-        
+
         if new_password != confirm_password:
             messages.error(request, "Passwords do not match.")
             return render(request, 'forgot_password/forgotpassword_screen.html')
@@ -197,8 +204,6 @@ def register_screen(request):
     return render(request, 'register/register_screen.html', {'form': form})
 
 
-
-
 def signin_screen(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -218,15 +223,6 @@ def signin_screen(request):
                 pass
             messages.error(request, 'Invalid username or password.')
     return render(request, 'signin/signin_screen.html')
-
-
-
-
-#disintegrated view ------------------------------------
-#def stat_screen(request):
-    #return render(request, 'table/stat_screen.html')
-
-
 
 
 def global_leaderboard(request):
