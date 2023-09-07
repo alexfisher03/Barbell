@@ -13,6 +13,12 @@ class RegistrationForm(forms.ModelForm):
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
+        
+        if password1 and len(password1) < 6:
+            raise forms.ValidationError("Passwords must be at least 6 characters long.")
+        if password1 and len(set(password1)) < 2:
+            raise forms.ValidationError("Passwords must have a unique character.")
+        
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
         return password2
@@ -103,3 +109,5 @@ class GroupSettings(forms.ModelForm):
         if group:
             self.fields['members_to_remove'].queryset = group.group_members.all()
             self.fields['privacy'].initial = group.privacy
+
+

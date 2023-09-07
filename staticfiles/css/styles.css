@@ -147,9 +147,12 @@ html {
   flex-direction: column;
   align-items: center;
   
-  
-  
 }
+
+.page-header {
+  margin-bottom: 2em;
+}
+
 .barbell {
   text-align: center;
   font-size: 4em;
@@ -171,7 +174,7 @@ html {
   font-size: 2.75em;
   font-family: "Bebas Neue", cursive;
   font-weight: normal;
-  color: rgba(122, 113, 189, 0.89);
+  color: rgba(11, 186, 244, 0.89);
 }
 
 .barbell-large {
@@ -253,6 +256,16 @@ html {
   margin: 0 auto;
   padding: 0 1.5em;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.small-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 1.5em;
+  display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
 }
@@ -702,6 +715,21 @@ button{
   margin-bottom: 2em;
 }
 
+
+.group-settings-form {
+  background-color: rgba(255,255,255,0.13);
+  width: 900px;
+  top: 100%;
+  left: 50%;
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
 .create-group-form {
   background-color: rgba(255,255,255,0.13);
   width: 900px;
@@ -839,4 +867,20 @@ form .member-limit-details .limit-val {
 
 .profile-button:hover {
   background-color: rgba(122, 113, 189, 1);
+}
+
+.above-space {
+  margin-top: 240px;
+}
+
+.all-space {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  
+}
+
+.all-space-small {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  
 }
