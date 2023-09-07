@@ -13,11 +13,17 @@ class RegistrationForm(forms.ModelForm):
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
+        allowed_special_characters = set("!@#$%&*")
+        disallowed_characters = set("()^=+")
+
+        if any(char in disallowed_characters for char in password1):
+            raise forms.ValidationError("Invalid special characters used. Please refrain from using (, ), =, or +.")
+                
+        if not any(char in allowed_special_characters for char in password1):
+            raise forms.ValidationError("Password must contain at least one of the following special characters: !, @, #, $, %, &, *.")
         
         if password1 and len(password1) < 6:
             raise forms.ValidationError("Passwords must be at least 6 characters long.")
-        if password1 and len(set(password1)) < 2:
-            raise forms.ValidationError("Passwords must have a unique character.")
         
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
