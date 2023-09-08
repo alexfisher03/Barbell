@@ -1,5 +1,10 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import path
+from .views import CustomLoginView
+
+# this is Django built in email authentication 
+from django.contrib.auth.views import (PasswordResetView, PasswordResetDoneView, 
+                                       PasswordResetConfirmView, PasswordResetCompleteView)
 from . import views
 
 urlpatterns = [
@@ -17,9 +22,13 @@ urlpatterns = [
     path('profile/other/', views.profile_other_screen, name='profile_other'),
     path('profile/settings/', views.profilesettings_screen, name='profilesettings'),
     path('register/', views.register_screen, name='register'),
-    path('signin/', views.signin_screen, name='signin'),
+    path('signin/', views.CustomLoginView.as_view(), name='signin'),
     #path('table/', views.stat_screen, name='stat'),
     path('leaderboard/global/', views.global_leaderboard, name='global_leaderboard'),
     path('leaderboard/group/', views.group_leaderboard, name='group_leaderboard'),
-    path('reset_password/', views.reset_password, name='reset_password'),
+    path('password-reset/', PasswordResetView.as_view(from_email='no-reply@yourdomain.com', template_name="account/password_reset.html"), name='password_reset'),
+    path('password-reset/done/', PasswordResetDoneView.as_view(template_name="account/password_reset_done.html"), name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name="account/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('password-reset-complete/', PasswordResetCompleteView.as_view(template_name="account/password_reset_complete.html"), name='password_reset_complete'),
+    path('accounts/login/', CustomLoginView.as_view(), name='account_login'), # Overriding allauth's login view
 ]
