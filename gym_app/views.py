@@ -38,7 +38,10 @@ def creategroup_screen(request):
         form = CreateGroup()
     return render(request, 'creategroup/creategroup_screen.html', {'form': form})
 
-def forgotpassword_screen(request):
+
+#retired logic because letting Django handle it with allauth
+#def forgotpassword_screen(request):
+
     context = {}
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -75,6 +78,8 @@ def forgotpassword_screen(request):
         context['success'] = True
         return redirect('signin')   #Redirect to the login page
     return render(request, 'forgot_password/forgotpassword_screen.html')
+
+    
 
 def generalsettings_screen(request):
     return render(request, 'general_settings/generalsettings_screen.html')

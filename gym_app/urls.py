@@ -11,7 +11,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about_screen, name='about'),
     path('creategroup/', views.creategroup_screen, name='create_group'),
-    path('forgot_password/', views.forgotpassword_screen, name='forgot_password'),
+    #path('forgot_password/', views.forgotpassword_screen, name='forgot_password'),
     path('general_settings/', views.generalsettings_screen, name='general_settings'),
     path('group_screen/<int:group_id>/', views.group_screen, name='group_screen'),
     path('group_settings/<int:group_id>/', views.group_settings_screen, name='group_settings'),
@@ -26,9 +26,9 @@ urlpatterns = [
     #path('table/', views.stat_screen, name='stat'),
     path('leaderboard/global/', views.global_leaderboard, name='global_leaderboard'),
     path('leaderboard/group/', views.group_leaderboard, name='group_leaderboard'),
-    path('password-reset/', PasswordResetView.as_view(from_email='no-reply@yourdomain.com', template_name="account/password_reset.html"), name='password_reset'),
-    path('password-reset/done/', PasswordResetDoneView.as_view(template_name="account/password_reset_done.html"), name='password_reset_done'),
-    path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name="account/password_reset_confirm.html"), name='password_reset_confirm'),
-    path('password-reset-complete/', PasswordResetCompleteView.as_view(template_name="account/password_reset_complete.html"), name='password_reset_complete'),
+    path('account/password-reset/', PasswordResetView.as_view(from_email='no-reply@yourdomain.com', template_name="account/password_reset.html"), name='password_reset'),
+    path('account/password-reset/done/', PasswordResetDoneView.as_view(template_name="account/password_reset_done.html"), name='password_reset_done'),
+    path('account/password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name="account/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('account/password-reset-complete/', PasswordResetCompleteView.as_view(template_name="account/password_reset_complete.html"), name='password_reset_complete'),
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'), # Overriding allauth's login view
 ]
