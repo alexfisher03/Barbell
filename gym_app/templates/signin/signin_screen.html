@@ -22,7 +22,7 @@
             <input type="password" placeholder="Password" id="password" name="password">
             <br>
             <button type="submit" id="sign-in-button" class="login-button">Sign In</button>
-            <a href="{% url 'forgot_password' %}" class="content container forgot-password-button">Forgot Password?</a>
+            <a href="{% url 'password_reset' %}" class="content container forgot-password-button">Forgot Password?</a>
             <label class="content" for="not-member"> Not a member?</label>
             <br>
             <a href="{% url 'register' %}" class="container sign-up-button2">Sign Up</a>
@@ -40,13 +40,7 @@
     
       {% block additional_footer_content %} 
       
-         <!-- 
-            <ul class="footer-nav">
-              <li>
-                  <button id="back-button" class="profile-button" role="button"><strong> Back </strong></button>
-              </li>
-          </ul> 
-        -->
+      
         {% endblock %}
     
   
