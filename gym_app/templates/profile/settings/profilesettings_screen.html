@@ -34,22 +34,22 @@
          {% block additional_footer_content %}
             <div class="container main-footer-container">
               <ul class="footer-nav">
-                <div class="backdrop-form-style-bio">
+                <div class="backdrop-form-style-wide">
                 <li>
                     <label class="content" for="rep-stats">Input Rep Stats:</label>
                     <button id="input-rep-stats" data-url="{% url 'input_rep_stats' %}" class="sign-up-button2" role="button">Click Here</button>
                   </li>
                 <li>
-                <label class="content" for="reset-password">Reset Password</label>
-                <button id="reset-password" data-url="{% url 'password_reset' %}" class="sign-up-button2" role="button">Click Here</button>
+                <label class="content" for="reset-password">Reset Password currently down</label>
+                <!--<button id="reset-password" data-url="{% url 'password_reset' %}" class="sign-up-button2" role="button">Click Here</button> -->
                   </li>
-                </div>
-                <li>
-                <label class="content" for="back-button"></label>
-                <button id="back-button"  class="profile-button" role="button"><strong> Back </strong></button>
-                  </li>
+                </div> 
               </ul>
             </div>
+              <li>
+                <label class="content" for="back-button"></label>
+                <button id="back-button"  class="profile-button" role="button"><strong> Back </strong></button>
+              </li>
          {% endblock %}
          {% block scripts %}
     <script src="{% static 'js/profile-settings.js' %}"></script>

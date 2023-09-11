@@ -1,4 +1,5 @@
 from allauth.account.views import LoginView
+from allauth.account.views import PasswordResetView as AllauthPasswordResetView
 from .models import CustomUser, TableData, ImageMetadata, Group
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
@@ -9,6 +10,10 @@ from django.contrib.auth.views import PasswordResetView
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings
 from django.http import JsonResponse
+
+
+class CustomPasswordResetView(AllauthPasswordResetView): # This inherits the allauth view but explictly sets the template
+    template_name = 'account/password_reset.html'
 
 def index(request):
     return render(request, 'index.html')

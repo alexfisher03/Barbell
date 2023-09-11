@@ -16,9 +16,9 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
   height: 100%;
+  margin: 0;
+  padding: 0;  
 }
 
 html {
@@ -133,9 +133,10 @@ html {
   background-image: url("../Images/gradientbackground.jpg");
   background-blend-mode: multiply;
   background-size: cover;
-  min-height: 1vh; 
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
+  background-position: center center;
 }
 
 
@@ -802,6 +803,18 @@ form .member-limit-details .limit-val {
   margin-bottom: 2em;
 }
 
+.backdrop-form-style-wide {
+  background-color: rgba(255,255,255,0.13);
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+  padding: 50px 35px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+  width: 650px;
+}
+
 .backdrop-form-style-bio {
   background-color: rgba(255,255,255,0.13);
   border-radius: 60px;
@@ -883,4 +896,9 @@ form .member-limit-details .limit-val {
   margin-top: 50px;
   margin-bottom: 50px;
   
+}
+
+.center {
+  text-align: center;
+  display: center;
 }
