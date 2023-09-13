@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-89y8f^%u#7b8hryfk6g$_*_=_5a=emc5eiti_z&g8ez!u0+v(0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['164.90.134.67', 'localhost', '127.0.0.1', 'barbell.net']
 
 
 # Application definition
@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'accounts_db',
-        'USER': 'test_user',
-        'PASSWORD': 'testpassword123',
+        'USER': 'barbell_midir',
+        'PASSWORD': 'zanderF35347!',
         'HOST': 'localhost',  # Change if your MySQL server is running on a different host
         'PORT': '3306',       # Default MySQL port
     }
