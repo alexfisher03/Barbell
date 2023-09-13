@@ -225,6 +225,30 @@ html {
   margin-bottom: 10px;
 }
 
+.medium-font {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  color: white;
+}
+
+.special-font {
+  text-align: center;
+  font-size: 0.75em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  color: rgb(151, 32, 181);
+}
+
+.small-font {
+  text-align: center;
+  font-size: 0.75em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  color: white;
+}
+
 .content {
   display:flex;
   flex-direction: column;
@@ -891,6 +915,18 @@ form .member-limit-details .limit-val {
   margin-bottom: 100px;
   
 }
+
+.all-space-medium {
+  margin-top: 75px;
+  margin-bottom: 75px;
+  
+}
+
+.bottom-space-medium {
+  margin-bottom: 75px;
+  
+}
+
 
 .all-space-small {
   margin-top: 50px;
