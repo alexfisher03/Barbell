@@ -160,3 +160,4 @@ SITE_ID = 1
 # For production, well use an actual email backend to send emails
 
 LOGIN_REDIRECT_URL = 'profile_self'
+
