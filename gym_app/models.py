@@ -53,6 +53,12 @@ class TableData(models.Model):
     def __str__(self):
         return self.data_title
     
+class StatData(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    exercise_name = models.CharField(max_length=20)
+    num_sets = models.IntegerField()
+    num_reps = models.IntegerField()
+    
 class ImageMetadata(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/')

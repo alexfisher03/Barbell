@@ -1,6 +1,7 @@
 from django import forms
-from .models import CustomUser, Group
+from .models import CustomUser, Group, StatData
 from django.core.exceptions import ValidationError
+from django.forms import ModelForm
 
 class RegistrationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -116,4 +117,7 @@ class GroupSettings(forms.ModelForm):
             self.fields['members_to_remove'].queryset = group.group_members.all()
             self.fields['privacy'].initial = group.privacy
 
-
+class StatForm(ModelForm):
+    class Meta:
+        model = StatData
+        fields = ['exercise_name', 'num_sets', 'num_reps']
