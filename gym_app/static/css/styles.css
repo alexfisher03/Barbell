@@ -130,6 +130,7 @@ html {
 }
 
 .page-wrapper {
+  background-image: url("/static/images/gradientbackground.jpg"); 
   background-blend-mode: multiply;
   background-size: cover;
   min-height: 100vh; 
