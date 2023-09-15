@@ -22,7 +22,7 @@ body {
 }
 
 html {
-  background-image: url("../images/gradientbackground.jpg");
+  background-image: url("/static/images/gradientbackground.jpg");
   background-blend-mode: multiply;
   background-size: cover;
 }
