@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-89y8f^%u#7b8hryfk6g$_*_=_5a=emc5eiti_z&g8ez!u0+v(0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['164.90.134.67', 'localhost', '127.0.0.1', 'barbell.net']
+ALLOWED_HOSTS = ['164.90.134.67', 'localhost', '127.0.0.1', 'socialbarbell.com', 'www.socialbarbell.com']
 
 
 # Application definition
