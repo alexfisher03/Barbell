@@ -152,6 +152,9 @@ def home_screen(request):
 def input_rep_stats_screen(request):
     return render(request, 'input_rep_stats/input_rep_stats_screen.html')
 
+def stat_screen(request):
+    return render(request, 'table/stats_screen.html')
+
 def privacy_screen(request):
     return render(request, 'privacy/privacy_screen.html')
 
