@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['164.90.134.67', 'localhost', '127.0.0.1', 'socialbarbell.com',
 # Application definition
 
 INSTALLED_APPS = [
+    'storages',
     'gym_app.apps.GymAppConfig',
     'allauth',
     'allauth.account',
@@ -141,9 +142,11 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'gym_app.CustomUser'
 
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+GS_CREDENTIALS = os.environ.get('GS_CREDENTIALS_PATH')
+GS_BUCKET_NAME = 'barbell_bucket_1'
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_FILE_OVERWRITE = False
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 
 # Email backend setup for sending reset emails for development, the console backend will print emails to the console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
