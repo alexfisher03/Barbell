@@ -142,7 +142,7 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'gym_app.CustomUser'
 
-GS_CREDENTIALS = os.environ.get('GS_CREDENTIALS_PATH')
+GS_CREDENTIALS = os.path.join(BASE_DIR, 'barbell_backend', 'GCS', 'elegant-azimuth-399823-96bfeea0220a.json')
 GS_BUCKET_NAME = 'barbell_bucket_1'
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_FILE_OVERWRITE = False
