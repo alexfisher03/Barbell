@@ -34,5 +34,5 @@ local_settings.py
 
 .secret_key
 
-
+barbell_backend/gcs/
 
