@@ -1,12 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
     <title>{% block title %} Barbell | Home {% endblock %} </title>
-          {% block nav %}
-          <li><a href="/profile/self">PROFILE</a></li>
-          <li><a href="/general_settings">APP SETTINGS</a></li>
-          {% block header %}<h1 class="barbell">Home</h1> {% endblock %}
-          {% endblock %}
-        {% block content %}
+    {% block content %}
     <div class="backdrop-form-style">
         <section class="content-section container main-header">
       <h class="section-header">Welcome To Barbell</h>

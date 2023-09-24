@@ -2,10 +2,9 @@
 {% load static %}
     <title>{% block title %}Barbell | Register{% endblock %}</title>
     {% block nav %}
-         
-          {% block header %}  {% endblock %}
-    {% endblock %}
-      
+        <li><a href="/home">HOME</a></li>      
+          {% block header %}  {% endblock %}    
+    {% endblock %}  
     {% block content %}
       <form class="registration-form" method="post">
         {% csrf_token %}
