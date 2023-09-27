@@ -12,7 +12,7 @@ __pycache__/
 *.db
 *.sqlite3
 
-# Secret settings (if you have any)
+
 secret_settings.py
 
 # Local development settings
@@ -30,7 +30,8 @@ local_settings.py
 *.swo
 .DS_Store
 
-# Environment variables file (if you use one)
+
+/ENV
 .env
 
 
