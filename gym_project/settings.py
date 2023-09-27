@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com']
+ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com', 'localhost']
 
 
 # Application definition
@@ -170,7 +170,6 @@ DEFAULT_FROM_EMAIL = 'barbellauth@socialbarbell.com'
 # The sites domain and name for constructing the reset link
 SITE_ID = 1
 
-# For production, well use an actual email backend to send emails
 
 LOGIN_REDIRECT_URL = 'profile_self'
 
