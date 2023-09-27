@@ -2,6 +2,7 @@ venv/
 __pycache__/
 
 GCS/
+ENV/
 
 # Compiled Python files
 *.pyc
@@ -30,8 +31,6 @@ local_settings.py
 *.swo
 .DS_Store
 
-
-/ENV
 .env
 
 
