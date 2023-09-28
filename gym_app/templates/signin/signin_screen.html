@@ -12,7 +12,6 @@
           
           <form method="post" action="{% url 'signin' %}">
             {% csrf_token %}
-            {% csrf_token %}
             <h3 class="section-header">Login</h3>
             <label class="content" for="username">Username</label>
             <input type="text" placeholder="Username, Email, or Phone" id="username" name="username">
