@@ -16,6 +16,15 @@
       </section>
     </div>
       {% endblock %}
+      {% block additional_footer_content %}
+                <div class="container main-footer-container">
+                    <ul class="footer-nav">
+                        <li>
+                            <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
+                        </li>
+                    </ul>
+                </div>
+            {% endblock %}
     {% block script %}
     <script src="{% static 'js/home.js' %}"></script>
     {% endblock %}
