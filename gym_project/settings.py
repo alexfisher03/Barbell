@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com', 'localhost']
+ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com']
 
 
 # Application definition
@@ -193,5 +193,5 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = 'profile_self'
 
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_DOMAIN = 'socialbarbell.com'
+CSRF_COOKIE_DOMAIN = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com']
 SESSION_COOKIE_SECURE = True
