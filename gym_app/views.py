@@ -1,7 +1,7 @@
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
 from .models import CustomUser, TableData, ImageMetadata, Group
-from django.views.decorators.csrf import csrf_exempt
+from django.template.defaulttags import csrf_token
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, update_session_auth_hash
 from django.contrib.auth.hashers import check_password
@@ -203,6 +203,7 @@ def profilesettings_screen(request):
         form = ProfileSettings(instance=user)
     return render(request, 'profile/settings/profilesettings_screen.html', {'form': form})
 
+@csrf_token
 def register_screen(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -218,7 +219,7 @@ def register_screen(request):
     return render(request, 'register/register_screen.html', {'form': form})
 
 
-
+@csrf_token
 class CustomLoginView(LoginView):
 
     def get(self, request, *args, **kwargs):
