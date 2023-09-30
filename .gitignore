@@ -36,4 +36,4 @@ local_settings.py
 
 .secret_key
 
-
+/logs/*
