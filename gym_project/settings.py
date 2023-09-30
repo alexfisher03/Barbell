@@ -73,10 +73,10 @@ LOGGING = {
 
 MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -193,5 +193,5 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = 'profile_self'
 
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_DOMAIN = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com']
+CSRF_COOKIE_DOMAIN = '.socialbarbell.com'
 SESSION_COOKIE_SECURE = True
