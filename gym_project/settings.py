@@ -196,3 +196,9 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_DOMAIN = '.socialbarbell.com'
 SESSION_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
+
+# Additionally email verification declarations
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'gym_app/templates/account/email_confirm.html'
