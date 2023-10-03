@@ -209,9 +209,9 @@ def register_screen(request):
         if form.is_valid():
             print("form is valid")
             user = form.save()
-            login(request, user)
             backend = 'django.contrib.auth.backends.ModelBackend'
             user.backend = backend
+            login(request, user)
             return render(request, 'register/register_screen.html', {'form': form, 'success': True})
         else:
             print("form is invalid", form.errors)
