@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+from decouple import Config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -112,7 +112,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'accounts_db',
         'USER': 'barbell_midir',
-        'PASSWORD': config('DB_PASSWORD'),
+        'PASSWORD': Config('DB_PASSWORD'),
         'HOST': 'localhost',  # Change if your MySQL server is running on a different host
         'PORT': '3306',       # Default MySQL port
     }
@@ -183,7 +183,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY')
+EMAIL_HOST_PASSWORD = Config('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = 'barbellauth@socialbarbell.com'
 
 # The sites domain and name for constructing the reset link
