@@ -2,7 +2,7 @@ from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
 from .models import CustomUser, TableData, ImageMetadata, Group
 from django.contrib import messages
-from django.contrib.auth import get_user_model, authenticate, login, update_session_auth_hash
+from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView
@@ -210,6 +210,8 @@ def register_screen(request):
             print("form is valid")
             user = form.save()
             login(request, user)
+            backend = 'django.contrib.auth.backends.ModelBackend'
+            user.backend = backend
             return render(request, 'register/register_screen.html', {'form': form, 'success': True})
         else:
             print("form is invalid", form.errors)
