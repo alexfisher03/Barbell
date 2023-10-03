@@ -199,6 +199,6 @@ CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
 
 # Additionally email verification declarations
 
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/signin/'
