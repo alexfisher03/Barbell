@@ -194,5 +194,4 @@ LOGIN_REDIRECT_URL = 'profile_self'
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_DOMAIN = '.socialbarbell.com'
-CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
 SESSION_COOKIE_SECURE = True
