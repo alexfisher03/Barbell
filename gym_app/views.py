@@ -219,7 +219,8 @@ def register_screen(request):
         form = RegistrationForm()
     return render(request, 'register/register_screen.html', {'form': form})
 
-
+def global_leaderboard(request):
+    return render(request, 'leaderboard/global/global_leaderboard_screen.html')
 
 class CustomLoginView(LoginView):
 
@@ -245,5 +246,4 @@ class CustomLoginView(LoginView):
                 messages.error(request, 'Invalid username or password.')
             return render(request, 'signin/signin_screen.html')
 
-def global_leaderboard(request):
-    return render(request, 'leaderboard/global/global_leaderboard_screen.html')
+
