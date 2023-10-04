@@ -1,21 +1,21 @@
+"""
 import smtplib
-from decouple import config
 
 # Replace these variables with your details
-SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+SENDGRID_API_KEY = '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'
 FROM_EMAIL = 'barbellauth@socialbarbell.com'
 TO_EMAIL = 'gitbodied@gmail.com'
 
 subject = "Hello, World!"
 body = "This is a test email sent from a Python script!"
 
-email_text = f"""\
+email_text = f""(")<-fix****\
 From: {FROM_EMAIL}
 To: {TO_EMAIL}
 Subject: {subject}
 
 {body}
-"""
+""(")<-fix**** 
 
 # Send the email
 try:
@@ -28,3 +28,5 @@ try:
     print('Email sent successfully!')
 except Exception as e:
     print(f'Failed to send email: {e}')
+    
+    """
