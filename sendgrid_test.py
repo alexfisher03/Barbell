@@ -2,7 +2,7 @@
 import smtplib
 
 # Replace these variables with your details
-SENDGRID_API_KEY = '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'
+SENDGRID_API_KEY = ''
 FROM_EMAIL = 'barbellauth@socialbarbell.com'
 TO_EMAIL = 'gitbodied@gmail.com'
 
