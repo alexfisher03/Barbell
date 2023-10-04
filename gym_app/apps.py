@@ -7,15 +7,17 @@ class GymAppConfig(AppConfig):
     name = 'gym_app'
 
     def ready(self):
-        print(' .+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.')
-        print('(     __        __   _                            _          ____    _    ____  ____  _____ _     _           )')
-        print(' )    \ \      / ___| | ___ ___  _ __ ___   ___  | |_ ___   | __ )  / \  |  _ \| __ )| ____| |   | |         (  ')
-        print("(      \ \ /\ / / _ | |/ __/ _ \| '_ ` _ \ / _ \ | __/ _ \  |  _ \ / _ \ | |_) |  _ \|  _| | |   | |          )")
-        print( ')      \ V  V |  __| | (_| (_) | | | | | |  __/ | || (_) | | |_) / ___ \|  _ <| |_) | |___| |___| |___      (')
-        print('(        \_/\_/ \___|_|\___\___/|_| |_| |_|\___|  \__\___/  |____/_/   \_|_| \_|____/|_____|_____|_____|      )')
-        print(' )                                                                                                           (')
-        print('(                                                                                                             )')
-        print(' "+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"')
+        print("        ~+")
+        print("                *       +")
+        print("          '                  |")
+        print('      ()    .-.,="``"=.    - o -')
+        print("            '=/_       \     |")
+        print("         *   |  '=._    |")
+        print("              \     `=./`,        '")
+        print("           .   '=.__.=' `='      *")
+        print("  +                         +")
+        print("       O      *        '       .")
+        print("  Successfully Initialized Barbell")
         from gym_app.models import CustomUser
         from gym_app.signals import delete_related_logs
         pre_delete.connect(delete_related_logs, sender=CustomUser)
