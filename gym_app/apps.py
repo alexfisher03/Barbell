@@ -17,7 +17,7 @@ class GymAppConfig(AppConfig):
         print("           .   '=.__.=' `='      *")
         print("  +                         +")
         print("       O      *        '       .")
-        print("  Successfully Initialized Barbell")
+        print("__--**Successfully Initialized Barbell**--__")
         from gym_app.models import CustomUser
         from gym_app.signals import delete_related_logs
         pre_delete.connect(delete_related_logs, sender=CustomUser)
