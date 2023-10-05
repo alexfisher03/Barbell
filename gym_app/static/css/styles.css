@@ -8,6 +8,14 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@media (max-width: 768px) {
+  body {
+      font-size: 18px;
+      zoom: 1.2;
+  }
+}
+
 * {
   box-sizing: border-box;
   font-family: Raleway;
@@ -938,4 +946,8 @@ form .member-limit-details .limit-val {
 .center {
   text-align: center;
   display: center;
+}
+
+.responsive-table {
+  overflow-x: auto;
 }
