@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 @font-face{
   font-family:"Montserrat";
@@ -918,6 +919,8 @@ form .member-limit-details .limit-val {
 .stat-form button{
   width: 50%;
   background-image: linear-gradient(#095f9e, #07698a);
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .stat-inputs{
@@ -937,10 +940,23 @@ form .member-limit-details .limit-val {
   width: 100%;
 }
 
-.stat-table td{
+.stat-table tr td form{
+  background-color: transparent;
   width: 100%;
+  top: 100%;
+  left: 50%;
+  border-radius: 0px;
+  backdrop-filter: none;
+  border: transparent;
+  box-shadow: transparent;
+  padding: 0px;
+  margin-top: 0px;
 }
 
-.stat-table button{
-  width: 10%;
-}
+
+
+
+
+
+
+

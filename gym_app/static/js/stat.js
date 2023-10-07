@@ -22,37 +22,51 @@ document.getElementById("back-button").addEventListener("click", function(event)
 
 
 function showTable(table, stats){
-let head = table.insertRow();
-let exercise = document.createElement("th");
-let sets = document.createElement("th");
-let reps = document.createElement("th");
-head.appendChild(exercise);
-head.appendChild(sets);
-head.appendChild(reps);
-let eText = document.createTextNode("Exercise");
-let sText = document.createTextNode("Sets");
-let rText = document.createTextNode("Reps");
-exercise.appendChild(eText);
-sets.appendChild(sText);
-reps.appendChild(rText);
-
-for(let i = 0; i < Object.keys(stats).length; i++){
-  let baby = table.insertRow();
-  for(let j = 0; j < 3; j++){   
-   let cell = baby.insertCell();
-   let data;   
-   if(j == 0){
-      data = stats[i]['exercise_name']
-    }else if(j == 1){
-      data = stats[i]['num_sets']
-    }else{
-      data = stats[i]['num_reps']
-    } 
-    let text = document.createTextNode(data);
-    cell.appendChild(text);
+  let head = table.insertRow();
+  let exercise = document.createElement("th");
+  let sets = document.createElement("th");
+  let reps = document.createElement("th");
+  let edit = document.createElement("th");
+  head.appendChild(exercise);
+  head.appendChild(sets);
+  head.appendChild(reps);
+  head.appendChild(edit);
+  let eText = document.createTextNode("Exercise");
+  let sText = document.createTextNode("Sets");
+  let rText = document.createTextNode("Reps");
+  let edText = document.createTextNode("Delete");
+  exercise.appendChild(eText);
+  sets.appendChild(sText);
+  reps.appendChild(rText);
+  edit.appendChild(edText);
+  // Create rows
+  for(let i = 0; i < Object.keys(stats).length; i++){
+    let baby = table.insertRow();
+    // create entries in row
+    for(let j = 0; j < 4; j++){   
+      let cell = baby.insertCell();
+      if(j != 3){
+        let data;   
+        if(j == 0){
+            data = stats[i]['exercise_name']
+          }else if(j == 1){
+            data = stats[i]['num_sets']
+          }else if(j==2){
+            data = stats[i]['num_reps']
+          }
+          let text = document.createTextNode(data);
+          cell.appendChild(text);
+      }else{
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "DELETE";
+        deleteButton.className = "profile-button";
+        let deleteForm = document.createElement("form");
+        deleteForm.setAttribute("method", "delete");
+        deleteButton.type = "submit";
+        cell.appendChild(deleteForm);
+        deleteForm.appendChild(deleteButton);
+      }
+    }
   }
-  /* let deleteButton = document.createElement("button");
-  baby.appendChild(deleteButton); */
-}
 }
 
