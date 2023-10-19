@@ -35,151 +35,26 @@
     <section class="content-section-stat content-stat">  
     <h1 class="main-header">Chest</h1>
     <div class="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Movement Range</th>
-            <th>Flat Bench Press</th>
-            <th>Incline Bench Press</th>
-            <th>Chest Press</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Top Set Range Max</th>
-<!--Bench-->   <td></td>
-<!--Incline--> <td>'Input User Data'</td>
-<!--Chest P--> <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Single Rep Max</th>
-<!--Bench-->   <td>'Input User Data'</td>
-<!--Incline--> <td>'Input User Data'</td>
-<!--Chest P--> <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Average Warmup Range</th>
-<!--Bench-->   <td>'Input User Data'</td>
-<!--Incline--> <td>'Input User Data'</td>
-<!--Chest P--> <td>'Input User Data'</td>
-          </tr>
-          </tbody>
+      <table id = "custom"> 
       </table>
+      <form class="stat-form" method="post">
+        {% csrf_token %}
+        <div class="stat-inputs">
+          <input type="text" name="exercise_name">
+          <input type="number" name="num_sets">
+          <input type="number" name="num_reps">
+        </div>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>   
+    <script src="{% static 'js/stat.js' %}"></script>
+    {% endblock %}
     </div>
     </section>  
-  <section class="content-section-stat content-stat">  
-    <h1 class="main-header">Back</h1>
-    <div class="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Movement Range</th>
-            <th>Barbell Row</th>
-            <th>Lat Pull Down</th>
-            <th>Pull Up</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Top Set Range Max</th>
-<!--BBrow-->   <td>'Input User Data'</td>
-<!--LatPD-->   <td>'Input User Data'</td>
-<!--Pullup-->  <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Single Rep Max</th>
-<!--BBrow-->   <td>'Input User Data'</td>
-<!--LatPD-->   <td>'Input User Data'</td>
-<!--Pullup-->  <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Average Warmup Range</th>
-<!--BBrow-->   <td>'Input User Data'</td>
-<!--LatPD-->   <td>'Input User Data'</td>
-<!--Pullup-->  <td>'Input User Data'</td>
-          </tr>
-          </tbody>
-      </table>
-    </div>
-  </section> 
-  <section class="content-section-stat content-stat"> 
-    <h1 class="main-header">Arms</h1>
-    <div class="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Movement Range</th>
-            <th>Tricep Push Down</th>
-            <th>Barbell Bicep Curl</th>
-            <th>Hammer Curl</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Top Set Range Max</th>
-<!--TRIpd-->   <td>'Input User Data'</td>
-<!--BBcurl-->  <td>'Input User Data'</td>
-<!--Pullup-->  <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Single Rep Max</th>
-<!--TRIpd-->   <td>'Input User Data'</td>
-<!--BBcurl-->  <td>'Input User Data'</td>
-<!--Pullup-->  <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Average Warmup Range</th>
-<!--TRIpd-->   <td>'Input User Data'</td>
-<!--BBcurl-->  <td>'Input User Data'</td>
-<!--Pullup-->  <td>'Input User Data'</td>
-          </tr>
-          </tbody>
-      </table>
-    </div>
-  </section> 
-  <section class="content-section-stat content-stat">  
-    <h1 class="main-header">Legs</h1>
-    <div class="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Movement Range</th>
-            <th>Back Squat</th>
-            <th>Hack Squat</th>
-            <th>Leg Press</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Top Set Range Max</th>
-<!--BackSQ-->  <td>'Input User Data'</td>
-<!--HackSQ-->  <td>'Input User Data'</td>
-<!--LegPres--> <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Single Rep Max</th>
-<!--BackSQ-->  <td>'Input User Data'</td>
-<!--HackSQ-->  <td>'Input User Data'</td>
-<!--LegPres--> <td>'Input User Data'</td>
-            
-          </tr>
-          <tr>
-            <th>Average Warmup Range</th>
-<!--BackSQ-->  <td>'Input User Data'</td>
-<!--HackSQ-->  <td>'Input User Data'</td>
-<!--LegPres--> <td>'Input User Data'</td>
-          </tr>
-          </tbody>
-      </table>
-    </div>
-  </section> 
+  
+  
 </div>
 {% endblock %}
       {% block additional_footer_content %}

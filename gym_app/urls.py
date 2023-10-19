@@ -31,6 +31,7 @@ urlpatterns = [
     path('account/password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name="account/password_reset_confirm.html"), name='password_reset_confirm'),
     path('account/password-reset-complete/', PasswordResetCompleteView.as_view(template_name="account/password_reset_complete.html"), name='password_reset_complete'),
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'), # Overriding allauth's login view
+    path('get_stats/', views.get_stats, name = 'ajax_get_stats'),
 ]
 
 #for placeholder while in development

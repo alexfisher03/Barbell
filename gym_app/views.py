@@ -1,13 +1,13 @@
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
-from .models import CustomUser, TableData, ImageMetadata, Group
+from .models import CustomUser, TableData, ImageMetadata, Group, StatData
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings
+from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
 from django.http import JsonResponse
 
 
@@ -148,8 +148,18 @@ def group_settings_screen(request, group_id):
 def home_screen(request):
     return render(request, 'home/home_screen.html')
 
+@login_required
 def input_rep_stats_screen(request):
+    if request.method == 'POST':
+        form = StatForm(request.POST)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
     return render(request, 'input_rep_stats/input_rep_stats_screen.html')
+
+def get_stats(request):
+    dataS = list(StatData.objects.filter(user=request.user).values())
+    return JsonResponse(dataS, safe=False)
 
 def stat_screen(request):
     return render(request, 'table/stats_screen.html')
