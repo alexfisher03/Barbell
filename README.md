@@ -1,5 +1,5 @@
 <h1 align="center">
-Barbell
+Barbell - Gym Progress Tracker Early Version
 </h1>
 
 <p align="center">
