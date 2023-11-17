@@ -9,9 +9,3 @@ Barbell
 <p align="center">
   Created By: <a href="https://github.com/alexfisher03"> Alexander Fisher </a> (University Of Florida) and <a href="https://github.com/jsalem5?tab=repositories"> Jonathan Salem </a> (University of Texas)
 </p>
-
-
-<p align="center">
-  For Security: Displaying -> Main Branch Version ✅
-</p>
-

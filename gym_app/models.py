@@ -1,8 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, Permission, Group
+from django.conf import settings
+from django.contrib.admin.models import LogEntry
+from django.contrib.auth.models import AbstractUser, Permission, Group as MyGroup
+
 
 class CustomUser(AbstractUser):
-    # Additional fields if needed
     MALE = 'M'
     FEMALE = 'F'
     OTHER = 'O'
@@ -11,7 +13,7 @@ class CustomUser(AbstractUser):
         (FEMALE, 'Female'),
         (OTHER, 'Other'),
     ]
-    groups = models.ManyToManyField(Group, related_name='user_groups')
+    current_group = models.ForeignKey('Group', related_name='group_members', null=True, blank=True, on_delete=models.SET_NULL)
     user_permissions = models.ManyToManyField(Permission, related_name='user_permissions')
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     bio = models.TextField(blank=True)
@@ -25,6 +27,19 @@ class CustomUser(AbstractUser):
     # Other fields like date_of_birth, bio, etc.
     def __str__(self):
         return self.username
+    
+class Group(models.Model):
+    name = models.CharField(max_length=255)
+    groupbio = models.TextField(default='')
+    PRIVACY_CHOICES = [
+        ('PUB', 'Public'),
+        ('PRV', 'Private'),
+    ]
+    privacy = models.CharField(max_length=3, choices=PRIVACY_CHOICES)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_groups', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 class TableData(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -34,10 +49,15 @@ class TableData(models.Model):
     class Meta:
         verbose_name = 'Stat Data'
         verbose_name_plural = 'Stat Data'
-    # Other fields as needed
 
     def __str__(self):
         return self.data_title
+    
+class StatData(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    exercise_name = models.CharField(max_length=20)
+    num_sets = models.IntegerField()
+    num_reps = models.IntegerField()
     
 class ImageMetadata(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

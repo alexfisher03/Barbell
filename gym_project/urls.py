@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('gym_app.urls')),
-    path('auth/', include('django.contrib.auth.urls')),
+    #path('auth/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
@@ -32,4 +33,4 @@ if settings.DEBUG:
 # for profile pictures in the development environment. 
 # Note that this setup is suitable for development, not for production. 
 # For production need to serve the static files through the web server 
-# (e.g., Nginx, Apache)
+# (in our case we're gonna use Nginx)

@@ -1,19 +1,210 @@
 {% extends 'index.html' %}
 {% load static %}
+{% block style %}
+    <style>
+      /* These are the local styles for the leaderboard (global). I did it this way because I made conflicting global tables already */
+
+ h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.7rem;
+    color: #141a39;
+    text-transform: uppercase;
+    cursor: default;
+  }
+
+  #leaderboard {
+    width: 100%;
+    position: relative;  
+  }
+  #leaderboard table {
+    overflow: visible;  
+}
+  #leaderboard tr:hover {
+    position: relative;
+    top: -10px;
+    bottom: -10px; 
+  }
+
+  table {
+    border-radius: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #78609253;
+    cursor: default;
+    z-index: 0;
+    margin: 0 1rem;
+  }
+
+  table tr:first-child td:first-child {
+    border-top-left-radius: 15px;
+  }
+
+  table tr:first-child td:last-child {
+    border-top-right-radius: 15px;
+  }
+
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+  }
+
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+  }
+  tr:hover td:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  tr:hover td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  tr {
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.2rem;
+    overflow: visible;
+  }
+
+  tr:hover {
+    background-color: #ffffff7c;
+    transform: scale(1.1);
+    -webkit-box-shadow: 0px 5px 15px 8px #e4e7fb83;
+    box-shadow: 0px 5px 15px 8px #e4e7fb71;
+    z-index: 10;
+    border-radius: 15px;
+  } 
+
+
+  tr:nth-child(1) {
+    color: #ffffff6e;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #e4e7fb43;
+  }
+
+
+  td {
+    height: 5rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+    position: relative;
+  }
+
+  .number {
+    width: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .name {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .stats {
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .stats:first-child {
+    width: 10rem;
+  }
+
+
+  @media (max-width: 740px) {
+* {
+  font-size: 70%;
+}
+  }
+
+  @media (max-width: 500px) {
+* {
+  font-size: 55%;
+}
+  }
+
+  @media (max-width: 390px) {
+* {
+  font-size: 45%;
+}
+  }
+
+</style>
+
+      {% endblock %}
+
         <title>{% block title %}Barbell | Global Leaderboard {% endblock %} </title>
                 {% block nav %}
                         <li><a href="/profile/self">PROFILE</a></li>
                         <li><a href="/home">HOME</a></li>
-                        <li><a href="/group_screen">GROUP</a></li>
                         {% block header %}<h3 class="barbell">Global Leaderboard</h3> {% endblock %}
                 {% endblock %}
                      
            
             {% block content %}
-            <section class="content-section container main-header">
-              <form>
-                <label> Leaderboards Currently In Developement &#9935; </label>
-              </form>
+            <section class="content-section container all-space  ">
+              <div id="leaderboard">
+                <table>
+                  <tr>
+                    <td class="number">#1</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#2</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#3</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#4</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#5</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#6</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#7</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#8</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#9</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                  <tr>
+                    <td class="number">#10</td>
+                    <td class="name">'input user name'</td>
+                    <td class="stats">'input user total'</td>
+                  </tr>
+                </table>
+              
             </section>
             {% endblock %}
         

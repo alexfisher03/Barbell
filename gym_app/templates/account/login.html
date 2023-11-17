@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% load static %}
+
+<!-- For these templates, their purpose is to override Django-allauth's 
+     default templates, all while retaining the view logic to handle the
+     email verification process -->
+
+<!DOCTYPE html>
+<html> 
+  <head>
+    {% block style %}{% endblock %}
+    <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Barbell | Index {% endblock %}</title>
+    <meta name="description" content="This is the description" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <br> <!-- These are for spacing inbetween the top of the screen and page contents-->
+      <br>
+      <br>
+      <br>
+        <header class="main-header">
+      <nav class="nav main-nav">
+        {% block nav %}
+          <h1 class="barbell">{% block header %}{% endblock %}</h1>
+        {% endblock %}
+      </nav>
+      </header>
+      <section class="container">
+        {% block content %}
+        <div class="barbell">WELCOME TO BARBELL</div>
+        <section class="content-section container main-header">
+              <div class="backdrop-form-style all-space-small">
+                <label class="content all-space-small">
+                  <span class="content"> Track Your Gym Progress </span> 
+                  <span class="content"> Create Groups</span> 
+                  <div class="content">
+                  
+                  <span class="content"> Version 1 </span> 
+                </div>
+                <a href="/signin" ><button class="sign-up-button2 ">Get Started</button></a>
+              </label>
+              <br>
+              <br>
+            </div>
+        </section>
+        {% endblock %}
+      </section>
+      <footer class="main-footer">
+      {% block additional_footer_content %}{% endblock %}
+      <div class="container main-footer-container">
+        <img class="static-logo-white" src="{% static 'images/barbell_white.png' %}" />    
+      </div>
+
+      </footer>
+    </div>
+    {% block scripts %}
+    <script src="{% static 'js/home.js' %}"></script>
+    {% endblock %}
+  
+  </body>
+</html>
