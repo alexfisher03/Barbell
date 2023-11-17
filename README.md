@@ -1,5 +1,5 @@
 <h1 align="center">
-Barbell
+Barbell - Track Your Gym Progress 💪 
 </h1>
 
 <p align="center">
@@ -8,4 +8,8 @@ Barbell
 
 <p align="center">
   Created By: <a href="https://github.com/alexfisher03"> Alexander Fisher </a> (University Of Florida) and <a href="https://github.com/jsalem5?tab=repositories"> Jonathan Salem </a> (University of Texas)
+</p>
+
+<p align="center">
+  <img src="staticfiles/images/barbell_blue.png" width="500" height="500">
 </p>
