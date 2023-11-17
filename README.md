@@ -1,5 +1,5 @@
 <h1 align="center">
-Barbell - Gym Progress Tracker Early Version
+Barbell - Track Your Gym Progress 💪 
 </h1>
 
 <p align="center">
@@ -11,5 +11,5 @@ Barbell - Gym Progress Tracker Early Version
 </p>
 
 <p align="center">
-  <img src="staticfiles/images/barbell_blue.png">
+  <img src="staticfiles/images/barbell_blue.png" width="500" height="500">
 </p>
