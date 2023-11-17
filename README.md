@@ -1,5 +1,5 @@
 <h1 align="center">
-Barbell - Track Your Gym Progress 💪 
+<a href="socialbarbell.com"> Barbell</a> - Track Your Gym Progress 💪 
 </h1>
 
 <p align="center">
