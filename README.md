@@ -1,13 +1,8 @@
-# barbell_backend using Django framework
+<h1 align="center">
+Barbell
+</h1>
 
-# ver 1.0
+<p align="center">
+  A <a href="https://www.djangoproject.com/"> Django</a> powered web application designed as a pseudo social media. For production, we used<a href="https://www.nginx.com/"> Nginx</a> as reverse proxy and <a href="https://gunicorn.org/"> Gunicorn</a> as the main WSGI HTTP Server.
+</p>
 
-# created by Alex Fisher and Jonathan Salem
-
-# University of Florida and University of Texas
-
-# remember to initialize venv by~ source venv/Scripts/activate ~each instance
-
-# ensure mysql installed locally, PATH set in Environment settings, and Django installed
-
-# install pillow as well for django image dependencies during development
