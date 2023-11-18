@@ -998,6 +998,8 @@ form .member-limit-details .limit-val {
 
 .scrollable-container::-webkit-scrollbar {
   width: 10px;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 .scrollable-container::-webkit-scrollbar-thumb {
