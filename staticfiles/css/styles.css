@@ -997,18 +997,3 @@ form .member-limit-details .limit-val {
 .stat-table button{
   width: 10%;
 }
-
-.scrollable-container::-webkit-scrollbar {
-  width: 10px;
-  max-height: 100vh;
-  overflow-y: scroll;
-}
-
-.scrollable-container::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 10px;
-}
-
-.scrollable-container::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
