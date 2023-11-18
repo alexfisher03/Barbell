@@ -33,6 +33,7 @@ html {
   background-image: url("/static/images/gradientbackground.jpg");
   background-attachment: fixed;
   background-size: cover;
+  background-position: center;
   background-color: rgba(101, 54, 158, 0.788);
 }
 
