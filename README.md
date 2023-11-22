@@ -3,7 +3,7 @@ Barbell - Track Your Gym Progress 💪
 </h1>
 
 <p align="center">
-  A <a href="https://www.djangoproject.com/"> Django</a> powered web application designed as a pseudo social media platform. For production, the application uses <a href="https://www.nginx.com/"> Nginx</a> as reverse proxy and <a href="https://gunicorn.org/"> Gunicorn</a> as the main WSGI HTTP Server.
+  A <a href="https://www.djangoproject.com/"> Django</a> powered web application designed as a pseudo social media platform. For production, the application uses <a href="https://www.nginx.com/"> Nginx</a> as reverse proxy and <a href="https://gunicorn.org/"> Gunicorn</a> as the request server.
 </p>
 
 <p align="center">
