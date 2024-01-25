@@ -256,4 +256,6 @@ class CustomLoginView(LoginView):
                 messages.error(request, 'Invalid username or password.')
             return render(request, 'signin/signin_screen.html')
 
+def admin_screen(request):
+    return render(request, 'admin/admin.html')
 

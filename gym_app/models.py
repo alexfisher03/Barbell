@@ -1,8 +1,16 @@
+"""
+@author Alexander Fisher & Jonathan Salem
+@version Barbell Version 1
+
+@about This is the Python script handling our database data table *actual* data. 
+       Each class object corresponds to an object containing our user's data, a user's group,
+       user stat or stat table, etc. 
+"""
+
 from django.db import models
 from django.conf import settings
 from django.contrib.admin.models import LogEntry
 from django.contrib.auth.models import AbstractUser, Permission, Group as MyGroup
-
 
 class CustomUser(AbstractUser):
     MALE = 'M'
@@ -23,8 +31,6 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name = 'App user'
         verbose_name_plural = 'App users'
-
-    # Other fields like date_of_birth, bio, etc.
     def __str__(self):
         return self.username
     

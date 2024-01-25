@@ -9,6 +9,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('admin/', views.admin_screen, name='admin'),
     path('about/', views.about_screen, name='about'),
     path('creategroup/', views.creategroup_screen, name='create_group'),
     #path('forgot_password/', views.forgotpassword_screen, name='forgot_password'),
