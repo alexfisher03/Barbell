@@ -1,3 +1,11 @@
+"""
+@author Alexander Fisher & Jonathan Salem
+@version Barbell Version 1
+
+@about Defines 'form' class objects within the html templates. Instances of the 
+       objects contain the information used in the POST request within view logic.
+       This data is then integrated into the SQL data structure.       
+"""
 from django import forms
 from .models import CustomUser, Group, StatData
 from django.core.exceptions import ValidationError

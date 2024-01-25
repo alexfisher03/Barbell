@@ -1,3 +1,11 @@
+"""
+@author Alexander Fisher & Jonathan Salem
+@version Barbell Version 1
+
+@about Contains the backend python functions that interact with model database
+       info in order to render the correct data to the templates.  
+"""
+
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
 from .models import CustomUser, TableData, ImageMetadata, Group, StatData
@@ -13,6 +21,30 @@ from django.http import JsonResponse
 
 class CustomPasswordResetView(AllauthPasswordResetView): # This inherits the allauth view but explictly sets the template
     template_name = 'account/password_reset.html'
+
+class CustomLoginView(LoginView):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'signin/signin_screen.html')
+
+    def post(self, request, *args, **kwargs):
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('profile_self')
+            else:
+                try:
+                    user = CustomUser.objects.get(phone=username)
+                    if user.check_password(password):
+                        login(request, user)
+                        return redirect('profile_self')
+                except CustomUser.DoesNotExist:
+                    pass
+                messages.error(request, 'Invalid username or password.')
+            return render(request, 'signin/signin_screen.html')
 
 def index(request):
     return render(request, 'index.html')
@@ -231,30 +263,6 @@ def register_screen(request):
 
 def global_leaderboard(request):
     return render(request, 'leaderboard/global/global_leaderboard_screen.html')
-
-class CustomLoginView(LoginView):
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'signin/signin_screen.html')
-
-    def post(self, request, *args, **kwargs):
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                login(request, user)
-                return redirect('profile_self')
-            else:
-                try:
-                    user = CustomUser.objects.get(phone=username)
-                    if user.check_password(password):
-                        login(request, user)
-                        return redirect('profile_self')
-                except CustomUser.DoesNotExist:
-                    pass
-                messages.error(request, 'Invalid username or password.')
-            return render(request, 'signin/signin_screen.html')
 
 
 

@@ -1,3 +1,10 @@
+"""
+@author Alexander Fisher & Jonathan Salem
+@version Barbell Version 1
+
+@about Contains the actual apps configuration class object. This object 
+tells Django what settings to configure. 
+"""
 from django.apps import AppConfig
 from django.db.models.signals import pre_delete
 
