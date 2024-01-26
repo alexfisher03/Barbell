@@ -2,8 +2,8 @@
 @author Alexander Fisher & Jonathan Salem
 @version Barbell Version 1
 
-@about Contains the backend python functions that interact with model database
-       info in order to render the correct data to the templates.  
+@about Contains the backend python functions and class objects that 
+       handle and interact with various web requests and render responses
 """
 
 from allauth.account.views import LoginView
@@ -18,10 +18,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
 from django.http import JsonResponse
 
-
-class CustomPasswordResetView(AllauthPasswordResetView): # This inherits the allauth view but explictly sets the template
+"""
+Takes in the Django 'AllauthPasswordResetView' class object as a parameter, but 
+explicitly sets the template to use. Allows the url to take in this object
+and inherit the logic with a custom view template.
+"""
+class CustomPasswordResetView(AllauthPasswordResetView):
     template_name = 'account/password_reset.html'
 
+"""
+Customizes the login functionality that comes with Django's default by extending
+the parameter 'LoginView', firstly by using the get method to render the custom
+signin screen, and then secondly using the post method to access user authentication
+to verify username and password entries. 
+"""
 class CustomLoginView(LoginView):
 
     def get(self, request, *args, **kwargs):
@@ -46,87 +56,58 @@ class CustomLoginView(LoginView):
                 messages.error(request, 'Invalid username or password.')
             return render(request, 'signin/signin_screen.html')
 
+# static screen function
 def index(request):
     return render(request, 'index.html')
 
+# static screen function
 def about_screen(request):
     return render(request, 'about/about_screen.html')
 
+"""
+Function using the CreateGroup form-class-object, which takes in
+the 'forms.Modelform' parameter, enabling it to write to the Group
+model-class-object. With this in mind, the form is creating the new
+Group model for the user, and populating the values using the user's inputs.
+
+Additionally, worth noting is that Django creates a random int, 'group_id' during
+the url redirection process which can represent each group, and can 
+handily be called using the Group data model object itself 
+"""
 @login_required
 def creategroup_screen(request):
     if request.method == 'POST':
         form = CreateGroup(request.POST)
         if form.is_valid():
-            print("Cleaned Data:", form.cleaned_data)
             new_group = form.save(commit=False)
             new_group.created_by = request.user
             new_group.privacy = form.cleaned_data['privacy']
             new_group.save()
             request.user.current_group = new_group
             request.user.save()
-            print("New Group ID: ", new_group.id)
-            print("New Group Privacy: ", new_group.privacy)
             return redirect('group_screen', group_id=new_group.id)
         else:
             print("Form Errors:", form.errors)
     else:
-        print('Not post')
         form = CreateGroup()
     return render(request, 'creategroup/creategroup_screen.html', {'form': form})
 
-
-#retired logic because letting Django handle it with allauth
-#def forgotpassword_screen(request):
-
-    context = {}
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        new_password = request.POST.get('new_password')
-        confirm_password = request.POST.get('confirm_password')
-        allowed_special_characters = set("!@$#%&*")
-        disallowed_characters = set("()^=+")
-        
-        try:
-            user = CustomUser.objects.get(username=username) 
-        except CustomUser.DoesNotExist:
-            messages.error(request, "Username does not exist.")
-            return render(request, 'forgot_password/forgotpassword_screen.html')
-
-        if any(char in disallowed_characters for char in new_password):
-            messages.error(request, "Invalid special characters used. Please refrain from using (, ), ^, =, or +.")
-            return render(request, 'forgot_password/forgotpassword_screen.html')
-                        
-        if not any(char in allowed_special_characters for char in new_password):
-            messages.error(request, "Password must contain at least one of the following special characters: !, @, , $, %, &, *.")
-            return render(request, 'forgot_password/forgotpassword_screen.html')
-
-        if len(new_password) < 6:
-            messages.error(request, "Password must be at least 6 characters long.")
-            return render(request, 'forgot_password/forgotpassword_screen.html')
-
-        if new_password != confirm_password:
-            messages.error(request, "Passwords do not match.")
-            return render(request, 'forgot_password/forgotpassword_screen.html')
-
-        user.set_password(new_password)
-        user.save()
-        messages.success(request, "Password has been reset.")
-        context['success'] = True
-        return redirect('signin')   #Redirect to the login page
-    return render(request, 'forgot_password/forgotpassword_screen.html')
-
-    
-
+# static screen function
 def generalsettings_screen(request):
     return render(request, 'general_settings/generalsettings_screen.html')
 
+"""
+Function gets the user's group object, contains placehold member logic to
+ensure the user is in the group and to populate the HTML UI.
+"""
 @login_required
 def group_screen(request, group_id):
     user = request.user
     group = Group.objects.get(id=group_id)
-    members = group.group_members.all()
+
+    members = group.group_members.all() # < - CHECK FIX
     
-    is_user_in_group = user in members #this is checking to see if the logged in user is in the group
+    is_user_in_group = user in members # this is checking to see if the logged in user is in the group
     other_members = [member for member in members if member != user]
 
     context = {
@@ -137,9 +118,16 @@ def group_screen(request, group_id):
     }
     return render(request, 'group/group_screen.html', context)
 
+"""
+In developement
+"""
 def group_leaderboard(request, group_id):
+    user = request.user
     group = Group.objects.get(id=group_id)
-    #setup later for group leaderboard
+    members = group.group_members.all()
+
+    # in developement
+    
     return render(request, 'leaderboard/group/group_leaderboard_screen.html')
 
 @login_required

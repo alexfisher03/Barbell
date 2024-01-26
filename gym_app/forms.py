@@ -84,7 +84,7 @@ class ProfileSettings(forms.ModelForm):
         return user
     
 class CreateGroup(forms.ModelForm):
-    # name is in reference to the group name, ambiguous cuz i messed up the sql
+    # name is in reference to the group name
     name = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
     groupbio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
     privacy = forms.ChoiceField(

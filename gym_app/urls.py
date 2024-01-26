@@ -2,47 +2,49 @@
 @author Alexander Fisher & Jonathan Salem
 @version Barbell Version 1
 
-@about Contains a list of the various url defined web-requests {
+@about Contains a list of the various url defined web-requests
 
-        Root and Basic Pages:
+        *Root and Basic Pages:
             -empty url pattern <results in index page being displayed>
             -about screen
-        Group and User Features:
+
+        *Group and User Features:
             -create group screen
             -general settings screen
             -group screen <group_id integer included as a 'dynamic' parameter>
             -group settings screen <also takes in group_id>
-        Profile and Authentication:
+
+        *Profile and Authentication:
             -profile
                 /self
                 /other
             -register <creates new CustomUser>
-            -signin <custom login view replaces the default Django HTML template, but inherits the logic found in views.py>
-        Stats and Leaderboards:
+
+        *Stats and Leaderboards:
             -Input Rep Stats 
             -Table <For viewing the stats in tabular format>
             -leaderboard
                 /global
                 /group
-        Password Reset Flow:
+
+        *Password Reset Flow:
             -account/password-reset <This view initiates the password reset process>
             -account/password-reset/done <This is the view the user is redirected to after submitting the previous form>
             -account/password-reset-confirm <This view is accessed from the link sent in the email , uidb64 and token are used to ID the user & their request>
             -acount/password-reset-complete <This is final stage of the reset flow>
-        Custom and Overridden URLS
-            -accounts/login <
 
-
-        }
+        *Custom and Overridden URLS
+            -accounts/login <Exists to override the default login URL used by 'django-allauth', redirecting the user to a custom template while maintaining the allauth logic>
+            -signin <custom login view replaces the default Django HTML template, but inherits the logic found in views.py -> serves as a custom entry point for the users to sign in to>
+            
+        *Ajax Calls
+            -get_stats <executes the view function get_stats which collects and filters the current user's data populating the StatData class object. The function returns a json, but it is converted to a python list first>     
 """
 
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import path
 from .views import CustomLoginView
-
-# this is Django built in email authentication 
-from django.contrib.auth.views import (PasswordResetView, PasswordResetDoneView, 
-                                       PasswordResetConfirmView, PasswordResetCompleteView)
+from django.contrib.auth.views import (PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 from . import views
 
 urlpatterns = [
