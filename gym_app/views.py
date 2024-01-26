@@ -56,11 +56,11 @@ class CustomLoginView(LoginView):
                 messages.error(request, 'Invalid username or password.')
             return render(request, 'signin/signin_screen.html')
 
-# static screen function
+# static render function
 def index(request):
     return render(request, 'index.html')
 
-# static screen function
+# static render function
 def about_screen(request):
     return render(request, 'about/about_screen.html')
 
@@ -92,7 +92,7 @@ def creategroup_screen(request):
         form = CreateGroup()
     return render(request, 'creategroup/creategroup_screen.html', {'form': form})
 
-# static screen function
+# static render function
 def generalsettings_screen(request):
     return render(request, 'general_settings/generalsettings_screen.html')
 
@@ -130,16 +130,25 @@ def group_leaderboard(request, group_id):
     
     return render(request, 'leaderboard/group/group_leaderboard_screen.html')
 
+
+"""
+Function gets the defined group_id's Group object and firstly does 
+a check on whether the user created the group or not (accessing the created_by attribute)
+& checks to see if the amount of members exist (i.e the group exists)
+
+The function then checks if the user POST contains data populated in the form on the UI,
+and then creates an instance of the GroupSettings form-class-object. The form is firstly 
+set to a variable but not saved to the database yet, the privacy data from the settings 
+form is collected before, then it finally saves. 
+"""
 @login_required
 def group_settings_screen(request, group_id):
     group = get_object_or_404(Group, id=group_id)
-    print("debug group fetched:", group)
 
     if request.user != group.created_by:
         return redirect('group_screen') # eventually create a message screen saying user cannot access 
 
     members = group.group_members.all()
-    print("members fetched:", members)
     if len(members) < 1:
         return redirect('group_screen', group_id=group_id) # if group was deleted add message screen
 
@@ -165,9 +174,16 @@ def group_settings_screen(request, group_id):
 
     return render(request, 'group_settings/group_settings_screen.html', context)
 
+# static render function
 def home_screen(request):
     return render(request, 'home/home_screen.html')
 
+"""
+This function contains a form that collects user inputs to populate the 
+attributes of the StatData model class-object. The POST request is saved
+using the StatForm class-object, which is handled during the URL routing process 
+at the '/get_stats' address; which utilizes the get_stats view function.  
+"""
 @login_required
 def input_rep_stats_screen(request):
     if request.method == 'POST':
@@ -177,22 +193,39 @@ def input_rep_stats_screen(request):
             form.save()
     return render(request, 'input_rep_stats/input_rep_stats_screen.html')
 
+"""
+This function checks the StatData model for the current user and then using the
+.values() method converts the corresponding class attributes into a Dictionary where
+the key is the attribute and the value pair is the data from the database. This dictionary
+is then converted into a list, and returned as a non-safe Json response.
+"""
 def get_stats(request):
     dataS = list(StatData.objects.filter(user=request.user).values())
     return JsonResponse(dataS, safe=False)
 
+# static render function
 def stat_screen(request):
     return render(request, 'table/stats_screen.html')
 
+# static render function
 def privacy_screen(request):
     return render(request, 'privacy/privacy_screen.html')
 
+"""
+maybe change all profile instances to rely on a dynamic <int: user_id> instead...
+"""
 def profile_other_screen(request):
     return render(request, 'profile/other/profile_other_screen.html')
 
+"""
+This function initializes variables representing the various data attributes of the CustomUser model,
+along with featuring the TableData model attributes (this is where the workout splits are stored for now)
+The variables declared in the context of this function are then used locally within the context dictionary
+as key value pairs, where the keys are called in the HTML templates, thus allowing for the correct data to 
+populate the different user profile screens.
+"""
 @login_required
 def profile_self_screen(request):
-    print(request.user.is_authenticated)
     custom_user = request.user
     table_data = TableData.objects.filter(user=request.user)
     images = ImageMetadata.objects.filter(user=request.user)
@@ -206,12 +239,13 @@ def profile_self_screen(request):
     my_groups = Group.objects.filter(created_by=request.user)
     return render(request, 'profile/self/profile_self_screen.html', context)
 
-
+"""
+Handles the user's ProfileSettings form class-object POST request. Uses cleaned_data method
+on the two form user input fields and populates the object attributes with those values. This 
+upon saving by .save() method will update the user's profile picture and bio data entries. 
+"""
 @login_required
 def profilesettings_screen(request):
-    print('Function Loaded')
-    print(f"Current User: {request.user}")
-    print(f"Request Method: {request.method}")
     user = request.user
     if request.method == 'POST':
        form = ProfileSettings(request.POST, request.FILES, instance=user)
@@ -224,20 +258,30 @@ def profilesettings_screen(request):
            user.save()
            return redirect('profile_self')
        else:
-           print(form.errors)
            for error in form.errors:
                messages.error(request, f"{error}: {form.errors[error]}")
     else:
-        print('I did not post')
         form = ProfileSettings(instance=user)
     return render(request, 'profile/settings/profilesettings_screen.html', {'form': form})
 
+"""
+This function handles the RegistrationForm user inputs. Again, the user's inputs 
+populate the various attributes within the Form Object, and if the form is valid it saves.
 
+However a key feature here is that the backend variable assigned to the value of 
+'django.contrib.auth.backends.ModelBackend' exists because this method is a built in
+Django authentication method. In other words, it will automatically verify the given username
+and password by comparing the given username to the hashed password stored in the database. 
+
+An additional note - the default ModelBackend method looks for the default Django user model.
+In the case of this application, found in settings.py within the project directory, an override
+declaration "AUTH_USER_MODEL = 'gym_app.CustomUser'" defines the fact that this application uses a 
+custom user model , "CustomUser" (found in models.py) instead. 
+"""
 def register_screen(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            print("form is valid")
             user = form.save()
             backend = 'django.contrib.auth.backends.ModelBackend'
             user.backend = backend
@@ -248,7 +292,8 @@ def register_screen(request):
     else:
         form = RegistrationForm()
     return render(request, 'register/register_screen.html', {'form': form})
-
+ 
+# static render function - needs fix
 def global_leaderboard(request):
     return render(request, 'leaderboard/global/global_leaderboard_screen.html')
 
