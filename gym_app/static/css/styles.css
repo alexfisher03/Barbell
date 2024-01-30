@@ -31,8 +31,10 @@ body {
 
 html {
   background-image: url("/static/images/gradientbackground.jpg");
-  background-blend-mode: multiply;
+  background-attachment: fixed;
   background-size: cover;
+  background-position: center;
+  background-color: rgba(101, 54, 158, 0.788);
 }
 
 .nav ul {
@@ -139,8 +141,10 @@ html {
 
 .page-wrapper {
   background-image: url("/static/images/gradientbackground.jpg"); 
-  background-blend-mode: multiply;
+  background-attachment: fixed;
   background-size: cover;
+  background-position: center;
+  background-color: rgba(101, 54, 158, 0.788);
   min-height: 100vh; 
   display: flex;
   flex-direction: column;
@@ -993,3 +997,4 @@ form .member-limit-details .limit-val {
 .stat-table button{
   width: 10%;
 }
+

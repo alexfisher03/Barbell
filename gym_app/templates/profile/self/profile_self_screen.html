@@ -2,233 +2,95 @@
 {% load static %}
 
 {% block style %}
-    <style>
-      table {
-        font-family: helvetica, sans-serif;
-        border-collapse: separate;
-        border-spacing: 15px 15px;
-        width: 100%;
-        table-layout: fixed;
-      }
-      
-      td, th {
-        /*border: 1px solid rgba(255,255,255,0.13); */
-        text-align: center;
-        padding: 20px;
-        border-radius: 15px;
-        line-height: 20px;
-        width: 235px;
-        height: 15px;
-      }
+<style>
+  table {
+    font-family: helvetica, sans-serif;
+    border-collapse: separate;
+    border-spacing: 15px 15px;
+    width: 100%;
+    table-layout: fixed;
+  }
 
-      </style>
-  {% endblock %}
-    
-        <title>{% block title %} Barbell | Profile {% endblock %} </title>
-                {% block nav %}
-                        <li><a href="/home">HOME</a></li>
-                        {% if current_group %}
-                        <li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
-                        {% else %}
-                        <li><a href="#">No Group</a></li>
-                        {% endif %} 
-                        {% block header %}<h1 class="barbell">Profile</h1> {% endblock %}
-                {% endblock %}
-        {% block content %}
-          <div class="backdrop-form-style">
-            <img class="home-screen-image" src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}"> 
-                <h1 class="barbell-username">{{ custom_user.username }}</h1>
-                <p class="content">{{ custom_user.bio|default:"No bio yet."}}</p>
-              </div>
-                <section class="content-section-small container button-container">
-                    <div class ='button-group content'>
-                        <a href="{% url 'input_rep_stats' %}"><button class="profile-button" role="button"><strong>Choose Your Split</strong></button></a>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="button-group">
-                        {% if current_group %}
-                            <a href="{% url 'group_screen' group_id=current_group.id %}"><button class="profile-button" role="button"><strong> View Group</strong></button></a>
-                        {% else %}
-                            <a href="{% url 'create_group' %}"><button class="profile-button" role="button"><strong> Create Group</strong></button></a>
-                        {% endif %}
-                    </div>
-                </section>
-                <br>
-                <br>
-            <div class="backdrop-form-style responsive-table">
-                <section class="content-section-stat content-stat">  
-                    <h1 class="main-header">Chest</h1>
-                    <div class="container">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Movement Range</th>
-                            <th>Flat Bench Press</th>
-                            <th>Incline Bench Press</th>
-                            <th>Chest Press</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Top Set Range Max</th>
-             <!--Bench-->   <td id="userBenchPressMax"></td>
-             <!--Incline--> <td>'Input User Data'</td>
-             <!--Chest P--> <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Single Rep Max</th>
-             <!--Bench-->   <td>'Input User Data'</td>
-             <!--Incline--> <td>'Input User Data'</td>
-             <!--Chest P--> <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Average Warmup Range</th>
-             <!--Bench-->   <td>'Input User Data'</td>
-             <!--Incline--> <td>'Input User Data'</td>
-             <!--Chest P--> <td>'Input User Data'</td>
-                          </tr>
-                          </tbody>
-                      </table>
-                    </div>
-                  </section>  
-                  <section class="content-section-stat content-stat">  
-                    <h1 class="main-header">Back</h1>
-                    <div class="container">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Movement Range</th>
-                            <th>Barbell Row</th>
-                            <th>Lat Pull Down</th>
-                            <th>Pull Up</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Top Set Range Max</th>
-             <!--BBrow-->   <td>'Input User Data'</td>
-             <!--LatPD-->   <td>'Input User Data'</td>
-             <!--Pullup-->  <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Single Rep Max</th>
-             <!--BBrow-->   <td>'Input User Data'</td>
-             <!--LatPD-->   <td>'Input User Data'</td>
-             <!--Pullup-->  <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Average Warmup Range</th>
-             <!--BBrow-->   <td>'Input User Data'</td>
-             <!--LatPD-->   <td>'Input User Data'</td>
-             <!--Pullup-->  <td>'Input User Data'</td>
-                          </tr>
-                          </tbody>
-                      </table>
-                    </div>
-                  </section> 
-                  <section class="content-section-stat content-stat"> 
-                    <h1 class="main-header">Arms</h1>
-                    <div class="container">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Movement Range</th>
-                            <th>Tricep Push Down</th>
-                            <th>Barbell Bicep Curl</th>
-                            <th>Hammer Curl</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Top Set Range Max</th>
-             <!--TRIpd-->   <td>'Input User Data'</td>
-             <!--BBcurl-->  <td>'Input User Data'</td>
-             <!--Pullup-->  <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Single Rep Max</th>
-             <!--TRIpd-->   <td>'Input User Data'</td>
-             <!--BBcurl-->  <td>'Input User Data'</td>
-             <!--Pullup-->  <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Average Warmup Range</th>
-             <!--TRIpd-->   <td>'Input User Data'</td>
-             <!--BBcurl-->  <td>'Input User Data'</td>
-             <!--Pullup-->  <td>'Input User Data'</td>
-                          </tr>
-                          </tbody>
-                      </table>
-                    </div>
-                  </section> 
-                  <section class="content-section-stat content-stat">  
-                    <h1 class="main-header">Legs</h1>
-                    <div class="container">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Movement Range</th>
-                            <th>Back Squat</th>
-                            <th>Hack Squat</th>
-                            <th>Leg Press</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Top Set Range Max</th>
-             <!--BackSQ-->  <td>'Input User Data'</td>
-             <!--HackSQ-->  <td>'Input User Data'</td>
-             <!--LegPres--> <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Single Rep Max</th>
-             <!--BackSQ-->  <td>'Input User Data'</td>
-             <!--HackSQ-->  <td>'Input User Data'</td>
-             <!--LegPres--> <td>'Input User Data'</td>
-                            
-                          </tr>
-                          <tr>
-                            <th>Average Warmup Range</th>
-             <!--BackSQ-->  <td>'Input User Data'</td>
-             <!--HackSQ-->  <td>'Input User Data'</td>
-             <!--LegPres--> <td>'Input User Data'</td>
-                          </tr>
-                          </tbody>
-                      </table>
-                    </div>
-                  </div>
-            {% endblock %}
-            {% block additional_footer_content %}
-            <div class="button-container">
-                <a href="{% url 'global_leaderboard' %}"><button id="view-global-leaderboard" class="stat-button" role="button"><strong> View Global Leaderboard </strong></button></a>
-              </div>
-              <div class="button-container">
-                <a href="{% url 'group_leaderboard' %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong> View Group Leaderboard </strong></button></a>
-              </div>
-                <div class="container main-footer-container">
-                    <ul class="footer-nav">
-                        <li>
-                            <a href="{% url 'profilesettings' %}"><button class="profile-button" role="button"><strong> Settings </strong></button></a>
-                            <a href="{% url 'index' %}"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="container main-footer-container">
-                    <ul class="footer-nav">
-                        <li>
-                            <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
-                        </li>
-                    </ul>
-                </div>
-            {% endblock %}
-        {% block scripts %}
-        <script src="{% static 'js/profile-self.js' %}"></script>
-        {% endblock %}
+  td,
+  th {
+    /*border: 1px solid rgba(255,255,255,0.13); */
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    line-height: 20px;
+    width: 235px;
+    height: 15px;
+  }
+</style>
+{% endblock %}
+
+<title>{% block title %} Barbell | Profile {% endblock %} </title>
+{% block nav %}
+<li><a href="/home">HOME</a></li>
+{% if current_group %}
+<li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
+{% else %}
+<li><a href="#">No Group</a></li>
+{% endif %}
+{% block header %}<h1 class="barbell">Profile</h1> {% endblock %}
+{% endblock %}
+{% block content %}
+<div class="backdrop-form-style">
+  <img class="home-screen-image"
+    src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}">
+  <h1 class="barbell-username">{{ custom_user.username }}</h1>
+  <p class="content">{{ custom_user.bio|default:"No bio yet."}}</p>
+</div>
+<section class="content-section-small container button-container">
+  <div class='button-group content'>
+    <a href="{% url 'input_rep_stats' %}"><button class="profile-button" role="button"><strong>Choose Your
+          Split</strong></button></a>
+  </div>
+  <br>
+  <br>
+  <div class="button-group">
+    {% if current_group %}
+    <a href="{% url 'group_screen' group_id=current_group.id %}"><button class="profile-button" role="button"><strong>
+          View Group</strong></button></a>
+    {% else %}
+    <a href="{% url 'create_group' %}"><button class="profile-button" role="button"><strong> Create
+          Group</strong></button></a>
+    {% endif %}
+  </div>
+</section>
+<br>
+<br>
+<div class="backdrop-form-style responsive-table">
+
+
+</div>
+{% endblock %}
+{% block additional_footer_content %}
+<div class="button-container">
+  <a href="{% url 'global_leaderboard' %}"><button id="view-global-leaderboard" class="stat-button"
+      role="button"><strong> View Global Leaderboard </strong></button></a>
+</div>
+<div class="button-container">
+  <a href="{% url 'group_leaderboard' %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong>
+        View Group Leaderboard </strong></button></a>
+</div>
+<div class="container main-footer-container">
+  <ul class="footer-nav">
+    <li>
+      <a href="{% url 'profilesettings' %}"><button class="profile-button" role="button"><strong> Settings
+          </strong></button></a>
+      <a href="{% url 'index' %}"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
+    </li>
+  </ul>
+</div>
+<div class="container main-footer-container">
+  <ul class="footer-nav">
+    <li>
+      <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/profile-self.js' %}"></script>
+{% endblock %}

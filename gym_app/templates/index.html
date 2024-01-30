@@ -1,66 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
-<html> 
-  <head>
-    {% block style %} {% endblock %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
-    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Barbell | Index {% endblock %}</title>
-    <meta name="description" content="This is the description" />
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-    />
-  </head>
-  <body>
-    <div class="page-wrapper">
-      <br>
-      <br>
-      <br>
-      <br>
-        <header class="main-header">
+<html>
+
+<head>
+  {% block style %} {% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+  <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} Barbell | Index {% endblock %}</title>
+  <meta name="description" content="This is the description" />
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <br>
+    <br>
+    <br>
+    <br>
+    <header class="main-header">
       <nav class="nav main-nav">
         {% block nav %}
-          <h1 class="barbell">{% block header %}{% endblock %}</h1>
+        <h1 class="barbell">{% block header %}{% endblock %}</h1>
         {% endblock %}
       </nav>
-      </header>
-      <section class="container">
-        {% block content %}
-        <div class="barbell bottom-space-medium">WELCOME TO BARBELL</div>
-        <section class="content-section container main-header">
-              <div class="backdrop-form-style all-space-small">
-                <label class="medium-font all-space-small">
-                  <p class="section-header">Releasing Fall 2023</p>
-                  <p> Track Your Gym Progress </p> 
-                  <p> Add Friends!</p>
-                  <p> Create Groups +</p> 
-                  <p> Compete to climb leaderboards </p>
-                  <div class="all-space-medium special-font">
-                    <p> Version 0.1.0 - Beta Development (deployment phase) </p> 
-                    <!-- <a href="{% url 'signin' %}" ><button class="sign-up-button2 ">Get Started</button></a> -->
-                  </div>
+    </header>
+    <section class="container">
+      {% block content %}
+      <div class="barbell bottom-space-medium">WELCOME TO BARBELL</div>
+      <section class="content-section container main-header">
+        <div class="backdrop-form-style all-space-small">
+          <label class="medium-font all-space-small">
+            <p class="section-header">Full Release in Developement</p>
+            <p> Track Your Gym Progress </p>
+            <p> Add Friends!</p>
+            <p> Create Groups +</p>
+            <p> Compete to climb leaderboards </p>
+            <div class="all-space-medium special-font">
+              <p> Version 1.0</p>
+              <p> Created By: <a href="https://github.com/alexfisher03"> Alexander Fisher</a> (University Of Florida)
+                and <a href="https://github.com/jsalem5?tab=repositories"> Jonathan Salem </a> (University of Texas)</p>
             </div>
-        </section>
-        {% endblock %}
+        </div>
+        <a href="{% url 'signin' %}"><button class="profile-button">Get Started</button></a>
       </section>
-      <footer class="main-footer">
+      {% endblock %}
+    </section>
+    <footer class="main-footer">
       {% block additional_footer_content %}{% endblock %}
       <div class="container main-footer-container">
-        <img class="static-logo-white" src="{% static 'images/barbell_white.png' %}" />    
+        <img class="static-logo-white" src="{% static 'images/barbell_white.png' %}" />
       </div>
-      </footer>
+    </footer>
     {% block scripts %}
     <script src="{% static 'js/home.js' %}"></script>
-    {% endblock %} 
-  </body>
+    {% endblock %}
+</body>
 </div>
+
 </html>

@@ -1,3 +1,11 @@
+"""
+@author Alexander Fisher & Jonathan Salem
+@version Barbell Version 1
+
+@about Defines 'form' class objects within the html templates. Instances of the 
+       objects contain the information used in the POST request within view logic.
+       This data is then integrated into the SQL data structure.       
+"""
 from django import forms
 from .models import CustomUser, Group, StatData
 from django.core.exceptions import ValidationError
@@ -76,7 +84,7 @@ class ProfileSettings(forms.ModelForm):
         return user
     
 class CreateGroup(forms.ModelForm):
-    # name is in reference to the group name, ambiguous cuz i messed up the sql
+    # name is in reference to the group name
     name = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
     groupbio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
     privacy = forms.ChoiceField(
