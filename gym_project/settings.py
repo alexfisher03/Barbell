@@ -32,9 +32,9 @@ if os.path.exists(ENV_PATH):
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # Change for production
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com']
+ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com', '127.0.0.1']
 
 
 # Application definition
@@ -56,17 +56,14 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': '/var/log/django/error.log',
+        'console': {
+            'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': True,
+            'handlers': ['console'],
+            'level': 'INFO', 
         },
     },
 }
@@ -192,10 +189,20 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = 'profile_self'
 
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_DOMAIN = '.socialbarbell.com'
-SESSION_COOKIE_SECURE = True
+if DEBUG:
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_DOMAIN = None
+
+else:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_DOMAIN = ['.socialbarbell.com', '.127.0.0.1']
+    
+    
 CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS.append('https://127.0.0.1')
 
 # Additionally email verification declarations
 

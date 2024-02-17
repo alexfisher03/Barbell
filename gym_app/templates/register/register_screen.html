@@ -48,9 +48,9 @@
 
   <label class="content" for="gender">Gender</label>
   <div class="gender-details">
-    <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value=='M' %}checked{% endif %}>
-    <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value=='F' %}checked{% endif %}>
-    <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value=='O' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
     {% if form.gender.errors %}
     <div class="error">{{ form.gender.errors.as_text }}</div>
     {% endif %}
