@@ -48,9 +48,9 @@
 
   <label class="content" for="gender">Gender</label>
   <div class="gender-details">
-    <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value=='M' %}checked{% endif %}>
-    <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value=='F' %}checked{% endif %}>
-    <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value=='O' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
     {% if form.gender.errors %}
     <div class="error">{{ form.gender.errors.as_text }}</div>
     {% endif %}
@@ -70,7 +70,8 @@
     </div>
   </div>
   <br>
-  <button id="register-button" class="login-button" role="button">Register</button>
+  <label class="content" for=""> Registration's Closed Temporarily During Development </label>
+  <!-- <button id="register-button" class="login-button" role="button">Register</button> -->
   <br>
   <label class="content" for="not-member"> Already a Member?</label>
   <button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button>
