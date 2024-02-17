@@ -3,7 +3,7 @@
         <title>{% block title %} Barbell | Profile Settings {% endblock %} </title>
         
           {% block nav %}
-                    <li><a href="/profile/self">PROFILE</a></li>
+                    <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
                     <li><a href="/home">HOME</a>                    
                     {% block header %}<h1 class="barbell">Profile Settings</h1> {% endblock %}
           {% endblock %}
@@ -27,7 +27,7 @@
                 {{ form.bio.label_tag }}
                 {{ form.bio }}
                 <br>
-                <button type="submit" id="confirm-profile-settings" data-url="{% url 'profile_self' %}" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
+                <button type="submit" id="confirm-profile-settings" data-url="{% url 'profile' profile_id=request.user.id %}" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
               </div> 
               </form>
               {% endblock %}

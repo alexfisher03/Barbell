@@ -44,13 +44,13 @@ class CustomLoginView(LoginView):
 
             if user is not None:
                 login(request, user)
-                return redirect('profile_self')
+                return redirect('profile', profile_id=user.id)
             else:
                 try:
                     user = CustomUser.objects.get(phone=username)
                     if user.check_password(password):
                         login(request, user)
-                        return redirect('profile_self')
+                        return redirect('profile', profile_id=user.id)
                 except CustomUser.DoesNotExist:
                     pass
                 messages.error(request, 'Invalid username or password.')
@@ -126,9 +126,13 @@ def group_leaderboard(request, group_id):
     group = Group.objects.get(id=group_id)
     members = group.group_members.all()
 
-    # in developement
+    context = {
+        'group': group,
+        'members': members,
+    }
     
-    return render(request, 'leaderboard/group/group_leaderboard_screen.html')
+    
+    return render(request, 'leaderboard/group/group_leaderboard_screen.html', context)
 
 
 """
@@ -211,11 +215,6 @@ def stat_screen(request):
 def privacy_screen(request):
     return render(request, 'privacy/privacy_screen.html')
 
-"""
-maybe change all profile instances to rely on a dynamic <int: user_id> instead...
-"""
-def profile_other_screen(request):
-    return render(request, 'profile/other/profile_other_screen.html')
 
 """
 This function initializes variables representing the various data attributes of the CustomUser model,
@@ -225,19 +224,34 @@ as key value pairs, where the keys are called in the HTML templates, thus allowi
 populate the different user profile screens.
 """
 @login_required
-def profile_self_screen(request):
-    custom_user = request.user
-    table_data = TableData.objects.filter(user=request.user)
-    images = ImageMetadata.objects.filter(user=request.user)
-    current_group = request.user.current_group
+def profile_screen(request, profile_id):
+    # check if the profile id matches the logged in user
+    if profile_id == request.user.id:
+        profile = request.user
+    # uses the dynamically created profile id value i.e. another user
+    else:
+        profile = get_object_or_404(CustomUser, id=profile_id)
+    
+    # fetching profile specific data from the model class object
+    table_data = TableData.objects.filter(user=profile)
+    images = ImageMetadata.objects.filter(user=profile)
+    current_group = profile.current_group
+
+    if profile == request.user:
+        my_groups = Group.objects.filter(created_by=profile)
+    else:
+        my_groups = None
+
     context = {
+        'profile': profile,
         'table_data': table_data, 
         'images': images, 
-        'custom_user': custom_user,
-        'current_group': current_group
+        'custom_user': request.user,
+        'current_group': current_group,
+        'my_groups': my_groups,
     }
-    my_groups = Group.objects.filter(created_by=request.user)
-    return render(request, 'profile/self/profile_self_screen.html', context)
+    
+    return render(request, 'profile/profile_screen.html', context)
 
 """
 Handles the user's ProfileSettings form class-object POST request. Uses cleaned_data method
@@ -256,7 +270,7 @@ def profilesettings_screen(request):
            if form.cleaned_data['bio']:
                user.bio = form.cleaned_data['bio']
            user.save()
-           return redirect('profile_self')
+           return redirect('profile')
        else:
            for error in form.errors:
                messages.error(request, f"{error}: {form.errors[error]}")

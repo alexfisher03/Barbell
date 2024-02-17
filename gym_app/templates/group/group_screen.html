@@ -26,7 +26,7 @@
                             <img class="home-screen-image" src="{{ self_user.profile_picture.url }}"> 
                         {% endif %} 
                         <strong class="barbell-username">{{ self_user.username }}</strong> 
-                        <a href="{% url 'profile_self' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+                        <a href="{% url 'profile' profile_id=request.user.id %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
                         <br>
                     </div>
                     {% endif %}

@@ -1,28 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 
-{% block style %}
-<style>
-  table {
-    font-family: helvetica, sans-serif;
-    border-collapse: separate;
-    border-spacing: 15px 15px;
-    width: 100%;
-    table-layout: fixed;
-  }
 
-  td,
-  th {
-    /*border: 1px solid rgba(255,255,255,0.13); */
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    line-height: 20px;
-    width: 235px;
-    height: 15px;
-  }
-</style>
-{% endblock %}
 
 <title>{% block title %} Barbell | Profile {% endblock %} </title>
 {% block nav %}
@@ -60,10 +39,6 @@
 </section>
 <br>
 <br>
-<div class="backdrop-form-style responsive-table">
-
-
-</div>
 {% endblock %}
 {% block additional_footer_content %}
 <div class="button-container">

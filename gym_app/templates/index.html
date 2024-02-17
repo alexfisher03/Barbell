@@ -49,7 +49,11 @@
                 and <a href="https://github.com/jsalem5?tab=repositories"> Jonathan Salem </a> (University of Texas)</p>
             </div>
         </div>
-        <a href="{% url 'signin' %}"><button class="profile-button">Get Started</button></a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'profile' profile_id=request.user.id %}"><button class="profile-button">Get Started</button></a>
+        {% else %}
+          <a href="{% url 'signin' %}"><button class="profile-button">Get Started</button></a>
+        {% endif %}
       </section>
       {% endblock %}
     </section>
