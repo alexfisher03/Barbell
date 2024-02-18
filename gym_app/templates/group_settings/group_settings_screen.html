@@ -2,7 +2,7 @@
 {% load static %}
         <title>{% block title %} Barbell | Group Settings {% endblock %} </title>
               {% block nav %}
-                      <li><a href="/profile/self">PROFILE</a></li>
+                      <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
                       <li><a href="/home">HOME</a></li>
                       {% block header %}<h3 class="barbell ">Group Settings</h3> {% endblock %}
               {% endblock %}
