@@ -28,6 +28,7 @@ class CustomUser(AbstractUser):
     dob = models.DateField(null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True, null=True) 
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
+    points = models.IntegerField(default=0) 
     class Meta:
         verbose_name = 'App user'
         verbose_name_plural = 'App users'

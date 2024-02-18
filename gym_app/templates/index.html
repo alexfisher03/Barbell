@@ -11,6 +11,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
   <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
   <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +37,7 @@
     </header>
     <section class="container">
       {% block content %}
-      <div class="hover:scale-110 transition duration-100 barbell bottom-space-medium">WELCOME TO BARBELL</div>
+      <div id="fade-in-element" class="opacity-0 bottom-space-medium barbell">WELCOME TO BARBELL</div>
       <section class="content-section container main-header">
         <div class="backdrop-form-style all-space-small">
           <label class="medium-font all-space-small">
@@ -44,7 +45,7 @@
             <p> Track Your Gym Progress </p>
             <p> Add Friends!</p>
             <p> Create Groups +</p>
-            <p> Compete to climb leaderboards </p>
+            <p> Join Challenges and Earn Points </p>
             <div class="all-space-medium special-font">
               <p> Version 1.0</p>
               <p> Created By: <a href="https://github.com/alexfisher03"> Alexander Fisher</a> (University Of Florida)
@@ -66,7 +67,18 @@
       </div>
     </footer>
     {% block scripts %}
-    <script src="{% static 'js/home.js' %}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const fadeInElement = document.getElementById('fade-in-element');
+        if (fadeInElement) {
+          setTimeout(() => {
+            fadeInElement.classList.remove('opacity-0');
+            fadeInElement.classList.add('opacity-100', 'transition', 'duration-300');
+            fadeInElement.style.transitionDelay = '300ms';
+          }, 1);
+        }
+    });
+    </script>
     {% endblock %}
 </body>
 </div>
