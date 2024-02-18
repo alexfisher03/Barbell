@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face{
   font-family:"Montserrat";
   src: url("Fonts/Montserrat.woff2") format("woff2");

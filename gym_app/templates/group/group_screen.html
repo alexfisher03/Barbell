@@ -3,7 +3,7 @@
         <title> {% block title %} Barbell | Group  {% endblock %}</title>
          {% block nav %}
             <ul>
-               <li><a href="/profile/self">PROFILE</a></li>
+               <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
                 <li><a href="/home">HOME</a></li>
             </ul>
             {% block header %}<h3 class="barbell">{{ group.name }}</h3> {% endblock %}
@@ -61,7 +61,7 @@
                   <section class="container">
                     <br>
                     <div class="button-container">
-                        <a href="{% url 'group_leaderboard' %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong> View Group Leaderboard </strong></button></a>
+                        <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong> View Group Leaderboard </strong></button></a>
                     </div>
                     <br>
                 </section>
