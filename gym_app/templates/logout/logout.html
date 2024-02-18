@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+<head>
+    <meta http-equiv="refresh" content="5;url={% url 'index' %}" /> <!-- Automatic redirect after 5 seconds -->
+    <title>Logged Out</title>
+</head>
+{% endblock %}
+{% block content %}
+    <div class="content">
+       <p class="hover:scale-110 duration-110">Logout successful</p>
+       <p class="">If you are not redirected, <a href="{% url 'index' %}">click here to go to the home page</a>. </p>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    setTimeout(function() {
+        window.location.href = "{% url 'index' %}";
+    }, 3000); 
+</script>
+{% endblock %}

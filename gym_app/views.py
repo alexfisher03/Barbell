@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
 from django.http import JsonResponse
@@ -55,6 +55,13 @@ class CustomLoginView(LoginView):
                     pass
                 messages.error(request, 'Invalid username or password.')
             return render(request, 'signin/signin_screen.html')
+    
+"""
+Customizes the built in Django logout view logic but with a custom 
+logout html template. 
+"""
+class CustomLogoutView(LogoutView):
+    template_name = 'logout/logout.html'
 
 # static render function
 def index(request):

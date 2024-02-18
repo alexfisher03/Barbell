@@ -46,7 +46,7 @@
       role="button"><strong> View Global Leaderboard </strong></button></a>
 </div>
 <div class="button-container">
-  <a href="{% url 'group_leaderboard' %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong>
+  <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong>
         View Group Leaderboard </strong></button></a>
 </div>
 <div class="container main-footer-container">
@@ -54,7 +54,7 @@
     <li>
       <a href="{% url 'profilesettings' %}"><button class="profile-button" role="button"><strong> Settings
           </strong></button></a>
-      <a href="{% url 'index' %}"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
+      <a href="{% url 'logout' %}"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
     </li>
   </ul>
 </div>

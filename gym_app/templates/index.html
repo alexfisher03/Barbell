@@ -3,7 +3,9 @@
 <html>
 
 <head>
+  {% block head %} {% endblock %}
   {% block style %} {% endblock %}
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
@@ -13,9 +15,9 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %} Barbell | Index {% endblock %}</title>
-  <meta name="description" content="This is the description" />
+  <meta name="description" content="Barbell Index" />
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
 </head>
 
@@ -34,7 +36,7 @@
     </header>
     <section class="container">
       {% block content %}
-      <div class="barbell bottom-space-medium">WELCOME TO BARBELL</div>
+      <div class="hover:scale-110 transition duration-100 barbell bottom-space-medium">WELCOME TO BARBELL</div>
       <section class="content-section container main-header">
         <div class="backdrop-form-style all-space-small">
           <label class="medium-font all-space-small">
@@ -60,7 +62,7 @@
     <footer class="main-footer">
       {% block additional_footer_content %}{% endblock %}
       <div class="container main-footer-container">
-        <img class="static-logo-white" src="{% static 'images/barbell_white.png' %}" />
+        <img class="hover:scale-110 duration-300 static-logo-white" src="{% static 'images/barbell_white.png' %}" />
       </div>
     </footer>
     {% block scripts %}
