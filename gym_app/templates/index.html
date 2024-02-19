@@ -39,24 +39,38 @@
       {% block content %}
       <div id="fade-in-element" class="opacity-0 bottom-space-medium barbell">WELCOME TO BARBELL</div>
       <section class="content-section container main-header">
-        <div class="backdrop-form-style all-space-small">
+        <div class="backdrop-form-style">
           <label class="medium-font all-space-small">
             <p class="section-header">Full Release in Developement</p>
             <p> Track Your Gym Progress </p>
             <p> Add Friends!</p>
             <p> Create Groups +</p>
             <p> Join Challenges and Earn Points </p>
-            <div class="all-space-medium special-font">
+          </label>
+          {% if request.user.is_authenticated %}
+          <div class="flex flex-wrap justify-center">
+            <a href="{% url 'profile' profile_id=request.user.id %}">
+              <button class="twButtonlightblue">Continue</button>
+            </a>
+          </div>
+          {% else %}
+          <div class="flex flex-wrap justify-center">
+            <a href="{% url 'signin' %}">
+              <button class="twButtonlightblue">Login</button>
+            </a>
+          </div>
+          <div class="flex flex-wrap justify-center">
+            <a href="{% url 'register' %}">
+              <button class="twButtonlightblue">Sign Up</button>
+            </a>
+          </div>
+          {% endif %}
+            <div class="all-space-small content">
               <p> Version 1.0</p>
-              <p> Created By: <a href="https://github.com/alexfisher03"> Alexander Fisher</a> (University Of Florida)
-                and <a href="https://github.com/jsalem5?tab=repositories"> Jonathan Salem </a> (University of Texas)</p>
+              <p> Created By: <a href="https://github.com/alexfisher03" target="_blank"> Alexander Fisher</a> (University Of Florida)
+                and <a href="https://github.com/jsalem5?tab=repositories" target="_blank"> Jonathan Salem </a> (University of Texas)</p>
             </div>
         </div>
-        {% if request.user.is_authenticated %}
-          <a href="{% url 'profile' profile_id=request.user.id %}"><button class="profile-button">Get Started</button></a>
-        {% else %}
-          <a href="{% url 'signin' %}"><button class="profile-button">Get Started</button></a>
-        {% endif %}
       </section>
       {% endblock %}
     </section>
