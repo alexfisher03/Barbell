@@ -2,7 +2,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 /*
 ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
@@ -608,6 +608,14 @@ video {
   position: relative;
 }
 
+.mb-0{
+  margin-bottom: 0px;
+}
+
+.mt-8{
+  margin-top: 2rem;
+}
+
 .block{
   display: block;
 }
@@ -620,6 +628,10 @@ video {
   display: table;
 }
 
+.grid{
+  display: grid;
+}
+
 .border-collapse{
   border-collapse: collapse;
 }
@@ -628,12 +640,20 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-wrap{
   flex-wrap: wrap;
 }
 
 .justify-center{
   justify-content: center;
+}
+
+.gap-4{
+  gap: 1rem;
 }
 
 .border{
@@ -664,8 +684,8 @@ video {
   transition-duration: 300ms;
 }
 
-@font-face{
-  font-family:"Montserrat";
+@font-face {
+  font-family: "Montserrat";
 
   src: url("Fonts/Montserrat.woff2") format("woff2");
 
@@ -701,8 +721,7 @@ video {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  background-color: #6930c5ee;
 }
 
 * {
@@ -794,11 +813,11 @@ html {
   padding: 0 5%;
 }
 
-.body-nav ul{
+.body-nav ul {
   margin: 0;
 }
 
-.body-nav li{
+.body-nav li {
   display: inline;
 }
 
@@ -809,7 +828,7 @@ html {
   text-decoration: none;
 }
 
-.logo-container{
+.logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -879,7 +898,7 @@ html {
 }
 
 .content-section {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -888,7 +907,7 @@ html {
 }
 
 .content-section-stat {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -896,7 +915,7 @@ html {
 }
 
 .content-section-small {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -905,7 +924,7 @@ html {
 }
 
 .content-section-group {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -942,7 +961,7 @@ html {
 }
 
 .content {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -951,7 +970,7 @@ html {
 }
 
 .content-stat {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -959,7 +978,7 @@ html {
 }
 
 .content-settings {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -997,7 +1016,7 @@ html {
 
 .button-group {
   display: flex;
-  justify-content: center ;
+  justify-content: center;
   gap: 15px;
 }
 
@@ -1006,7 +1025,7 @@ html {
   font-weight: normal;
   color: rgb(11, 186, 244);
   text-align: center;
-  font-size: 2.5em;
+  font-size: 1.5em;
 }
 
 .image-container {
@@ -1029,16 +1048,11 @@ html {
   width: 300px;
   margin: 15px;
   border-radius: 50%;
-  box-shadow:
-  0 0 5px rgba(122, 113, 189, 0.6),
-  0 0 10px rgba(122, 113, 189, 0.6),
-  0 0 15px rgba(122, 113, 189, 0.6),
-  0 0 20px rgba(122, 113, 189, 0.6),
-  0 0 25px rgba(122, 113, 189, 0.6),
-  0 0 35px rgba(122, 113, 189, 0.6),
-  0 0 40px rgba(122, 113, 189, 0.6),
-  0 0 50px rgba(122, 113, 189, 0.6),
-  0 0 75px rgba(122, 113, 189, 0.6);
+  box-shadow: 0 0 5px rgba(122, 113, 189, 0.6),
+    0 0 10px rgba(122, 113, 189, 0.6), 0 0 15px rgba(122, 113, 189, 0.6),
+    0 0 20px rgba(122, 113, 189, 0.6), 0 0 25px rgba(122, 113, 189, 0.6),
+    0 0 35px rgba(122, 113, 189, 0.6), 0 0 40px rgba(122, 113, 189, 0.6),
+    0 0 50px rgba(122, 113, 189, 0.6), 0 0 75px rgba(122, 113, 189, 0.6);
 }
 
 .home-screen-text {
@@ -1068,7 +1082,7 @@ html {
 }
 
 .footer-logo {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -1196,8 +1210,8 @@ html {
   touch-action: manipulation;
 }
 
-.back-button2  {
-  background-image: linear-gradient(#0dccea, #0d70ea );
+.back-button2 {
+  background-image: linear-gradient(#0dccea, #0d70ea);
   border: 0;
   border-radius: 6px;
   box-shadow: rgba(122, 113, 189, 0.6) 0 10px 30px;
@@ -1273,7 +1287,8 @@ table {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
+th,
+td {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -1292,7 +1307,7 @@ thead {
 tbody {
   tr {
     &:hover {
-      background-color: rgba(255,255,255,0.3);
+      background-color: rgba(255, 255, 255, 0.3);
     }
   }
   td {
@@ -1305,7 +1320,7 @@ tbody {
         right: 0;
         top: -9999px;
         bottom: -9999px;
-        background-color: rgba(255,255,255,0.2);
+        background-color: rgba(255, 255, 255, 0.2);
         z-index: -1;
       }
     }
@@ -1316,33 +1331,33 @@ td.linebreak p {
   width: 50%;
 }
 
-body{
+body {
   background-color: #080710;
 }
 
-form{
-  background-color: rgba(255,255,255,0.13);
+form {
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
 }
 
-form *{
-  font-family: 'Montserrat',sans-serif;
+form * {
+  font-family: "Montserrat", sans-serif;
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
 }
 
-form h3{
+form h3 {
   font-size: 32px;
   font-weight: 500;
   line-height: 42px;
@@ -1357,7 +1372,7 @@ form h3{
 
 form .gender-details .gender-title {
   font-size: 20px;
-  font-weight: 500  ;
+  font-weight: 500;
 }
 
 form .category {
@@ -1367,7 +1382,7 @@ form .category {
   justify-content: space-between;
 }
 
-form .category label{
+form .category label {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -1385,16 +1400,16 @@ form .category label .dot {
 
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three{
+#dot-3:checked ~ .category label .three {
   background: #b9f0ff;
   border-color: #0dccea;
 }
 
-form input[type="radio"]{
+form input[type="radio"] {
   display: none;
 }
 
-label{
+label {
   display: block;
   margin-top: 10px;
   font-size: 16px;
@@ -1402,11 +1417,11 @@ label{
   margin-bottom: 35px;
 }
 
-input{
+input {
   display: block;
   height: 50px;
   width: 100%;
-  background-color: rgba(255,255,255,0.07);
+  background-color: rgba(255, 255, 255, 0.07);
   border-radius: 3px;
   padding: 0 10px;
   margin-top: 8px;
@@ -1414,15 +1429,15 @@ input{
   font-weight: 300;
 }
 
-::-moz-placeholder{
+::-moz-placeholder {
   color: #e5e5e5;
 }
 
-::placeholder{
+::placeholder {
   color: #e5e5e5;
 }
 
-button{
+button {
   margin-top: 50px;
   width: 100%;
   padding: 10px 0;
@@ -1433,14 +1448,14 @@ button{
 }
 
 .registration-form {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1448,14 +1463,14 @@ button{
 }
 
 .group-settings-form {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1463,14 +1478,14 @@ button{
 }
 
 .create-group-form {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1485,7 +1500,7 @@ button{
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1500,7 +1515,7 @@ button{
 
 form .member-limit-details .limit-val {
   font-size: 20px;
-  font-weight: 500  ;
+  font-weight: 500;
 }
 
 .password-input-container {
@@ -1518,17 +1533,17 @@ form .member-limit-details .limit-val {
 }
 
 .forgot-password-link {
-  display:block;
+  display: block;
   text-align: center;
   margin: 20px 0;
 }
 
 .backdrop-form-style {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1536,11 +1551,11 @@ form .member-limit-details .limit-val {
 }
 
 .backdrop-form-style-wide {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1549,11 +1564,11 @@ form .member-limit-details .limit-val {
 }
 
 .backdrop-form-style-bio {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1562,11 +1577,11 @@ form .member-limit-details .limit-val {
 }
 
 .backdrop-form-style-small {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -1575,7 +1590,7 @@ form .member-limit-details .limit-val {
 }
 
 .form-content {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   /* Add some opacity */
   padding: 20px;
   border-radius: 8px;
@@ -1653,7 +1668,7 @@ form .member-limit-details .limit-val {
   overflow-x: auto;
 }
 
-.stat-form{
+.stat-form {
   background-color: transparent;
   background: transparent;
   border-color: transparent;
@@ -1665,12 +1680,12 @@ form .member-limit-details .limit-val {
   padding-bottom: 0%;
 }
 
-.stat-form button{
+.stat-form button {
   width: 50%;
   background-image: linear-gradient(#095f9e, #07698a);
 }
 
-.stat-inputs{
+.stat-inputs {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1678,20 +1693,20 @@ form .member-limit-details .limit-val {
   width: 100%;
 }
 
-.stat-inputs input{
+.stat-inputs input {
   margin-left: 1%;
-  margin-right:  1%;
+  margin-right: 1%;
 }
 
-.stat-table{
+.stat-table {
   width: 100%;
 }
 
-.stat-table td{
+.stat-table td {
   width: 100%;
 }
 
-.stat-table button{
+.stat-table button {
   width: 10%;
 }
 
@@ -1700,4 +1715,3 @@ form .member-limit-details .limit-val {
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-
