@@ -20,15 +20,6 @@
   }
 }
 
-/* Tailwind @apply definitions for custom classes */
-.twButtonlightblue {
-  @apply mt-0 bg-indigo-500 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-110 duration-300 text-white font-bold px-4 rounded-full;
-}
-
-.twButtonlightblue-margintop {
-  @apply mx-auto bg-indigo-500 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-110 duration-300 text-white font-bold px-4 rounded-full;
-}
-
 * {
   box-sizing: border-box;
   font-family: Raleway;
@@ -151,7 +142,6 @@ html {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  background-color: rgba(101, 54, 158, 0.788);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -173,7 +163,7 @@ html {
 
 .barbell {
   text-align: center;
-  font-size: 4em;
+  font-size: 2em;
   font-family: "Bebas Neue", cursive;
   font-weight: normal;
   color: white;
@@ -208,7 +198,6 @@ html {
   margin: 1em;
   align-items: center;
   justify-content: center;
-  height: 50vh;
 }
 
 .content-section-stat {
@@ -293,7 +282,6 @@ html {
 }
 
 .container {
-  flex: 1;
   max-width: 900px;
   margin: 0 auto;
   padding: 0 1.5em;
@@ -330,7 +318,6 @@ html {
   font-weight: normal;
   color: rgb(11, 186, 244);
   text-align: center;
-  font-size: 1.5em;
 }
 
 .image-container {
@@ -366,7 +353,6 @@ html {
 
 .main-footer {
   color: white;
-  padding: 2em;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -823,14 +809,11 @@ form .member-limit-details .limit-val {
 }
 
 .backdrop-form-style {
-  background-color: rgba(255, 255, 255, 0.13);
+  background-color: rgba(255, 255, 255, 0.064);
   border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
-  padding: 50px 35px;
-  margin-top: 20px;
-  margin-bottom: 2em; 
 }
 
 .backdrop-form-style-wide {
@@ -984,3 +967,18 @@ form .member-limit-details .limit-val {
 .stat-table button {
   width: 10%;
 }
+
+/** new styles added with feature/tailwindcss **/
+
+/* Tailwind @apply definitions for custom classes */
+.twButtonlightblue {
+  @apply bg-[#3336dc6e] hover:bg-gradient-to-r from-[#3336dc6e] via-[#a955f76e] to-[#ec48996e] hover:scale-110 duration-300 text-white font-bold rounded-full;
+}
+
+.content-label-text  {
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+  outline: none;
+  border: none; 
+}
+  
