@@ -22,7 +22,11 @@
 
 /* Tailwind @apply definitions for custom classes */
 .twButtonlightblue {
-  @apply mx-auto bg-[#30a2c5] hover:bg-[#6930c5ee] hover:scale-110 duration-150 text-white font-bold px-4 rounded-full;
+  @apply mt-0 bg-indigo-500 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-110 duration-300 text-white font-bold px-4 rounded-full;
+}
+
+.twButtonlightblue-margintop {
+  @apply mx-auto bg-indigo-500 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-110 duration-300 text-white font-bold px-4 rounded-full;
 }
 
 * {
@@ -362,7 +366,7 @@ html {
 
 .main-footer {
   color: white;
-  padding: 5em;
+  padding: 2em;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -826,7 +830,7 @@ form .member-limit-details .limit-val {
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
-  margin-bottom: 2em;
+  margin-bottom: 2em; 
 }
 
 .backdrop-form-style-wide {

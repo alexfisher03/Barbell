@@ -1,13 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-@font-face{
-  font-family:"Montserrat";
+@font-face {
+  font-family: "Montserrat";
   src: url("Fonts/Montserrat.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
@@ -15,9 +15,18 @@
 
 @media (max-width: 768px) {
   body {
-      font-size: 18px;
-      zoom: 1.2;
+    font-size: 18px;
+    zoom: 1.2;
   }
+}
+
+/* Tailwind @apply definitions for custom classes */
+.twButtonlightblue {
+  @apply mt-0 bg-indigo-500 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-110 duration-300 text-white font-bold px-4 rounded-full;
+}
+
+.twButtonlightblue-margintop {
+  @apply mx-auto bg-indigo-500 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-110 duration-300 text-white font-bold px-4 rounded-full;
 }
 
 * {
@@ -30,7 +39,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  padding: 0;  
+  padding: 0;
 }
 
 html {
@@ -70,7 +79,6 @@ html {
   list-style: none;
   margin: 0;
   padding: 0;
-  
 }
 
 .main-nav a:hover {
@@ -90,8 +98,8 @@ html {
 }
 
 .nav a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transition: background-color 0.3s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: background-color 0.3s ease-in-out;
 }
 
 .body-nav {
@@ -108,15 +116,13 @@ html {
 
 .body-nav li {
   padding: 0 5%;
-  
 }
 
-
-.body-nav ul{
+.body-nav ul {
   margin: 0;
 }
 
-.body-nav li{
+.body-nav li {
   display: inline;
 }
 
@@ -127,7 +133,7 @@ html {
   text-decoration: none;
 }
 
-.logo-container{
+.logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,26 +141,22 @@ html {
   padding: 10px;
 }
 
-
-
 .main-logo {
   max-width: 250px;
   display: inline-block;
-
 }
 
 .page-wrapper {
-  background-image: url("/static/images/gradientbackground.jpg"); 
+  background-image: url("/static/images/gradientbackground.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-color: rgba(101, 54, 158, 0.788);
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-position: center center;
 }
-
 
 .main-header {
   background-blend-mode: multiply;
@@ -163,7 +165,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 
 .page-header {
@@ -202,7 +203,7 @@ html {
 }
 
 .content-section {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -211,16 +212,15 @@ html {
 }
 
 .content-section-stat {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
   justify-content: center;
 }
 
-
 .content-section-small {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -229,7 +229,7 @@ html {
 }
 
 .content-section-group {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -266,7 +266,7 @@ html {
 }
 
 .content {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -275,7 +275,7 @@ html {
 }
 
 .content-stat {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -283,7 +283,7 @@ html {
 }
 
 .content-settings {
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 1em;
   align-items: center;
@@ -321,7 +321,7 @@ html {
 
 .button-group {
   display: flex;
-  justify-content: center ;
+  justify-content: center;
   gap: 15px;
 }
 
@@ -330,7 +330,7 @@ html {
   font-weight: normal;
   color: rgb(11, 186, 244);
   text-align: center;
-  font-size: 2.5em;
+  font-size: 1.5em;
 }
 
 .image-container {
@@ -342,7 +342,7 @@ html {
 }
 
 .static-logo-white {
-height: 300px;
+  height: 300px;
   width: 300px;
   margin: 15px;
   border-radius: 50%;
@@ -353,16 +353,11 @@ height: 300px;
   width: 300px;
   margin: 15px;
   border-radius: 50%;
-  box-shadow:
-  0 0 5px rgba(122, 113, 189, 0.6),
-  0 0 10px rgba(122, 113, 189, 0.6),
-  0 0 15px rgba(122, 113, 189, 0.6),
-  0 0 20px rgba(122, 113, 189, 0.6),
-  0 0 25px rgba(122, 113, 189, 0.6),
-  0 0 35px rgba(122, 113, 189, 0.6),
-  0 0 40px rgba(122, 113, 189, 0.6),
-  0 0 50px rgba(122, 113, 189, 0.6),
-  0 0 75px rgba(122, 113, 189, 0.6);    
+  box-shadow: 0 0 5px rgba(122, 113, 189, 0.6),
+    0 0 10px rgba(122, 113, 189, 0.6), 0 0 15px rgba(122, 113, 189, 0.6),
+    0 0 20px rgba(122, 113, 189, 0.6), 0 0 25px rgba(122, 113, 189, 0.6),
+    0 0 35px rgba(122, 113, 189, 0.6), 0 0 40px rgba(122, 113, 189, 0.6),
+    0 0 50px rgba(122, 113, 189, 0.6), 0 0 75px rgba(122, 113, 189, 0.6);
 }
 
 .home-screen-text {
@@ -371,7 +366,7 @@ height: 300px;
 
 .main-footer {
   color: white;
-  padding: 5em;
+  padding: 2em;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -392,7 +387,7 @@ height: 300px;
 }
 
 .footer-logo {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -416,16 +411,13 @@ height: 300px;
   text-decoration: none;
 }
 
-
 .footer-nav {
   flex-direction: column;
   display: inline-block;
   padding: 0.5em;
   color: white;
   text-decoration: none;
-  }
-
-
+}
 
 .profile-button {
   background-image: linear-gradient(#bba9da, #30a2c5);
@@ -500,7 +492,7 @@ height: 300px;
   touch-action: manipulation;
 }
 
-.sign-up-button2 {  
+.sign-up-button2 {
   background-image: linear-gradient(#0dccea, #e074d9);
   border: 0;
   border-radius: 6px;
@@ -518,8 +510,8 @@ height: 300px;
   touch-action: manipulation;
 }
 
-.back-button2  {  
-  background-image: linear-gradient(#0dccea, #0d70ea );
+.back-button2 {
+  background-image: linear-gradient(#0dccea, #0d70ea);
   border: 0;
   border-radius: 6px;
   box-shadow: rgba(122, 113, 189, 0.6) 0 10px 30px;
@@ -554,7 +546,6 @@ height: 300px;
   touch-action: manipulation;
   margin-top: 10px;
 }
-
 
 /* THIS IS FOR BACK BUTTONS IN THE FOOTER */
 .previous {
@@ -592,74 +583,75 @@ table {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
+th,
+td {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 th {
-	text-align: left;
+  text-align: left;
 }
 
 thead {
-	th {
-		background-color: #55608f;
-	}
+  th {
+    background-color: #55608f;
+  }
 }
 
 tbody {
-	tr {
-		&:hover {
-			background-color: rgba(255,255,255,0.3);
-		}
-	}
-	td {
-		position: relative;
-		&:hover {
-			&:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: -9999px;
-				bottom: -9999px;
-				background-color: rgba(255,255,255,0.2);
-				z-index: -1;
-			}
-		}
-	}
+  tr {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+  td {
+    position: relative;
+    &:hover {
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -9999px;
+        bottom: -9999px;
+        background-color: rgba(255, 255, 255, 0.2);
+        z-index: -1;
+      }
+    }
+  }
 }
 
 td.linebreak p {
   width: 50%;
 }
 
-
-
-body{
+body {
   background-color: #080710;
 }
 
-form{
-  background-color: rgba(255,255,255,0.13);
+form {
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
 }
-form *{
-  font-family: 'Montserrat',sans-serif;
+
+form * {
+  font-family: "Montserrat", sans-serif;
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
 }
-form h3{
+
+form h3 {
   font-size: 32px;
   font-weight: 500;
   line-height: 42px;
@@ -672,10 +664,9 @@ form h3{
   align-items: center;
 }
 
-
 form .gender-details .gender-title {
   font-size: 20px;
-  font-weight: 500  ;
+  font-weight: 500;
 }
 
 form .category {
@@ -685,7 +676,7 @@ form .category {
   justify-content: space-between;
 }
 
-form .category label{
+form .category label {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -703,37 +694,38 @@ form .category label .dot {
 
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three{
+#dot-3:checked ~ .category label .three {
   background: #b9f0ff;
   border-color: #0dccea;
 }
 
-form input[type="radio"]{
+form input[type="radio"] {
   display: none;
 }
 
-label{
+label {
   display: block;
   margin-top: 10px;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 35px;
 }
-input{
+input {
   display: block;
   height: 50px;
   width: 100%;
-  background-color: rgba(255,255,255,0.07);
+  background-color: rgba(255, 255, 255, 0.07);
   border-radius: 3px;
   padding: 0 10px;
   margin-top: 8px;
   font-size: 14px;
   font-weight: 300;
 }
-::placeholder{
+::placeholder {
   color: #e5e5e5;
 }
-button{
+
+button {
   margin-top: 50px;
   width: 100%;
   padding: 10px 0;
@@ -744,28 +736,27 @@ button{
 }
 
 .registration-form {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
   margin-bottom: 2em;
 }
 
-
 .group-settings-form {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -773,13 +764,13 @@ button{
 }
 
 .create-group-form {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -793,13 +784,12 @@ button{
   left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
   margin-bottom: 2em;
 }
-
 
 .group-privacy-radios {
   display: flex;
@@ -807,10 +797,9 @@ button{
   align-items: center;
 }
 
-
 form .member-limit-details .limit-val {
   font-size: 20px;
-  font-weight: 500  ;
+  font-weight: 500;
 }
 
 .password-input-container {
@@ -828,27 +817,27 @@ form .member-limit-details .limit-val {
 }
 
 .forgot-password-link {
-  display:block;
+  display: block;
   text-align: center;
   margin: 20px 0;
 }
 
 .backdrop-form-style {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
-  margin-bottom: 2em;
+  margin-bottom: 2em; 
 }
 
 .backdrop-form-style-wide {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -857,10 +846,10 @@ form .member-limit-details .limit-val {
 }
 
 .backdrop-form-style-bio {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -869,10 +858,10 @@ form .member-limit-details .limit-val {
 }
 
 .backdrop-form-style-small {
-  background-color: rgba(255,255,255,0.13);
+  background-color: rgba(255, 255, 255, 0.13);
   border-radius: 60px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
   padding: 50px 35px;
   margin-top: 20px;
@@ -881,7 +870,7 @@ form .member-limit-details .limit-val {
 }
 
 .form-content {
-  background-color: rgba(255,255,255,0.13); /* Add some opacity */
+  background-color: rgba(255, 255, 255, 0.13); /* Add some opacity */
   padding: 20px;
   border-radius: 8px;
   max-width: 500px;
@@ -889,7 +878,6 @@ form .member-limit-details .limit-val {
   box-shadow: rgba(122, 113, 189, 0.6) 0 10px 20px; /* similar shadow to existing buttons */
   margin-bottom: 2em;
 }
-
 
 .custom-radio {
   display: flex;
@@ -930,25 +918,20 @@ form .member-limit-details .limit-val {
 .all-space {
   margin-top: 200px;
   margin-bottom: 100px;
-  
 }
 
 .all-space-medium {
   margin-top: 75px;
   margin-bottom: 75px;
-  
 }
 
 .bottom-space-medium {
   margin-bottom: 75px;
-  
 }
-
 
 .all-space-small {
   margin-top: 50px;
   margin-bottom: 50px;
-  
 }
 
 .center {
@@ -960,7 +943,7 @@ form .member-limit-details .limit-val {
   overflow-x: auto;
 }
 
-.stat-form{
+.stat-form {
   background-color: transparent;
   background: transparent;
   border-color: transparent;
@@ -972,12 +955,12 @@ form .member-limit-details .limit-val {
   padding-bottom: 0%;
 }
 
-.stat-form button{
+.stat-form button {
   width: 50%;
   background-image: linear-gradient(#095f9e, #07698a);
 }
 
-.stat-inputs{
+.stat-inputs {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -985,20 +968,19 @@ form .member-limit-details .limit-val {
   width: 100%;
 }
 
-.stat-inputs input{
+.stat-inputs input {
   margin-left: 1%;
-  margin-right:  1%;
+  margin-right: 1%;
 }
 
-.stat-table{
+.stat-table {
   width: 100%;
 }
 
-.stat-table td{
+.stat-table td {
   width: 100%;
 }
 
-.stat-table button{
+.stat-table button {
   width: 10%;
 }
-

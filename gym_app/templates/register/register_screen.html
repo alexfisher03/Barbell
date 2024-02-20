@@ -70,11 +70,14 @@
     </div>
   </div>
   <br>
-  <label class="content" for=""> Registration's Closed Temporarily During Development </label>
-  <!-- <button id="register-button" class="login-button" role="button">Register</button> -->
+  <button id="register-button" class="login-button" role="button">Register</button>
   <br>
-  <label class="content" for="not-member"> Already a Member?</label>
-  <button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button>
+  {% if request.user.is_authenticated %}
+    <button class="twButtonlightblue"><a href="{% url 'profile' profile_id=request.user.id %}">Sign In</a></button>
+  {% else %}
+    <label class="content" for="not-member"> Already a Member?</label>
+    <button class="sign-up-button2"><a href="{% url 'signin' %}">Sign In</a></button>
+  {% endif %}
 </form>
 {% endblock %}
 {% block additional_footer_content %}{% endblock %}

@@ -61,13 +61,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-const signInButton = document.getElementById("sign-in-button");
-
-signInButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "/signin/"; // Redirects to signin view
-});
-
 // Toggle password visibility for password1
 document.getElementById('toggle-password1').addEventListener('click', function () {
     const passwordInput1 = document.getElementById('password');

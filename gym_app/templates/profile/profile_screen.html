@@ -41,15 +41,18 @@
 <br>
 {% endblock %}
 {% block additional_footer_content %}
-<div class="button-container">
+  <div class="button-container">
   <a href="{% url 'global_leaderboard' %}"><button id="view-global-leaderboard" class="stat-button"
       role="button"><strong> View Global Leaderboard </strong></button></a>
-</div>
-<div class="button-container">
+  </div>
+  {% if current_group %}
+  <div class="button-container">
   <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong>
         View Group Leaderboard </strong></button></a>
-</div>
-<div class="container main-footer-container">
+  </div>
+  {% else %}
+  {% endif %}
+  <div class="container main-footer-container">
   <ul class="footer-nav">
     <li>
       <a href="{% url 'profilesettings' %}"><button class="profile-button" role="button"><strong> Settings
@@ -57,14 +60,14 @@
       <a href="{% url 'logout' %}"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
     </li>
   </ul>
-</div>
-<div class="container main-footer-container">
+  </div>
+  <div class="container main-footer-container">
   <ul class="footer-nav">
     <li>
       <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
     </li>
   </ul>
-</div>
+  </div>
 {% endblock %}
 {% block scripts %}
 <script src="{% static 'js/profile-self.js' %}"></script>
