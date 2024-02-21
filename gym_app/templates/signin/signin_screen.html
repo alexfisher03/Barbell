@@ -23,10 +23,12 @@
     <div class="flex justify-center">
       <button type="submit" id="sign-in-button" class="mt-0 px-4 twButtonlightblue w-1/2">Sign In</button>
     </div>
-    <ul><a href="{% url 'password_reset' %}" class="content container forgot-password-button">Forgot Password?</a></ul>
-    <label class="content" for="not-member"> Not a member?</label>
+    <ul><a href="{% url 'password_reset' %}" class="content container forgot-password-button underline">Forgot Password?</a></ul>
+    <label class="content container" for="not-member"> Not a member?</label>
     <br>
-    <a href="{% url 'register' %}" class="container sign-up-button2">Sign Up</a>
+    <a href="{% url 'register' %}" class="flex justify-center">
+      <button class="mb-3 mt-0 twButtonlightblue w-1/2">Sign Up</button>
+    </a>
 
     {% if messages %}
     <ul class="messages content">
