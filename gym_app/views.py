@@ -18,6 +18,7 @@ from django.contrib.auth.views import PasswordResetView, LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 """
 Takes in the Django 'AllauthPasswordResetView' class object as a parameter, but 
@@ -63,7 +64,7 @@ in select HTML templates we want to hide certain elements usually inherited by t
 (parent file). In order to do this for the footer in the logout screen, we set the 'show_footer'
 variable '= False' within the context dict, all inside the built in Django LogoutView
 """
-class CustomLogoutView(LogoutView):
+class CustomLogoutView(LoginRequiredMixin, LogoutView):
     template_name = 'logout/logout.html'
 
     def get_context_data(self, **kwargs):
