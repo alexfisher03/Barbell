@@ -702,6 +702,14 @@ video {
   width: 2rem;
 }
 
+.w-9\/12{
+  width: 75%;
+}
+
+.w-1\/2{
+  width: 50%;
+}
+
 .border-collapse{
   border-collapse: collapse;
 }

@@ -11,7 +11,7 @@
 {% block content %}
 
 <div class="flex justify-center">
-  <form method="post" action="{% url 'signin' %}">
+  <form method="post" action="{% url 'signin' %}" class="w-1/2">
     {% csrf_token %}
     <h3 class="section-header">Login</h3>
     <label class="content" for="username">Username</label>
@@ -21,7 +21,7 @@
     <input type="password" placeholder="Password" id="password" name="password">
     <br>
     <div class="flex justify-center">
-      <button type="submit" id="sign-in-button" class="twButtonlightblue">Sign In</button>
+      <button type="submit" id="sign-in-button" class="mt-0 px-4 twButtonlightblue w-1/2">Sign In</button>
     </div>
     <ul><a href="{% url 'password_reset' %}" class="content container forgot-password-button">Forgot Password?</a></ul>
     <label class="content" for="not-member"> Not a member?</label>

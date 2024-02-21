@@ -3,8 +3,12 @@
  
     <title>{% block title %} Barbell | About {% endblock %}</title>
         {% block nav %}
+          {% if request.user.is_authenticated %}
+            <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
+          {% else %}
+            <li><a href="{% url 'signin' %}">LOGIN</a></li>
+          {% endif %}
           <li><a href="/general_settings">SETTINGS</a></li> 
-          <li><a href="/profile/self">PROFILE</a></li>
           {% block header %}<h1 class="barbell">About</h1> {% endblock %}
         {% endblock %} 
     {% block content %}
