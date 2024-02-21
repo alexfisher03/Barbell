@@ -6,6 +6,7 @@
        handle and interact with various web requests and render responses
 """
 
+from typing import Any
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
 from .models import CustomUser, TableData, ImageMetadata, Group, StatData
@@ -57,11 +58,18 @@ class CustomLoginView(LoginView):
             return render(request, 'signin/signin_screen.html')
     
 """
-Customizes the built in Django logout view logic but with a custom 
-logout html template. 
+Customizes the logout html template but with built in Django logout view logic. Additionally, 
+in select HTML templates we want to hide certain elements usually inherited by the index.html 
+(parent file). In order to do this for the footer in the logout screen, we set the 'show_footer'
+variable '= False' within the context dict, all inside the built in Django LogoutView
 """
 class CustomLogoutView(LogoutView):
     template_name = 'logout/logout.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['show_footer'] = False
+        return context
 
 # static render function
 def index(request):

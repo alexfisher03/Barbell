@@ -588,6 +588,10 @@ video {
   visibility: visible;
 }
 
+.invisible{
+  visibility: hidden;
+}
+
 .collapse{
   visibility: collapse;
 }
@@ -606,6 +610,15 @@ video {
 
 .relative{
   position: relative;
+}
+
+.-m-2{
+  margin: -0.5rem;
+}
+
+.mx-3{
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 
 .mx-auto{
@@ -627,6 +640,10 @@ video {
 
 .block{
   display: block;
+}
+
+.inline-block{
+  display: inline-block;
 }
 
 .flex{
@@ -691,12 +708,28 @@ video {
   border-width: 1px;
 }
 
+.bg-transparent{
+  background-color: transparent;
+}
+
 .p-10{
   padding: 2.5rem;
 }
 
+.p-6{
+  padding: 1.5rem;
+}
+
 .p-\[20px\]{
   padding: 20px;
+}
+
+.p-5{
+  padding: 1.25rem;
+}
+
+.p-2{
+  padding: 0.5rem;
 }
 
 .px-4{
@@ -729,6 +762,20 @@ video {
 
 .uppercase{
   text-transform: uppercase;
+}
+
+.text-blue-50{
+  --tw-text-opacity: 1;
+  color: rgb(239 246 255 / var(--tw-text-opacity));
+}
+
+.text-blue-500{
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
+.underline{
+  text-decoration-line: underline;
 }
 
 .opacity-0{
@@ -931,7 +978,6 @@ html {
 
 .barbell-lite {
   text-align: center;
-  font-size: 2.75em;
   font-family: "Bebas Neue", cursive;
   font-weight: normal;
   color: rgba(11, 186, 244, 0.89);

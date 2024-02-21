@@ -2,21 +2,27 @@
 {% load static %}
 {% block head %}
 <head>
-    <meta http-equiv="refresh" content="5;url={% url 'index' %}" /> <!-- Automatic redirect after 5 seconds -->
+    <!--<meta http-equiv="refresh" content="5;url={% url 'index' %}" /> <!-- Automatic redirect after 5 seconds -->
     <title>Logged Out</title>
 </head>
 {% endblock %}
 {% block content %}
-    <div class="content">
-       <p class="hover:scale-110 duration-110">Logout successful</p>
-       <p class="">If you are not redirected, <a href="{% url 'index' %}">click here to go to the home page</a>. </p>
-    </div>
+
+<div class="content p-6 mx-3 text-center">
+    <p class="barbell text-lg sm:text-4xl md:text-6xl lg:text-8xl md:m-8">Logout successful</p>
+    <p class="text-lg sm:text-4xl">If you are not redirected, 
+        <a href="{% url 'index' %}" class="inline-block p-2 -m-2"><span class="underline text-lg sm:text-4xl">click here</span></a>
+    </p>
+</div>
+
 {% endblock %}
 
+
 {% block scripts %}
+<!--
 <script>
     setTimeout(function() {
         window.location.href = "{% url 'index' %}";
     }, 3000); 
 </script>
-{% endblock %}
+{% endblock %}-->

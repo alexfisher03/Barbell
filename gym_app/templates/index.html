@@ -6,7 +6,7 @@
 
 This HTML file serves as the master template file. Each additional URL will lead the 
 user to another HTML template view. Those views inherit this file as a parent through 
-the extend django tag. Each block django tag statement allows for the insertion of different 
+the 'extend' django tag. Each 'block' django tag statement allows for the insertion of different 
 custom HTML contents, template to template, while allowing this HTML template to provide
 <head> contents, overall style and structure definitions, and this template is the landing
 page for the site/app.
@@ -94,14 +94,16 @@ page for the site/app.
       </section>
       {% endblock %}
     <footer class="pt-1 sm:pt-10 main-footer">
-      {% block additional_footer_content %}{% endblock %}
-      <div class="container main-footer-container">
-        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 text-sm sm:text-base md:text-lg lg:text-xl"> 
-          <a href="{% url 'privacy' %}"><div class="privacy-link hover:underline">Privacy</div></a>
-          <a href="{% url 'about' %}"><div class="about-link hover:underline">About</div></a>
+      {% if show_footer != False %}
+        {% block additional_footer_content %}{% endblock %}
+        <div class="container main-footer-container">
+          <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 text-sm sm:text-base md:text-lg lg:text-xl"> 
+            <a href="{% url 'privacy' %}"><div class="privacy-link hover:underline">Privacy</div></a>
+            <a href="{% url 'about' %}"><div class="about-link hover:underline">About</div></a>
+          </div>
+          <a href="{% url 'index' %}"><img class="hidden sm:block p-10 hover:scale-110 duration-300 static-logo-white" src="{% static 'images/barbell_white.png' %}" /></a>
         </div>
-        <a href="{% url 'index' %}"><img class="hidden sm:block p-10 hover:scale-110 duration-300 static-logo-white" src="{% static 'images/barbell_white.png' %}" /></a>
-      </div>
+      {% endif %}
     </footer>
     {% block scripts %}
     <script>
