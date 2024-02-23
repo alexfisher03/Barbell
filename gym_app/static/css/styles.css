@@ -34,11 +34,13 @@ body {
 }
 
 html {
-  background-image: url("/static/images/gradientbackground.jpg");
+  /*background-image: url("/static/images/gradientbackground.jpg");*/
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  background-color: rgba(101, 54, 158, 0.788);
+  background-color: linear-gradient(
+    0deg
+    , rgb(80, 24, 251), rgb(80, 24, 251));
 }
 
 .nav ul {
@@ -256,10 +258,8 @@ html {
 .content {
   display: flex;
   flex-direction: column;
-  margin: 1em;
   align-items: center;
   justify-content: center;
-  height: 10vh;
 }
 
 .content-stat {
@@ -687,17 +687,15 @@ form input[type="radio"] {
 
 label {
   display: block;
-  margin-top: 10px;
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 35px;
 }
 input {
   display: block;
   height: 50px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.267);
+  border-radius: 8px;
   padding: 0 10px;
   margin-top: 8px;
   font-size: 14px;
@@ -708,9 +706,7 @@ input {
 }
 
 button {
-  margin-top: 50px;
   width: 100%;
-  padding: 10px 0;
   font-size: 18px;
   font-weight: 600;
   border-radius: 5px;
@@ -719,8 +715,6 @@ button {
 
 .registration-form {
   background-color: rgba(255, 255, 255, 0.13);
-  top: 100%;
-  left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -785,9 +779,6 @@ form .member-limit-details .limit-val {
 }
 
 .password-toggle-button {
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
   border: none;
   background: none;
   color: #0dccea;
@@ -963,8 +954,12 @@ form .member-limit-details .limit-val {
 /** new styles added with feature/tailwindcss **/
 
 /* Tailwind @apply definitions for custom classes */
-.twButtonlightblue {
+.twButtonpurple {
   @apply bg-[#3336dc6e] hover:bg-gradient-to-r from-[#3336dc6e] via-[#a955f76e] to-[#ec48996e] hover:scale-110 duration-300 text-white font-bold rounded-full;
+}
+
+.twButtonblue {
+  @apply bg-[#5bc0ffb9] hover:bg-gradient-to-r from-[#5bc0ffb9] via-[#a955f76e] to-[#ec48996e] hover:scale-110 duration-300 text-white font-bold rounded-full;
 }
 
 .content-label-text  {

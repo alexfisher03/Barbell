@@ -60,10 +60,10 @@ page for the site/app.
             </label>
           </div>
           <div class="flex flex-col justify-center">
-            <div id="fade-in-element3" class="opacity-0 backdrop-form-style p-[20px] w-full md:w-9/12 md:p-[50px]">
+            <div id="fade-in-element3" class="opacity-0 backdrop-form-style p-[20px] w-full md:w-10/12 md:p-[50px]">
               {% if request.user.is_authenticated %}
               <div class="flex text-center">
-                <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Welcome Back, Click To Continue </label>
+                <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Welcome Back, Click To Proceed </label>
               </div>
               {% else %}
               <div class="flex text-center">
@@ -73,18 +73,18 @@ page for the site/app.
               {% if request.user.is_authenticated %}
               <div class="flex justify-center">
                 <a href="{% url 'profile' profile_id=request.user.id %}">
-                  <button class="mt-0 px-4 twButtonlightblue">Continue</button>
+                  <button class="mt-3 px-4 p-2 twButtonpurple">Continue</button>
                 </a>
               </div>
               {% else %}
               <div class="flex justify-center">
                 <a href="{% url 'signin' %}">
-                  <button class="mt-0 px-4 twButtonlightblue">Login</button>
+                  <button class="mt-3 px-4 p-2 twButtonpurple">Login</button>
                 </a>
               </div>
               <div class="flex justify-center">
                 <a href="{% url 'register' %}">
-                  <button class="mx-auto px-4 twButtonlightblue">Sign Up</button>
+                  <button class="mt-5 px-4 p-2 twButtonpurple">Sign Up</button>
                 </a>
               </div>
               {% endif %}

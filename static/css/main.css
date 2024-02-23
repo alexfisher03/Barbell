@@ -624,18 +624,21 @@ video {
   margin: -0.5rem;
 }
 
+.m-1{
+  margin: 0.25rem;
+}
+
+.m-4{
+  margin: 1rem;
+}
+
 .mx-3{
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
 
-.mx-auto{
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.mb-3{
-  margin-bottom: 0.75rem;
+.mb-2{
+  margin-bottom: 0.5rem;
 }
 
 .mb-6{
@@ -646,8 +649,20 @@ video {
   margin-top: 0px;
 }
 
+.mt-3{
+  margin-top: 0.75rem;
+}
+
+.mt-4{
+  margin-top: 1rem;
+}
+
 .mt-5{
   margin-top: 1.25rem;
+}
+
+.mt-2{
+  margin-top: 0.5rem;
 }
 
 .block{
@@ -690,6 +705,18 @@ video {
   width: 50%;
 }
 
+.w-1\/3{
+  width: 33.333333%;
+}
+
+.w-5\/6{
+  width: 83.333333%;
+}
+
+.w-7\/12{
+  width: 58.333333%;
+}
+
 .w-8{
   width: 2rem;
 }
@@ -716,6 +743,10 @@ video {
   animation: spin 1s linear infinite;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -730,6 +761,10 @@ video {
 
 .justify-center{
   justify-content: center;
+}
+
+.gap-2{
+  gap: 0.5rem;
 }
 
 .gap-4{
@@ -758,6 +793,14 @@ video {
   padding: 0.5rem;
 }
 
+.p-3{
+  padding: 0.75rem;
+}
+
+.p-4{
+  padding: 1rem;
+}
+
 .p-6{
   padding: 1.5rem;
 }
@@ -766,9 +809,22 @@ video {
   padding: 20px;
 }
 
+.p-5{
+  padding: 1.25rem;
+}
+
 .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.pb-2{
+  padding-bottom: 0.5rem;
 }
 
 .pt-1{
@@ -777,6 +833,10 @@ video {
 
 .pt-8{
   padding-top: 2rem;
+}
+
+.pt-2{
+  padding-top: 0.5rem;
 }
 
 .text-center{
@@ -802,9 +862,19 @@ video {
   text-transform: uppercase;
 }
 
+.text-\[\#4470ff\]{
+  --tw-text-opacity: 1;
+  color: rgb(68 112 255 / var(--tw-text-opacity));
+}
+
 .text-gray-200{
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+
+.text-red-600{
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .underline{
@@ -866,11 +936,13 @@ body {
 }
 
 html {
-  background-image: url("/static/images/gradientbackground.jpg");
+  /*background-image: url("/static/images/gradientbackground.jpg");*/
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  background-color: rgba(101, 54, 158, 0.788);
+  background-color: linear-gradient(
+    0deg
+    , rgb(80, 24, 251), rgb(80, 24, 251));
 }
 
 .nav ul {
@@ -1088,10 +1160,8 @@ html {
 .content {
   display: flex;
   flex-direction: column;
-  margin: 1em;
   align-items: center;
   justify-content: center;
-  height: 10vh;
 }
 
 .content-stat {
@@ -1530,18 +1600,16 @@ form input[type="radio"] {
 
 label {
   display: block;
-  margin-top: 10px;
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 35px;
 }
 
 input {
   display: block;
   height: 50px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.267);
+  border-radius: 8px;
   padding: 0 10px;
   margin-top: 8px;
   font-size: 14px;
@@ -1557,9 +1625,7 @@ input {
 }
 
 button {
-  margin-top: 50px;
   width: 100%;
-  padding: 10px 0;
   font-size: 18px;
   font-weight: 600;
   border-radius: 5px;
@@ -1568,8 +1634,6 @@ button {
 
 .registration-form {
   background-color: rgba(255, 255, 255, 0.13);
-  top: 100%;
-  left: 50%;
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -1638,9 +1702,6 @@ form .member-limit-details .limit-val {
 }
 
 .password-toggle-button {
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
   border: none;
   background: none;
   color: #0dccea;
@@ -1826,7 +1887,7 @@ form .member-limit-details .limit-val {
 
 /* Tailwind @apply definitions for custom classes */
 
-.twButtonlightblue{
+.twButtonpurple{
   border-radius: 9999px;
   background-color: #3336dc6e;
   --tw-gradient-from: #3336dc6e var(--tw-gradient-from-position);
@@ -1841,7 +1902,29 @@ form .member-limit-details .limit-val {
   transition-duration: 300ms;
 }
 
-.twButtonlightblue:hover{
+.twButtonpurple:hover{
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.twButtonblue{
+  border-radius: 9999px;
+  background-color: #5bc0ffb9;
+  --tw-gradient-from: #5bc0ffb9 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(91 192 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: rgb(169 85 247 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #a955f76e var(--tw-gradient-via-position), var(--tw-gradient-to);
+  --tw-gradient-to: #ec48996e var(--tw-gradient-to-position);
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  transition-duration: 300ms;
+}
+
+.twButtonblue:hover{
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1866,12 +1949,24 @@ form .member-limit-details .limit-val {
 }
 
 @media (min-width: 640px){
+  .sm\:m-4{
+    margin: 1rem;
+  }
+
   .sm\:block{
     display: block;
   }
 
+  .sm\:w-1\/2{
+    width: 50%;
+  }
+
   .sm\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .sm\:flex-row{
@@ -1888,6 +1983,14 @@ form .member-limit-details .limit-val {
     --tw-space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
+  }
+
+  .sm\:p-0{
+    padding: 0px;
+  }
+
+  .sm\:p-3{
+    padding: 0.75rem;
   }
 
   .sm\:pt-10{
@@ -1907,6 +2010,11 @@ form .member-limit-details .limit-val {
   .sm\:text-base{
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .sm\:text-lg{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .sm\:text-sm{
@@ -1929,8 +2037,8 @@ form .member-limit-details .limit-val {
     margin-top: 2rem;
   }
 
-  .md\:w-9\/12{
-    width: 75%;
+  .md\:w-10\/12{
+    width: 83.333333%;
   }
 
   .md\:flex-1{

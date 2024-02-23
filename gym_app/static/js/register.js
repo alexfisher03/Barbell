@@ -19,11 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Email cannot be empty.');
             valid = false;
         }
-        
-        if (!phone.value.trim()) {
-            alert('Phone number cannot be empty.');
-            valid = false;
-        }
 
         if (!password.value.trim()) {
             alert('Password cannot be empty.');
