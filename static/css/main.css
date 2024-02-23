@@ -645,6 +645,10 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.mr-1{
+  margin-right: 0.25rem;
+}
+
 .mt-0{
   margin-top: 0px;
 }
@@ -697,8 +701,16 @@ video {
   height: 2rem;
 }
 
+.w-1\/2{
+  width: 50%;
+}
+
 .w-1\/3{
   width: 33.333333%;
+}
+
+.w-2\/3{
+  width: 66.666667%;
 }
 
 .w-5\/6{
@@ -719,6 +731,11 @@ video {
 
 .border-collapse{
   border-collapse: collapse;
+}
+
+.-translate-x-3{
+  --tw-translate-x: -0.75rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .transform{
@@ -775,6 +792,10 @@ video {
 
 .fill-purple-600{
   fill: #9333ea;
+}
+
+.p-1{
+  padding: 0.25rem;
 }
 
 .p-10{
@@ -930,13 +951,11 @@ body {
 }
 
 html {
-  /*background-image: url("/static/images/gradientbackground.jpg");*/
+  /* background-image: url("/static/images/gradientbackground.jpg"); */
+  background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  background-color: linear-gradient(
-    0deg
-    , rgb(80, 24, 251), rgb(80, 24, 251));
 }
 
 .nav ul {
@@ -1036,7 +1055,8 @@ html {
 }
 
 .page-wrapper {
-  background-image: url("/static/images/gradientbackground.jpg");
+  /* background-image: url("/static/images/gradientbackground.jpg"); */
+  background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -1575,7 +1595,6 @@ form .category label .dot {
   height: 18px;
   width: 18px;
   border-radius: 50%;
-  margin-right: 10px;
   background: #0d70ea;
   border: 5px solid transparent;
   transition: all 0.3s ease;
@@ -1948,12 +1967,29 @@ form .member-limit-details .limit-val {
     margin: 1rem;
   }
 
+  .sm\:mr-2{
+    margin-right: 0.5rem;
+  }
+
   .sm\:block{
     display: block;
   }
 
   .sm\:w-1\/2{
     width: 50%;
+  }
+
+  .sm\:w-1\/3{
+    width: 33.333333%;
+  }
+
+  .sm\:w-2\/3{
+    width: 66.666667%;
+  }
+
+  .sm\:translate-x-0{
+    --tw-translate-x: 0px;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .sm\:grid-cols-2{
@@ -2030,6 +2066,10 @@ form .member-limit-details .limit-val {
 
   .md\:mt-8{
     margin-top: 2rem;
+  }
+
+  .md\:w-1\/4{
+    width: 25%;
   }
 
   .md\:w-10\/12{

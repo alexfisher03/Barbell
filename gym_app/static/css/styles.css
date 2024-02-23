@@ -34,13 +34,11 @@ body {
 }
 
 html {
-  /*background-image: url("/static/images/gradientbackground.jpg");*/
+  /* background-image: url("/static/images/gradientbackground.jpg"); */
+  background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  background-color: linear-gradient(
-    0deg
-    , rgb(80, 24, 251), rgb(80, 24, 251));
 }
 
 .nav ul {
@@ -140,7 +138,8 @@ html {
 }
 
 .page-wrapper {
-  background-image: url("/static/images/gradientbackground.jpg");
+  /* background-image: url("/static/images/gradientbackground.jpg"); */
+  background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -668,7 +667,6 @@ form .category label .dot {
   height: 18px;
   width: 18px;
   border-radius: 50%;
-  margin-right: 10px;
   background: #0d70ea;
   border: 5px solid transparent;
   transition: all 0.3s ease;

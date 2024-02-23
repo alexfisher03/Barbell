@@ -79,3 +79,10 @@ document.getElementById('toggle-password1').addEventListener('click', function (
       this.textContent = 'Show';
     }
   });
+
+  const phoneLabel = document.getElementById('phone-label');
+  const phoneField = document.getElementById('phone-field');
+
+  phoneLabel.addEventListener('click', function() {
+    phoneField.classList.toggle('hidden');
+  });
