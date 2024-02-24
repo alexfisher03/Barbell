@@ -172,7 +172,6 @@ html {
 
 .barbell-username {
   text-align: center;
-  font-size: 3em;
   font-family: "Bebas Neue", cursive;
   font-weight: normal;
   color: white;
@@ -334,9 +333,6 @@ html {
 }
 
 .home-screen-image {
-  height: 300px;
-  width: 300px;
-  margin: 15px;
   border-radius: 50%;
   box-shadow: 0 0 5px rgba(122, 113, 189, 0.6),
     0 0 10px rgba(122, 113, 189, 0.6), 0 0 15px rgba(122, 113, 189, 0.6),

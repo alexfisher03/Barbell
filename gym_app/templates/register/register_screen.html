@@ -106,6 +106,7 @@
     </div>
     
     {% if request.user.is_authenticated %}
+    <label class="content p-3" for="not-member"> Already a Member?</label>
     <div class="flex justify-center">
       <button class="twButtonlightblue w-1/3"><a href="{% url 'profile' profile_id=request.user.id %}">Sign In</a></button>
     </div>

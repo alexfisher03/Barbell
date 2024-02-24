@@ -1,73 +1,143 @@
 {% extends 'index.html' %}
 {% load static %}
 
-
-
 <title>{% block title %} Barbell | Profile {% endblock %} </title>
+
 {% block nav %}
-<li><a href="/home">HOME</a></li>
-{% if current_group %}
-<li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
-{% else %}
-<li><a href="#">No Group</a></li>
-{% endif %}
-{% block header %}<h1 class="barbell">Profile</h1> {% endblock %}
-{% endblock %}
-{% block content %}
-<div class="backdrop-form-style">
-  <img class="home-screen-image"
-    src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}">
-  <h1 class="barbell-username">{{ custom_user.username }}</h1>
-  <p class="content">{{ custom_user.bio|default:"No bio yet."}}</p>
-</div>
-<section class="content-section-small container button-container">
-  <div class='button-group content'>
-    <a href="{% url 'input_rep_stats' %}"><button class="profile-button" role="button"><strong>Choose Your
-          Split</strong></button></a>
-  </div>
-  <br>
-  <br>
-  <div class="button-group">
-    {% if current_group %}
-    <a href="{% url 'group_screen' group_id=current_group.id %}"><button class="profile-button" role="button"><strong>
-          View Group</strong></button></a>
-    {% else %}
-    <a href="{% url 'create_group' %}"><button class="profile-button" role="button"><strong> Create
-          Group</strong></button></a>
-    {% endif %}
-  </div>
-</section>
-<br>
-<br>
-{% endblock %}
-{% block additional_footer_content %}
-  <div class="button-container">
-  <a href="{% url 'global_leaderboard' %}"><button id="view-global-leaderboard" class="stat-button"
-      role="button"><strong> View Global Leaderboard </strong></button></a>
-  </div>
+<div class="pb-2">
+  <li><a href="/home">HOME</a></li>
   {% if current_group %}
-  <div class="button-container">
-  <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong>
-        View Group Leaderboard </strong></button></a>
-  </div>
+    <li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
   {% else %}
+    <li><a href="#">No Group</a></li>
   {% endif %}
-  <div class="container main-footer-container">
-  <ul class="footer-nav">
-    <li>
-      <a href="{% url 'profilesettings' %}"><button class="profile-button" role="button"><strong> Settings
-          </strong></button></a>
-      <a href="{% url 'logout' %}"><button class="profile-button" role="button"><strong>Log Out</strong></button></a>
-    </li>
-  </ul>
-  </div>
-  <div class="container main-footer-container">
-  <ul class="footer-nav">
-    <li>
-      <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
-    </li>
-  </ul>
-  </div>
+</div>
+
+  {% block header %}<h1 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">Profile</h1> {% endblock %}
+{% endblock %}
+
+{% block content %}
+
+<div class="flex grid-cols-1 justify-evenly sm:grid-cols-2 sm:justify-evenly ">
+
+  <!-- Column 1 -->
+  <div>
+    <div class="flex justify-center">
+      <div class="backdrop-form-style w-5/6 sm:w-full">
+        <div class="flex justify-center p-3">
+          <p class="text-3xl">{{ custom_user.username }}</p>
+        </div>
+        <div class="flex justify-center">
+          <img class="home-screen-image w-[150px] h-[150px] p-3 m-3"
+          src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}">
+        </div>
+        <p class="content p-3">{{ custom_user.bio|default:"No bio yet."}}</p>
+        <p class="content p-3">Points: {{ custom_user.points}}</p>
+      </div>
+    </div>
+
+    <section class="content-section-small container button-container">
+      <div class='content'>
+        <a href="{% url 'input_rep_stats' %}"><button class="p-2 my-5 twButtonblue" role="button"><strong>Update Your Stats</strong></button></a>
+      </div>
+      <div class="button-group">
+        {% if current_group %}
+        <a href="{% url 'group_screen' group_id=current_group.id %}"><button class="twButtonblue p-2" role="button"><strong>
+              View Group</strong></button></a>
+        {% else %}
+        <a href="{% url 'create_group' %}"><button class="twButtonblue p-2" role="button"><strong> Create
+              Group</strong></button></a>
+        {% endif %}
+      </div>
+      <div class="p-2 m-2">
+        <a href="{% url 'global_leaderboard' %}"><button id="view-global-leaderboard" class="twButtonpurple p-2"
+          role="button"><strong> View Global Leaderboard </strong></button></a>
+      </div>
+      {% if current_group %}
+      <div class="button-container">
+      <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong>
+            View Group Leaderboard </strong></button></a>
+      </div>
+      {% else %}
+      {% endif %}
+    </section>
+  </div> <!-- End Column 1-->
+  
+
+  <div> <!-- Column 2 -->
+    <div class="flex justify-center">
+      <div class="backdrop-form-style w-5/6 sm:w-full">
+        <div class="p-10">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                      <th scope="col" class="px-6 py-3 rounded-s-lg">
+                          {{ custom_user.username }}'s Stats
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                          Qty
+                      </th>
+                      <th scope="col" class="px-6 py-3 rounded-e-lg">
+                          Price
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr class="bg-white dark:bg-gray-800">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          Apple MacBook Pro 17"
+                      </th>
+                      <td class="px-6 py-4">
+                          1
+                      </td>
+                      <td class="px-6 py-4">
+                          $2999
+                      </td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          Microsoft Surface Pro
+                      </th>
+                      <td class="px-6 py-4">
+                          1
+                      </td>
+                      <td class="px-6 py-4">
+                          $1999
+                      </td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          Magic Mouse 2
+                      </th>
+                      <td class="px-6 py-4">
+                        1
+                      </td>
+                      <td class="px-6 py-4">
+                          $99
+                      </td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                  <tr class="font-semibold text-gray-900 dark:text-white">
+                      <th scope="row" class="px-6 py-3 text-base">Total</th>
+                      <td class="px-6 py-3">3</td>
+                      <td class="px-6 py-3">21,000</td>
+                  </tr>
+              </tfoot>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- End Column 2-->
+
+</div>
+{% endblock %}
+
+
+{% block additional_footer_content %}
+  <a href="{% url 'profilesettings' %}"><button class="twButtonblue p-2 my-2" role="button">Settings</button></a>
+  <a href="{% url 'logout' %}"><button class="twButtonblue p-2" role="button"><strong>Log Out</strong></button></a>
 {% endblock %}
 {% block scripts %}
 <script src="{% static 'js/profile-self.js' %}"></script>
