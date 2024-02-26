@@ -54,8 +54,8 @@
           role="button"><strong> View Global Leaderboard </strong></button></a>
       </div>
       {% if current_group %}
-      <div class="button-container">
-      <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong>
+      <div>
+      <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="twButtonpurple p-2" role="button"><strong>
             View Group Leaderboard </strong></button></a>
       </div>
       {% else %}

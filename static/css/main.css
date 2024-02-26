@@ -719,10 +719,6 @@ video {
   height: 150px;
 }
 
-.h-1\/2{
-  height: 50%;
-}
-
 .w-1\/2{
   width: 50%;
 }
@@ -764,21 +760,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.translate-x-3{
-  --tw-translate-x: 0.75rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.translate-x-20{
-  --tw-translate-x: 5rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.translate-x-36{
-  --tw-translate-x: 9rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .transform{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -801,10 +782,6 @@ video {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.grid-cols-2{
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .flex-col{
   flex-direction: column;
 }
@@ -813,20 +790,8 @@ video {
   align-items: center;
 }
 
-.justify-start{
-  justify-content: flex-start;
-}
-
 .justify-center{
   justify-content: center;
-}
-
-.justify-between{
-  justify-content: space-between;
-}
-
-.justify-around{
-  justify-content: space-around;
 }
 
 .justify-evenly{
@@ -841,26 +806,10 @@ video {
   gap: 1rem;
 }
 
-.gap-1{
-  gap: 0.25rem;
-}
-
-.gap-5{
-  gap: 1.25rem;
-}
-
-.gap-10{
-  gap: 2.5rem;
-}
-
 .space-y-4 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-
-.overflow-x-auto{
-  overflow-x: auto;
 }
 
 .whitespace-nowrap{
@@ -938,14 +887,14 @@ video {
   padding-right: 1rem;
 }
 
-.py-3{
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
 .px-6{
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-3{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .py-4{
@@ -1020,11 +969,6 @@ video {
   color: rgb(229 231 235 / var(--tw-text-opacity));
 }
 
-.text-red-600{
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
 .text-gray-500{
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1038,6 +982,11 @@ video {
 .text-gray-900{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-red-600{
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .underline{
@@ -2096,9 +2045,15 @@ form .member-limit-details .limit-val {
   border: none;
 }
 
-.hover\:scale-110:hover{
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
+.hover\:scale-105:hover{
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-90:hover{
+  --tw-scale-x: .9;
+  --tw-scale-y: .9;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2304,14 +2259,14 @@ form .member-limit-details .limit-val {
     background-color: rgb(31 41 55 / var(--tw-bg-opacity));
   }
 
-  .dark\:text-gray-600{
-    --tw-text-opacity: 1;
-    color: rgb(75 85 99 / var(--tw-text-opacity));
-  }
-
   .dark\:text-gray-400{
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-gray-600{
+    --tw-text-opacity: 1;
+    color: rgb(75 85 99 / var(--tw-text-opacity));
   }
 
   .dark\:text-white{
