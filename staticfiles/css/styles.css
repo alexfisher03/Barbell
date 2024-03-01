@@ -6,6 +6,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Scrollbar Styling */
+
+/* This styles the scrollbar track*/
+::-webkit-scrollbar-track {
+  background: #18191A; /* Light grey background */
+}
+
+/* This styles the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Darker grey thumb */
+}
+
+/* Handle the scrollbar thumb hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Even darker grey on hover */
+}
+
+/* This styles the scrollbar itself */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
 @font-face {
   font-family: "Montserrat";
   src: url("Fonts/Montserrat.woff2") format("woff2");
@@ -172,7 +194,6 @@ html {
 
 .barbell-username {
   text-align: center;
-  font-size: 3em;
   font-family: "Bebas Neue", cursive;
   font-weight: normal;
   color: white;
@@ -334,9 +355,6 @@ html {
 }
 
 .home-screen-image {
-  height: 300px;
-  width: 300px;
-  margin: 15px;
   border-radius: 50%;
   box-shadow: 0 0 5px rgba(122, 113, 189, 0.6),
     0 0 10px rgba(122, 113, 189, 0.6), 0 0 15px rgba(122, 113, 189, 0.6),
