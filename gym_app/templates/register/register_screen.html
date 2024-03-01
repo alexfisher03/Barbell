@@ -1,82 +1,82 @@
 {% extends 'index.html' %}
 {% load static %}
-    <title>{% block title %}Barbell | Register{% endblock %}</title>
-    {% block nav %}
-        <li><a href="/home">HOME</a></li>      
-          {% block header %}  {% endblock %}    
-    {% endblock %}  
-    {% block content %}
-      <form class="registration-form" method="post">
-        {% csrf_token %}
-        {% if success %}
-          <div class="content success">Registration successful!</div>
-        {% endif %}
-        <h3 class="section-header">Register</h3>
-        <label class="content" for="username">Username</label>
-        <input type="text" placeholder="Enter Username" id="username" name="username" value="{{ form.username.value|default:'' }}">
-        {% if form.username.errors %}
-          <div class="error">{{ form.username.errors.as_text }}</div>
-        {% endif %}
-        <label class="content" for="username">Email</label>
-        <input type="text" placeholder="Enter Email" id="email" name="email" value="{{ form.email.value|default:'' }}">
-        {% if form.email.errors %}
-            <div class="error">{{ form.email.errors.as_text }}</div>
-        {% endif %}
-        <label class="content" for="phone">Phone Number</label>
-        <input type="tel" placeholder="Phone Number" id="phone" name="phone" value="{{ form.phone.value|default:'' }}">
-        {% if form.phone.errors %}
-            <div class="error">{{ form.phone.errors.as_text }}</div>
-        {% endif %}
-        <label class="content" for="password">Password</label>
-        <div class="password-input-container">
-          <input type="password" placeholder="Password" id="password" name="password1">
-          <button type="button" id="toggle-password1" class="password-toggle-button">Show</button>
-        </div>
-        {% if form.password1.errors %}
-          <div class="error">{{ form.password1.errors.as_text }}</div>
-        {% endif %}
-
-        <label class="content" for="confirm-password">Confirm Password</label>
-        <div class="password-input-container">
-          <input type="password" placeholder="Confirm Password" id="confirm-password" name="password2">
-          <button type="button" id="toggle-password2" class="password-toggle-button">Show</button>
-        </div>
-        {% if form.password2.errors %}
-          <div class="error">{{ form.password2.errors.as_text }}</div>
-        {% endif %}
-      
-        <label class="content" for="gender">Gender</label>
-        <div class="gender-details">  
-          <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
-          <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
-          <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
-          {% if form.gender.errors %}
-          <div class="error">{{ form.gender.errors.as_text }}</div>
-          {% endif %}
-          <div class="category">
-              <label for="dot-1">
-                <span class="dot one"></span>
-                <span class="gender">Male</span>
-              </label>
-              <label for="dot-2">
-                <span class="dot two"></span>
-                <span class="gender">Female</span>
-              </label>
-              <label for="dot-3">
-                <span class="dot three"></span>
-                <span class="gender">Other</span>
-              </label>
-            </div>
-          </div>
-          <br>
-          <button id="register-button" class="login-button" role="button">Register</button>
-        <br>
-        <label class="content" for="not-member"> Already a Member?</label>
-          <button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button>
-      </form>
-    {% endblock %}
- {% block additional_footer_content %}{% endblock %}
-{% block scripts %}
-  <script src="{% static 'js/register.js' %}"></script>
+<title>{% block title %}Barbell | Register{% endblock %}</title>
+{% block nav %}
+<li><a href="/home">CONTINUE AS GUEST</a></li>
+{% block header %} {% endblock %}
 {% endblock %}
+{% block content %}
+<form class="registration-form" method="post">
+  {% csrf_token %}
+  {% if success %}
+  <div class="content success">Registration successful!</div>
+  {% endif %}
+  <h3 class="section-header">Register</h3>
+  <label class="content" for="username">Username</label>
+  <input type="text" placeholder="Enter Username" id="username" name="username"
+    value="{{ form.username.value|default:'' }}">
+  {% if form.username.errors %}
+  <div class="error">{{ form.username.errors.as_text }}</div>
+  {% endif %}
+  <label class="content" for="username">Email</label>
+  <input type="text" placeholder="Enter Email" id="email" name="email" value="{{ form.email.value|default:'' }}">
+  {% if form.email.errors %}
+  <div class="error">{{ form.email.errors.as_text }}</div>
+  {% endif %}
+  <label class="content" for="phone">Phone Number</label>
+  <input type="tel" placeholder="Phone Number" id="phone" name="phone" value="{{ form.phone.value|default:'' }}">
+  {% if form.phone.errors %}
+  <div class="error">{{ form.phone.errors.as_text }}</div>
+  {% endif %}
+  <label class="content" for="password">Password</label>
+  <div class="password-input-container">
+    <input type="password" placeholder="Password" id="password" name="password1">
+    <button type="button" id="toggle-password1" class="password-toggle-button">Show</button>
+  </div>
+  {% if form.password1.errors %}
+  <div class="error">{{ form.password1.errors.as_text }}</div>
+  {% endif %}
 
+  <label class="content" for="confirm-password">Confirm Password</label>
+  <div class="password-input-container">
+    <input type="password" placeholder="Confirm Password" id="confirm-password" name="password2">
+    <button type="button" id="toggle-password2" class="password-toggle-button">Show</button>
+  </div>
+  {% if form.password2.errors %}
+  <div class="error">{{ form.password2.errors.as_text }}</div>
+  {% endif %}
+
+  <label class="content" for="gender">Gender</label>
+  <div class="gender-details">
+    <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value=='M' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value=='F' %}checked{% endif %}>
+    <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value=='O' %}checked{% endif %}>
+    {% if form.gender.errors %}
+    <div class="error">{{ form.gender.errors.as_text }}</div>
+    {% endif %}
+    <div class="category">
+      <label for="dot-1">
+        <span class="dot one"></span>
+        <span class="gender">Male</span>
+      </label>
+      <label for="dot-2">
+        <span class="dot two"></span>
+        <span class="gender">Female</span>
+      </label>
+      <label for="dot-3">
+        <span class="dot three"></span>
+        <span class="gender">Other</span>
+      </label>
+    </div>
+  </div>
+  <br>
+  <button id="register-button" class="login-button" role="button">Register</button>
+  <br>
+  <label class="content" for="not-member"> Already a Member?</label>
+  <button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button>
+</form>
+{% endblock %}
+{% block additional_footer_content %}{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

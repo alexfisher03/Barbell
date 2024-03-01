@@ -38,4 +38,7 @@ local_settings.py
 
 /logs/*
 ENV/secret.env
+<<<<<<< HEAD
 node_modules/
+=======
+>>>>>>> 24cda6cab66b91d350bd3fc03d07c060389f5fbe
