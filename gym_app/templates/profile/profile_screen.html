@@ -28,7 +28,7 @@
           <p class="text-3xl">{{ custom_user.username }}</p>
         </div>
         <div class="flex justify-center">
-          <img class="home-screen-image w-[150px] h-[150px] p-3 m-3"
+          <img class="home-screen-image w-[150px] h-[150px] p-3 m-3 hover:scale-105 duration-300"
           src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}">
         </div>
         <p class="content p-3">{{ custom_user.bio|default:"No bio yet."}}</p>

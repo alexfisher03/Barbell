@@ -955,6 +955,14 @@ video {
   font-weight: 600;
 }
 
+.font-bold{
+  font-weight: 700;
+}
+
+.font-extrabold{
+  font-weight: 800;
+}
+
 .uppercase{
   text-transform: uppercase;
 }
@@ -1078,7 +1086,7 @@ body {
 }
 
 html {
-  /* background-image: url("/static/images/gradientbackground.jpg"); */
+  /*background-image: url("/static/images/gradientbackground.jpg");*/
   background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
