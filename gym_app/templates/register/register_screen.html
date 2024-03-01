@@ -24,7 +24,7 @@
     </div>
 
     {% if form.username.errors %}
-      <div class="error">{{ form.username.errors.as_text }}</div>
+      <div class="error text-center justify-center p-2">{{ form.username.errors.as_text }}</div>
     {% endif %}
 
     <label class="content p-2" for="username">Email</label>
@@ -34,7 +34,7 @@
     </div>
 
     {% if form.email.errors %}
-      <div class="error">{{ form.email.errors.as_text }}</div>
+      <div class="error text-center justify-center p-2">{{ form.email.errors.as_text }}</div>
     {% endif %}
 
     <label class="content p-2 cursor-pointer" for="phone" id="phone-label"><i class="underline">Phone Number - Optional</i></label>
@@ -44,7 +44,7 @@
     </div>
     
     {% if form.phone.errors %}
-      <div class="error">{{ form.phone.errors.as_text }}</div>
+      <div class="error text-center justify-center p-2">{{ form.phone.errors.as_text }}</div>
     {% endif %}
 
     <label class="content p-2" for="password">Password</label>
@@ -54,7 +54,7 @@
     </div>
 
     {% if form.password1.errors %}
-      <div class="error">{{ form.password1.errors.as_text }}</div>
+      <div class="error text-center justify-center p-2">{{ form.password1.errors.as_text }}</div>
     {% endif %}
 
     <label class="content p-2" for="confirm-password">Confirm Password</label>
@@ -64,7 +64,7 @@
     </div>
 
     {% if form.password2.errors %}
-      <div class="error">{{ form.password2.errors.as_text }}</div>
+      <div class="error text-center justify-center p-2">{{ form.password2.errors.as_text }}</div>
     {% endif %}
 
     <label class="content p-2" for="gender">Gender</label>
@@ -74,7 +74,7 @@
       <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
       
       {% if form.gender.errors %}
-        <div class="error">{{ form.gender.errors.as_text }}</div>
+        <div class="error text-center justify-center p-2">{{ form.gender.errors.as_text }}</div>
       {% endif %}
 
       <div class="category -translate-x-3 sm:translate-x-0">
