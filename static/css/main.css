@@ -735,6 +735,10 @@ video {
   width: 66.666667%;
 }
 
+.w-4\/6{
+  width: 66.666667%;
+}
+
 .w-5\/6{
   width: 83.333333%;
 }
@@ -753,18 +757,6 @@ video {
 
 .w-full{
   width: 100%;
-}
-
-.w-4\/6{
-  width: 66.666667%;
-}
-
-.w-3\/4{
-  width: 75%;
-}
-
-.min-w-full{
-  min-width: 100%;
 }
 
 .border-collapse{
@@ -818,16 +810,12 @@ video {
   gap: 0.5rem;
 }
 
-.gap-4{
-  gap: 1rem;
-}
-
-.gap-10{
-  gap: 2.5rem;
-}
-
 .gap-20{
   gap: 5rem;
+}
+
+.gap-4{
+  gap: 1rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]){
@@ -838,21 +826,6 @@ video {
 
 .whitespace-nowrap{
   white-space: nowrap;
-}
-
-.rounded-e-lg{
-  border-start-end-radius: 0.5rem;
-  border-end-end-radius: 0.5rem;
-}
-
-.rounded-s-lg{
-  border-start-start-radius: 0.5rem;
-  border-end-start-radius: 0.5rem;
-}
-
-.rounded-s-md{
-  border-start-start-radius: 0.375rem;
-  border-end-start-radius: 0.375rem;
 }
 
 .border{
@@ -867,11 +840,6 @@ video {
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-gray-50{
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
 .fill-purple-600{
@@ -974,11 +942,6 @@ video {
 .text-sm{
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-
-.text-xs{
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .font-medium{
@@ -1700,8 +1663,6 @@ body {
 
 form {
   background-color: rgba(255, 255, 255, 0.13);
-  top: 100%;
-  left: 50%;
   border-radius: 60px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -2158,8 +2119,8 @@ form .member-limit-details .limit-val {
     width: 100%;
   }
 
-  .sm\:min-w-0{
-    min-width: 0px;
+  .sm\:w-5\/6{
+    width: 83.333333%;
   }
 
   .sm\:translate-x-0{
@@ -2181,22 +2142,6 @@ form .member-limit-details .limit-val {
 
   .sm\:justify-center{
     justify-content: center;
-  }
-
-  .sm\:justify-evenly{
-    justify-content: space-evenly;
-  }
-
-  .sm\:gap-4{
-    gap: 1rem;
-  }
-
-  .sm\:gap-0{
-    gap: 0px;
-  }
-
-  .sm\:gap-1{
-    gap: 0.25rem;
   }
 
   .sm\:space-x-4 > :not([hidden]) ~ :not([hidden]){
@@ -2349,11 +2294,6 @@ form .member-limit-details .limit-val {
   .dark\:bg-gray-800{
     --tw-bg-opacity: 1;
     background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-  }
-
-  .dark\:bg-gray-400{
-    --tw-bg-opacity: 1;
-    background-color: rgb(156 163 175 / var(--tw-bg-opacity));
   }
 
   .dark\:text-gray-400{
