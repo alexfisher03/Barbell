@@ -719,6 +719,10 @@ video {
   height: 150px;
 }
 
+.h-full{
+  height: 100%;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -953,14 +957,6 @@ video {
 
 .font-semibold{
   font-weight: 600;
-}
-
-.font-bold{
-  font-weight: 700;
-}
-
-.font-extrabold{
-  font-weight: 800;
 }
 
 .uppercase{
@@ -2210,6 +2206,10 @@ form .member-limit-details .limit-val {
 }
 
 @media (min-width: 768px){
+  .md\:m-12{
+    margin: 3rem;
+  }
+
   .md\:m-8{
     margin: 2rem;
   }

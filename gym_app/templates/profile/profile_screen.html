@@ -18,12 +18,12 @@
 
 {% block content %}
 
-<div class="flex grid-cols-1 justify-evenly sm:grid-cols-2 sm:justify-evenly ">
+<div class="grid gap-20 justify-center sm:flex sm:grid-cols-2 sm:justify-center ">
 
   <!-- Column 1 -->
   <div>
     <div class="flex justify-center">
-      <div class="backdrop-form-style w-5/6 sm:w-full">
+      <div class="backdrop-form-style w-4/6 sm:w-full">
         <div class="flex justify-center p-3">
           <p class="text-3xl">{{ custom_user.username }}</p>
         </div>
@@ -66,64 +66,62 @@
 
   <div> <!-- Column 2 -->
     <div class="flex justify-center">
-      <div class="backdrop-form-style w-5/6 sm:w-full">
+      <div class="backdrop-form-style w-4/6 sm:w-full">
         <div class="p-10">
-          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+          <table class="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 sm:w-full">
+              <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
-                      <th scope="col" class="px-6 py-3 rounded-s-lg">
+                      <th scope="col" class="px-6 py-3">
                           {{ custom_user.username }}'s Stats
                       </th>
                       <th scope="col" class="px-6 py-3">
-                          Qty
+                          Repetitions
                       </th>
-                      <th scope="col" class="px-6 py-3 rounded-e-lg">
-                          Price
+                      <th scope="col" class="px-6 py-3">
+                          Movement
                       </th>
                   </tr>
               </thead>
               <tbody>
                   <tr class="bg-white dark:bg-gray-800">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          Apple MacBook Pro 17"
+                          
                       </th>
                       <td class="px-6 py-4">
-                          1
+                         
                       </td>
                       <td class="px-6 py-4">
-                          $2999
+                          
                       </td>
                   </tr>
                   <tr class="bg-white dark:bg-gray-800">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          Microsoft Surface Pro
+                         
                       </th>
                       <td class="px-6 py-4">
-                          1
+                          
                       </td>
                       <td class="px-6 py-4">
-                          $1999
+                          
                       </td>
                   </tr>
                   <tr class="bg-white dark:bg-gray-800">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          Magic Mouse 2
+                          
                       </th>
                       <td class="px-6 py-4">
-                        1
+                        
                       </td>
                       <td class="px-6 py-4">
-                          $99
+                          
                       </td>
                   </tr>
               </tbody>
-              <tfoot>
-                  <tr class="font-semibold text-gray-900 dark:text-white">
-                      <th scope="row" class="px-6 py-3 text-base">Total</th>
-                      <td class="px-6 py-3">3</td>
-                      <td class="px-6 py-3">21,000</td>
-                  </tr>
-              </tfoot>
+                <tr class="font-semibold bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                   <th scope="row" class="px-6 py-3 text-base"></th>
+                    <td class="px-6 py-3"></td>
+                    <td class="px-6 py-3"></td>
+                </tr>
           </table>
         </div>
 
@@ -140,5 +138,5 @@
   <a href="{% url 'logout' %}"><button class="twButtonblue p-2" role="button"><strong>Log Out</strong></button></a>
 {% endblock %}
 {% block scripts %}
-<script src="{% static 'js/profile-self.js' %}"></script>
+<script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

@@ -719,6 +719,10 @@ video {
   height: 150px;
 }
 
+.h-full{
+  height: 100%;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -749,6 +753,18 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.w-4\/6{
+  width: 66.666667%;
+}
+
+.w-3\/4{
+  width: 75%;
+}
+
+.min-w-full{
+  min-width: 100%;
 }
 
 .border-collapse{
@@ -806,6 +822,14 @@ video {
   gap: 1rem;
 }
 
+.gap-10{
+  gap: 2.5rem;
+}
+
+.gap-20{
+  gap: 5rem;
+}
+
 .space-y-4 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -826,6 +850,11 @@ video {
   border-end-start-radius: 0.5rem;
 }
 
+.rounded-s-md{
+  border-start-start-radius: 0.375rem;
+  border-end-start-radius: 0.375rem;
+}
+
 .border{
   border-width: 1px;
 }
@@ -838,6 +867,11 @@ video {
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
 .fill-purple-600{
@@ -2104,6 +2138,10 @@ form .member-limit-details .limit-val {
     display: block;
   }
 
+  .sm\:flex{
+    display: flex;
+  }
+
   .sm\:w-1\/2{
     width: 50%;
   }
@@ -2118,6 +2156,10 @@ form .member-limit-details .limit-val {
 
   .sm\:w-full{
     width: 100%;
+  }
+
+  .sm\:min-w-0{
+    min-width: 0px;
   }
 
   .sm\:translate-x-0{
@@ -2137,8 +2179,24 @@ form .member-limit-details .limit-val {
     flex-direction: row;
   }
 
+  .sm\:justify-center{
+    justify-content: center;
+  }
+
   .sm\:justify-evenly{
     justify-content: space-evenly;
+  }
+
+  .sm\:gap-4{
+    gap: 1rem;
+  }
+
+  .sm\:gap-0{
+    gap: 0px;
+  }
+
+  .sm\:gap-1{
+    gap: 0.25rem;
   }
 
   .sm\:space-x-4 > :not([hidden]) ~ :not([hidden]){
@@ -2202,6 +2260,10 @@ form .member-limit-details .limit-val {
 }
 
 @media (min-width: 768px){
+  .md\:m-12{
+    margin: 3rem;
+  }
+
   .md\:m-8{
     margin: 2rem;
   }
@@ -2287,6 +2349,11 @@ form .member-limit-details .limit-val {
   .dark\:bg-gray-800{
     --tw-bg-opacity: 1;
     background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-gray-400{
+    --tw-bg-opacity: 1;
+    background-color: rgb(156 163 175 / var(--tw-bg-opacity));
   }
 
   .dark\:text-gray-400{
