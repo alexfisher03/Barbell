@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 handler404 = 'gym_app.views.custom_page_not_found_view'
+handler500 = 'gym_app.views.custom_internal_server_error_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

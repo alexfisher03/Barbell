@@ -649,6 +649,11 @@ video {
   margin-right: 0.75rem;
 }
 
+.mx-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .my-2{
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -659,17 +664,20 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mx-auto{
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .mb-2{
   margin-bottom: 0.5rem;
 }
 
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
 .mb-6{
   margin-bottom: 1.5rem;
+}
+
+.ml-1{
+  margin-left: 0.25rem;
 }
 
 .mr-1{
@@ -720,6 +728,10 @@ video {
   display: none;
 }
 
+.h-6{
+  height: 1.5rem;
+}
+
 .h-8{
   height: 2rem;
 }
@@ -730,10 +742,6 @@ video {
 
 .h-full{
   height: 100%;
-}
-
-.h-6{
-  height: 1.5rem;
 }
 
 .w-1\/2{
@@ -760,6 +768,10 @@ video {
   width: 83.333333%;
 }
 
+.w-6{
+  width: 1.5rem;
+}
+
 .w-7\/12{
   width: 58.333333%;
 }
@@ -774,10 +786,6 @@ video {
 
 .w-full{
   width: 100%;
-}
-
-.w-6{
-  width: 1.5rem;
 }
 
 .border-collapse{
@@ -887,16 +895,16 @@ video {
   padding: 1rem;
 }
 
+.p-5{
+  padding: 1.25rem;
+}
+
 .p-6{
   padding: 1.5rem;
 }
 
 .p-\[20px\]{
   padding: 20px;
-}
-
-.p-5{
-  padding: 1.25rem;
 }
 
 .px-2{
@@ -949,6 +957,11 @@ video {
   text-align: center;
 }
 
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -969,9 +982,17 @@ video {
   line-height: 1.25rem;
 }
 
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.font-bold{
+  font-weight: 700;
+}
+
+.font-extrabold{
+  font-weight: 800;
 }
 
 .font-medium{
@@ -982,10 +1003,6 @@ video {
   font-weight: 600;
 }
 
-.font-bold{
-  font-weight: 700;
-}
-
 .uppercase{
   text-transform: uppercase;
 }
@@ -993,6 +1010,16 @@ video {
 .text-\[\#4470ff\]{
   --tw-text-opacity: 1;
   color: rgb(68 112 255 / var(--tw-text-opacity));
+}
+
+.text-\[\#4f51c8\]{
+  --tw-text-opacity: 1;
+  color: rgb(79 81 200 / var(--tw-text-opacity));
+}
+
+.text-\[\#5e3f9b\]{
+  --tw-text-opacity: 1;
+  color: rgb(94 63 155 / var(--tw-text-opacity));
 }
 
 .text-gray-200{
@@ -1028,10 +1055,6 @@ video {
   opacity: 0;
 }
 
-.opacity-100{
-  opacity: 1;
-}
-
 .transition{
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -1040,12 +1063,12 @@ video {
   transition-duration: 150ms;
 }
 
-.duration-300{
-  transition-duration: 300ms;
+.duration-150{
+  transition-duration: 150ms;
 }
 
-.duration-700{
-  transition-duration: 700ms;
+.duration-300{
+  transition-duration: 300ms;
 }
 
 /* Custom Scrollbar Styling */
@@ -2110,10 +2133,20 @@ form .member-limit-details .limit-val {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.hover\:scale-90:hover{
-  --tw-scale-x: .9;
-  --tw-scale-y: .9;
+.hover\:scale-110:hover{
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-125:hover{
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:font-bold:hover{
+  font-weight: 700;
 }
 
 .hover\:underline:hover{

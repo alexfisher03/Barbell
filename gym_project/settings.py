@@ -40,7 +40,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
 # Change for production
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com', '127.0.0.1']
@@ -203,12 +203,11 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'gym_app.CustomUser'
 
 
-GS_CREDENTIALS = os.path.join(BASE_DIR, 'barbell_backend', 'GCS', 'elegant-azimuth-399823-96bfeea0220a.json')
+GS_CREDENTIALS = os.path.join(BASE_DIR, 'GCS', 'elegant-azimuth-399823-2926231d859f.json')
 GS_BUCKET_NAME = 'barbell_bucket_1'
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_FILE_OVERWRITE = False
 MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
-
 
 
 

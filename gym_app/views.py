@@ -333,3 +333,8 @@ Logic for the 404 error page
 def custom_page_not_found_view(request, exception):
     return render(request, 'errors/404.html', {}, status=404)
 
+"""
+Logic for the 500 error page
+"""
+def custom_internal_server_error_view(request, *args, **kwargs):
+    return render(request, 'errors/500.html', {}, status=500)
