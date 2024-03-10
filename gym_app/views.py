@@ -286,7 +286,7 @@ def profilesettings_screen(request):
            if form.cleaned_data['bio']:
                user.bio = form.cleaned_data['bio']
            user.save()
-           return redirect('profile')
+           return redirect('profile', profile_id=user.id)
        else:
            for error in form.errors:
                messages.error(request, f"{error}: {form.errors[error]}")
