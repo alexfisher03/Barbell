@@ -634,8 +634,6 @@ body {
 
 form {
   background-color: rgba(255, 255, 255, 0.13);
-  top: 100%;
-  left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
