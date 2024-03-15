@@ -1,56 +1,54 @@
 {% extends 'index.html' %}
 {% load static %}
-        <title>{% block title %} Barbell | Group Settings {% endblock %} </title>
-              {% block nav %}
-                      <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
-                      <li><a href="/home">HOME</a></li>
-                      {% block header %}<h3 class="barbell ">Group Settings</h3> {% endblock %}
-              {% endblock %}
-              {% block content %}
-              
-                <form class="group-settings-form" action="{% url 'group_settings' group.id %}" method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-              <div class="container">
-                  <label for="id_name">{{ form.name.label }}</label>
-                  <input id="id_name" type="text" name="{{ form.name.name }}" value="{{ form.name.value|default_if_none:"" }}" class="form-content" />
-              </div>
-              <div class="container">
-                  <label for="id_groupbio">{{ form.groupbio.label }}</label>
-                  <input id="id_groupbio" type="text" name="{{ form.groupbio.name }}" value="{{ form.groupbio.value|default_if_none:"" }}" class="form-content" />
-              </div>
-              <label class="content" for="privacy">Privacy Settings</label>
-              <div class="group-privacy-radios">  
-                <input type="radio" name="privacy" id="dot-1" value="PUB" {% if form.privacy.value == 'PUB' %}checked{% endif %}>
-                <input type="radio" name="privacy" id="dot-2" value="PRV" {% if form.privacy.value == 'PRV' %}checked{% endif %}>
-                {% if form.privacy.errors %}
-                <div class="error">{{ form.privacy.errors.as_text }}</div>
-                {% endif %}
-                <div class="category">
-                  <label for="dot-1">
-                    <span class="dot one"></span>
-                    <span class="privacy">Public</span>
-                  </label>
-                  <label for="dot-2">
-                    <span class="dot two"></span>
-                    <span class="privacy">Private</span>
-                  </label>
-                </div>
-              </div>
-              <div class="container custom-radio">
-                <label for="{{ form.members_to_remove.id_for_label }}">Remove Members (experimental) </label>
-                  {{ form.members_to_remove }}
-              </div>
-              <div class="container">
-                  <button type="submit" id="confirm-group-settings" data-url="" class="profile-button" role="button"><strong> Confirm Settings </strong></button>
-              </div>
-              </form>
-            
-              {% endblock %}
-              {% block additional_footer_content %}
-              <div class="container  main-footer-container">
-                <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
-              </div>
-              {% endblock %}
-     {% block script %}
-         <script src="{% static 'js/group-settings.js' %}"></script>
-      {% endblock %}
+<title>{% block title %} Barbell | Group Settings {% endblock %} </title>
+{% block nav %}
+        <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
+        <li><a href="/home">HOME</a></li>
+        {% block header %}<h3 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">Group Settings</h3> {% endblock %}
+{% endblock %}
+{% block content %}
+<div class="flex justify-center">            
+  <form class="group-settings-form" action="{% url 'group_settings' group.id %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container">
+    <label for="id_name" class="pb-3">{{ form.name.label }}</label>
+    <input id="id_name" type="text" name="{{ form.name.name }}" value="{{ form.name.value|default_if_none:"" }}" class="form-content" />
+  </div>
+  <div class="container">
+    <label for="id_groupbio" class="pb-3">{{ form.groupbio.label }}</label>
+    <input id="id_groupbio" type="text" name="{{ form.groupbio.name }}" value="{{ form.groupbio.value|default_if_none:"" }}" class="form-content" />
+  </div>
+  <label class="content" for="privacy">Privacy Settings</label>
+  <div class="group-privacy-radios">  
+    <input type="radio" name="privacy" id="dot-1" value="PUB" {% if form.privacy.value == 'PUB' %}checked{% endif %}>
+    <input type="radio" name="privacy" id="dot-2" value="PRV" {% if form.privacy.value == 'PRV' %}checked{% endif %}>
+    {% if form.privacy.errors %}
+    <div class="error">{{ form.privacy.errors.as_text }}</div>
+    {% endif %}
+    <div class="category">
+      <label for="dot-1">
+        <span class="dot one"></span>
+        <span class="privacy ml-2">Public</span>
+      </label>
+      <label for="dot-2">
+        <span class="dot two"></span>
+        <span class="privacy ml-2">Private</span>
+      </label>
+    </div>
+  </div>
+  <div class="container custom-radio">
+    <label for="{{ form.members_to_remove.id_for_label }}">Remove Members</label>
+      {{ form.members_to_remove }}
+  </div>
+  <div class="container">
+      <button type="submit" id="confirm-group-settings" data-url="" class="twButtonpurple p-3 w-1/3 mt-5" role="button"><strong> Confirm Settings </strong></button>
+  </div>
+  <div class="flex justify-center p-3">
+    <a href="{% url 'group_screen' group_id=request.user.current_group.id %}" class="hover:underline text-xl"> CANCEL </a>
+  </div>
+  </form>
+</div>            
+{% endblock %}
+{% block script %}
+  <script src="{% static 'js/group-settings.js' %}"></script>
+{% endblock %}

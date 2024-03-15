@@ -201,8 +201,7 @@ html {
 
 .barbell-lite {
   text-align: center;
-  font-family: "Bebas Neue", cursive;
-  font-weight: normal;
+  font-family: "Bebas Neue";
   color: rgba(11, 186, 244, 0.89);
 }
 
@@ -296,8 +295,6 @@ html {
   margin: 1em;
   align-items: center;
   justify-content: center;
-  height: 10vh;
-  font-size: 1.5em;
 }
 
 .container {
