@@ -42,7 +42,7 @@ Master template file
       {% block content %}
       <div id="fade-in-element" class="opacity-0 barbell text-lg sm:text-4xl md:text-6xl lg:text-8xl md:m-8">WELCOME TO BARBELL</div>
       <section class="content-section container md:h-screen/2 md:flex-1">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+        <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 items-center">
           <div id="fade-in-element2" class="opacity-0 w-full"> 
             <label class="medium-font all-space-small">
               <p class="section-header text-lg lg:text-5xl md:text-4xl sm:text-xl mb-6">Full Release in Developement</p>
@@ -53,7 +53,7 @@ Master template file
             </label>
           </div>
           <div class="flex flex-col">
-            <div class="flex justify-center">
+            <div class="flex justify-center sm:justify-start">
               <div id="fade-in-element3" class="opacity-0 backdrop-form-style p-[20px] w-4/5 sm:w-3/5 md:p-[50px]">
                 {% if request.user.is_authenticated %}
                 <div class="flex text-center w-full">
