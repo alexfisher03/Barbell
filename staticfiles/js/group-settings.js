@@ -1,5 +1,3 @@
-
-document.getElementById("back-button").addEventListener("click", function(event){
-    event.preventDefault();
-    history.back();
+document.getElementById('toggleMembersDropdown').addEventListener('click', function() {
+    document.getElementById('membersDropdown').classList.toggle('hidden');
 });

@@ -166,7 +166,8 @@ def group_settings_screen(request, group_id):
     group = get_object_or_404(Group, id=group_id)
 
     if request.user != group.created_by:
-        return redirect('group_screen') # eventually create a message screen saying user cannot access 
+        messages.error(request, "You don't have permission to access this page.")
+        return redirect('group_screen') 
 
     members = group.group_members.all()
     if len(members) < 1:

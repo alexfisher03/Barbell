@@ -35,7 +35,7 @@
         </div>
 
         {{ form.bio.label_tag }}
-        <div class="w-full sm:w-1/2">
+        <div class="w-5/7 sm:w-1/2">
           {{ form.bio }}
         </div>
         
@@ -52,7 +52,7 @@
         </button>
 
         <label class="content text-center p-3" for="reset-password">Reset Password *FIX*</label>
-        <button id="reset-password" data-url="{% url 'password_reset' %}" class="twButtonblue p-3 w-1/4" role="button">Click Here</button>
+        <button id="reset-password" data-url="{% url 'password_reset' %}" class="twButtonblue p-3 w-1/2 sm:w-1/4" role="button">Click Here</button>
       
         <div class="justify-center p-3 m-3">
           <button data-url="{% url 'profile' profile_id=request.user.id %}" class="hover:underline hover:scale-105"> CANCEL </button>

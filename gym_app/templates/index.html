@@ -52,35 +52,37 @@ Master template file
               <p class="text-base lg:text-2xl md:text-xl sm:text-sm"> Join Challenges and Earn Points </p>
             </label>
           </div>
-          <div class="flex flex-col justify-center">
-            <div id="fade-in-element3" class="opacity-0 backdrop-form-style p-[20px] w-full md:w-10/12 md:p-[50px]">
-              {% if request.user.is_authenticated %}
-              <div class="flex text-center">
-                <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Welcome Back, Click To Proceed </label>
+          <div class="flex flex-col">
+            <div class="flex justify-center">
+              <div id="fade-in-element3" class="opacity-0 backdrop-form-style p-[20px] w-4/5 sm:w-3/5 md:p-[50px]">
+                {% if request.user.is_authenticated %}
+                <div class="flex text-center w-full">
+                  <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Welcome Back, Click To Proceed </label>
+                </div>
+                {% else %}
+                <div class="flex text-center w-full">
+                  <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Click Here To Get Started </label>
+                </div>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <div class="flex justify-center">
+                  <a href="{% url 'profile' profile_id=request.user.id %}">
+                    <button class="mt-3 px-4 p-2 twButtonpurple">Continue</button>
+                  </a>
+                </div>
+                {% else %}
+                <div class="flex justify-center">
+                  <a href="{% url 'signin' %}">
+                    <button class="mt-3 px-4 p-2 twButtonpurple">Login</button>
+                  </a>
+                </div>
+                <div class="flex justify-center">
+                  <a href="{% url 'register' %}">
+                    <button class="mt-5 px-4 p-2 twButtonpurple">Sign Up</button>
+                  </a>
+                </div>
+                {% endif %}
               </div>
-              {% else %}
-              <div class="flex text-center">
-                <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Click Here To Get Started </label>
-              </div>
-              {% endif %}
-              {% if request.user.is_authenticated %}
-              <div class="flex justify-center">
-                <a href="{% url 'profile' profile_id=request.user.id %}">
-                  <button class="mt-3 px-4 p-2 twButtonpurple">Continue</button>
-                </a>
-              </div>
-              {% else %}
-              <div class="flex justify-center">
-                <a href="{% url 'signin' %}">
-                  <button class="mt-3 px-4 p-2 twButtonpurple">Login</button>
-                </a>
-              </div>
-              <div class="flex justify-center">
-                <a href="{% url 'register' %}">
-                  <button class="mt-5 px-4 p-2 twButtonpurple">Sign Up</button>
-                </a>
-              </div>
-              {% endif %}
             </div>
           </div>
         </div>
