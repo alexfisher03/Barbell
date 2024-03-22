@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 <div class="flex justify-center">            
-  <form class="w-5/6 p-10 sm:w-3/5" action="{% url 'group_settings' group.id %}" method="POST" enctype="multipart/form-data">
+  <form class="w-5/6 p-10 sm:w-3/5" id="groupSettingsForm" action="{% url 'group_settings' group.id %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="container">
     <label for="id_name" class="pb-3">{{ form.name.label }}</label>
@@ -23,7 +23,7 @@
     <input type="radio" name="privacy" id="dot-1" value="PUB" {% if form.privacy.value == 'PUB' %}checked{% endif %}>
     <input type="radio" name="privacy" id="dot-2" value="PRV" {% if form.privacy.value == 'PRV' %}checked{% endif %}>
     {% if form.privacy.errors %}
-    <div class="error">{{ form.privacy.errors.as_text }}</div>
+    <div class="error text-center m-3">{{ form.privacy.errors.as_text }}</div>
     {% endif %}
     <div class="category flex justify-center translate-x-6 sm:justify-center sm:translate-x-16">
       <div class="flex-col sm:flex sm:justify-center">
@@ -56,10 +56,10 @@
                 <label for="member_{{ member.id_for_label }}" class="ml-2 text-sm font-medium text-gray-900">{{ member.choice_label }}</label>
             </div>
         {% endfor %}
-        {% if members|length < 2 %}
+        {% if members|length > 0 %}
             <div class="text-red-600 text-sm text-center">*Removing yourself from the group will delete the group.*</div>
         {% endif %}
-        <button type="submit" class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Remove Selected Members</button>
+        <button type="submit" id="removeButton" class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Remove Selected Members</button>
     </div>
   </div>
 

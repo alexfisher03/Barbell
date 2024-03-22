@@ -167,33 +167,39 @@ def group_settings_screen(request, group_id):
 
     if request.user != group.created_by:
         messages.error(request, "You don't have permission to access this page.")
-        return redirect('group_screen') 
+        return redirect('group_screen')
 
-    members = group.group_members.all()
-    if len(members) < 1:
-        return redirect('group_screen', group_id=group_id) # if group was deleted add message screen
+    form = GroupSettings(request.POST, instance=group, group=group)
 
     if request.method == 'POST':
-        form = GroupSettings(request.POST, instance=group)
         if form.is_valid():
             updated_group = form.save(commit=False)
-            updated_group.privacy = form.cleaned_data['privacy']
+            updated_group.name = form.cleaned_data.get('name')
+            updated_group.groupbio = form.cleaned_data.get('groupbio')
+            updated_group.privacy = form.cleaned_data.get('privacy')
+            
+            members_to_remove = form.cleaned_data.get('members_to_remove')
+            for member in members_to_remove:
+                group.group_members.remove(member)
+            
             updated_group.save()
+            form.save_m2m()
+
+            if not updated_group.group_members.exists() or request.user in members_to_remove:
+                updated_group.delete()
+                messages.success(request, "The group has been deleted.")
+                return redirect('profile', profile_id=request.user.id)
+
+            messages.success(request, "Group settings updated successfully.")
             return redirect('group_screen', group_id=group_id)
-        else:
-            print(form.errors)
-    if not group:
-        return redirect('group_screen')
-    else:
-        form = GroupSettings(instance=group, group=group)
 
     context = {
         'form': form,
         'group': group,
-        'members': members
+        'members': group.group_members.all()
     }
-
     return render(request, 'group_settings/group_settings_screen.html', context)
+
 
 # static render function
 def home_screen(request):
