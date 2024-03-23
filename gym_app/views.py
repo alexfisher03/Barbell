@@ -180,12 +180,17 @@ def group_settings_screen(request, group_id):
             
             members_to_remove = form.cleaned_data.get('members_to_remove')
             for member in members_to_remove:
+                if group.created_by in members_to_remove:
+                    group.delete()
+                    messages.success(request, "The group has been deleted.")
+                    return redirect('profile', profile_id=request.user.id)
+            
                 group.group_members.remove(member)
             
             updated_group.save()
             form.save_m2m()
 
-            if not updated_group.group_members.exists() or request.user in members_to_remove:
+            if members_to_remove == group.created_by:
                 updated_group.delete()
                 messages.success(request, "The group has been deleted.")
                 return redirect('profile', profile_id=request.user.id)
