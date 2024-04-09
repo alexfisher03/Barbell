@@ -225,7 +225,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-GS_CREDENTIALS = os.path.join(BASE_DIR, 'GCS', 'elegant-azimuth-399823-2926231d859f.json')
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+
+AUTH_USER_MODEL = 'gym_app.CustomUser'
+
+
+GS_CREDENTIALS = os.path.join(BASE_DIR, 'barbell_backend', 'GCS', 'elegant-azimuth-399823-2926231d859f.json')
 GS_BUCKET_NAME = 'barbell_bucket_1'
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_FILE_OVERWRITE = False
