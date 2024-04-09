@@ -56,7 +56,7 @@
                 <label for="member_{{ member.id_for_label }}" class="ml-2 text-sm font-medium text-gray-900">{{ member.choice_label }}</label>
             </div>
         {% endfor %}
-        {% if members|length > 0 %}
+        {% if members|length < 2 %}
             <div class="text-red-600 text-sm text-center">*Removing yourself from the group will delete the group.*</div>
         {% endif %}
         <button type="submit" id="removeButton" class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Remove Selected Members</button>
