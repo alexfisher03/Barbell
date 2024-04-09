@@ -1,23 +1,18 @@
 {
   "name": "barbell_backend",
   "version": "1.0.0",
-  "description": "<h1 align=\"center\"> <a href=\"https://www.socialbarbell.com\"> Barbell</a> - Track Your Gym Progress 💪  </h1>",
+  "description": "<h1 align=\"center\">\r <a href=\"https://www.socialbarbell.com\"> Barbell</a> - Track Your Gym Progress 💪 \r </h1>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alexfisher03/barbell_backend.git"
+    "build:css": "tailwindcss build gym_app/static/css/styles.css -o static/css/main.css",
+    "watch:css": "tailwindcss -i gym_app/static/css/styles.css -o static/css/main.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alexfisher03/barbell_backend/issues"
-  },
-  "homepage": "https://github.com/alexfisher03/barbell_backend#readme",
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1"

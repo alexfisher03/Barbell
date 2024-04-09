@@ -68,37 +68,38 @@
     {% endif %}
 
     <label class="content p-2" for="gender">Gender</label>
-    <div class="grid-cols-1 sm:grid-cols-3 gap-2 justify-center flex">
-      <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
-      <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
-      <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
-      
-      {% if form.gender.errors %}
-        <div class="error text-center justify-center p-2">{{ form.gender.errors.as_text }}</div>
-      {% endif %}
+    <div class="flex justify-center">
+      <div class="grid-cols-1 sm:grid-cols-3 gap-2">
+        <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
+        <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
+        <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
+        
+        {% if form.gender.errors %}
+          <div class="error text-center justify-center p-2">{{ form.gender.errors.as_text }}</div>
+        {% endif %}
 
-      <div class="category -translate-x-3 sm:translate-x-0">
-        <div class="p-1">
-          <label for="dot-1">
-            <span class="dot one mr-1 sm:mr-2"></span>
-            <span class="gender">Male</span>
-          </label>
+        <div class="category">
+          <div class="p-1">
+            <label for="dot-1">
+              <span class="dot one mr-1 sm:mr-2"></span>
+              <span class="gender">Male</span>
+            </label>
+          </div>
+
+          <div class="p-1">
+            <label for="dot-2">
+              <span class="dot two mr-1 sm:mr-2"></span>
+              <span class="gender">Female</span>
+            </label>
+          </div>
+
+          <div class="p-1">
+            <label for="dot-3">
+              <span class="dot three mr-1 sm:mr-2"></span>
+              <span class="gender">Other</span>
+            </label>
+          </div>
         </div>
-
-        <div class="p-1">
-          <label for="dot-2">
-            <span class="dot two mr-1 sm:mr-2"></span>
-            <span class="gender">Female</span>
-          </label>
-        </div>
-
-        <div class="p-1">
-          <label for="dot-3">
-            <span class="dot three mr-1 sm:mr-2"></span>
-            <span class="gender">Other</span>
-          </label>
-        </div>
-
       </div>
     </div>
     <div class="flex justify-center">
