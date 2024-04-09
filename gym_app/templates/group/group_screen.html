@@ -1,83 +1,71 @@
 {% extends 'index.html' %}
 {% load static %}   
-        <title> {% block title %} Barbell | Group  {% endblock %}</title>
-         {% block nav %}
-            <ul>
-               <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
-                <li><a href="/home">HOME</a></li>
-            </ul>
-            {% block header %}<h3 class="barbell">{{ group.name }}</h3> {% endblock %}
-                <p class="barbell-lite small-container">{{ group.groupbio }}</p>
-            {% endblock %}
-                {% block content %}
-                <section class="container">
-                <div class="backdrop-form-style-bio content">
-                    <p>Privacy: {{ group.get_privacy_display }}</p>
-                    <p>Leader: {{ group.created_by.username }}</p>
-                </div>
-                    <br>
-                   <br>
-                   <h2 class="section-header">Members</h2>
+<title> {% block title %} Barbell | Group {% endblock %}</title>
+{% block nav %}
+<ul>
+    <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
+    <li><a href="/home">HOME</a></li>
+</ul>
+{% block header %}<h3 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">{{ group.name }}</h3> {% endblock %}
+    <p class="small-container text-base sm:text-xl">{{ group.groupbio }}</p>
+{% endblock %}
 
-                <div class="backdrop-form-style">
-                   {% if self_user %}
-                   <div class="content-section-group">
-                        {% if self_user.profile_picture %}
-                            <img class="home-screen-image" src="{{ self_user.profile_picture.url }}"> 
-                        {% endif %} 
-                        <strong class="barbell-username">{{ self_user.username }}</strong> 
-                        <a href="{% url 'profile' profile_id=request.user.id %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
-                        <br>
-                    </div>
-                    {% endif %}
-                </div>
-            {% if other_members %}
-                <div class="backdrop-form-style">
-                    {% for member in other_members %}
-                        <div class="content-section-group">
-                            {% if member.profile_picture %}
-                                <img class="home-screen-image" src="{{ member.profile_picture.url }}"> 
-                            {% endif %}
-                            <strong class="barbell">{{ member.username }}</strong>
-                            <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
-                        </div>
-                    {% endfor %}
-                </div>
+{% block content %}
+<section class="grid gap-20 justify-center sm:flex sm:grid-cols-2 sm:justify-center ">
+    <div class="flex-col">
+        <div class="backdrop-form-style-bio content w-1/3 h-1/3">
+            <p>Privacy: {{ group.get_privacy_display }}</p>
+            <p>Leader: {{ group.created_by.username }}</p>
+        </div>
+        <div class="flex justify-center">
+            <a href="{% url 'group_settings' group_id=current_group.id %}"><button class='twButtonblue p-3 m-2' role="button">Settings</button></a>
+        </div>
+        <div class="flex justify-center">
+            <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="twButtonblue p-3 m-2" role="button"><strong> View Group Leaderboard </strong></button></a>
+        </div>
+    </div>
+
+    <div class="">
+        <h2 class="text-3xl mb-3 text-center">Members</h2>
+        {% if self_user %}
+        <div class="content-section-group backdrop-form-style m-5 p-5">
+            {% if self_user.profile_picture %}
+            <img class="home-screen-image" src="{{ self_user.profile_picture.url }}"> 
+            {% endif %} 
+            <strong class="barbell-username text-3xl">{{ self_user.username }}</strong> 
+            <a href="{% url 'profile' profile_id=request.user.id %}"><button class="twButtonblue p-3" role="button"><strong>View Profile </strong></button></a>
+        </div>
+        {% endif %}
+    </div>
+    {% if other_members %}
+    <div class="backdrop-form-style">
+    {% for member in other_members %}
+        <div class="content-section-group">
+        {% if member.profile_picture %}
+            <img class="home-screen-image" src="{{ member.profile_picture.url }}"> 
+        {% endif %}
+            <strong class="barbell">{{ member.username }}</strong>
+            <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+        </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+    {% if other_members %}
+    <div class="backdrop-form-style">
+        {% for member in other_members %}
+        <div class="content-section-group">
+            {% if member.profile_picture %}
+            <img class="home-screen-image" src="{{ member.profile_picture.url }}"> 
             {% endif %}
-            {% if other_members %}
-                <div class="backdrop-form-style">
-                    {% for member in other_members %}
-                        <div class="content-section-group">
-                            {% if member.profile_picture %}
-                                <img class="home-screen-image" src="{{ member.profile_picture.url }}"> 
-                            {% endif %}
-                            <strong class="barbell">{{ member.username }}</strong>
-                            <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-                </section>
-                  <section class="container">
-                    <br>
-                    <div class="button-container">
-                        <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="stat-button" role="button"><strong> View Group Leaderboard </strong></button></a>
-                    </div>
-                    <br>
-                </section>
-                {% endblock %}
-                {% block additional_footer_content %}
-                <div>
-                    <a href="{% url 'group_settings' group_id=current_group.id %}"><button class='group-button' role="button"><strong> Settings </strong></button></a>
-                </div>
-                <div class="container main-footer-container">
-                    <ul class="footer-nav">
-                        <li>
-                            <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
-                        </li>
-                    </ul>
-                </div>
-                {% endblock %}          
-    {% block script %}
-            <script src="{% static 'js/group.js' %}"></script>
-    {% endblock %}
+            <strong class="barbell">{{ member.username }}</strong>
+            <a href="{% url 'profile_other' %}"><button class="group-button" role="button"><strong>View Profile </strong></button></a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
+       
+{% block script %}
+    <script src="{% static 'js/group.js' %}"></script>
+{% endblock %}

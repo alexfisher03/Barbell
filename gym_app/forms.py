@@ -1,6 +1,6 @@
 """
 @author Alexander Fisher & Jonathan Salem
-@version Barbell Version 1
+@version Barbell Version 1.2
 
 @about Defines 'form' class objects within the html templates. Instances of the 
        objects contain the information used in the POST request within view logic.
@@ -84,7 +84,7 @@ class ProfileSettings(forms.ModelForm):
         return user
     
 class CreateGroup(forms.ModelForm):
-    # name is in reference to the group name
+    # group name
     name = forms.CharField(label='Group Name', widget=forms.TextInput, required=True)
     groupbio = forms.CharField(label='Bio', widget=forms.TextInput, required=True)
     privacy = forms.ChoiceField(

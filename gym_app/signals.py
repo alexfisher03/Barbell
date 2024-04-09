@@ -1,6 +1,6 @@
 """
 @author Alexander Fisher & Jonathan Salem
-@version Barbell Version 1
+@version Barbell Version 1.2
 
 @about Handlers for signals sent by Django ORM system.
        This setup ensures that when a CustomUser instance is deleted, 

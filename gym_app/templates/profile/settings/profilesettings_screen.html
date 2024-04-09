@@ -35,13 +35,13 @@
         </div>
 
         {{ form.bio.label_tag }}
-        <div class="w-full sm:w-1/2">
+        <div class="w-5/7 sm:w-1/2">
           {{ form.bio }}
         </div>
         
         <button type="submit" id="confirm-profile-settings" 
           data-url="{% url 'profile' profile_id=request.user.id %}" 
-          class="twButtonpurple p-2 m-5 w-3/4 sm:w-1/4 sm:p-3" role="button">
+          class="twButtonpurple p-2 mt-5 w-3/4 sm:w-1/4 sm:p-3" role="button">
           Confirm
         </button>
 
@@ -51,10 +51,10 @@
           Input Stats
         </button>
 
-        <label class="content text-center p-3" for="reset-password">Reset Password currently down</label>
-        <!--<button id="reset-password" data-url="{% url 'password_reset' %}" class="sign-up-button2" role="button">Click Here</button> -->
+        <label class="content text-center p-3" for="reset-password">Reset Password *FIX*</label>
+        <button id="reset-password" data-url="{% url 'password_reset' %}" class="twButtonblue p-3 w-1/2 sm:w-1/4" role="button">Click Here</button>
       
-        <div class="justify-center p-3">
+        <div class="justify-center p-3 m-3">
           <button data-url="{% url 'profile' profile_id=request.user.id %}" class="hover:underline hover:scale-105"> CANCEL </button>
         </div>
       </div> 
