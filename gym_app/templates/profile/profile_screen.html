@@ -18,27 +18,93 @@
 
 {% block content %}
 
-<div class="flex grid-cols-1 justify-evenly sm:grid-cols-2 sm:justify-evenly ">
+<div class="grid gap-20 justify-center sm:flex sm:grid-cols-2 sm:justify-center ">
 
   <!-- Column 1 -->
   <div>
     <div class="flex justify-center">
-      <div class="backdrop-form-style w-5/6 sm:w-full">
+      <div class="backdrop-form-style p-10 w-4/6 sm:w-full">
         <div class="flex justify-center p-3">
           <p class="text-3xl">{{ custom_user.username }}</p>
         </div>
         <div class="flex justify-center">
-          <img class="home-screen-image w-[150px] h-[150px] p-3 m-3"
+          <img class="home-screen-image w-[150px] h-[150px] p-3 m-3 hover:scale-105 duration-300"
           src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}">
         </div>
         <p class="content p-3">{{ custom_user.bio|default:"No bio yet."}}</p>
         <p class="content p-3">Points: {{ custom_user.points}}</p>
       </div>
     </div>
+  </div> <!-- End Column 1-->
+  
 
-    <section class="content-section-small container button-container">
+  <div> <!-- Column 2 -->
+    <div class="flex justify-center">
+      <div class="backdrop-form-style w-4/6 sm:w-full">
+        <div class="p-10">
+          <table class="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 sm:w-full">
+              <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                      <th scope="col" class="px-6 py-3">
+                          {{ custom_user.username }}'s Stats
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                          Repetitions
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                          Movement
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr class="bg-white dark:bg-gray-800">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          
+                      </th>
+                      <td class="px-6 py-4">
+                         
+                      </td>
+                      <td class="px-6 py-4">
+                          
+                      </td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                         
+                      </th>
+                      <td class="px-6 py-4">
+                          
+                      </td>
+                      <td class="px-6 py-4">
+                          
+                      </td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          
+                      </th>
+                      <td class="px-6 py-4">
+                        
+                      </td>
+                      <td class="px-6 py-4">
+                          
+                      </td>
+                  </tr>
+              </tbody>
+                <tr class="font-semibold bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                   <th scope="row" class="px-6 py-3 text-base"></th>
+                    <td class="px-6 py-3"></td>
+                    <td class="px-6 py-3"></td>
+                </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <section class="content-section container button-container">
       <div class='content'>
-        <a href="{% url 'input_rep_stats' %}"><button class="p-2 my-5 twButtonblue" role="button"><strong>Update Your Stats</strong></button></a>
+        <a href="{% url 'input_rep_stats' %}"><button class="p-2 mb-3 twButtonblue" role="button"><strong>Update Your Stats</strong></button></a>
       </div>
       <div class="button-group">
         {% if current_group %}
@@ -54,91 +120,22 @@
           role="button"><strong> View Global Leaderboard </strong></button></a>
       </div>
       {% if current_group %}
-      <div>
       <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="twButtonpurple p-2" role="button"><strong>
             View Group Leaderboard </strong></button></a>
-      </div>
       {% else %}
       {% endif %}
     </section>
-  </div> <!-- End Column 1-->
-  
 
-  <div> <!-- Column 2 -->
-    <div class="flex justify-center">
-      <div class="backdrop-form-style w-5/6 sm:w-full">
-        <div class="p-10">
-          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
-                      <th scope="col" class="px-6 py-3 rounded-s-lg">
-                          {{ custom_user.username }}'s Stats
-                      </th>
-                      <th scope="col" class="px-6 py-3">
-                          Qty
-                      </th>
-                      <th scope="col" class="px-6 py-3 rounded-e-lg">
-                          Price
-                      </th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr class="bg-white dark:bg-gray-800">
-                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          Apple MacBook Pro 17"
-                      </th>
-                      <td class="px-6 py-4">
-                          1
-                      </td>
-                      <td class="px-6 py-4">
-                          $2999
-                      </td>
-                  </tr>
-                  <tr class="bg-white dark:bg-gray-800">
-                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          Microsoft Surface Pro
-                      </th>
-                      <td class="px-6 py-4">
-                          1
-                      </td>
-                      <td class="px-6 py-4">
-                          $1999
-                      </td>
-                  </tr>
-                  <tr class="bg-white dark:bg-gray-800">
-                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          Magic Mouse 2
-                      </th>
-                      <td class="px-6 py-4">
-                        1
-                      </td>
-                      <td class="px-6 py-4">
-                          $99
-                      </td>
-                  </tr>
-              </tbody>
-              <tfoot>
-                  <tr class="font-semibold text-gray-900 dark:text-white">
-                      <th scope="row" class="px-6 py-3 text-base">Total</th>
-                      <td class="px-6 py-3">3</td>
-                      <td class="px-6 py-3">21,000</td>
-                  </tr>
-              </tfoot>
-          </table>
-        </div>
-
-      </div>
-    </div>
   </div> <!-- End Column 2-->
-
 </div>
+
 {% endblock %}
 
 
 {% block additional_footer_content %}
   <a href="{% url 'profilesettings' %}"><button class="twButtonblue p-2 my-2" role="button">Settings</button></a>
-  <a href="{% url 'logout' %}"><button class="twButtonblue p-2" role="button"><strong>Log Out</strong></button></a>
+  <a href="{% url 'logout' %}"><button class="twButtonblue p-2" role="button">Log Out</button></a>
 {% endblock %}
 {% block scripts %}
-<script src="{% static 'js/profile-self.js' %}"></script>
+<script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

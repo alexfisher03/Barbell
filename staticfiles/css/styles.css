@@ -10,17 +10,17 @@
 
 /* This styles the scrollbar track*/
 ::-webkit-scrollbar-track {
-  background: #18191A; /* Light grey background */
+  background: rgba(46, 46, 47, 0.6); /* Light grey background */
 }
 
 /* This styles the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background: #888; /* Darker grey thumb */
+  background: #6b6c7e; /* Darker grey thumb */
 }
 
 /* Handle the scrollbar thumb hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Even darker grey on hover */
+  background: #41414d; /* Even darker grey on hover */
 }
 
 /* This styles the scrollbar itself */
@@ -56,7 +56,7 @@ body {
 }
 
 html {
-  /* background-image: url("/static/images/gradientbackground.jpg"); */
+  /*background-image: url("/static/images/gradientbackground.jpg");*/
   background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
@@ -201,8 +201,7 @@ html {
 
 .barbell-lite {
   text-align: center;
-  font-family: "Bebas Neue", cursive;
-  font-weight: normal;
+  font-family: "Bebas Neue";
   color: rgba(11, 186, 244, 0.89);
 }
 
@@ -296,12 +295,9 @@ html {
   margin: 1em;
   align-items: center;
   justify-content: center;
-  height: 10vh;
-  font-size: 1.5em;
 }
 
 .container {
-  max-width: 900px;
   margin: 0 auto;
   padding: 0 1.5em;
   display: flex;
@@ -634,8 +630,6 @@ body {
 
 form {
   background-color: rgba(255, 255, 255, 0.13);
-  top: 100%;
-  left: 50%;
   border-radius: 60px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -669,10 +663,8 @@ form .gender-details .gender-title {
 }
 
 form .category {
-  display: flex;
   width: 80%;
   margin: 14px 0;
-  justify-content: space-between;
 }
 
 form .category label {
@@ -862,24 +854,6 @@ form .member-limit-details .limit-val {
   margin-bottom: 2em;
 }
 
-.custom-radio {
-  display: flex;
-  flex-direction: colum;
-}
-
-.custom-radio input[type="radio"] {
-  display: inline;
-  margin-right: 10px;
-  appearance: none;
-  outline: none;
-}
-
-.custom-radio label {
-  font-size: 14px;
-  color: #fff;
-  cursor: pointer;
-}
-
 .profile-button {
   background-color: rgba(122, 113, 189, 0.8);
   color: #fff;
@@ -967,6 +941,8 @@ form .member-limit-details .limit-val {
 .stat-table button {
   width: 10%;
 }
+
+
 
 /** new styles added with feature/tailwindcss **/
 

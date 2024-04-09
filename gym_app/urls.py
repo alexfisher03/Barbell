@@ -1,6 +1,6 @@
 """
 @author Alexander Fisher & Jonathan Salem
-@version Barbell Version 1
+@version Barbell Version 1.2
 
 @about Contains a list of the various url defined web-requests
 
@@ -47,6 +47,7 @@ from .views import CustomLoginView, CustomLogoutView
 from django.contrib.auth.views import (PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 from . import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about_screen, name='about'),
@@ -72,4 +73,6 @@ urlpatterns = [
     path('get_stats/', views.get_stats, name = 'ajax_get_stats'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
 ]
+
+
 

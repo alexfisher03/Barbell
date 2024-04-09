@@ -1,6 +1,6 @@
 """
 @author Alexander Fisher & Jonathan Salem
-@version Barbell Version 1
+@version Barbell Version 1.2
 
 @about Contains the backend python functions and class objects that 
        handle and interact with various web requests and render responses
@@ -166,33 +166,45 @@ def group_settings_screen(request, group_id):
     group = get_object_or_404(Group, id=group_id)
 
     if request.user != group.created_by:
-        return redirect('group_screen') # eventually create a message screen saying user cannot access 
+        messages.error(request, "You don't have permission to access this page.")
+        return redirect('group_screen')
 
-    members = group.group_members.all()
-    if len(members) < 1:
-        return redirect('group_screen', group_id=group_id) # if group was deleted add message screen
+    form = GroupSettings(request.POST, instance=group, group=group)
 
     if request.method == 'POST':
-        form = GroupSettings(request.POST, instance=group)
         if form.is_valid():
             updated_group = form.save(commit=False)
-            updated_group.privacy = form.cleaned_data['privacy']
+            updated_group.name = form.cleaned_data.get('name')
+            updated_group.groupbio = form.cleaned_data.get('groupbio')
+            updated_group.privacy = form.cleaned_data.get('privacy')
+            
+            members_to_remove = form.cleaned_data.get('members_to_remove')
+            for member in members_to_remove:
+                if group.created_by in members_to_remove:
+                    group.delete()
+                    messages.success(request, "The group has been deleted.")
+                    return redirect('profile', profile_id=request.user.id)
+            
+                group.group_members.remove(member)
+            
             updated_group.save()
+            form.save_m2m()
+
+            if members_to_remove == group.created_by:
+                updated_group.delete()
+                messages.success(request, "The group has been deleted.")
+                return redirect('profile', profile_id=request.user.id)
+
+            messages.success(request, "Group settings updated successfully.")
             return redirect('group_screen', group_id=group_id)
-        else:
-            print(form.errors)
-    if not group:
-        return redirect('group_screen')
-    else:
-        form = GroupSettings(instance=group, group=group)
 
     context = {
         'form': form,
         'group': group,
-        'members': members
+        'members': group.group_members.all()
     }
-
     return render(request, 'group_settings/group_settings_screen.html', context)
+
 
 # static render function
 def home_screen(request):
@@ -286,7 +298,7 @@ def profilesettings_screen(request):
            if form.cleaned_data['bio']:
                user.bio = form.cleaned_data['bio']
            user.save()
-           return redirect('profile')
+           return redirect('profile', profile_id=user.id)
        else:
            for error in form.errors:
                messages.error(request, f"{error}: {form.errors[error]}")
@@ -327,5 +339,14 @@ def register_screen(request):
 def global_leaderboard(request):
     return render(request, 'leaderboard/global/global_leaderboard_screen.html')
 
+"""
+Logic for the 404 error page
+"""
+def custom_page_not_found_view(request, exception):
+    return render(request, 'errors/404.html', {}, status=404)
 
-
+"""
+Logic for the 500 error page
+"""
+def custom_internal_server_error_view(request, *args, **kwargs):
+    return render(request, 'errors/500.html', {}, status=500)
