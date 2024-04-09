@@ -113,20 +113,18 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': '/var/log/django/error.log',
+        'console': {
+            'class': 'logging.StreamHandler',
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': True,
+    'loggers': {                    # Change for production from dontforget.txt
+        'django': { 
+            'handlers': ['console'],
+            'level': 'INFO',
         },
     },
 }
+
 """
 ------*Middleware Configuration
 """
