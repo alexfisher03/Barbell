@@ -1,6 +1,6 @@
 """
 @author Alexander Fisher & Jonathan Salem
-@version Barbell Version 1
+@version Barbell Version 1.2
 
 @about Contains the actual apps configuration class object. This object 
 tells Django what settings to configure. 
