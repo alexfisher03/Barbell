@@ -19,11 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Email cannot be empty.');
             valid = false;
         }
-        
-        if (!phone.value.trim()) {
-            alert('Phone number cannot be empty.');
-            valid = false;
-        }
 
         if (!password.value.trim()) {
             alert('Password cannot be empty.');
@@ -61,13 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-const signInButton = document.getElementById("sign-in-button");
-
-signInButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "/signin/"; // Redirects to signin view
-});
-
 // Toggle password visibility for password1
 document.getElementById('toggle-password1').addEventListener('click', function () {
     const passwordInput1 = document.getElementById('password');
@@ -90,4 +78,11 @@ document.getElementById('toggle-password1').addEventListener('click', function (
       passwordInput2.type = 'password';
       this.textContent = 'Show';
     }
+  });
+
+  const phoneLabel = document.getElementById('phone-label');
+  const phoneField = document.getElementById('phone-field');
+
+  phoneLabel.addEventListener('click', function() {
+    phoneField.classList.toggle('hidden');
   });

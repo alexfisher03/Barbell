@@ -1,24 +1,24 @@
 {% extends 'index.html' %}
 {% load static %}
-    <title>{% block title %} Barbell | Home {% endblock %} </title>
-          {% block nav %}
-          <li><a href="/profile/self">PROFILE</a></li>
-          <li><a href="/general_settings">MORE</a></li>
-          {% block header %}<h1 class="barbell">Home</h1> {% endblock %}
-          {% endblock %}
-        {% block content %}
-    <div class="backdrop-form-style">
-        <section class="content-section container main-header">
-      <h class="section-header">Welcome To Barbell</h>
-      <br>
-      Find Group, Image Share Timeline, & Comment System coming soon &#9935;
-        
-      </section>
-    </div>
-      {% endblock %}
-      {% block additional_footer_content %}
-            {% endblock %}
-    {% block script %}
-    <script src="{% static 'js/home.js' %}"></script>
-    {% endblock %}
+<title>{% block title %} Barbell | Home {% endblock %} </title>
+{% block nav %}
+  {% if request.user.is_authenticated %}
+  <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
+  {% else %}
+  <li><a href="{% url 'signin' %}">LOGIN</a></li>
+  {% endif %}
+  <li><a href="/general_settings">SETTINGS</a></li>
+  {% block header %}<h1 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">Home</h1> {% endblock %}
+{% endblock %}
+{% block content %}
+<div class="flex justify-center">
+  <div class="backdrop-form-style">
+    <p class="section-header"></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+  <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
 

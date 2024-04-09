@@ -1,29 +1,58 @@
 {% extends 'index.html' %}
 {% load static %}
-        <title> {% block title %} Barbell | General Settings {% endblock %} </title>
-    
-                {% block nav %}
-                        <li><a href="/profile/self">PROFILE</a></li>
-                        <li><a href="/home">HOME</a></li>
-                        {% block header %}<h3 class="barbell">App Settings</h3> {% endblock %}
-                {% endblock %}
-            {% block content %}
-            <div class="backdrop-form-style-small">
-                <a href="{% url 'privacy' %}"><div class="content-settings privacy-link">Privacy</div></a>
-                <br>
-                <a href="{% url 'about' %}"><div class="content-settings about-link">About</div></a>
-                <br>
-            </div>
-            {% endblock %}
-            {% block additional_footer_content %}
-                <div class="container main-footer-container">
-                    <ul class="footer-nav">
-                        <li>
-                            <a href="#"><button id="back-button" class="profile-button" role="button"><strong> Back </strong></button></a>
-                        </li>
-                    </ul>
-                </div>
-            {% endblock %}
-        {% block scripts %}
+<title> {% block title %} Barbell | General Settings {% endblock %} </title>
+{% block nav %}
+    {% if request.user.is_authenticated %}
+        <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
+    {% else %}
+        <li><a href="{% url 'signin' %}">LOGIN</a></li>
+    {% endif %}
+        <li><a href="/home">HOME</a></li>                 
+    {% block header %}<h1 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">App Settings</h1> {% endblock %}
+{% endblock %}
+{% block content %}
+<div class="flex justify-center">
+    <div class="backdrop-form-style p-10 justify-start">
+
+        <div class="flex hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+            </svg>          
+            <div class="mb-3 ml-1 hover:underline font-bold text-xl">Notification Settings</div>
+        </div>
+
+        <div class="flex hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+            </svg>          
+            <a href="{% url 'privacy' %}"><div class="ml-1 mb-3 hover:underline hover:scale-105 font-bold text-xl">Privacy Policy</div></a>
+        </div>
+
+        <div class="flex hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+            </svg>                        
+            <a href="#"><div class="ml-1 mb-3 hover:underline hover:scale-105 font-bold text-xl">Privacy Settings</div></a>
+        </div>
+
+        <div class="flex hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+            </svg>                                       
+            <a href="#"><div class="ml-1 mb-3 hover:underline hover:scale-105 font-bold text-xl">Help and Support</div></a>
+        </div>
+
+        <div class="flex hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+            <a href="{% url 'logout' %}"><div class="ml-1 hover:underline hover:scale-105 font-bold text-xl">Logout</div></a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
     <script src="{% static 'js/general-settings.js' %}"></script>
-        {% endblock %}
+{% endblock %}

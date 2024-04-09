@@ -1,11 +1,12 @@
 """
 @author Alexander Fisher & Jonathan Salem
-@version Barbell Version 1
+@version Barbell Version 1.2
 
 @about Contains the backend python functions and class objects that 
        handle and interact with various web requests and render responses
 """
 
+from typing import Any
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
 from .models import CustomUser, TableData, ImageMetadata, Group, StatData
@@ -13,10 +14,11 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 """
 Takes in the Django 'AllauthPasswordResetView' class object as a parameter, but 
@@ -44,17 +46,31 @@ class CustomLoginView(LoginView):
 
             if user is not None:
                 login(request, user)
-                return redirect('profile_self')
+                return redirect('profile', profile_id=user.id)
             else:
                 try:
                     user = CustomUser.objects.get(phone=username)
                     if user.check_password(password):
                         login(request, user)
-                        return redirect('profile_self')
+                        return redirect('profile', profile_id=user.id)
                 except CustomUser.DoesNotExist:
                     pass
                 messages.error(request, 'Invalid username or password.')
             return render(request, 'signin/signin_screen.html')
+    
+"""
+Customizes the logout html template but with built in Django logout view logic. Additionally, 
+in select HTML templates we want to hide certain elements usually inherited by the index.html 
+(parent file). In order to do this for the footer in the logout screen, we set the 'show_footer'
+variable '= False' within the context dict, all inside the built in Django LogoutView
+"""
+class CustomLogoutView(LoginRequiredMixin, LogoutView):
+    template_name = 'logout/logout.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['show_footer'] = False
+        return context
 
 # static render function
 def index(request):
@@ -126,9 +142,13 @@ def group_leaderboard(request, group_id):
     group = Group.objects.get(id=group_id)
     members = group.group_members.all()
 
-    # in developement
+    context = {
+        'group': group,
+        'members': members,
+    }
     
-    return render(request, 'leaderboard/group/group_leaderboard_screen.html')
+    
+    return render(request, 'leaderboard/group/group_leaderboard_screen.html', context)
 
 
 """
@@ -146,33 +166,45 @@ def group_settings_screen(request, group_id):
     group = get_object_or_404(Group, id=group_id)
 
     if request.user != group.created_by:
-        return redirect('group_screen') # eventually create a message screen saying user cannot access 
+        messages.error(request, "You don't have permission to access this page.")
+        return redirect('group_screen')
 
-    members = group.group_members.all()
-    if len(members) < 1:
-        return redirect('group_screen', group_id=group_id) # if group was deleted add message screen
+    form = GroupSettings(request.POST, instance=group, group=group)
 
     if request.method == 'POST':
-        form = GroupSettings(request.POST, instance=group)
         if form.is_valid():
             updated_group = form.save(commit=False)
-            updated_group.privacy = form.cleaned_data['privacy']
+            updated_group.name = form.cleaned_data.get('name')
+            updated_group.groupbio = form.cleaned_data.get('groupbio')
+            updated_group.privacy = form.cleaned_data.get('privacy')
+            
+            members_to_remove = form.cleaned_data.get('members_to_remove')
+            for member in members_to_remove:
+                if group.created_by in members_to_remove:
+                    group.delete()
+                    messages.success(request, "The group has been deleted.")
+                    return redirect('profile', profile_id=request.user.id)
+            
+                group.group_members.remove(member)
+            
             updated_group.save()
+            form.save_m2m()
+
+            if members_to_remove == group.created_by:
+                updated_group.delete()
+                messages.success(request, "The group has been deleted.")
+                return redirect('profile', profile_id=request.user.id)
+
+            messages.success(request, "Group settings updated successfully.")
             return redirect('group_screen', group_id=group_id)
-        else:
-            print(form.errors)
-    if not group:
-        return redirect('group_screen')
-    else:
-        form = GroupSettings(instance=group, group=group)
 
     context = {
         'form': form,
         'group': group,
-        'members': members
+        'members': group.group_members.all()
     }
-
     return render(request, 'group_settings/group_settings_screen.html', context)
+
 
 # static render function
 def home_screen(request):
@@ -211,11 +243,6 @@ def stat_screen(request):
 def privacy_screen(request):
     return render(request, 'privacy/privacy_screen.html')
 
-"""
-maybe change all profile instances to rely on a dynamic <int: user_id> instead...
-"""
-def profile_other_screen(request):
-    return render(request, 'profile/other/profile_other_screen.html')
 
 """
 This function initializes variables representing the various data attributes of the CustomUser model,
@@ -225,19 +252,34 @@ as key value pairs, where the keys are called in the HTML templates, thus allowi
 populate the different user profile screens.
 """
 @login_required
-def profile_self_screen(request):
-    custom_user = request.user
-    table_data = TableData.objects.filter(user=request.user)
-    images = ImageMetadata.objects.filter(user=request.user)
-    current_group = request.user.current_group
+def profile_screen(request, profile_id):
+    # check if the profile id matches the logged in user
+    if profile_id == request.user.id:
+        profile = request.user
+    # uses the dynamically created profile id value i.e. another user
+    else:
+        profile = get_object_or_404(CustomUser, id=profile_id)
+    
+    # fetching profile specific data from the model class object
+    table_data = TableData.objects.filter(user=profile)
+    images = ImageMetadata.objects.filter(user=profile)
+    current_group = profile.current_group
+
+    if profile == request.user:
+        my_groups = Group.objects.filter(created_by=profile)
+    else:
+        my_groups = None
+
     context = {
+        'profile': profile,
         'table_data': table_data, 
         'images': images, 
-        'custom_user': custom_user,
-        'current_group': current_group
+        'custom_user': request.user,
+        'current_group': current_group,
+        'my_groups': my_groups,
     }
-    my_groups = Group.objects.filter(created_by=request.user)
-    return render(request, 'profile/self/profile_self_screen.html', context)
+    
+    return render(request, 'profile/profile_screen.html', context)
 
 """
 Handles the user's ProfileSettings form class-object POST request. Uses cleaned_data method
@@ -256,7 +298,7 @@ def profilesettings_screen(request):
            if form.cleaned_data['bio']:
                user.bio = form.cleaned_data['bio']
            user.save()
-           return redirect('profile_self')
+           return redirect('profile', profile_id=user.id)
        else:
            for error in form.errors:
                messages.error(request, f"{error}: {form.errors[error]}")
@@ -297,5 +339,14 @@ def register_screen(request):
 def global_leaderboard(request):
     return render(request, 'leaderboard/global/global_leaderboard_screen.html')
 
+"""
+Logic for the 404 error page
+"""
+def custom_page_not_found_view(request, exception):
+    return render(request, 'errors/404.html', {}, status=404)
 
-
+"""
+Logic for the 500 error page
+"""
+def custom_internal_server_error_view(request, *args, **kwargs):
+    return render(request, 'errors/500.html', {}, status=500)

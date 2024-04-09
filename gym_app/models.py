@@ -1,10 +1,52 @@
 """
-@author Alexander Fisher & Jonathan Salem
-@version Barbell Version 1
+@authors Alexander Fisher & Jonathan Salem
+@version Barbell Version 1.2
 
-@about This is the Python script handling our database data table *actual* data. 
-       Each class object corresponds to an object containing our user's data, a user's group,
-       user stat or stat table, etc. 
+@about Models definition for the Barbell application, structuring the database schema and relationships. 
+       This module contains classes representing different aspects of the application's data model,
+       including user profiles, groups, stat data, and images, with their respective fields and behaviors.
+
+        *CustomUser:
+            - Extends Django's AbstractUser to include additional fields like profile pictures, biographies, date of birth, phone numbers, and gender.
+            - Incorporates a choice field for gender with options for Male, Female, and Other.
+            - Associates users with groups and maintains a points system for gamification purposes.
+
+        *Group:
+            - Represents user-created groups with attributes for name, biography, and privacy settings.
+            - Supports two privacy options: Public and Private, controlled via a choice field.
+            - Groups are created by users, establishing a link between the group and its creator.
+
+        *TableData:
+            - Stores user-specific data entries with attributes for date, title, and value.
+            - Designed to accommodate various types of numerical data associated with user activities.
+
+        *StatData:
+            - Specifically tailored for tracking workout statistics, including the exercise name, number of sets, and repetitions.
+            - Facilitates the recording and analysis of users' fitness progress over time.
+
+        *ImageMetadata:
+            - Manages image uploads by users, with fields for the associated user, image file, caption, and timestamp.
+            - Enables the sharing and display of images within the application, enhancing user interaction and content richness.
+
+        *Meta Information:
+            - Each model class includes meta information to define human-readable names for the Django admin interface.
+            - Ensures clarity and ease of management for site administrators.
+
+        *String Representation:
+            - Implements the `__str__` method for each class to return a meaningful string representation,
+              improving readability and convenience during debugging and administration.
+
+        *Relationships:
+            - Demonstrates the use of Django model relationships, including ForeignKey and ManyToManyField,
+              to model complex data structures and interactions between different entities within the application.
+
+        *Customization and Extensibility:
+            - The models are designed to be flexible and extensible, allowing for future enhancements and additional features
+              as the application evolves and grows in complexity.
+
+        *Best Practices:
+            - Follows Django model best practices, ensuring a robust, scalable, and maintainable database schema
+              that effectively supports the application's functionality and user requirements.
 """
 
 from django.db import models
@@ -28,6 +70,7 @@ class CustomUser(AbstractUser):
     dob = models.DateField(null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True, null=True) 
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
+    points = models.IntegerField(default=0) 
     class Meta:
         verbose_name = 'App user'
         verbose_name_plural = 'App users'

@@ -1,68 +1,109 @@
+<!-- 
+@author Alexander Fisher & Jonathan Salem
+@version 1.2 - Tailwind Css version
+
+@about
+Master template file
+-->
+
 {% load static %}
 <!DOCTYPE html>
 <html>
 
 <head>
+  {% block head %} {% endblock %}
   {% block style %} {% endblock %}
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
   <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
   <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %} Barbell | Index {% endblock %}</title>
-  <meta name="description" content="This is the description" />
+  <meta name="description" content="Barbell - Gym Social Media Web Application" />
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
 </head>
 
 <body>
   <div class="page-wrapper">
-    <br>
-    <br>
-    <br>
-    <br>
-    <header class="main-header">
+    <header class="main-header mt-5 md:mt-8">
       <nav class="nav main-nav">
         {% block nav %}
         <h1 class="barbell">{% block header %}{% endblock %}</h1>
         {% endblock %}
       </nav>
     </header>
-    <section class="container">
       {% block content %}
-      <div class="barbell bottom-space-medium">WELCOME TO BARBELL</div>
-      <section class="content-section container main-header">
-        <div class="backdrop-form-style all-space-small">
-          <label class="medium-font all-space-small">
-            <p class="section-header">Full Release in Developement</p>
-            <p> Track Your Gym Progress </p>
-            <p> Add Friends!</p>
-            <p> Create Groups +</p>
-            <p> Compete to climb leaderboards </p>
-            <div class="all-space-medium special-font">
-              <p> Version 1.0</p>
-              <p> Created By: <a href="https://github.com/alexfisher03"> Alexander Fisher</a> (University Of Florida)
-                and <a href="https://github.com/jsalem5?tab=repositories"> Jonathan Salem </a> (University of Texas)</p>
+      <div id="fade-in-element" class="opacity-0 barbell text-lg sm:text-4xl md:text-6xl lg:text-8xl md:m-8">WELCOME TO BARBELL</div>
+      <section class="content-section container md:h-screen/2 md:flex-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 items-center">
+          <div id="fade-in-element2" class="opacity-0 w-full"> 
+            <label class="medium-font all-space-small">
+              <p class="section-header text-lg lg:text-5xl md:text-4xl sm:text-xl mb-6">Full Release in Developement</p>
+              <p class="text-base lg:text-2xl md:text-xl sm:text-sm"> Track Your Gym Progress </p>
+              <p class="text-base lg:text-2xl md:text-xl sm:text-sm"> Add Friends!</p>
+              <p class="text-base lg:text-2xl md:text-xl sm:text-sm"> Create Groups +</p>
+              <p class="text-base lg:text-2xl md:text-xl sm:text-sm"> Join Challenges and Earn Points </p>
+            </label>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex justify-center sm:justify-start">
+              <div id="fade-in-element3" class="opacity-0 backdrop-form-style p-[20px] w-4/5 sm:w-3/5 md:p-[50px]">
+                {% if request.user.is_authenticated %}
+                <div class="flex text-center w-full">
+                  <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Welcome Back, Click To Proceed </label>
+                </div>
+                {% else %}
+                <div class="flex text-center w-full">
+                  <label class="content-label-text text-lg lg:text-2xl md:text-xl sm:text-sm"> Click Here To Get Started </label>
+                </div>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <div class="flex justify-center">
+                  <a href="{% url 'profile' profile_id=request.user.id %}">
+                    <button class="mt-3 px-4 p-2 twButtonpurple">Continue</button>
+                  </a>
+                </div>
+                {% else %}
+                <div class="flex justify-center">
+                  <a href="{% url 'signin' %}">
+                    <button class="mt-3 px-4 p-2 twButtonpurple">Login</button>
+                  </a>
+                </div>
+                <div class="flex justify-center">
+                  <a href="{% url 'register' %}">
+                    <button class="mt-5 px-4 p-2 twButtonpurple">Sign Up</button>
+                  </a>
+                </div>
+                {% endif %}
+              </div>
             </div>
+          </div>
         </div>
-        <a href="{% url 'signin' %}"><button class="profile-button">Get Started</button></a>
       </section>
       {% endblock %}
-    </section>
-    <footer class="main-footer">
-      {% block additional_footer_content %}{% endblock %}
-      <div class="container main-footer-container">
-        <img class="static-logo-white" src="{% static 'images/barbell_white.png' %}" />
-      </div>
+    <footer class="pt-1 sm:pt-10 main-footer">
+      {% if show_footer != False %}
+        {% block additional_footer_content %}{% endblock %}
+        <div class="container main-footer-container">
+          <div class="flex flex-row justify-center items-center text-sm sm:text-base md:text-lg lg:text-xl"> 
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+            </svg>                        
+            <a href="{% url 'about' %}"><div class="about-link ml-1 hover:underline hover:scale-105 text-xl">About</div></a>
+          </div>
+          <a href="{% url 'index' %}"><img class="hidden sm:block p-10 hover:scale-110 duration-300 static-logo-white" src="{% static 'images/barbell_white.png' %}" /></a>
+        </div>
+      {% endif %}
     </footer>
     {% block scripts %}
-    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
     {% endblock %}
 </body>
-</div>
-
 </html>

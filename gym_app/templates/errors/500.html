@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+<title>{% block title %} Barbell | 500 {% endblock %} </title>
+
+{% block nav %}
+<div class="pb-2">
+  <li><a href="/home">HOME</a></li>
+  {% if current_group %}
+    <li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
+  {% else %}
+    <li><a href="#">No Group</a></li>
+  {% endif %}
+</div>
+
+  {% block header %}<h1 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">Internal Server Error</h1> {% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="justify-evenly text-center h-full">
+    <div class="section-header text-lg sm:text-3xl md:text-4xl lg:text-5xl md:m-12">
+        It looks like there's an internal server error. Try to refresh the page, go back to the index, or contact support.
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

@@ -2,81 +2,129 @@
 {% load static %}
 <title>{% block title %}Barbell | Register{% endblock %}</title>
 {% block nav %}
-<li><a href="/home">CONTINUE AS GUEST</a></li>
+<!--<li><a href="/home">CONTINUE AS GUEST</a></li>-->
 {% block header %} {% endblock %}
 {% endblock %}
+
 {% block content %}
-<form class="registration-form" method="post">
-  {% csrf_token %}
-  {% if success %}
-  <div class="content success">Registration successful!</div>
-  {% endif %}
-  <h3 class="section-header">Register</h3>
-  <label class="content" for="username">Username</label>
-  <input type="text" placeholder="Enter Username" id="username" name="username"
-    value="{{ form.username.value|default:'' }}">
-  {% if form.username.errors %}
-  <div class="error">{{ form.username.errors.as_text }}</div>
-  {% endif %}
-  <label class="content" for="username">Email</label>
-  <input type="text" placeholder="Enter Email" id="email" name="email" value="{{ form.email.value|default:'' }}">
-  {% if form.email.errors %}
-  <div class="error">{{ form.email.errors.as_text }}</div>
-  {% endif %}
-  <label class="content" for="phone">Phone Number</label>
-  <input type="tel" placeholder="Phone Number" id="phone" name="phone" value="{{ form.phone.value|default:'' }}">
-  {% if form.phone.errors %}
-  <div class="error">{{ form.phone.errors.as_text }}</div>
-  {% endif %}
-  <label class="content" for="password">Password</label>
-  <div class="password-input-container">
-    <input type="password" placeholder="Password" id="password" name="password1">
-    <button type="button" id="toggle-password1" class="password-toggle-button">Show</button>
-  </div>
-  {% if form.password1.errors %}
-  <div class="error">{{ form.password1.errors.as_text }}</div>
-  {% endif %}
+<div class="flex justify-center">
+  <form class="registration-form w-5/6 sm:w-2/3" method="post">
+    {% csrf_token %}
 
-  <label class="content" for="confirm-password">Confirm Password</label>
-  <div class="password-input-container">
-    <input type="password" placeholder="Confirm Password" id="confirm-password" name="password2">
-    <button type="button" id="toggle-password2" class="password-toggle-button">Show</button>
-  </div>
-  {% if form.password2.errors %}
-  <div class="error">{{ form.password2.errors.as_text }}</div>
-  {% endif %}
-
-  <label class="content" for="gender">Gender</label>
-  <div class="gender-details">
-    <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value=='M' %}checked{% endif %}>
-    <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value=='F' %}checked{% endif %}>
-    <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value=='O' %}checked{% endif %}>
-    {% if form.gender.errors %}
-    <div class="error">{{ form.gender.errors.as_text }}</div>
+    {% if success %}
+      <div class="content success">Registration successful!</div>
     {% endif %}
-    <div class="category">
-      <label for="dot-1">
-        <span class="dot one"></span>
-        <span class="gender">Male</span>
-      </label>
-      <label for="dot-2">
-        <span class="dot two"></span>
-        <span class="gender">Female</span>
-      </label>
-      <label for="dot-3">
-        <span class="dot three"></span>
-        <span class="gender">Other</span>
-      </label>
+
+    <h3 class="section-header p-3">Register</h3>  
+
+    <label class="content p-2" for="username">Username</label>
+    <div class="flex justify-center pb-2">
+      <input class="flex w-2/3 sm:w-1/3" type="text" placeholder="Enter Username" id="username" name="username"
+        value="{{ form.username.value|default:'' }}">
     </div>
-  </div>
-  <br>
-  <button id="register-button" class="login-button" role="button">Register</button>
-  <br>
-  <label class="content" for="not-member"> Already a Member?</label>
-  <button id="sign-in-button" class="sign-up-button2" role="button">Sign In</button>
-</form>
+
+    {% if form.username.errors %}
+      <div class="error text-center justify-center p-2">{{ form.username.errors.as_text }}</div>
+    {% endif %}
+
+    <label class="content p-2" for="username">Email</label>
+    <div class="flex justify-center pb-2">
+      <input class="flex w-2/3 sm:w-1/3" type="text" placeholder="Enter Email" id="email" name="email" 
+      value="{{ form.email.value|default:'' }}">
+    </div>
+
+    {% if form.email.errors %}
+      <div class="error text-center justify-center p-2">{{ form.email.errors.as_text }}</div>
+    {% endif %}
+
+    <label class="content p-2 cursor-pointer" for="phone" id="phone-label"><i class="underline">Phone Number - Optional</i></label>
+    <div class="flex justify-center pb-2 hidden" id="phone-field">
+      <input class="flex w-2/3 sm:w-1/3" type="tel" placeholder="Phone Number" id="phone" name="phone" 
+        value="{{ form.phone.value|default:'' }}">
+    </div>
+    
+    {% if form.phone.errors %}
+      <div class="error text-center justify-center p-2">{{ form.phone.errors.as_text }}</div>
+    {% endif %}
+
+    <label class="content p-2" for="password">Password</label>
+    <div type="button" id="toggle-password1" class="password-toggle-button flex justify-center">Show</div>
+    <div class="relative flex justify-center w-full">
+      <input class="flex w-2/3 sm:w-1/3" type="password" placeholder="Password" id="password" name="password1">
+    </div>
+
+    {% if form.password1.errors %}
+      <div class="error text-center justify-center p-2">{{ form.password1.errors.as_text }}</div>
+    {% endif %}
+
+    <label class="content p-2" for="confirm-password">Confirm Password</label>
+    <div type="button" id="toggle-password2" class="password-toggle-button flex justify-center">Show</div>
+    <div class="flex justify-center">
+      <input class="flex w-2/3 sm:w-1/3" type="password" placeholder="Confirm Password" id="confirm-password" name="password2">
+    </div>
+
+    {% if form.password2.errors %}
+      <div class="error text-center justify-center p-2">{{ form.password2.errors.as_text }}</div>
+    {% endif %}
+
+    <label class="content p-2" for="gender">Gender</label>
+    <div class="grid-cols-1 sm:grid-cols-3 gap-2 justify-center flex">
+      <input type="radio" name="gender" id="dot-1" value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
+      <input type="radio" name="gender" id="dot-2" value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
+      <input type="radio" name="gender" id="dot-3" value="O" {% if form.gender.value == 'O' %}checked{% endif %}>
+      
+      {% if form.gender.errors %}
+        <div class="error text-center justify-center p-2">{{ form.gender.errors.as_text }}</div>
+      {% endif %}
+
+      <div class="category -translate-x-3 sm:translate-x-0">
+        <div class="p-1">
+          <label for="dot-1">
+            <span class="dot one mr-1 sm:mr-2"></span>
+            <span class="gender">Male</span>
+          </label>
+        </div>
+
+        <div class="p-1">
+          <label for="dot-2">
+            <span class="dot two mr-1 sm:mr-2"></span>
+            <span class="gender">Female</span>
+          </label>
+        </div>
+
+        <div class="p-1">
+          <label for="dot-3">
+            <span class="dot three mr-1 sm:mr-2"></span>
+            <span class="gender">Other</span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <!-- <button id="" class="twButtonblue justify-center w-1/2 px-3 py-3 sm:p-3 sm:w-1/3 md:w-1/4" role="button">Currently Disabled</button> -->
+      <p class="text-lg text-center">Registration Currently Disabled</p>
+    </div>
+    
+    {% if request.user.is_authenticated %}
+    <label class="content p-3" for="not-member"> Already a Member?</label>
+    <div class="flex justify-center">
+      <button class="twButtonlightblue w-1/3"><a href="{% url 'profile' profile_id=request.user.id %}">Sign In</a></button>
+    </div>
+      {% else %}
+      <label class="content p-3" for="not-member"> Already a Member?</label>
+      <div class="flex justify-center">
+        <a href="{% url 'signin' %}" class="mb-2 mt-0 w-full text-center">
+          <div class="text-[#4470ff] text-base cursor-pointer p-2 sm:text-xl">Sign In Here</div>
+        </a>
+      </div>
+    {% endif %}
+  </form>
+</div>
 {% endblock %}
+
 {% block additional_footer_content %}{% endblock %}
+
 {% block scripts %}
 <script src="{% static 'js/register.js' %}"></script>
 {% endblock %}

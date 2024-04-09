@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const signInButton = document.querySelector('[data-action="signIn"]');
-    const signUpButton = document.querySelector('[data-action="signUp"]');
+    const signUpButton = document.getElementById("sign-up-button");
 
     signInButton.addEventListener('click', (event) => {
         event.preventDefault();
@@ -19,10 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // otherwise handle login error
     });
 
-    signUpButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        window.location.href = signUpButton.getAttribute('data-url');
-    });
+    if (signUpButton) {
+        signUpButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission or button default behavior
+            window.location.href = "{% url 'register' %}"; 
+        });
+    }
 });
 
 

@@ -25,7 +25,7 @@
           <title> {% block title %} Barbell | Input Stats  {% endblock %}</title>
           
           {% block nav %}
-                      <li><a href="/profile/self">PROFILE</a></li>
+                      <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
                       <li><a href="/home">HOME</a></li>
                       {% block header %}<h1 class="barbell">Input Stats</h1> {% endblock %}
           {% endblock %}
@@ -59,7 +59,7 @@
 {% endblock %}
       {% block additional_footer_content %}
       <div class="button-container">
-        <a href="{% url 'profile_self' %}"><button id="" class="stat-button" role="button"><strong> Confirm Updated Settings </strong></button></a>
+        <a href="{% url 'profile' profile_id=request.user.id %}"><button id="" class="stat-button" role="button"><strong> Confirm Updated Settings </strong></button></a>
       </div>
      <!--
       <div class="container main-footer-container">
