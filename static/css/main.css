@@ -755,6 +755,18 @@ video {
   height: 100%;
 }
 
+.h-10{
+  height: 2.5rem;
+}
+
+.h-3{
+  height: 0.75rem;
+}
+
+.h-5{
+  height: 1.25rem;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -805,6 +817,14 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.w-3{
+  width: 0.75rem;
+}
+
+.w-5{
+  width: 1.25rem;
 }
 
 .border-collapse{
@@ -873,12 +893,6 @@ video {
 
 .gap-20{
   gap: 5rem;
-}
-
-.space-y-4 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .whitespace-nowrap{
@@ -1836,8 +1850,6 @@ form .category label {
 }
 
 form .category label .dot {
-  height: 18px;
-  width: 18px;
   border-radius: 50%;
   background: #0d70ea;
   border: 5px solid transparent;
@@ -2276,10 +2288,6 @@ form .member-limit-details .limit-val {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .sm\:flex-row{
-    flex-direction: row;
-  }
-
   .sm\:justify-start{
     justify-content: flex-start;
   }
@@ -2290,18 +2298,6 @@ form .member-limit-details .limit-val {
 
   .sm\:gap-4{
     gap: 1rem;
-  }
-
-  .sm\:space-x-4 > :not([hidden]) ~ :not([hidden]){
-    --tw-space-x-reverse: 0;
-    margin-right: calc(1rem * var(--tw-space-x-reverse));
-    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .sm\:space-y-0 > :not([hidden]) ~ :not([hidden]){
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
   .sm\:p-0{

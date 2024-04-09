@@ -673,8 +673,6 @@ form .category label {
 }
 
 form .category label .dot {
-  height: 18px;
-  width: 18px;
   border-radius: 50%;
   background: #0d70ea;
   border: 5px solid transparent;
