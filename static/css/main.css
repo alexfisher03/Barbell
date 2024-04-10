@@ -2221,6 +2221,10 @@ form .member-limit-details .limit-val {
     display: flex;
   }
 
+  .sm\:grid{
+    display: grid;
+  }
+
   .sm\:w-1\/2{
     width: 50%;
   }
