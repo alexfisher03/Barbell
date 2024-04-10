@@ -661,11 +661,6 @@ form .gender-details .gender-title {
   font-weight: 500;
 }
 
-form .category {
-  width: 80%;
-  margin: 14px 0;
-}
-
 form .category label {
   display: flex;
   align-items: center;
@@ -673,17 +668,17 @@ form .category label {
 }
 
 form .category label .dot {
-  border-radius: 50%;
-  background: #0d70ea;
-  border: 5px solid transparent;
+  border-radius: 60%;
+  background: #8066ae;
+  border: 7px solid transparent;
   transition: all 0.3s ease;
 }
 
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
 #dot-3:checked ~ .category label .three {
-  background: #b9f0ff;
-  border-color: #0dccea;
+  background: #7ea7ff;
+  border-color: #7ea7ff;
 }
 
 form input[type="radio"] {
