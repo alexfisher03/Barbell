@@ -354,15 +354,6 @@ html {
   border-radius: 50%;
 }
 
-.home-screen-image {
-  border-radius: 50%;
-  box-shadow: 0 0 5px rgba(122, 113, 189, 0.6),
-    0 0 10px rgba(122, 113, 189, 0.6), 0 0 15px rgba(122, 113, 189, 0.6),
-    0 0 20px rgba(122, 113, 189, 0.6), 0 0 25px rgba(122, 113, 189, 0.6),
-    0 0 35px rgba(122, 113, 189, 0.6), 0 0 40px rgba(122, 113, 189, 0.6),
-    0 0 50px rgba(122, 113, 189, 0.6), 0 0 75px rgba(122, 113, 189, 0.6);
-}
-
 .home-screen-text {
   text-align: center;
 }
@@ -743,7 +734,6 @@ button {
 
 .create-group-form {
   background-color: rgba(255, 255, 255, 0.13);
-  width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
