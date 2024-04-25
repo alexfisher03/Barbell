@@ -54,5 +54,21 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/general-settings.js' %}"></script>
+    <script src="{% static 'js/general-settings.js' %}">
+const btn = document.getElementById('theme-toggle');
+btn.addEventListener('click', function () {
+  const body = document.body;
+  const hasDarkMode = body.classList.toggle('dark');
+
+  if (hasDarkMode)
+  {
+    document.querySelector('.page-wrapper').style.backgroundImage = 'url("/static/images/dark-mesh-gradient.png")';
+  } 
+  else 
+  {
+    document.querySelector('.page-wrapper').style.backgroundImage = 'url("/static/images/meshgradientbg2.png")';
+  }
+});
+    </script>
+    
 {% endblock %}

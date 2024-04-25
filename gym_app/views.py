@@ -74,7 +74,8 @@ class CustomLogoutView(LoginRequiredMixin, LogoutView):
 
 # static render function
 def index(request):
-    return render(request, 'index.html')
+    context = {'is_index_page': True}
+    return render(request, 'index.html', context)
 
 # static render function
 def about_screen(request):

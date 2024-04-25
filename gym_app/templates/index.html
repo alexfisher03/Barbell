@@ -21,7 +21,7 @@ Master template file
   <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#18191A">
+  <meta name="theme-color" content="#000000">
   <meta name="theme-color viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %} Barbell | Index {% endblock %}</title>
   <meta name="description" content="Barbell - Gym Social Media Web Application" />
@@ -87,23 +87,34 @@ Master template file
           </div>
         </div>
       </section>
-      {% endblock %}
+      {% endblock %} 
     <footer class="pt-1 sm:pt-10 main-footer">
       {% if show_footer != False %}
         {% block additional_footer_content %}{% endblock %}
         <div class="container main-footer-container">
-          <div class="flex flex-row justify-center items-center text-sm sm:text-base md:text-lg lg:text-xl"> 
+          <div class="flex flex-row justify-center items-center text-sm pb-4 sm:pb-0 sm:text-base md:text-lg lg:text-xl"> 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
             </svg>                        
             <a href="{% url 'about' %}"><div class="about-link ml-1 hover:underline hover:scale-105 text-xl">About</div></a>
           </div>
+          {% if is_index_page %}
+          <div class="flex justify-center p-3">
+            <button id="theme-toggle" type="button" class="border border-purple-500 hover:bg-purple-100 dark:hover:bg-purple-800 hover:scale-110 duration-150 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center">
+              <svg class="dark:block hidden w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5V3m0 18v-2M7.05 7.05 5.636 5.636m12.728 12.728L16.95 16.95M5 12H3m18 0h-2M7.05 16.95l-1.414 1.414M18.364 5.636 16.95 7.05M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
+              </svg>
+              <svg class="dark:hidden block w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M11.675 2.015a.998.998 0 0 0-.403.011C6.09 2.4 2 6.722 2 12c0 5.523 4.477 10 10 10 4.356 0 8.058-2.784 9.43-6.667a1 1 0 0 0-1.02-1.33c-.08.006-.105.005-.127.005h-.001l-.028-.002A5.227 5.227 0 0 0 20 14a8 8 0 0 1-8-8c0-.952.121-1.752.404-2.558a.996.996 0 0 0 .096-.428V3a1 1 0 0 0-.825-.985Z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+          {% endif %}
           <a href="{% url 'index' %}"><img class="hidden sm:block p-10 hover:scale-110 duration-300 static-logo-white" src="{% static 'images/barbell_white.png' %}" /></a>
         </div>
       {% endif %}
     </footer>
-    {% block scripts %}
-    <script src="{% static 'js/index.js' %}"></script>
-    {% endblock %}
+    {% block scripts %}{% endblock %}
+  <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
