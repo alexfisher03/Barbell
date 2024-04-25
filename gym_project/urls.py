@@ -44,12 +44,3 @@ urlpatterns = [
     #path('auth/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# This will enable Django to serve media files in debug mode, 
-# for profile pictures in the development environment. 
-# Note that this setup is suitable for development, not for production. 
-# For production, need to serve the static files through the web server 
-# (in our case we're gonna use Nginx)
