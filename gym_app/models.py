@@ -51,8 +51,12 @@
 
 from django.db import models
 from django.conf import settings
+from django.utils.timezone import now
 from django.contrib.admin.models import LogEntry
 from django.contrib.auth.models import AbstractUser, Permission, Group as MyGroup
+
+def user_directory_path(instance, filename):
+    return 'userProfilePictures/user_{0}/{1}/{2}/{3}'.format(instance.username, now().year, now().month, filename)
 
 class CustomUser(AbstractUser):
     MALE = 'M'
@@ -65,7 +69,19 @@ class CustomUser(AbstractUser):
     ]
     current_group = models.ForeignKey('Group', related_name='group_members', null=True, blank=True, on_delete=models.SET_NULL)
     user_permissions = models.ManyToManyField(Permission, related_name='user_permissions')
-    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    profile_picture = models.ImageField(
+        upload_to=user_directory_path,
+        null=True,
+        blank=True
+    )
+    def save(self, *args, **kwargs):
+        try:
+            this = CustomUser.objects.get(id=self.id)
+            if this.profile_picture != self.profile_picture:
+                this.profile_picture.delete(save=False)
+        except: pass  # when new photo is added, it will not be in the database yet
+        super(CustomUser, self).save(*args, **kwargs)
+        
     bio = models.TextField(blank=True)
     dob = models.DateField(null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True, null=True) 

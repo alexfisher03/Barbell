@@ -62,6 +62,8 @@
 
 from pathlib import Path
 from decouple import config
+from django.conf import settings
+from google.oauth2 import service_account
 import os
 
 """ 
@@ -236,10 +238,14 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'gym_app.CustomUser'
 
-
-GS_CREDENTIALS = os.path.join(BASE_DIR, 'barbell_backend', 'GCS', 'elegant-azimuth-399823-2926231d859f.json')
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'GCS', 'elegant-azimuth-399823-2926231d859f.json')
+)
 GS_BUCKET_NAME = 'barbell_bucket_1'
+
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+
 GS_FILE_OVERWRITE = False
 MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 
