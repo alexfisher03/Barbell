@@ -1,26 +1,44 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    const fadeInElement = document.getElementById('fade-in-element');
-    const fadeInElement2 = document.getElementById('fade-in-element2');
-    const fadeInElement3 = document.getElementById('fade-in-element3');
-    if (fadeInElement) {
+  const theme = getCookie('theme') || 'light';
+  applyTheme(theme);
+
+  const fadeInElements = [
+    document.getElementById('fade-in-element'),
+    document.getElementById('fade-in-element2'),
+    document.getElementById('fade-in-element3')
+  ];
+  fadeInElements.forEach((element, index) => {
+    if (element) {
       setTimeout(() => {
-        fadeInElement.classList.remove('opacity-0');
-        fadeInElement.classList.add('opacity-100', 'transition', 'duration-700');
-        fadeInElement.style.transitionDelay = '300ms';
-      }, 1);
+        element.classList.remove('opacity-0');
+        element.classList.add('opacity-100', 'transition', 'duration-700');
+        element.style.transitionDelay = `${500 * (index + 1)}ms`;
+      }, 10);
     }
-    if (fadeInElement2) {
-      setTimeout(() => {
-        fadeInElement2.classList.remove('opacity-0');
-        fadeInElement2.classList.add('opacity-100', 'transition', 'duration-700');
-        fadeInElement2.style.transitionDelay = '800ms';
-      }, 1);
-    }
-    if (fadeInElement3) {
-      setTimeout(() => {
-        fadeInElement3.classList.remove('opacity-0');
-        fadeInElement3.classList.add('opacity-100', 'transition', 'duration-700');
-        fadeInElement3.style.transitionDelay = '1300ms';
-      }, 1);
-    }
+  });
+});
+
+function applyTheme(theme) {
+  const body = document.body;
+  body.classList.remove('light', 'dark');
+  body.classList.add(theme);
+  updateBackgroundImage(theme);
+}
+
+function updateBackgroundImage(theme) {
+  const bgImage = theme === 'dark' ? '/static/images/dark-mesh-gradient.png' : '/static/images/meshgradientbg2.png';
+  document.querySelector('.page-wrapper').style.backgroundImage = `url("${bgImage}")`;
+}
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+document.getElementById('theme-toggle')?.addEventListener('click', function() {
+  const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.cookie = "theme=" + newTheme + ";path=/;max-age=" + (60 * 60 * 24 * 30);
+  applyTheme(newTheme);
 });

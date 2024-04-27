@@ -9,19 +9,19 @@
     
 {% block content %}
     <div class="flex justify-center">
-      <form class="create-group-form w-2/5" method="post">
+      <form class="create-group-form w-4/5 sm:w-2/5" method="post">
           {% csrf_token %}
           <h3 class="section-header p-3">Create Group</h3>
           <label class="content p-3" >Group Name</label>
           <div class="flex justify-center ">
-            <input class="w-1/2" type="text" placeholder="Enter Group Name" id="name" name="name" value="{{ form.name.value|default:''}}">
+            <input class="w-3/5 sm:w-1/2" type="text" placeholder="Enter Group Name" id="name" name="name" value="{{ form.name.value|default:''}}">
             {% if form.name.errors %}
               <div class="error">{{ form.name.errors.as_text }}</div>
             {% endif %}
           </div>
           <label class="content p-3" >Bio</label>
           <div class="flex justify-center">
-            <input class="w-1/2" type="text" placeholder="Enter Bio Content" id="groupbio" name="groupbio" value="{{ form.groupbio.value|default:''}}">
+            <input class="w-3/5 sm:w-1/2" type="text" placeholder="Enter Bio Content" id="groupbio" name="groupbio" value="{{ form.groupbio.value|default:''}}">
             {% if form.groupbio.errors %}
               <div class="error">{{ form.groupbio.errors.as_text }}</div>
             {% endif %}
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="flex justify-center p-3">
-            <button id="create-group" class="twButtonblue w-2/5 p-3" type="submit">Create Group</button>
+            <button id="create-group" class="twButtonblue w-3/5 sm:w-2/5 p-3" type="submit">Create Group</button>
           </div>
         </form>
       </div>
