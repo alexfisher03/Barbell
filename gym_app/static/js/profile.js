@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ["2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05", "2023-01-06", "2023-01-07"], // These should be date strings
             datasets: [{
                 label: 'Demo Data',
-                data: [65, 59, 80, 81, 56, 55, 40], // Sample data
+                data: [65, 59, 80, 81, 56, 55, 40], 
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
