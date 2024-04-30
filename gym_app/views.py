@@ -218,27 +218,17 @@ using the StatForm class-object, which is handled during the URL routing process
 at the '/get_stats' address; which utilizes the get_stats view function.  
 """
 @login_required
-def input_rep_stats_screen(request):
+def input_stats_screen(request):
     if request.method == 'POST':
         form = StatForm(request.POST)
         if form.is_valid():
             form.instance.user = request.user
             form.save()
-    return render(request, 'input_rep_stats/input_rep_stats_screen.html')
+    return render(request, 'input_stats/input_stats_screen.html')
 
-"""
-This function checks the StatData model for the current user and then using the
-.values() method converts the corresponding class attributes into a Dictionary where
-the key is the attribute and the value pair is the data from the database. This dictionary
-is then converted into a list, and returned as a non-safe Json response.
-"""
 def get_stats(request):
     dataS = list(StatData.objects.filter(user=request.user).values())
     return JsonResponse(dataS, safe=False)
-
-# static render function
-def stat_screen(request):
-    return render(request, 'table/stats_screen.html')
 
 # static render function
 def privacy_screen(request):

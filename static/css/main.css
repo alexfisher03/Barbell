@@ -703,6 +703,10 @@ video {
   margin-top: 1.25rem;
 }
 
+.mt-6{
+  margin-top: 1.5rem;
+}
+
 .block{
   display: block;
 }
@@ -767,12 +771,12 @@ video {
   width: 33.333333%;
 }
 
-.w-2\/3{
-  width: 66.666667%;
+.w-11\/12{
+  width: 91.666667%;
 }
 
-.w-3\/4{
-  width: 75%;
+.w-2\/3{
+  width: 66.666667%;
 }
 
 .w-3\/5{
@@ -785,10 +789,6 @@ video {
 
 .w-4\/5{
   width: 80%;
-}
-
-.w-4\/6{
-  width: 66.666667%;
 }
 
 .w-5\/6{
@@ -813,20 +813,6 @@ video {
 
 .w-full{
   width: 100%;
-}
-
-.w-fit{
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.w-11\/12{
-  width: 91.666667%;
-}
-
-.min-w-fit{
-  min-width: -moz-fit-content;
-  min-width: fit-content;
 }
 
 .max-w-\[300px\]{
@@ -998,6 +984,11 @@ video {
   padding-bottom: 0.75rem;
 }
 
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .pb-2{
   padding-bottom: 0.5rem;
 }
@@ -1054,6 +1045,11 @@ video {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-bold{
@@ -1202,6 +1198,18 @@ video {
     font-size: 18px;
     zoom: 1.2;
   }
+
+  #userRecords
+  {
+    height: 200px;
+    width: 30%;
+  }
+}
+
+#userRecords
+{
+  height: 300px;
+  width: 50%;
 }
 
 * {
@@ -2318,6 +2326,11 @@ form .member-limit-details .limit-val {
 
   .sm\:p-3{
     padding: 0.75rem;
+  }
+
+  .sm\:py-12{
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   .sm\:pb-0{

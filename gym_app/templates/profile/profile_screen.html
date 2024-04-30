@@ -23,7 +23,7 @@
   <!-- Column 1 -->
   <div>
     <div class="flex justify-center">
-      <div class="backdrop-form-style p-10 sm:w-full">
+      <div class="backdrop-form-style p-10 w-11/12 sm:w-full">
         <div class="flex justify-center">
           <img class="rounded-full w-[150px] h-[150px] p-3 m-3 hover:scale-105 duration-300"
           src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}">
@@ -32,7 +32,7 @@
           <p class="text-3xl">{{ custom_user.username }}</p>
           <h1 class="text-xl text-purple-500">{{ custom_user.current_group }}</h1>
         </div>
-        <p class="text-center max-w-[300px] p-3">{{ custom_user.bio|default:"No bio yet."}}</p>
+        <p class="text-center max-w-[300px] p-3 text-sm sm:text-base">{{ custom_user.bio|default:"No bio yet."}}</p>
         <p class="content p-3 text-xl font-extrabold">Points: {{ custom_user.points}}</p>
       </div>
     </div>
@@ -41,17 +41,17 @@
 
   <div> <!-- Column 2 -->
     <div class="flex justify-center">
-      <div class="backdrop-form-style min-w-fit sm:w-full">
-        <div class="p-3">
-          <canvas id="myChart"></canvas>
+      <div class="backdrop-form-style w-11/12 sm:w-full">
+        <div class="px-2 py-8 sm:py-12">
+          <canvas id="userRecords"></canvas>
+        </div>
+        <div class='content pb-3'>
+          <a href="{% url 'input_stats' %}"><button class="p-2 mb-3 twButtonblue" role="button"><strong>Update Your Stats</strong></button></a>
         </div>
       </div>
     </div>
 
     <section class="content-section container button-container">
-      <div class='content'>
-        <a href="{% url 'input_rep_stats' %}"><button class="p-2 mb-3 twButtonblue" role="button"><strong>Update Your Stats</strong></button></a>
-      </div>
       <div class="button-group">
         {% if current_group %}
         <a href="{% url 'group_screen' group_id=current_group.id %}"><button class="twButtonblue p-2" role="button"><strong>
