@@ -943,8 +943,6 @@ form .member-limit-details .limit-val {
   width: 10%;
 }
 
-
-
 /** new styles added with feature/tailwindcss **/
 
 /* Tailwind @apply definitions for custom classes */
@@ -962,4 +960,6 @@ form .member-limit-details .limit-val {
   outline: none;
   border: none; 
 }
+
+
   

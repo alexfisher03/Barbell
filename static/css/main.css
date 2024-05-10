@@ -667,6 +667,10 @@ video {
   margin-bottom: 0.75rem;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .mb-5{
   margin-bottom: 1.25rem;
 }
@@ -2449,4 +2453,6 @@ form .member-limit-details .limit-val {
     line-height: 1.75rem;
   }
 }
+
+
   

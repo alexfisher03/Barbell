@@ -42,6 +42,20 @@
   }
 }
 
+@media (max-width: 768px) {
+  #userRecords
+  {
+    height: 200px;
+    width: 30%;
+  }
+}
+
+#userRecords
+{
+  height: 300px;
+  width: 50%;
+}
+
 * {
   box-sizing: border-box;
   font-family: Raleway;
@@ -930,7 +944,6 @@ form .member-limit-details .limit-val {
 }
 
 
-
 /** new styles added with feature/tailwindcss **/
 
 /* Tailwind @apply definitions for custom classes */
@@ -948,4 +961,6 @@ form .member-limit-details .limit-val {
   outline: none;
   border: none; 
 }
+
+
   
