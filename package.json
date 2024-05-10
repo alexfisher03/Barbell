@@ -6,7 +6,8 @@
   "scripts": {
     "build:css": "tailwindcss build gym_app/static/css/styles.css -o static/css/main.css",
     "watch:css": "tailwindcss -i gym_app/static/css/styles.css -o static/css/main.css --watch",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "build": "webpack --build"
   },
   "keywords": [],
   "author": "",

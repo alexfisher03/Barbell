@@ -2287,6 +2287,10 @@ form .member-limit-details .limit-val {
     width: 25%;
   }
 
+  .sm\:w-11\/12{
+    width: 91.666667%;
+  }
+
   .sm\:w-2\/3{
     width: 66.666667%;
   }
@@ -2301,18 +2305,6 @@ form .member-limit-details .limit-val {
 
   .sm\:w-full{
     width: 100%;
-  }
-
-  .sm\:w-5\/6{
-    width: 83.333333%;
-  }
-
-  .sm\:w-10\/12{
-    width: 83.333333%;
-  }
-
-  .sm\:w-11\/12{
-    width: 91.666667%;
   }
 
   .sm\:translate-x-16{
