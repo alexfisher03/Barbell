@@ -251,7 +251,6 @@ MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 """
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# -----set up for sending emails
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
