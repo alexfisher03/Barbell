@@ -280,7 +280,7 @@ if DEBUG:
 else:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_DOMAIN = ['.socialbarbell.com', '.127.0.0.1']
+    CSRF_COOKIE_DOMAIN = ['https://www.socialbarbell.com', 'https://socialbarbell.com', '.127.0.0.1']
    
    
 CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
