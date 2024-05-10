@@ -271,6 +271,8 @@ LOGIN_REDIRECT_URL = 'profile_self'
 """
 ------*Security and Sessions
 """
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 if DEBUG:
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
