@@ -279,7 +279,7 @@ if DEBUG:
 
 else:
     CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_HTTPONLY = False
     CSRF_COOKIE_DOMAIN = ['.socialbarbell.com']
    
