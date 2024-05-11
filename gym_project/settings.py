@@ -298,7 +298,7 @@ if DEBUG:
 else:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_DOMAIN = ['.socialbarbell.com', '.127.0.0.1'] 
+    CSRF_COOKIE_DOMAIN = None
 
 """
 ------*Custom User Model and Authentication Backend
