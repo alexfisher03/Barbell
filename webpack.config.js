@@ -11,5 +11,5 @@ module.exports = {
             { test: /\.css$/, use: ['style-loader', 'css-loader'] }
         ]
     },
-    mode: 'development' // Change to production when deploying
+    mode: 'production' // Change to production when deploying
 };
