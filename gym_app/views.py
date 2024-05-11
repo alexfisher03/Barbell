@@ -23,9 +23,9 @@ from django.middleware.csrf import get_token
 
 def csrf_test(request):
     csrf_token = get_token(request)
-    response.set_cookie('csrftoken', csrf_token)
     response = JsonResponse({"Fucking fucker": "CSRF cookie is an fuck",
                                 "litle tokern": csrf_token})
+    response.set_cookie('csrftoken', csrf_token)
     return response
 
 """
