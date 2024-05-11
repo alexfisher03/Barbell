@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('toggleMembersDropdown').addEventListener('click', () => {
         document.getElementById('membersDropdown').classList.toggle("hidden");
     });
-    document.getElementById('removeButton').addEventListener('submit', () =>
+    document.getElementById('removeButton').addEventListener('click', event =>
     {
-        let valid = true;
-    })
+        document.getElementById('groupSettingsForm').submit();
+    });
 });

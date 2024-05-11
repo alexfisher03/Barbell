@@ -111,7 +111,24 @@ INSTALLED_APPS = [
 """
 ------*Logging Configuration
 """
-LOGGING = {
+if DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {                    # Change for production from dontforget.txt
+            'django': { 
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+        },
+    }
+else:
+    LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
@@ -270,22 +287,18 @@ LOGIN_REDIRECT_URL = 'profile_self'
 """
 ------*Security and Sessions
 """
+CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
+
 if DEBUG:
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_DOMAIN = None
-
+    CSRF_TRUSTED_ORIGINS.append('https://127.0.0.1')
 
 else:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_DOMAIN = ['.socialbarbell.com', '.127.0.0.1']
-   
-   
-CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
-if DEBUG:
-    CSRF_TRUSTED_ORIGINS.append('https://127.0.0.1')
-
+    CSRF_COOKIE_DOMAIN = None
 
 """
 ------*Custom User Model and Authentication Backend

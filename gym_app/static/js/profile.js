@@ -1,14 +1,40 @@
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+
 document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new Calendar(calendarEl, {
+        height: '300px',
+        plugins: [dayGridPlugin, listPlugin, interactionPlugin],
+        initialView: 'dayGridWeek',
+        headerToolbar: {
+        right: 'dayGridWeek,listWeek'
+        },
+        buttonText: {
+        week: 'Week View',
+        list: 'List View'
+        },
+        // Optionally remove dates from the day headers
+        dayHeaderContent: (args) => {
+        return {text: args.date.getDay()};  // Returns only the weekday
+        },
+        allDaySlot: false  // Removes the all-day slot row
+    });
+
+    calendar.render();
+
     const ctx = document.getElementById('userRecords').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05", "2023-01-06", "2023-01-07"], // These should be date strings
+            labels: ["2024-05-01", "2024-05-02", "2024-05-03", "2024-05-04", "2024-05-05", "2024-05-06", "2024-05-07"], // These should be date strings
             datasets: [
                 {
-                    label: 'Demo Data1',
+                    label: 'Exercise 1',
                     data: [65, 59, 80, 81, 56, 55, 40], 
-                    fill: false,
+                    fill: true,
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.2
                 },
@@ -69,4 +95,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    const toggleButton = document.getElementById('toggleView');
+    const calendarContainer = document.querySelector('.calendar-container');
+    const chartContainer = document.querySelector('.chart-container');
+
+    toggleButton.addEventListener('click', function () {
+        if (calendarContainer.style.display === 'none') {
+            calendarContainer.style.display = 'block';
+            chartContainer.style.display = 'none';
+            toggleButton.textContent = 'View Personal Records';
+        } else {
+            calendarContainer.style.display = 'none';
+            chartContainer.style.display = 'block';
+            toggleButton.textContent = 'View Weekly Routine';
+        }
+    });
 });
+
