@@ -21,6 +21,12 @@ from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.middleware.csrf import get_token
 
+def csrf_test(request):
+    response = JsonResponse({"detail": "CSRF cookie set bruh"})
+    csrf_token = get_token(request)
+    response.set_cookie('csrftoken', csrf_token)
+    return response
+
 """
 Takes in the Django 'AllauthPasswordResetView' class object as a parameter, but 
 explicitly sets the template to use. Allows the url to take in this object
