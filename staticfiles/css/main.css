@@ -667,10 +667,6 @@ video {
   margin-bottom: 0.75rem;
 }
 
-.mb-4{
-  margin-bottom: 1rem;
-}
-
 .mb-5{
   margin-bottom: 1.25rem;
 }
@@ -709,6 +705,10 @@ video {
 
 .mt-6{
   margin-top: 1.5rem;
+}
+
+.mt-8{
+  margin-top: 2rem;
 }
 
 .block{
@@ -2285,6 +2285,10 @@ form .member-limit-details .limit-val {
 
   .sm\:w-1\/4{
     width: 25%;
+  }
+
+  .sm\:w-11\/12{
+    width: 91.666667%;
   }
 
   .sm\:w-2\/3{

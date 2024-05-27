@@ -39,27 +39,7 @@
   </div> <!-- End Column 1-->
   
   <div> <!-- Column 2 -->
-    <div class="flex flex-col items-center w-full">
-      <!-- Calendar Container -->
-      <div class="backdrop-form-style p-10" id="calendarContainer">
-        <div class="w-full" id="calendar"></div>
-        <!-- Button to Toggle View -->
-        <div class='content mt-8'>
-          <button id="toggleView" class="twButtonblue p-3 w-1/2 text-sm">View Personal Records</button>
-        </div>
-      </div>
-      
-      <!-- Chart Container -->
-      <div class="backdrop-form-style w-11/12 sm:w-full hidden" id="records">
-        <div class="px-2 py-8 sm:py-12">
-          <canvas id="userRecords"></canvas>
-        </div>
-        <div class='content pb-3'>
-          <button id="toggleRoutine" class="twButtonpurple p-3 w-1/2 text-sm">View Routine</button>
-          <a href="{% url 'input_stats' %}"><button class="p-2 mb-3 twButtonblue" role="button">Update Your Stats</button></a>
-        </div>
-      </div>
-    </div>
+    <div id="routine-root"></div>
 
     <section class="content-section container button-container">
       <div class="button-group">
@@ -94,5 +74,4 @@
 <script src="{% static 'dist/bundle.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-<script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
