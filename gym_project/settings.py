@@ -1,5 +1,5 @@
 """
-@authors Alexander Fisher & Jonathan Salem
+@authors Alexander Fisher
 @version Barbell Version 1.2
 
 @about This settings file configures the Django project 'Barbell', defining its behavior in various environments. 
@@ -111,7 +111,24 @@ INSTALLED_APPS = [
 """
 ------*Logging Configuration
 """
-LOGGING = {
+if DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {                    # Change for production from dontforget.txt
+            'django': { 
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+        },
+    }
+else:
+    LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
@@ -254,7 +271,6 @@ MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 """
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# -----set up for sending emails
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

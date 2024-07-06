@@ -6,18 +6,17 @@ import interactionPlugin from '@fullcalendar/interaction';
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
     var calendar = new Calendar(calendarEl, {
+        height: '300px',
         plugins: [dayGridPlugin, listPlugin, interactionPlugin],
         initialView: 'dayGridWeek',
         headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
         right: 'dayGridWeek,listWeek'
         },
         buttonText: {
         week: 'Week View',
         list: 'List View'
         },
-        // Optionally remove dates from the day headers
+        
         dayHeaderContent: (args) => {
         return {text: args.date.getDay()};  // Returns only the weekday
         },
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     calendar.render();
-
 
     const ctx = document.getElementById('userRecords').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -99,19 +97,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const toggleButton = document.getElementById('toggleView');
-    const calendarContainer = document.querySelector('.calendar-container');
-    const chartContainer = document.querySelector('.chart-container');
+    const toggleRoutineButton = document.getElementById('toggleRoutine');
+    const calendarContainer = document.getElementById('calendarContainer');
+    const recordsContainer = document.getElementById('records');
 
-    toggleButton.addEventListener('click', function () {
-        if (calendarContainer.style.display === 'none') {
-            calendarContainer.style.display = 'block';
-            chartContainer.style.display = 'none';
-            toggleButton.textContent = 'View Personal Records';
-        } else {
-            calendarContainer.style.display = 'none';
-            chartContainer.style.display = 'block';
-            toggleButton.textContent = 'View Weekly Routine';
-        }
+    toggleButton.addEventListener('click', function() {
+        calendarContainer.classList.add('hidden');
+        recordsContainer.classList.remove('hidden');
     });
+
+    toggleRoutineButton.addEventListener('click', function() {
+        calendarContainer.classList.remove('hidden');
+        recordsContainer.classList.add('hidden');
+    })
+    
 });
 

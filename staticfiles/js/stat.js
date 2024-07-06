@@ -4,20 +4,6 @@ $.get("/get_stats", function(data){
   showTable(table, stats);
 });
 
-// Assume user data from the backend has been retrieved
-const userData = {};
-
-  // Update the table cell content with user data
-const benchPressMaxCell = document.getElementById('userBenchPressMax');
-benchPressMaxCell.textContent = userData.benchPressMax;
-
-//for back button
-document.getElementById("back-button").addEventListener("click", function(event){
-    event.preventDefault();
-    history.back();
-});
-
-
 function showTable(table, stats){
   let head = table.insertRow();
   let exercise = document.createElement("th");

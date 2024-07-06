@@ -42,6 +42,20 @@
   }
 }
 
+@media (max-width: 768px) {
+  #userRecords
+  {
+    height: 200px;
+    width: 30%;
+  }
+}
+
+#userRecords
+{
+  height: 300px;
+  width: 50%;
+}
+
 * {
   box-sizing: border-box;
   font-family: Raleway;
@@ -56,11 +70,12 @@ body {
 }
 
 html {
-  /*background-image: url("/static/images/gradientbackground.jpg");*/
-  background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 .nav ul {
@@ -160,15 +175,19 @@ html {
 }
 
 .page-wrapper {
-  /* background-image: url("/static/images/gradientbackground.jpg"); */
   background-image: url("/static/images/meshgradientbg2.png");
   background-attachment: fixed;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-position: center center;
+
+  /* Padding for safe areas */
+  padding-top: env(safe-area-inset-top, 20px);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .main-header {
@@ -299,7 +318,6 @@ html {
 
 .container {
   margin: 0 auto;
-  padding: 0 1.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -348,15 +366,6 @@ html {
   width: 300px;
   margin: 15px;
   border-radius: 50%;
-}
-
-.home-screen-image {
-  border-radius: 50%;
-  box-shadow: 0 0 5px rgba(122, 113, 189, 0.6),
-    0 0 10px rgba(122, 113, 189, 0.6), 0 0 15px rgba(122, 113, 189, 0.6),
-    0 0 20px rgba(122, 113, 189, 0.6), 0 0 25px rgba(122, 113, 189, 0.6),
-    0 0 35px rgba(122, 113, 189, 0.6), 0 0 40px rgba(122, 113, 189, 0.6),
-    0 0 50px rgba(122, 113, 189, 0.6), 0 0 75px rgba(122, 113, 189, 0.6);
 }
 
 .home-screen-text {
@@ -662,11 +671,6 @@ form .gender-details .gender-title {
   font-weight: 500;
 }
 
-form .category {
-  width: 80%;
-  margin: 14px 0;
-}
-
 form .category label {
   display: flex;
   align-items: center;
@@ -674,19 +678,17 @@ form .category label {
 }
 
 form .category label .dot {
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  background: #0d70ea;
-  border: 5px solid transparent;
+  border-radius: 60%;
+  background: #8066ae;
+  border: 7px solid transparent;
   transition: all 0.3s ease;
 }
 
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
 #dot-3:checked ~ .category label .three {
-  background: #b9f0ff;
-  border-color: #0dccea;
+  background: #7ea7ff;
+  border-color: #7ea7ff;
 }
 
 form input[type="radio"] {
@@ -746,7 +748,6 @@ button {
 
 .create-group-form {
   background-color: rgba(255, 255, 255, 0.13);
-  width: 900px;
   top: 100%;
   left: 50%;
   border-radius: 60px;
@@ -943,7 +944,6 @@ form .member-limit-details .limit-val {
 }
 
 
-
 /** new styles added with feature/tailwindcss **/
 
 /* Tailwind @apply definitions for custom classes */
@@ -961,4 +961,6 @@ form .member-limit-details .limit-val {
   outline: none;
   border: none; 
 }
+
+
   

@@ -22,13 +22,12 @@
 
   </style>
 {% endblock %}
-          <title> {% block title %} Barbell | Input Stats  {% endblock %}</title>
-          
-          {% block nav %}
-                      <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
-                      <li><a href="/home">HOME</a></li>
-                      {% block header %}<h1 class="barbell">Input Stats</h1> {% endblock %}
-          {% endblock %}
+<title>{% block title %} Barbell | Input Stats  {% endblock %}</title>
+{% block nav %}
+    <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
+    <li><a href="/home">HOME</a></li>
+  {% block header %}<h1 class="barbell">Input Stats</h1> {% endblock %}
+{% endblock %}
             
 {% block content %}
   <div class="backdrop-form-style">
@@ -52,24 +51,14 @@
     <script src="{% static 'js/stat.js' %}"></script>
     {% endblock %}
     </div>
-    </section>  
-  
-  
+  </section>  
 </div>
 {% endblock %}
-      {% block additional_footer_content %}
-      <div class="button-container">
-        <a href="{% url 'profile' profile_id=request.user.id %}"><button id="" class="stat-button" role="button"><strong> Confirm Updated Settings </strong></button></a>
-      </div>
-     <!--
-      <div class="container main-footer-container">
-        <ul class="footer-nav">
-          <li>
-            <a href="#"><button id="back-button" class="previous" role="button"><strong> Back </strong></button></a>
-          </li>
-        </ul>
-      </div>
-      --> 
-      {% endblock %}
+
+{% block additional_footer_content %}
+<div class="">
+  <a href="{% url 'profile' profile_id=request.user.id %}"><button id="" class="stat-button" role="button"><strong> Confirm Updated Settings </strong></button></a>
+</div>
+{% endblock %}
 
 

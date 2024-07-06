@@ -1,5 +1,5 @@
 """
-@author Alexander Fisher & Jonathan Salem
+@author Alexander Fisher
 @version Barbell Version 1.2
 
 @about Contains a list of the various url defined web-requests
@@ -56,13 +56,12 @@ urlpatterns = [
     path('group_screen/<int:group_id>/', views.group_screen, name='group_screen'),
     path('group_settings/<int:group_id>/', views.group_settings_screen, name='group_settings'),
     path('home/', views.home_screen, name='home'),
-    path('input_rep_stats/', views.input_rep_stats_screen, name='input_rep_stats'),
+    path('input_stats/', views.input_stats_screen, name='input_stats'),
     path('privacy_screen/', views.privacy_screen, name='privacy'),
     path('profile/<int:profile_id>/', views.profile_screen, name='profile'),
     path('profile/settings/', views.profilesettings_screen, name='profilesettings'),
     path('register/', views.register_screen, name='register'),
     path('signin/', views.CustomLoginView.as_view(), name='signin'),
-    path('table/', views.stat_screen, name='stat'),
     path('leaderboard/global/', views.global_leaderboard, name='global_leaderboard'),
     path('leaderboard/group/<int:group_id>/', views.group_leaderboard, name='group_leaderboard'),
     path('account/password-reset/', PasswordResetView.as_view(from_email='barbellauth@socialbarbell.com', template_name="account/password_reset.html"), name='password_reset'),

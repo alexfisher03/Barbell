@@ -1,5 +1,5 @@
 """
-@authors Alexander Fisher & Jonathan Salem
+@authors Alexander Fisher
 @version Barbell Version 1.2
 
 @about Models definition for the Barbell application, structuring the database schema and relationships. 

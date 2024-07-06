@@ -1,5 +1,5 @@
 """
-@author Alexander Fisher & Jonathan Salem
+@author Alexander Fisher
 @version Barbell Version 1.2
 
 @about Defines 'form' class objects within the html templates. Instances of the 
