@@ -1,0 +1,56 @@
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/django/error.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
+
+other version ->
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {                    # Change for production from dontforget.txt
+        'django': { 
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
+*some useful commands: 
+
+cd barbell_backend
+python manage.py runserver
+
+cd barbell_backend
+npm run watch
+
+cd barbell_backend
+npm run watch:css 
+
+/var/log/gunicorn/access.log 
+                -> error.log
+
+^stored in 
+/etc/systemd/system/gunicorn.system
+
+sudo nginx -t 
+crontab -e
