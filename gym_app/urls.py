@@ -71,6 +71,7 @@ urlpatterns = [
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'), # Overriding allauth's login view
     path('get_stats/', views.get_stats, name = 'ajax_get_stats'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('test', views.csrf_test, name='test')
 ]
 
 

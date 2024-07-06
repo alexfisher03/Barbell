@@ -19,6 +19,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.middleware.csrf import get_token
+
+def csrf_test(request):
+    csrf_token = get_token(request)
+    response = JsonResponse({"Fucking fucker": "CSRF cookie is an fuck",
+                                "litle tokern": csrf_token})
+    response.set_cookie('csrftoken', csrf_token)
+    return response
 
 """
 Takes in the Django 'AllauthPasswordResetView' class object as a parameter, but 
@@ -40,6 +48,7 @@ class CustomLoginView(LoginView):
         return render(request, 'signin/signin_screen.html')
 
     def post(self, request, *args, **kwargs):
+            get_token(request)
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(request, username=username, password=password)
@@ -93,6 +102,7 @@ handily be called using the Group data model object itself
 """
 @login_required
 def creategroup_screen(request):
+    get_token(request)
     if request.method == 'POST':
         form = CreateGroup(request.POST)
         if form.is_valid():
@@ -164,6 +174,7 @@ form is collected before, then it finally saves.
 """
 @login_required
 def group_settings_screen(request, group_id):
+    get_token(request)
     group = get_object_or_404(Group, id=group_id)
 
     if request.user != group.created_by:
@@ -312,6 +323,7 @@ declaration "AUTH_USER_MODEL = 'gym_app.CustomUser'" defines the fact that this 
 custom user model , "CustomUser" (found in models.py) instead. 
 """
 def register_screen(request):
+    get_token(request)
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
