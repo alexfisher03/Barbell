@@ -271,8 +271,6 @@ LOGIN_REDIRECT_URL = 'profile_self'
 """
 ------*Security and Sessions
 """
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
 
 if DEBUG:
