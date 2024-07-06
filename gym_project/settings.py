@@ -273,22 +273,18 @@ LOGIN_REDIRECT_URL = 'profile_self'
 """
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+CSRF_TRUSTED_ORIGINS = ['https://socialbarbell.com']
+
 if DEBUG:
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_DOMAIN = None
-
+    CSRF_TRUSTED_ORIGINS.append('https://127.0.0.1')
 
 else:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_HTTPONLY = False
     CSRF_COOKIE_DOMAIN = None
-   
-   
-CSRF_TRUSTED_ORIGINS = ['https://*.socialbarbell.com']
-if DEBUG:
-    CSRF_TRUSTED_ORIGINS.append('https://127.0.0.1')
 
 
 """
