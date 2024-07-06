@@ -1,5 +1,5 @@
 """
-@authors Alexander Fisher & Jonathan Salem
+@authors Alexander Fisher
 @version Barbell Version 1.2
 
 @about Defines URL routing for the 'gym_project' Django project, mapping URL paths to views. 

@@ -1,5 +1,5 @@
 """
-@author Alexander Fisher & Jonathan Salem
+@author Alexander Fisher
 @version Barbell Version 1.2
 
 @about Contains the backend python functions and class objects that 

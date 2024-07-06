@@ -1,5 +1,5 @@
 """
-@authors Alexander Fisher & Jonathan Salem
+@authors Alexander Fisher
 @version Barbell Version 1.2
 
 @about This settings file configures the Django project 'Barbell', defining its behavior in various environments. 
