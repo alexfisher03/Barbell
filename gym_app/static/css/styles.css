@@ -687,8 +687,7 @@ form .category label .dot {
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
 #dot-3:checked ~ .category label .three {
-  background: #7ea7ff;
-  border-color: #7ea7ff;
+  border-color: #fbf4ff;
 }
 
 form input[type="radio"] {

@@ -1008,6 +1008,10 @@ video {
   padding-top: 2rem;
 }
 
+.pt-2{
+  padding-top: 0.5rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -1078,6 +1082,11 @@ video {
   color: rgb(94 63 155 / var(--tw-text-opacity));
 }
 
+.text-\[\#668aff\]{
+  --tw-text-opacity: 1;
+  color: rgb(102 138 255 / var(--tw-text-opacity));
+}
+
 .text-\[\#8066ae\]{
   --tw-text-opacity: 1;
   color: rgb(128 102 174 / var(--tw-text-opacity));
@@ -1146,6 +1155,10 @@ video {
 
 .duration-300{
   transition-duration: 300ms;
+}
+
+.duration-75{
+  transition-duration: 75ms;
 }
 
 /* Custom Scrollbar Styling */
@@ -1848,8 +1861,7 @@ form .category label .dot {
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
 #dot-3:checked ~ .category label .three {
-  background: #7ea7ff;
-  border-color: #7ea7ff;
+  border-color: #fbf4ff;
 }
 
 form input[type="radio"] {
