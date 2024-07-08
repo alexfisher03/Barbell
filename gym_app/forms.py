@@ -55,15 +55,12 @@ class ProfileSettings(forms.ModelForm):
 
     def clean_profile_picture(self):
         image = self.cleaned_data.get('profile_picture')        
-        if hasattr(image, 'content_type'):
+        if image:
+            if image.size > 2*1024*1024:
+                raise forms.ValidationError("Image file size may not exceed 2MB.")
             content_type = image.content_type
-        elif hasattr(image, 'file') and hasattr(image.file, 'content_type'):
-            content_type = image.file.content_type
-        else:
-            return None          
-        if content_type not in ['image/jpeg', 'image/png']:
-            raise forms.ValidationError("Only JPEG or PNG images allowed.")
-        
+            if content_type not in ['image/jpeg', 'image/png']:
+                raise forms.ValidationError("Only JPEG or PNG images allowed.")
         return image
 
     def clean(self):

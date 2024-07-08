@@ -120,7 +120,7 @@ if DEBUG:
                 'class': 'logging.StreamHandler',
             },
         },
-        'loggers': {                    # Change for production from dontforget.txt
+        'loggers': {                    
             'django': { 
                 'handlers': ['console'],
                 'level': 'INFO',

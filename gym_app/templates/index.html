@@ -83,7 +83,13 @@ Master template file
                   </a>
                 </div>
                 {% endif %}
+                {% if is_admin %}
+                <div class="flex justify-center">
+                  <a href="{% url 'admin:index' %}">
+                    <button class="mt-5 px-4 p-2 twButtonpurple">Admin</button>
+                  </a>
               </div>
+                {% endif %}
             </div>
           </div>
         </div>
