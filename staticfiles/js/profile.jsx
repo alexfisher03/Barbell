@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         week: 'Week View',
         list: 'List View'
         },
-        // Optionally remove dates from the day headers
+        
         dayHeaderContent: (args) => {
         return {text: args.date.getDay()};  // Returns only the weekday
         },
@@ -97,19 +97,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const toggleButton = document.getElementById('toggleView');
-    const calendarContainer = document.querySelector('.calendar-container');
-    const chartContainer = document.querySelector('.chart-container');
+    const toggleRoutineButton = document.getElementById('toggleRoutine');
+    const calendarContainer = document.getElementById('calendarContainer');
+    const recordsContainer = document.getElementById('records');
 
-    toggleButton.addEventListener('click', function () {
-        if (calendarContainer.style.display === 'none') {
-            calendarContainer.style.display = 'block';
-            chartContainer.style.display = 'none';
-            toggleButton.textContent = 'View Personal Records';
-        } else {
-            calendarContainer.style.display = 'none';
-            chartContainer.style.display = 'block';
-            toggleButton.textContent = 'View Weekly Routine';
-        }
+    toggleButton.addEventListener('click', function() {
+        calendarContainer.classList.add('hidden');
+        recordsContainer.classList.remove('hidden');
     });
+
+    toggleRoutineButton.addEventListener('click', function() {
+        calendarContainer.classList.remove('hidden');
+        recordsContainer.classList.add('hidden');
+    })
+    
 });
 

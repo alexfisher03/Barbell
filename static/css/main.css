@@ -667,10 +667,6 @@ video {
   margin-bottom: 0.75rem;
 }
 
-.mb-4{
-  margin-bottom: 1rem;
-}
-
 .mb-5{
   margin-bottom: 1.25rem;
 }
@@ -986,11 +982,6 @@ video {
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 .pb-2{
@@ -2334,11 +2325,6 @@ form .member-limit-details .limit-val {
 
   .sm\:p-3{
     padding: 0.75rem;
-  }
-
-  .sm\:py-12{
-    padding-top: 3rem;
-    padding-bottom: 3rem;
   }
 
   .sm\:pb-0{

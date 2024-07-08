@@ -1,5 +1,5 @@
 """
-@author Alexander Fisher & Jonathan Salem
+@author Alexander Fisher
 @version Barbell Version 1.2
 
 @about Contains a list of the various url defined web-requests
@@ -43,6 +43,7 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import path
+from django.contrib import admin
 from .views import CustomLoginView, CustomLogoutView
 from django.contrib.auth.views import (PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 from . import views
@@ -71,6 +72,7 @@ urlpatterns = [
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'), # Overriding allauth's login view
     path('get_stats/', views.get_stats, name = 'ajax_get_stats'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('admin/', admin.site.urls),
 ]
 
 

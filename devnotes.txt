@@ -1,0 +1,18 @@
+
+cd barbell_backend
+python manage.py runserver
+
+cd barbell_backend
+npm run watch
+
+cd barbell_backend
+npm run watch:css 
+
+/var/log/gunicorn/access.log 
+                -> error.log
+
+^stored in 
+/etc/systemd/system/gunicorn.system
+
+sudo nginx -t 
+crontab -e

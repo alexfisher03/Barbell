@@ -1,5 +1,5 @@
 """
-@author Alexander Fisher & Jonathan Salem
+@author Alexander Fisher
 @version Barbell Version 1.2
 
 @about Contains the backend python functions and class objects that 
@@ -9,7 +9,7 @@
 from typing import Any
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
-from .models import CustomUser, TableData, ImageMetadata, Group, StatData
+from .models import CustomUser, TableData, Group, StatData, ImageMetadata
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
@@ -19,6 +19,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.middleware.csrf import get_token
+
+def csrf_test(request):
+    csrf_token = get_token(request)
+    response = JsonResponse({"Fucking fucker": "CSRF cookie is an fuck",
+                                "litle tokern": csrf_token})
+    response.set_cookie('csrftoken', csrf_token)
+    return response
 
 """
 Takes in the Django 'AllauthPasswordResetView' class object as a parameter, but 
@@ -40,6 +48,7 @@ class CustomLoginView(LoginView):
         return render(request, 'signin/signin_screen.html')
 
     def post(self, request, *args, **kwargs):
+            get_token(request)
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(request, username=username, password=password)
@@ -74,7 +83,10 @@ class CustomLogoutView(LoginRequiredMixin, LogoutView):
 
 # static render function
 def index(request):
-    context = {'is_index_page': True}
+    context = {
+        'is_index_page': True,
+        'is_admin': request.user.is_staff or request.user.is_superuser,
+        }
     return render(request, 'index.html', context)
 
 # static render function
@@ -93,6 +105,7 @@ handily be called using the Group data model object itself
 """
 @login_required
 def creategroup_screen(request):
+    get_token(request)
     if request.method == 'POST':
         form = CreateGroup(request.POST)
         if form.is_valid():
@@ -164,6 +177,7 @@ form is collected before, then it finally saves.
 """
 @login_required
 def group_settings_screen(request, group_id):
+    get_token(request)
     group = get_object_or_404(Group, id=group_id)
 
     if request.user != group.created_by:
@@ -276,7 +290,7 @@ def profile_screen(request, profile_id):
 Handles the user's ProfileSettings form class-object POST request. Uses cleaned_data method
 on the two form user input fields and populates the object attributes with those values. This 
 upon saving by .save() method will update the user's profile picture and bio data entries. 
-"""
+""" 
 @login_required
 def profilesettings_screen(request):
     user = request.user
@@ -312,6 +326,7 @@ declaration "AUTH_USER_MODEL = 'gym_app.CustomUser'" defines the fact that this 
 custom user model , "CustomUser" (found in models.py) instead. 
 """
 def register_screen(request):
+    get_token(request)
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():

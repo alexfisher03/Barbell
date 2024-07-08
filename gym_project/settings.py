@@ -1,5 +1,5 @@
 """
-@authors Alexander Fisher & Jonathan Salem
+@authors Alexander Fisher
 @version Barbell Version 1.2
 
 @about This settings file configures the Django project 'Barbell', defining its behavior in various environments. 
@@ -120,7 +120,7 @@ if DEBUG:
                 'class': 'logging.StreamHandler',
             },
         },
-        'loggers': {                    # Change for production from dontforget.txt
+        'loggers': {                    
             'django': { 
                 'handlers': ['console'],
                 'level': 'INFO',
@@ -151,14 +151,14 @@ else:
 ------*Middleware Configuration
 """
 MIDDLEWARE = [
-    'allauth.account.middleware.AccountMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'gym_project.urls'
@@ -299,6 +299,7 @@ else:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_DOMAIN = None
+
 
 """
 ------*Custom User Model and Authentication Backend

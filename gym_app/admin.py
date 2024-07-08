@@ -2,7 +2,7 @@
 # Defines what gets displayed
 
 from django.contrib import admin  
-from .models import CustomUser, TableData, ImageMetadata, Group 
+from .models import CustomUser, TableData, Group , ImageMetadata
 
 @admin.register(CustomUser) 
 class CustomUserAdmin(admin.ModelAdmin):
