@@ -54,6 +54,8 @@ from django.conf import settings
 from django.utils.timezone import now
 from django.contrib.admin.models import LogEntry
 from django.contrib.auth.models import AbstractUser, Permission, Group as MyGroup
+from google.cloud import storage
+import os
 
 def user_directory_path(instance, filename):
     return 'userProfilePictures/user_{0}/{1}/{2}/{3}'.format(instance.username, now().year, now().month, filename)
@@ -69,17 +71,35 @@ class CustomUser(AbstractUser):
     ]
     current_group = models.ForeignKey('Group', related_name='group_members', null=True, blank=True, on_delete=models.SET_NULL)
     user_permissions = models.ManyToManyField(Permission, related_name='user_permissions')
-    profile_picture = models.ImageField(
-        upload_to=user_directory_path,
-        null=True,
-        blank=True
-    )
+    profile_picture = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
+
+    def delete_file_from_gcs(self, file_path):
+        if not file_path:
+            return
+        
+        try:
+            storage_client = storage.Client(credentials=settings.GS_CREDENTIALS)
+            bucket_name = os.getenv('GS_BUCKET_NAME', 'barbell_bucket_1')
+            bucket = storage_client.bucket(bucket_name)
+            blob = bucket.blob(file_path)
+
+            if blob.exists():
+                blob.delete()
+                print(f"Deleted {file_path} from {bucket_name}")
+            else:
+                print(f"{file_path} does not exist in {bucket_name}")
+
+        except Exception as e:
+            print(f"Error deleting {file_path} from GCS: {e}")
+
     def save(self, *args, **kwargs):
         try:
             this = CustomUser.objects.get(id=self.id)
             if this.profile_picture != self.profile_picture:
-                this.profile_picture.delete(save=False)
-        except: pass  # when new photo is added, it will not be in the database yet
+                old_file_path = this.profile_picture.name
+                self.delete_file_from_gcs(old_file_path)
+        except CustomUser.DoesNotExist:
+            pass  
         super(CustomUser, self).save(*args, **kwargs)
         
     bio = models.TextField(blank=True)

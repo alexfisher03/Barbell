@@ -9,7 +9,7 @@
 from typing import Any
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
-from .models import CustomUser, TableData, ImageMetadata, Group, StatData
+from .models import CustomUser, TableData, Group, StatData, ImageMetadata
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
@@ -74,7 +74,10 @@ class CustomLogoutView(LoginRequiredMixin, LogoutView):
 
 # static render function
 def index(request):
-    context = {'is_index_page': True}
+    context = {
+        'is_index_page': True,
+        'is_admin': request.user.is_staff or request.user.is_superuser,
+        }
     return render(request, 'index.html', context)
 
 # static render function
@@ -276,7 +279,7 @@ def profile_screen(request, profile_id):
 Handles the user's ProfileSettings form class-object POST request. Uses cleaned_data method
 on the two form user input fields and populates the object attributes with those values. This 
 upon saving by .save() method will update the user's profile picture and bio data entries. 
-"""
+""" 
 @login_required
 def profilesettings_screen(request):
     user = request.user
