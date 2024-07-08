@@ -79,21 +79,21 @@
         {% endif %}
 
         <div class="category flex justify-center sm:grid">
-          <div class="p-1">
+          <div class="p-1 hover:scale-105 duration-75">
             <label for="dot-1">
               <span class="dot one mr-1 sm:mr-2"></span>
               <span class="text-[#8066ae] font-bold gender pl-2">Male</span>
             </label>
           </div>
 
-          <div class="p-1">
+          <div class="p-1 hover:scale-105 duration-75">
             <label for="dot-2">
               <span class="dot two mr-1 sm:mr-2"></span>
               <span class="text-[#8066ae] font-bold gender pl-2">Female</span>
             </label>
           </div>
 
-          <div class="p-1 pb-3">
+          <div class="p-1 pb-3 hover:scale-105 duration-75">
             <label for="dot-3">
               <span class="dot three mr-1 sm:mr-2"></span>
               <span class="text-[#8066ae] font-bold gender pl-2">Other</span>
@@ -110,13 +110,13 @@
     {% if request.user.is_authenticated %}
     <label class="content p-3" for="not-member"> Already a Member?</label>
     <div class="flex justify-center">
-      <button class="twButtonlightblue w-1/3"><a href="{% url 'profile' profile_id=request.user.id %}">Sign In</a></button>
+      <button class="twButtonlightblue w-1/3 p-2"><a href="{% url 'profile' profile_id=request.user.id %}">Sign In</a></button>
     </div>
       {% else %}
       <label class="content p-3" for="not-member"> Already a Member?</label>
       <div class="flex justify-center">
         <a href="{% url 'signin' %}" class="mb-2 mt-0 w-full text-center">
-          <div class="text-[#4470ff] text-base cursor-pointer p-2 sm:text-xl">Sign In Here</div>
+          <div class="text-[#668aff] text-base cursor-pointer p-2 sm:text-2xl">Sign In Here</div>
         </a>
       </div>
     {% endif %}

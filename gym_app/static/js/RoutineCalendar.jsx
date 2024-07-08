@@ -13,18 +13,21 @@ const initialData = {
         { id: 'day-7', name: 'Sun', tasks: [] }
     ],
     tasks: [
-        { id: 'task-1', content: 'Squats' },
-        { id: 'task-2', content: 'Bench Press' },
-        { id: 'task-3', content: 'Deadlift' },
-        { id: 'task-4', content: 'Squats' },
-        { id: 'task-5', content: 'Bench Press' },
-        { id: 'task-6', content: 'Deadlift' },
-        { id: 'task-7', content: 'Squats' },
-        { id: 'task-8', content: 'Bench Press' },
-        { id: 'task-9', content: 'Deadlift' },
+        { id: 'task-1', content: 'Bench Press' },
+        { id: 'task-2', content: 'Incline Dumbell Press' },
+        { id: 'task-3', content: 'Chest Press' },
+        { id: 'task-4', content: 'Barbell Row' },
+        { id: 'task-5', content: 'Lat Pulldown' },
+        { id: 'task-6', content: 'Tricep Push Down' },
+        { id: 'task-7', content: 'Skull Crushers' },
+        { id: 'task-8', content: 'Barbell Curl' },
+        { id: 'task-9', content: 'Hammer Curl' },
+        { id: 'task-10', content: 'Squats' },
+        { id: 'task-11', content: 'RDL' },
+        { id: 'task-12', content: 'Leg Extensions' },
     ],
     landingArea: [
-        { id: 'landing-area', name: 'Exercises', tasks: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7', 'task-8'] }
+        { id: 'landing-area', name: 'Exercises', tasks: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7', 'task-8', 'task-9', 'task-10', 'task-11', 'task-12'] }
     ]
 };
 
@@ -136,7 +139,7 @@ class RoutineCalendar extends React.Component {
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className="task-item p-2 mt-2 text-center"
+                                                        className="task-item p-2 mt-2 text-center text-sm"
                                                     >
                                                         {task.content}
                                                     </div>
@@ -170,7 +173,7 @@ class RoutineCalendar extends React.Component {
                                                                 ref={provided.innerRef}
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
-                                                                className="task-item p-2 mt-2 bg-blue-500 text-white rounded"
+                                                                className="task-item p-2 mt-2 bg-blue-500 text-white rounded text-sm" 
                                                             >
                                                                 {task.content}
                                                             </div>
