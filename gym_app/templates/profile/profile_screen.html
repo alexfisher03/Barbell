@@ -30,7 +30,11 @@
         </div>
         <div class="flex-col text-center p-3">
           <p class="text-3xl">{{ custom_user.username }}</p>
-          <h1 class="text-xl text-purple-500">{{ custom_user.current_group }}</h1>
+          {% if request.user.current_group != None %}
+            <h1 class="text-xl text-purple-500">{{ custom_user.current_group }}</h1>
+          {% else %}
+            <h1 class="text-xl pt-2 text-purple-500">No Group</h1>
+          {% endif %}
         </div>
         <p class="text-center max-w-[300px] p-3 text-sm sm:text-base">{{ custom_user.bio|default:"No bio yet."}}</p>
         <p class="content p-3 text-xl font-extrabold">Points: {{ custom_user.points}}</p>
