@@ -88,7 +88,7 @@ if os.path.exists(ENV_PATH):
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # Change for production
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['164.90.134.67', 'socialbarbell.com', 'www.socialbarbell.com', '127.0.0.1']
 
 """
@@ -151,14 +151,14 @@ else:
 ------*Middleware Configuration
 """
 MIDDLEWARE = [
-    'allauth.account.middleware.AccountMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'gym_project.urls'
@@ -299,6 +299,7 @@ else:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_DOMAIN = None
+
 
 """
 ------*Custom User Model and Authentication Backend
