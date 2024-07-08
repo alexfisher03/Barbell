@@ -22,8 +22,10 @@ module.exports = {
             }
         ]
     },
+
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    mode: 'development' // Change to production when deploying
+    mode: 'production' // Change to production when deploying
+
 };
