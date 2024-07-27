@@ -16,18 +16,6 @@
             - Supports two privacy options: Public and Private, controlled via a choice field.
             - Groups are created by users, establishing a link between the group and its creator.
 
-        *TableData:
-            - Stores user-specific data entries with attributes for date, title, and value.
-            - Designed to accommodate various types of numerical data associated with user activities.
-
-        *StatData:
-            - Specifically tailored for tracking workout statistics, including the exercise name, number of sets, and repetitions.
-            - Facilitates the recording and analysis of users' fitness progress over time.
-
-        *ImageMetadata:
-            - Manages image uploads by users, with fields for the associated user, image file, caption, and timestamp.
-            - Enables the sharing and display of images within the application, enhancing user interaction and content richness.
-
         *Meta Information:
             - Each model class includes meta information to define human-readable names for the Django admin interface.
             - Ensures clarity and ease of management for site administrators.
@@ -43,10 +31,6 @@
         *Customization and Extensibility:
             - The models are designed to be flexible and extensible, allowing for future enhancements and additional features
               as the application evolves and grows in complexity.
-
-        *Best Practices:
-            - Follows Django model best practices, ensuring a robust, scalable, and maintainable database schema
-              that effectively supports the application's functionality and user requirements.
 """
 
 from django.db import models
@@ -125,24 +109,12 @@ class Group(models.Model):
 
     def __str__(self):
         return self.name
-
-class TableData(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    date = models.DateField()
-    data_title = models.CharField(max_length=100)
-    data_value = models.DecimalField(max_digits=10, decimal_places=2)
-    class Meta:
-        verbose_name = 'Stat Data'
-        verbose_name_plural = 'Stat Data'
-
-    def __str__(self):
-        return self.data_title
     
-class StatData(models.Model):
+class Workout(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    exercise_name = models.CharField(max_length=20)
-    num_sets = models.IntegerField()
-    num_reps = models.IntegerField()
+    name = models.CharField(max_length=32)
+    day = models.CharField(max_length=3, choices=[('M', 'Monday'), ('T', 'Tuesday'), ('W', 'Wednesday'), ('T', 'Thursday'), ('F', 'Friday'), ('S', 'Saturday'), ('S', 'Sunday')], blank=True, null=True)
+    order = models.IntegerField(default=0)
     
 class ImageMetadata(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -152,5 +124,4 @@ class ImageMetadata(models.Model):
 
     def __str__(self):
         return self.caption if self.caption else 'Image'
-    
     

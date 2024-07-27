@@ -2,7 +2,7 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './calendarCSS/RoutineCalendar.css';
 
-const initialData = {
+const userData = {
     days: [
         { id: 'day-1', name: 'M', tasks: [] },
         { id: 'day-2', name: 'T', tasks: [] },
@@ -32,7 +32,7 @@ const initialData = {
 };
 
 class RoutineCalendar extends React.Component {
-    state = initialData;
+    state = userData;
 
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
@@ -44,7 +44,7 @@ class RoutineCalendar extends React.Component {
         if (
             destination.droppableId === source.droppableId &&
             destination.index === source.index
-        ) {
+        ) { 
             return;
         }
 
@@ -73,9 +73,8 @@ class RoutineCalendar extends React.Component {
             } else {
                 this.setState({
                     days: this.state.days.map(day => (day.id === newDay.id ? newDay : day))
-                });
+                }); 
             }
-
             return;
         }
 
@@ -113,6 +112,14 @@ class RoutineCalendar extends React.Component {
             });
         }
     };
+
+    showInputWorkouts(){
+        window.location.href = '/input_workouts';
+    }
+
+    showRecords() {
+        // Logic to switch to the records view
+    }
 
     render() {
         return (
@@ -153,45 +160,47 @@ class RoutineCalendar extends React.Component {
                         )}
                     </Droppable>
 
-                    <div className="routine-calendar">
-                        {this.state.days.map(day => (
-                            <Droppable droppableId={day.id} key={day.id}>
-                                {(provided) => (
-                                    <div className=''>
-                                        <div
-                                            ref={provided.innerRef}
-                                            {...provided.droppableProps}
-                                            className="day-column p-4 border rounded shadow"
-                                        >
-                                            <h3 className="font-bold text-lg mb-2">{day.name}</h3>
-                                            {day.tasks.map((taskId, index) => {
-                                                const task = this.state.tasks.find(task => task.id === taskId);
-                                                return (
-                                                    <Draggable draggableId={task.id} index={index} key={task.id}>
-                                                        {(provided) => (
-                                                            <div
-                                                                ref={provided.innerRef}
-                                                                {...provided.draggableProps}
-                                                                {...provided.dragHandleProps}
-                                                                className="task-item p-2 mt-2 bg-blue-500 text-white rounded text-sm" 
-                                                            >
-                                                                {task.content}
-                                                            </div>
-                                                        )}
-                                                    </Draggable>
-                                                );
-                                            })}
-                                            {provided.placeholder}
+                    <div className='flex justify-center'>
+                        <div className="routine-calendar">
+                            {this.state.days.map(day => (
+                                <Droppable droppableId={day.id} key={day.id}>
+                                    {(provided) => (
+                                        <div className=''>
+                                            <div
+                                                ref={provided.innerRef}
+                                                {...provided.droppableProps}
+                                                className="day-column p-4 border rounded shadow"
+                                            >
+                                                <h3 className="font-bold text-lg mb-2">{day.name}</h3>
+                                                {day.tasks.map((taskId, index) => {
+                                                    const task = this.state.tasks.find(task => task.id === taskId);
+                                                    return (
+                                                        <Draggable draggableId={task.id} index={index} key={task.id}>
+                                                            {(provided) => (
+                                                                <div
+                                                                    ref={provided.innerRef}
+                                                                    {...provided.draggableProps}
+                                                                    {...provided.dragHandleProps}
+                                                                    className="task-item p-2 mt-2 bg-blue-500 text-white rounded text-sm" 
+                                                                >
+                                                                    {task.content}
+                                                                </div>
+                                                            )}
+                                                        </Draggable>
+                                                    );
+                                                })}
+                                                {provided.placeholder}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </Droppable>
-                        ))}
+                                    )}
+                                </Droppable>
+                            ))}
+                        </div>
                     </div>
                 </DragDropContext>
                 <div className="mt-4 flex flex-col items-center">
                     <div className='w-1/3 pb-3'>
-                        <button className="twButtonblue p-2" onClick={() => this.addTask()}>Input Workouts</button>
+                        <button className="twButtonblue p-2" onClick={() => this.showInputWorkouts()}>Input Workouts</button>
                     </div>
 
                     <div className='w-1/3'>
@@ -200,14 +209,6 @@ class RoutineCalendar extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    addTask() {
-        // Logic to add a new task
-    }
-
-    showRecords() {
-        // Logic to switch to the records view
     }
 }
 

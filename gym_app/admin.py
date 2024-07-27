@@ -2,7 +2,7 @@
 # Defines what gets displayed
 
 from django.contrib import admin  
-from .models import CustomUser, TableData, Group , ImageMetadata
+from .models import CustomUser, Group , ImageMetadata
 
 @admin.register(CustomUser) 
 class CustomUserAdmin(admin.ModelAdmin):
@@ -12,7 +12,6 @@ class CustomUserAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     pass
 
-admin.site.register(TableData)
 admin.site.register(ImageMetadata)
 
 @admin.register(Group)

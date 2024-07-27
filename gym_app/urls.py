@@ -57,7 +57,6 @@ urlpatterns = [
     path('group_screen/<int:group_id>/', views.group_screen, name='group_screen'),
     path('group_settings/<int:group_id>/', views.group_settings_screen, name='group_settings'),
     path('home/', views.home_screen, name='home'),
-    path('input_stats/', views.input_stats_screen, name='input_stats'),
     path('privacy_screen/', views.privacy_screen, name='privacy'),
     path('profile/<int:profile_id>/', views.profile_screen, name='profile'),
     path('profile/settings/', views.profilesettings_screen, name='profilesettings'),
@@ -70,9 +69,9 @@ urlpatterns = [
     path('account/password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name="account/password_reset_confirm.html"), name='password_reset_confirm'),
     path('account/password-reset-complete/', PasswordResetCompleteView.as_view(template_name="account/password_reset_complete.html"), name='password_reset_complete'),
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'), # Overriding allauth's login view
-    path('get_stats/', views.get_stats, name = 'ajax_get_stats'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
+    path('input_workouts/', views.input_workouts, name='input_workouts'),
 ]
 
 

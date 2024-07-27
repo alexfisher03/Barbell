@@ -13,3 +13,5 @@
 <p align="center">
   <img src="staticfiles/images/barbell_blue.png" width="500" height="500">
 </p>
+
+

@@ -9,14 +9,14 @@
 from typing import Any
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
-from .models import CustomUser, TableData, Group, StatData, ImageMetadata
+from .models import CustomUser, Group, ImageMetadata
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
+from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, WorkoutForm
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.middleware.csrf import get_token
@@ -226,23 +226,20 @@ def home_screen(request):
     return render(request, 'home/home_screen.html')
 
 """
-This function contains a form that collects user inputs to populate the 
-attributes of the StatData model class-object. The POST request is saved
-using the StatForm class-object, which is handled during the URL routing process 
-at the '/get_stats' address; which utilizes the get_stats view function.  
+  
 """
 @login_required
-def input_stats_screen(request):
+def input_workouts(request):
     if request.method == 'POST':
-        form = StatForm(request.POST)
+        form = WorkoutForm(request.POST)
         if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-    return render(request, 'input_stats/input_stats_screen.html')
-
-def get_stats(request):
-    dataS = list(StatData.objects.filter(user=request.user).values())
-    return JsonResponse(dataS, safe=False)
+            workout = form.save(commit=False)
+            workout.user = request.user
+            workout.save()
+            return render('profile', profile_id=request.user.id)
+    else:
+        form = WorkoutForm()
+    return render(request, 'input_workout/input_workouts.html', {'form': form})
 
 # static render function
 def privacy_screen(request):
@@ -266,7 +263,6 @@ def profile_screen(request, profile_id):
         profile = get_object_or_404(CustomUser, id=profile_id)
     
     # fetching profile specific data from the model class object
-    table_data = TableData.objects.filter(user=profile)
     images = ImageMetadata.objects.filter(user=profile)
     current_group = profile.current_group
 
@@ -277,7 +273,6 @@ def profile_screen(request, profile_id):
 
     context = {
         'profile': profile,
-        'table_data': table_data, 
         'images': images, 
         'custom_user': request.user,
         'current_group': current_group,
