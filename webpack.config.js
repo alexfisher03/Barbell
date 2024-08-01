@@ -1,10 +1,12 @@
 const path = require('path');
-const { ContextExclusionPlugin } = require('webpack');
 
 module.exports = {
-    entry: '/gym_app/static/js/profile.jsx',
+    entry: {
+        profile: './gym_app/static/js/profile.jsx',
+        inputWorkouts: '/gym_app/static/js/input-workouts.jsx'
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'static/dist'),
     },
     module: {
@@ -25,5 +27,6 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    mode: 'development' // Change to production when deploying
+    mode: 'development', // Change to production when deploying
+    devtool: 'source-map'
 };

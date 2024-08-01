@@ -6,10 +6,11 @@
        handle and interact with various web requests and render responses
 """
 
+import json
 from typing import Any
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
-from .models import CustomUser, Group, ImageMetadata
+from .models import CustomUser, Group, ImageMetadata, Workout
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
@@ -226,25 +227,31 @@ def home_screen(request):
     return render(request, 'home/home_screen.html')
 
 """
-  
+Function to input the user's workouts. The function first checks if the request method is POST 
+and then creates a new instance of the Workout model and saves it to the database. 
+The function then returns a JSON response with a success status.
 """
 @login_required
 def input_workouts(request):
+    user = request.user
     if request.method == 'POST':
-        form = WorkoutForm(request.POST)
-        if form.is_valid():
-            workout = form.save(commit=False)
-            workout.user = request.user
-            workout.save()
-            return render('profile', profile_id=request.user.id)
-    else:
-        form = WorkoutForm()
-    return render(request, 'input_workout/input_workouts.html', {'form': form})
+        data = json.loads(request.body)
+        workouts_data = data.get('workouts', [])
+
+        # delete existing workouts 
+        Workout.objects.filter(user=user).delete()
+
+        for workout in workouts_data:
+            Workout.objects.create(user=user, name=workout['name'])
+
+        return JsonResponse({'status': 'success'})
+    
+    return render(request, 'input_workout/input_workouts.html')
+
 
 # static render function
 def privacy_screen(request):
     return render(request, 'privacy/privacy_screen.html')
-
 
 """
 This function initializes variables representing the various data attributes of the CustomUser model,

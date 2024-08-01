@@ -1,15 +1,6 @@
-<!-- 
-@author Alexander Fisher & Jonathan Salem
-@version 1.2 - Tailwind Css version
-
-@about
-Master template file
--->
-
 {% load static %}
 <!DOCTYPE html>
 <html>
-
 <head>
   {% block head %} {% endblock %}
   {% block style %} {% endblock %}
@@ -41,7 +32,7 @@ Master template file
       </nav>
     </header>
       {% block content %}
-      <div id="fade-in-element" class="opacity-0 barbell text-lg sm:text-4xl md:text-6xl lg:text-8xl md:m-8">WELCOME TO BARBELL</div>
+      <div id="fade-in-element" class="opacity-0 barbell text-lg sm:text-4xl md:text-6xl lg:text-8xl md:m-8">WELCOME TO SOCIAL BARBELL</div>
       <section class="content-section container md:h-screen/2 md:flex-1">
         <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 items-center">
           <div id="fade-in-element2" class="opacity-0 w-full"> 
@@ -117,7 +108,7 @@ Master template file
             </button>
           </div>
           {% endif %}
-          <a href="{% url 'index' %}"><img class="hidden sm:block p-10 hover:scale-110 duration-300 static-logo-white" src="{% static 'images/barbell_white.png' %}" /></a>
+          <a href="{% url 'index' %}"><img class="sm:block p-10 hover:scale-110 duration-300 static-logo-white" src="{% static 'images/barbell_white.png' %}" /></a>
         </div>
       {% endif %}
     </footer>

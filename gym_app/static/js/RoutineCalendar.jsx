@@ -2,37 +2,48 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './calendarCSS/RoutineCalendar.css';
 
-const userData = {
-    days: [
-        { id: 'day-1', name: 'M', tasks: [] },
-        { id: 'day-2', name: 'T', tasks: [] },
-        { id: 'day-3', name: 'W', tasks: [] },
-        { id: 'day-4', name: 'TH', tasks: [] },
-        { id: 'day-5', name: 'F', tasks: [] },
-        { id: 'day-6', name: 'Sat', tasks: [] },
-        { id: 'day-7', name: 'Sun', tasks: [] }
-    ],
-    tasks: [
-        { id: 'task-1', content: 'Bench Press' },
-        { id: 'task-2', content: 'Incline Dumbell Press' },
-        { id: 'task-3', content: 'Chest Press' },
-        { id: 'task-4', content: 'Barbell Row' },
-        { id: 'task-5', content: 'Lat Pulldown' },
-        { id: 'task-6', content: 'Tricep Push Down' },
-        { id: 'task-7', content: 'Skull Crushers' },
-        { id: 'task-8', content: 'Barbell Curl' },
-        { id: 'task-9', content: 'Hammer Curl' },
-        { id: 'task-10', content: 'Squats' },
-        { id: 'task-11', content: 'RDL' },
-        { id: 'task-12', content: 'Leg Extensions' },
-    ],
-    landingArea: [
-        { id: 'landing-area', name: 'Exercises', tasks: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7', 'task-8', 'task-9', 'task-10', 'task-11', 'task-12'] }
-    ]
-};
-
 class RoutineCalendar extends React.Component {
-    state = userData;
+    constructor(props) {
+        super(props);
+        
+        let userData = {};
+        const userDataScript = document.getElementById('user-data');
+        if (userDataScript) {
+            try {
+                userData = JSON.parse(userDataScript.textContent);
+            } catch (error) {
+                console.error("JSON parsing fucked up: ", error);
+            }
+        }
+
+        this.state = {
+            userData,
+            days: [
+                { id: 'day-1', name: 'M', tasks: [] },
+                { id: 'day-2', name: 'T', tasks: [] },
+                { id: 'day-3', name: 'W', tasks: [] },
+                { id: 'day-4', name: 'TH', tasks: [] },
+                { id: 'day-5', name: 'F', tasks: [] },
+                { id: 'day-6', name: 'Sat', tasks: [] },
+                { id: 'day-7', name: 'Sun', tasks: [] }
+            ],
+            tasks: [
+                { id: 'task-1', content: 'Bench Press' },
+                { id: 'task-2', content: 'Incline Dumbell Press' },
+                { id: 'task-3', content: 'Chest Press' },
+                { id: 'task-4', content: 'Barbell Row' },
+                { id: 'task-5', content: 'Lat Pulldown' },
+                { id: 'task-6', content: 'Tricep Push Down' },
+                { id: 'task-7', content: 'Skull Crushers' },
+                { id: 'task-8', content: 'Barbell Curl' },
+                { id: 'task-9', content: 'Hammer Curl' },
+                { id: 'task-10', content: 'Squats' }
+            ],
+            landingArea: [
+                { id: 'landing-area', name: 'Exercises', tasks: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6'] }
+            ]
+        };
+    }
 
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
@@ -118,15 +129,18 @@ class RoutineCalendar extends React.Component {
     }
 
     showRecords() {
-        // Logic to switch to the records view
+        // TODO:
+        // Logic to switch to the records view 
     }
 
     render() {
+        const { userData } = this.state;
+
         return (
             <div className='routine-calendar-wrapper p-10'>
-                <h2 className="text-center text-2xl font-bold mb-5">Routine</h2>
+                <h2 className="text-center text-2xl font-bold mb-5">{userData.username}'s Workout Routine</h2>
                 <div className='flex justify-center mb-2'>
-                    <h3 className="font-bold text-lg mb-2">Exercises</h3>
+                    <h3 className="font-bold text-lg mb-2">Your Exercises</h3>
                 </div>
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="landing-area">
@@ -135,8 +149,7 @@ class RoutineCalendar extends React.Component {
                                 <div
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    className="landing-area gap-x-8 gap-y-4 p-4 border rounded shadow"
-                                >
+                                    className="landing-area gap-x-8 gap-y-4 p-4 border rounded shadow">
                                     {this.state.landingArea[0].tasks.map((taskId, index) => {
                                         const task = this.state.tasks.find(task => task.id === taskId);
                                         return (
@@ -181,7 +194,7 @@ class RoutineCalendar extends React.Component {
                                                                     ref={provided.innerRef}
                                                                     {...provided.draggableProps}
                                                                     {...provided.dragHandleProps}
-                                                                    className="task-item p-2 mt-2 bg-blue-500 text-white rounded text-sm" 
+                                                                    className="task-item p-2 mt-2 bg-blue-500 text-white rounded text-sm"
                                                                 >
                                                                     {task.content}
                                                                 </div>
@@ -200,11 +213,11 @@ class RoutineCalendar extends React.Component {
                 </DragDropContext>
                 <div className="mt-4 flex flex-col items-center">
                     <div className='w-1/3 pb-3'>
-                        <button className="twButtonblue p-2" onClick={() => this.showInputWorkouts()}>Input Workouts</button>
+                        <button className="twButtonblue p-2" onClick={this.showInputWorkouts}>Input Workouts</button>
                     </div>
 
                     <div className='w-1/3'>
-                        <button className="twButtonpurple p-2" onClick={() => this.showRecords()}>Display Records</button>
+                        <button className="twButtonpurple p-2" onClick={this.showRecords}>Display Records</button>
                     </div>
                 </div>
             </div>

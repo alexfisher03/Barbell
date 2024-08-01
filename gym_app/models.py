@@ -97,6 +97,12 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
     
+class Workout(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=32)
+    day = models.CharField(max_length=3, choices=[('M', 'Monday'), ('T', 'Tuesday'), ('W', 'Wednesday'), ('T', 'Thursday'), ('F', 'Friday'), ('S', 'Saturday'), ('S', 'Sunday')], blank=True, null=True)
+    order = models.IntegerField(default=0)
+    
 class Group(models.Model):
     name = models.CharField(max_length=255)
     groupbio = models.TextField(default='')
@@ -109,12 +115,6 @@ class Group(models.Model):
 
     def __str__(self):
         return self.name
-    
-class Workout(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    name = models.CharField(max_length=32)
-    day = models.CharField(max_length=3, choices=[('M', 'Monday'), ('T', 'Tuesday'), ('W', 'Wednesday'), ('T', 'Thursday'), ('F', 'Friday'), ('S', 'Saturday'), ('S', 'Sunday')], blank=True, null=True)
-    order = models.IntegerField(default=0)
     
 class ImageMetadata(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

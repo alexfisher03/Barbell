@@ -17,7 +17,9 @@ npm run watch:css
 sudo nginx -t 
 crontab -e
 
-TODO: 
+TODO:
+
+
 -allow the user to input workouts (first create default ones to be the placeholders) which will be stored in the user 
  models and then will populate the routine calendar 'landing zone'
 
