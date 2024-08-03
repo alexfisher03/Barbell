@@ -130,7 +130,7 @@ class RoutineCalendar extends React.Component {
     };
 
     showInputWorkouts() {
-        window.location.href = '/input_workouts';
+        window.location.href = '/input_exercises';
     }
 
     showRecords() {
@@ -149,11 +149,16 @@ class RoutineCalendar extends React.Component {
                 <div className='flex justify-center mb-2'>
                     <h3 className="font-bold text-lg mb-2">Your Exercises</h3>
                 </div>
-                {!hasWorkouts && (
+                {hasWorkouts && (
                     <div className="flex justify-center mb-6">
-                        <Alert sx={{ width: '50%' }} variant="outlined" severity="info">You Have No Workouts, Click Input Workouts To Add Some</Alert>
+                        <Alert sx={{ width: '50%' }} variant="outlined" severity="info">Drag Exercises To The Calendar And Make Your Routine</Alert>
                     </div>
                     )}
+                {!hasWorkouts && (
+                    <div className="flex justify-center mb-6">
+                        <Alert sx={{ width: '50%' }} variant="outlined" severity="info">To Add More Exercises Click Input Exercises</Alert>
+                    </div>
+                )}
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="landing-area">
                         {(provided) => (
@@ -223,9 +228,10 @@ class RoutineCalendar extends React.Component {
                         </div>
                     </div>
                 </DragDropContext>
+                <hr class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
                 <div className="mt-4 flex flex-col items-center">
                     <div className='w-1/3 pb-3'>
-                        <button className="twButtonblue p-2" onClick={this.showInputWorkouts}>Input Workouts</button>
+                        <button className="twButtonblue p-2" onClick={this.showInputWorkouts}>Input Exercises</button>
                     </div>
 
                     <div className='w-1/3'>

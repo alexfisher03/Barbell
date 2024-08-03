@@ -71,7 +71,7 @@ urlpatterns = [
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'), # Overriding allauth's login view
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
-    path('input_workouts/', views.input_workouts, name='input_workouts'),
+    path('input_exercises/', views.input_workouts, name='input_workouts'),
 ]
 
 

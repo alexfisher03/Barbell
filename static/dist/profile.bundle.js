@@ -182,7 +182,7 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
   return _createClass(RoutineCalendar, [{
     key: "showInputWorkouts",
     value: function showInputWorkouts() {
-      window.location.href = '/input_workouts';
+      window.location.href = '/input_exercises';
     }
   }, {
     key: "showRecords",
@@ -206,7 +206,7 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
         className: "flex justify-center mb-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
         className: "font-bold text-lg mb-2"
-      }, "Your Exercises")), !hasWorkouts && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Your Exercises")), hasWorkouts && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex justify-center mb-6"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Alert__WEBPACK_IMPORTED_MODULE_2__["default"], {
         sx: {
@@ -214,7 +214,15 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
         },
         variant: "outlined",
         severity: "info"
-      }, "You Have No Workouts, Click Input Workouts To Add Some")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_3__.DragDropContext, {
+      }, "Drag Exercises To The Calendar And Make Your Routine")), !hasWorkouts && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "flex justify-center mb-6"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Alert__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        sx: {
+          width: '50%'
+        },
+        variant: "outlined",
+        severity: "info"
+      }, "To Add More Exercises Click Input Exercises")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_3__.DragDropContext, {
         onDragEnd: this.onDragEnd
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_3__.Droppable, {
         droppableId: "landing-area"
@@ -275,14 +283,16 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
             });
           }), provided.placeholder));
         });
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+        "class": "my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "mt-4 flex flex-col items-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "w-1/3 pb-3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "twButtonblue p-2",
         onClick: this.showInputWorkouts
-      }, "Input Workouts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Input Exercises")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "w-1/3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "twButtonpurple p-2",
