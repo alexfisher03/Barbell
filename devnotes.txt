@@ -49,3 +49,9 @@ FIXME:
 -Rework user workout stats and table 
 -Rework leaderboard functionality with points
 
+
+List of new technologies integrated so far:
+
+  - material ui
+  - Tw elements
+  

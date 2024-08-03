@@ -175,7 +175,7 @@ html {
 }
 
 .page-wrapper {
-  background-image: url("/static/images/meshgradientbg2.png");
+  background-image: url("/static/images/dark-mesh-gradient.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;

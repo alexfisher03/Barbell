@@ -1,18 +1,31 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Alert from '@mui/material/Alert';
 import './calendarCSS/RoutineCalendar.css';
 
 class RoutineCalendar extends React.Component {
     constructor(props) {
         super(props);
-        
+
         let userData = {};
+        let workoutsData = [];
+        
         const userDataScript = document.getElementById('user-data');
+        const workoutsDataScript = document.getElementById('workouts-data');
+        
         if (userDataScript) {
             try {
                 userData = JSON.parse(userDataScript.textContent);
             } catch (error) {
-                console.error("JSON parsing fucked up: ", error);
+                console.error("Failed to parse user data JSON: ", error);
+            }
+        }
+
+        if (workoutsDataScript) {
+            try {
+                workoutsData = JSON.parse(workoutsDataScript.textContent);
+            } catch (error) {
+                console.error("Failed to parse workouts data JSON: ", error);
             }
         }
 
@@ -27,20 +40,12 @@ class RoutineCalendar extends React.Component {
                 { id: 'day-6', name: 'Sat', tasks: [] },
                 { id: 'day-7', name: 'Sun', tasks: [] }
             ],
-            tasks: [
-                { id: 'task-1', content: 'Bench Press' },
-                { id: 'task-2', content: 'Incline Dumbell Press' },
-                { id: 'task-3', content: 'Chest Press' },
-                { id: 'task-4', content: 'Barbell Row' },
-                { id: 'task-5', content: 'Lat Pulldown' },
-                { id: 'task-6', content: 'Tricep Push Down' },
-                { id: 'task-7', content: 'Skull Crushers' },
-                { id: 'task-8', content: 'Barbell Curl' },
-                { id: 'task-9', content: 'Hammer Curl' },
-                { id: 'task-10', content: 'Squats' }
-            ],
+            tasks: workoutsData.map((workout, index) => ({
+                id: `task-${index + 1}`,
+                content: workout.name
+            })),
             landingArea: [
-                { id: 'landing-area', name: 'Exercises', tasks: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6'] }
+                { id: 'landing-area', name: 'Exercises', tasks: workoutsData.map((_, index) => `task-${index + 1}`) }
             ]
         };
     }
@@ -55,7 +60,7 @@ class RoutineCalendar extends React.Component {
         if (
             destination.droppableId === source.droppableId &&
             destination.index === source.index
-        ) { 
+        ) {
             return;
         }
 
@@ -84,7 +89,7 @@ class RoutineCalendar extends React.Component {
             } else {
                 this.setState({
                     days: this.state.days.map(day => (day.id === newDay.id ? newDay : day))
-                }); 
+                });
             }
             return;
         }
@@ -124,7 +129,7 @@ class RoutineCalendar extends React.Component {
         }
     };
 
-    showInputWorkouts(){
+    showInputWorkouts() {
         window.location.href = '/input_workouts';
     }
 
@@ -135,13 +140,20 @@ class RoutineCalendar extends React.Component {
 
     render() {
         const { userData } = this.state;
+        const hasWorkouts = this.state.landingArea[0].tasks.length > 0;
 
         return (
             <div className='routine-calendar-wrapper p-10'>
                 <h2 className="text-center text-2xl font-bold mb-5">{userData.username}'s Workout Routine</h2>
+                <hr class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
                 <div className='flex justify-center mb-2'>
                     <h3 className="font-bold text-lg mb-2">Your Exercises</h3>
                 </div>
+                {!hasWorkouts && (
+                    <div className="flex justify-center mb-6">
+                        <Alert sx={{ width: '50%' }} variant="outlined" severity="info">You Have No Workouts, Click Input Workouts To Add Some</Alert>
+                    </div>
+                    )}
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="landing-area">
                         {(provided) => (

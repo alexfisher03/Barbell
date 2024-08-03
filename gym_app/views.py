@@ -234,19 +234,31 @@ The function then returns a JSON response with a success status.
 @login_required
 def input_workouts(request):
     user = request.user
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        workouts_data = data.get('workouts', [])
-
-        # delete existing workouts 
-        Workout.objects.filter(user=user).delete()
-
-        for workout in workouts_data:
-            Workout.objects.create(user=user, name=workout['name'])
-
-        return JsonResponse({'status': 'success'})
+    try:
+        workouts = list(user.workout_set.values('id', 'name', 'day', 'order'))
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
     
-    return render(request, 'input_workout/input_workouts.html')
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            workouts_data = data.get('workouts', [])
+            user.workout_set.all().delete()
+
+            new_workouts = [Workout(user=user, name=workout['name']) for workout in workouts_data]
+            Workout.objects.bulk_create(new_workouts)
+
+            return JsonResponse({'status': 'success'}, status=200)
+            
+        except Exception as e:
+            print(f"Exception occurred: {e}")
+            return render(request, profile_screen(), {'error': 'An error occurred while saving workouts.'}, status=500)
+        
+    else:
+        return render(request, 'input_workout/input_workouts.html', {
+                'custom_user': user,
+                'workouts_data': workouts
+            })
 
 
 # static render function
@@ -278,12 +290,19 @@ def profile_screen(request, profile_id):
     else:
         my_groups = None
 
+    try:
+        workouts = list(profile.workout_set.values('id', 'name', 'day', 'order'))
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+    
+
     context = {
         'profile': profile,
         'images': images, 
         'custom_user': request.user,
         'current_group': current_group,
         'my_groups': my_groups,
+        'workouts_data': workouts
     }
     
     return render(request, 'profile/profile_screen.html', context)

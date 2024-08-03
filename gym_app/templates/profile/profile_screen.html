@@ -30,13 +30,14 @@
         </div>
         <div class="flex-col text-center p-3">
           <p class="text-3xl">{{ custom_user.username }}</p>
-          {% if request.user.current_group != None %}
-            <h1 class="text-xl text-purple-500">{{ custom_user.current_group }}</h1>
-          {% else %}
-            <h1 class="text-xl pt-2 text-purple-500">No Group</h1>
-          {% endif %}
+          <hr class="mt-6 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
         </div>
         <p class="text-center max-w-[300px] p-3 text-sm sm:text-base">{{ custom_user.bio|default:"No bio yet."}}</p>
+        {% if request.user.current_group != None %}
+            <h1 class="text-xl text-purple-500 text-center">{{ custom_user.current_group }}</h1>
+          {% else %}
+            <h1 class="text-xl pt-2 text-purple-500">No Group</h1>
+        {% endif %}
         <p class="content p-3 text-xl font-extrabold">Points: {{ custom_user.points}}</p>
       </div>
     </div>
@@ -81,4 +82,8 @@
   }
 </script>
 <script src="{% static 'dist/profile.bundle.js' %}"></script>
+
+<!-- user workout data -->
+{{ workouts_data|json_script:"workouts-data" }}
+
 {% endblock %}

@@ -77,6 +77,8 @@ class CustomUser(AbstractUser):
             print(f"Error deleting {file_path} from GCS: {e}")
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
         try:
             this = CustomUser.objects.get(id=self.id)
             if this.profile_picture != self.profile_picture:

@@ -12,17 +12,53 @@
 {% endblock %}
   {% block content %}
   <div class="flex justify-center">
-    <form action="{% url 'profilesettings' %}" method="POST" class="w-5/6 sm:w-1/2">
+    <form action="{% url 'input_workouts' %}" method="POST" class="w-5/6 sm:w-1/2">
       {% csrf_token %}
-      <div class="flex justify-center p-3 mt-6">
-        <p class="text-lg text-center">Choose the workouts you want to add to your routine</p>
-      </div>
-
-      <!-- Down arrow -->
       <div class="flex justify-center">
-        <svg class="w-12 h-12 text-white animate-bounce" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 10 4 4 4-4"/>
-          </svg>
+        <div class="p-3 mt-6 transition duration-150 ease-in-out rounded-full w-1/2"
+            data-twe-collapse-init
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            href="#collapseExample"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            <p class="text-lg text-center" 
+              data-twe-toggle="tooltip"
+              data-twe-html="true"
+              title="<div class='text-[#ce2e38]'>Click Here To See Your Current Workouts</div>"
+              >
+              ADD OR REMOVE WORKOUTS
+            </p>
+          </div>
+        </div>
+        
+        <!-- Down arrow -->
+        <div class="flex justify-center">
+          <svg class="w-12 h-12 text-white animate-bounce" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 10 4 4 4-4"/>
+            </svg>
+        </div>
+      
+      
+      <div class="!visible hidden"
+        id="collapseExample"
+        data-twe-collapse-item
+      >
+        <hr
+        class="mb-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+        {% if request.user.workout_set.count != 0 %}
+        <div class="flex justify-center p-3">
+          <div class="grid grid-cols-3 gap-4">
+            {% for workout in request.user.workout_set.all %} 
+              <p class="text-sm text-center">{{workout.name}}</p>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        <hr
+        class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
       </div>
 
       <!-- FIXME:-->
@@ -47,7 +83,16 @@
     }
 </script>
 
-{{ custom_user.workouts|json_script:"workouts-data" }}
+<!-- user workout data -->
+{{ workouts_data|json_script:"workouts-data" }}
+
+ <!-- For the dropdown menu -->
+<script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script src="https://unpkg.com/alpinejs" defer></script>
 
 <script src="{% static 'dist/inputWorkouts.bundle.js' %}"></script>
 {% endblock %}
+
+
+
+

@@ -5,12 +5,7 @@
 
 {% block nav %}
 <div class="pb-2">
-  <li><a href="/home">HOME</a></li>
-  {% if current_group %}
-    <li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
-  {% else %}
-    <li><a href="#">No Group</a></li>
-  {% endif %}
+  <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
 </div>
 
   {% block header %}<h1 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">Internal Server Error</h1> {% endblock %}
