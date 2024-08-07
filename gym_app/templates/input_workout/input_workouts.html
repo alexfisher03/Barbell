@@ -87,8 +87,7 @@
 {{ workouts_data|json_script:"workouts-data" }}
 
  <!-- For the dropdown menu -->
-<script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-<script src="https://unpkg.com/alpinejs" defer></script>
+ <script src="{% static 'tw-elements/dist/js/tw-elements.umd.min.js' %}"></script>
 
 <script src="{% static 'dist/inputWorkouts.bundle.js' %}"></script>
 {% endblock %}

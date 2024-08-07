@@ -236,29 +236,35 @@ def input_workouts(request):
     user = request.user
     try:
         workouts = list(user.workout_set.values('id', 'name', 'day', 'order'))
+        print(f"User {user} has {len(workouts)} workouts: {workouts}")
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
-    
+
     if request.method == 'POST':
         try:
-            data = json.loads(request.body)
-            workouts_data = data.get('workouts', [])
-            user.workout_set.all().delete()
+            if request.content_type == 'application/json':
+                data = json.loads(request.body)
+                workouts_data = data.get('workouts', [])
+            else:
+                raise ValueError("Unsupported content type")
 
+            user.workout_set.all().delete()
             new_workouts = [Workout(user=user, name=workout['name']) for workout in workouts_data]
             Workout.objects.bulk_create(new_workouts)
 
             return JsonResponse({'status': 'success'}, status=200)
-            
+        except json.JSONDecodeError as e:
+            print(f"JSONDecodeError: {e}")
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
         except Exception as e:
             print(f"Exception occurred: {e}")
-            return render(request, profile_screen(), {'error': 'An error occurred while saving workouts.'}, status=500)
-        
+            print(f"小狗该怪谁让自己流浪呢")
+            return redirect('profile', profile_id=user.id)
     else:
         return render(request, 'input_workout/input_workouts.html', {
-                'custom_user': user,
-                'workouts_data': workouts
-            })
+            'custom_user': user,
+            'workouts_data': workouts
+        })
 
 
 # static render function
@@ -293,7 +299,7 @@ def profile_screen(request, profile_id):
     try:
         workouts = list(profile.workout_set.values('id', 'name', 'day', 'order'))
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        return JsonResponse({'Error at views.profile_screen': str(e)}, status=500)
     
 
     context = {

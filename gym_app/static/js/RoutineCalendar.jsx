@@ -45,7 +45,7 @@ class RoutineCalendar extends React.Component {
                 content: workout.name
             })),
             landingArea: [
-                { id: 'landing-area', name: 'Exercises', tasks: workoutsData.map((_, index) => `task-${index + 1}`) }
+                { id: 'landing-area', name: 'Workouts', tasks: workoutsData.map((_, index) => `task-${index + 1}`) }
             ]
         };
     }
@@ -130,7 +130,7 @@ class RoutineCalendar extends React.Component {
     };
 
     showInputWorkouts() {
-        window.location.href = '/input_exercises';
+        window.location.href = '/input_workouts';
     }
 
     showRecords() {
@@ -145,7 +145,7 @@ class RoutineCalendar extends React.Component {
         return (
             <div className='routine-calendar-wrapper p-10'>
                 <h2 className="text-center text-2xl font-bold mb-5">{userData.username}'s Workout Routine</h2>
-                <hr class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+                <hr className="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
                 <div className='flex justify-center mb-2'>
                     <h3 className="font-bold text-lg mb-2">Your Exercises</h3>
                 </div>
@@ -228,7 +228,7 @@ class RoutineCalendar extends React.Component {
                         </div>
                     </div>
                 </DragDropContext>
-                <hr class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+                <hr className="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
                 <div className="mt-4 flex flex-col items-center">
                     <div className='w-1/3 pb-3'>
                         <button className="twButtonblue p-2" onClick={this.showInputWorkouts}>Input Exercises</button>

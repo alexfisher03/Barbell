@@ -170,7 +170,7 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
       }),
       landingArea: [{
         id: 'landing-area',
-        name: 'Exercises',
+        name: 'Workouts',
         tasks: workoutsData.map(function (_, index) {
           return "task-".concat(index + 1);
         })
@@ -182,7 +182,7 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
   return _createClass(RoutineCalendar, [{
     key: "showInputWorkouts",
     value: function showInputWorkouts() {
-      window.location.href = '/input_exercises';
+      window.location.href = '/input_workouts';
     }
   }, {
     key: "showRecords",
@@ -201,7 +201,7 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "text-center text-2xl font-bold mb-5"
       }, userData.username, "'s Workout Routine"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
-        "class": "my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
+        className: "my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex justify-center mb-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
@@ -284,7 +284,7 @@ var RoutineCalendar = /*#__PURE__*/function (_React$Component) {
           }), provided.placeholder));
         });
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
-        "class": "my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
+        className: "my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "mt-4 flex flex-col items-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

@@ -42,6 +42,7 @@ const WorkoutSettings = () => {
             body: JSON.stringify({ workouts })
         }).then(response => {
             if (response.ok) {
+                console.log("Response OK during workout settings handleSubmit");
                 window.location.href = `/profile/${userData.profile_id}`;
             } else {
                 response.json().then(data => {

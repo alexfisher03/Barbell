@@ -91,6 +91,7 @@ var WorkoutSettings = function WorkoutSettings() {
       })
     }).then(function (response) {
       if (response.ok) {
+        console.log("Response OK during workout settings handleSubmit");
         window.location.href = "/profile/".concat(userData.profile_id);
       } else {
         response.json().then(function (data) {
