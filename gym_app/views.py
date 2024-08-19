@@ -21,6 +21,7 @@ from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.middleware.csrf import get_token
+from django.views.decorators.http import require_http_methods
 
 def csrf_test(request):
     csrf_token = get_token(request)
@@ -232,15 +233,18 @@ and then creates a new instance of the Workout model and saves it to the databas
 The function then returns a JSON response with a success status.
 """
 @login_required
+@require_http_methods(["GET", "POST"])
 def input_workouts(request):
     user = request.user
     try:
         workouts = list(user.workout_set.values('id', 'name', 'day', 'order'))
-        print(f"User {user} has {len(workouts)} workouts: {workouts}")
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        print(f"Exception occurred: {e}")
+        print(f"Conditional Finality")
+        return redirect('profile', profile_id=user.id)
 
     if request.method == 'POST':
+        workouts_data = []
         try:
             if request.content_type == 'application/json':
                 data = json.loads(request.body)
@@ -254,11 +258,12 @@ def input_workouts(request):
 
             return JsonResponse({'status': 'success'}, status=200)
         except json.JSONDecodeError as e:
-            print(f"JSONDecodeError: {e}")
-            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+            print(f"Exception occurred: {e}")
+            print(f"Conditional Finality")
+            return redirect('profile', profile_id=user.id)
         except Exception as e:
             print(f"Exception occurred: {e}")
-            print(f"小狗该怪谁让自己流浪呢")
+            print(f"Conditional Finality")
             return redirect('profile', profile_id=user.id)
     else:
         return render(request, 'input_workout/input_workouts.html', {

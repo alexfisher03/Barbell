@@ -1,5 +1,9 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 import Alert from '@mui/material/Alert';
 import './calendarCSS/RoutineCalendar.css';
 
@@ -30,6 +34,7 @@ class RoutineCalendar extends React.Component {
         }
 
         this.state = {
+            isMobile: window.matchMedia('(max-width: 640px)').matches,
             userData,
             days: [
                 { id: 'day-1', name: 'M', tasks: [] },
@@ -49,6 +54,18 @@ class RoutineCalendar extends React.Component {
             ]
         };
     }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.updateIsMobile);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateIsMobile);
+    }
+
+    updateIsMobile = () => {
+        this.setState({ isMobile: window.matchMedia('(max-width: 640px)').matches });
+    };
 
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
@@ -139,30 +156,45 @@ class RoutineCalendar extends React.Component {
     }
 
     render() {
-        const { userData } = this.state;
+        const { userData, isMobile } = this.state;
         const hasWorkouts = this.state.landingArea[0].tasks.length > 0;
 
+        const pagination = {
+            clickable: true,
+            renderBullet: function (index, className) {
+                const dayLabels = ['M', 'T', 'W', 'Th', 'F', 'S', 'Su'];
+                return `<span class="${className} mx-12 text-xs p-1.5">${dayLabels[index]}</span>`;
+            },
+        };
+
         return (
-            <div className='routine-calendar-wrapper p-10'>
+            <div className='routine-calendar-wrapper p-4 sm:p-10'>
                 <h2 className="text-center text-2xl font-bold mb-5">{userData.username}'s Workout Routine</h2>
-                <hr className="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+                <hr className="my-4 sm:my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
                 <div className='flex justify-center mb-2'>
                     <h3 className="font-bold text-lg mb-2">Your Exercises</h3>
-                </div>
+                </div>       
                 {hasWorkouts && (
-                    <div className="flex justify-center mb-6">
-                        <Alert sx={{ width: '50%' }} variant="outlined" severity="info">Drag Exercises To The Calendar And Make Your Routine</Alert>
-                    </div>
-                    )}
-                {!hasWorkouts && (
-                    <div className="flex justify-center mb-6">
-                        <Alert sx={{ width: '50%' }} variant="outlined" severity="info">To Add More Exercises Click Input Exercises</Alert>
+                    <div className="flex justify-center mb-6 ">
+                        <div className="sm:w-1/2">
+                            <Alert sx={{ width: '100%' }} variant="outlined" severity="info">Drag Exercises To The Calendar And Make Your Routine</Alert>
+                        </div>
                     </div>
                 )}
+                {!hasWorkouts && (
+                    <div className="flex justify-center mb-6 ">
+                        <div className="sm:w-1/2">
+                            <Alert sx={{ width: '100%' }} variant="outlined" severity="info">To Add More Exercises Click Input Exercises</Alert>
+                        </div>
+                    </div>
+                )}
+    
                 <DragDropContext onDragEnd={this.onDragEnd}>
+    
+                    {/* Landing Area - Visible on all screen sizes */}
                     <Droppable droppableId="landing-area">
                         {(provided) => (
-                            <div className="flex justify-center">
+                            <div className="flex justify-center pb-3 sm:pb-0">
                                 <div
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
@@ -176,7 +208,7 @@ class RoutineCalendar extends React.Component {
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className="task-item p-2 mt-2 text-center text-sm"
+                                                        className="task-item p-2 mt-2 text-center text-xs sm:text-sm"
                                                     >
                                                         {task.content}
                                                     </div>
@@ -189,53 +221,99 @@ class RoutineCalendar extends React.Component {
                             </div>
                         )}
                     </Droppable>
-
-                    <div className='flex justify-center'>
-                        <div className="routine-calendar">
-                            {this.state.days.map(day => (
-                                <Droppable droppableId={day.id} key={day.id}>
-                                    {(provided) => (
-                                        <div className=''>
-                                            <div
-                                                ref={provided.innerRef}
-                                                {...provided.droppableProps}
-                                                className="day-column p-4 border rounded shadow"
-                                            >
-                                                <h3 className="font-bold text-lg mb-2">{day.name}</h3>
-                                                {day.tasks.map((taskId, index) => {
-                                                    const task = this.state.tasks.find(task => task.id === taskId);
-                                                    return (
-                                                        <Draggable draggableId={task.id} index={index} key={task.id}>
-                                                            {(provided) => (
-                                                                <div
-                                                                    ref={provided.innerRef}
-                                                                    {...provided.draggableProps}
-                                                                    {...provided.dragHandleProps}
-                                                                    className="task-item p-2 mt-2 bg-blue-500 text-white rounded text-sm"
-                                                                >
-                                                                    {task.content}
-                                                                </div>
-                                                            )}
-                                                        </Draggable>
-                                                    );
-                                                })}
-                                                {provided.placeholder}
-                                            </div>
-                                        </div>
-                                    )}
-                                </Droppable>
-                            ))}
+    
+                    {/* Swiper for Mobile - Hidden on larger screens */}
+                    {isMobile && (
+                        <div className="block sm:hidden">
+                            <Swiper
+                                pagination={pagination}
+                                modules={[Pagination]}
+                                className="mySwiper"
+                            >
+                                {this.state.days.map(day => (
+                                    <SwiperSlide key={day.id}>
+                                        <Droppable droppableId={day.id}>
+                                            {(provided) => (
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.droppableProps}
+                                                    className="day-column p-4 border rounded shadow"
+                                                >
+                                                    <h3 className="font-bold text-lg mb-2">{day.name}</h3>
+                                                    {day.tasks.map((taskId, index) => {
+                                                        const task = this.state.tasks.find(task => task.id === taskId);
+                                                        return (
+                                                            <Draggable draggableId={task.id} index={index} key={task.id}>
+                                                                {(provided) => (
+                                                                    <div
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}
+                                                                        className="task-item p-2 mt-2 text-center text-xs sm:text-sm"
+                                                                    >
+                                                                        {task.content}
+                                                                    </div>
+                                                                )}
+                                                            </Draggable>
+                                                        );
+                                                    })}
+                                                    {provided.placeholder}
+                                                </div>
+                                            )}
+                                        </Droppable>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                            <div className="swiper-pagination" />
                         </div>
-                    </div>
+                    )}
+    
+                    {/* Regular Grid for larger screens */}
+                    {!isMobile && (
+                        <div className="hidden sm:flex sm:justify-center">
+                            <div className="routine-calendar">
+                                {this.state.days.map(day => (
+                                    <Droppable droppableId={day.id} key={day.id}>
+                                        {(provided) => (
+                                            <div className=''>
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.droppableProps}
+                                                    className="day-column pr-10 sm:p-4 border rounded shadow"
+                                                >
+                                                    <h3 className="font-bold text-sm mr-2 sm:text-lg sm:mb-2">{day.name}</h3>
+                                                    {day.tasks.map((taskId, index) => {
+                                                        const task = this.state.tasks.find(task => task.id === taskId);
+                                                        return (
+                                                            <Draggable draggableId={task.id} index={index} key={task.id}>
+                                                                {(provided) => (
+                                                                    <div
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}
+                                                                        className="task-item ml-2 mr-2 sm:p-2 sm:mt-2 mt-2 text-center text-xs sm:text-sm"
+                                                                    >
+                                                                        {task.content}
+                                                                    </div>
+                                                                )}
+                                                            </Draggable>
+                                                        );
+                                                    })}
+                                                    {provided.placeholder}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </Droppable>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+    
                 </DragDropContext>
                 <hr className="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
                 <div className="mt-4 flex flex-col items-center">
-                    <div className='w-1/3 pb-3'>
-                        <button className="twButtonblue p-2" onClick={this.showInputWorkouts}>Input Exercises</button>
-                    </div>
-
-                    <div className='w-1/3'>
-                        <button className="twButtonpurple p-2" onClick={this.showRecords}>Display Records</button>
+                    <div className='w-1/3 pb-3 sm:pb-2'>
+                        <button className="twButtonblue p-1.5 sm:p-2" onClick={this.showInputWorkouts}>Input Exercises</button>
                     </div>
                 </div>
             </div>

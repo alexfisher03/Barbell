@@ -42,8 +42,21 @@ const WorkoutSettings = () => {
             body: JSON.stringify({ workouts })
         }).then(response => {
             if (response.ok) {
-                console.log("Response OK during workout settings handleSubmit");
-                window.location.href = `/profile/${userData.profile_id}`;
+                return response.json().then(data => {
+                    if (data.status === 'success') {
+                        window.location.href = `/profile/${userData.profile_id}`;
+                    } else {
+                        alert(data.error || 'An error occurred while submitting the form. Please try again later.');
+                    }
+                });
+            } else if (response.status === 302) {
+                // Handle redirect manually
+                const redirectUrl = response.headers.get('Location');
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                } else {
+                    alert('An error occurred while submitting the form. Please try again later.');
+                }
             } else {
                 response.json().then(data => {
                     alert(data.error || 'An error occurred while submitting the form. Please try again later.');
@@ -54,7 +67,6 @@ const WorkoutSettings = () => {
             alert('An error occurred while submitting the form. Please try again later.');
         });
     };
-
     return (
         <Container maxWidth="sm">
             <Grid container spacing={2}>

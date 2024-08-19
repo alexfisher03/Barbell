@@ -962,10 +962,6 @@ input[type="range"]:active::-webkit-slider-thumb{
   width: 33.333333%;
 }
 
-.w-11\/12{
-  width: 91.666667%;
-}
-
 .w-12{
   width: 3rem;
 }
@@ -1368,6 +1364,10 @@ input[type="range"]:active::-webkit-slider-thumb{
 
 .p-1{
   padding: 0.25rem;
+}
+
+.p-1\.5{
+  padding: 0.375rem;
 }
 
 .p-10{
@@ -3125,6 +3125,10 @@ form .member-limit-details .limit-val {
 
   .sm\:p-0{
     padding: 0px;
+  }
+
+  .sm\:p-2{
+    padding: 0.5rem;
   }
 
   .sm\:p-3{
