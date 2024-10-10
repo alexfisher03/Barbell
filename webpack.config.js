@@ -24,9 +24,12 @@ module.exports = {
             }
         ]
     },
+
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    mode: 'development', // Change to production when deploying
-    devtool: 'source-map'
+
+  mode: 'production' // Change to production when deploying
+
+
 };
