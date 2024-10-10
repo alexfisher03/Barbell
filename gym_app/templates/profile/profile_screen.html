@@ -5,7 +5,7 @@
 
 {% block nav %}
 <div class="pb-2">
-  <li><a href="/home">HOME</a></li>
+  <!-- <li><a href="/home">HOME</a></li> -->
   {% if current_group %}
     <li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
   {% else %}

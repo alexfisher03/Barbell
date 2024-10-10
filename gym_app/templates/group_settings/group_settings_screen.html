@@ -3,7 +3,7 @@
 <title>{% block title %} Barbell | Group Settings {% endblock %} </title>
 {% block nav %}
         <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
-        <li><a href="/home">HOME</a></li>
+        <!-- <li><a href="/home">HOME</a></li> -->
         {% block header %}<h3 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">Group Settings</h3> {% endblock %}
 {% endblock %}
 {% block content %}

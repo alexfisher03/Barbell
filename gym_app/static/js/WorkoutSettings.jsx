@@ -101,7 +101,7 @@ const WorkoutSettings = () => {
                 <Button className="w-1/3 hover:scale-110 ease-in-out duration-75" color="" variant="" style={{ marginTop: '20px' }} onClick={addWorkout}>Add Workout</Button>
             </div>
             <div className="flex justify-center pb-3">
-                <button className="twButtonpurple w-1/3 p-2" variant="contained" style={{ marginTop: '20px' }} onClick={handleSubmit}>Save Changes</button>
+                <button className="twButtonpurple w-1/2 text-sm sm:text-lg sm:w-1/3 p-2" variant="contained" style={{ marginTop: '20px' }} onClick={handleSubmit}>Save Changes</button>
             </div>
         </Container>
     );

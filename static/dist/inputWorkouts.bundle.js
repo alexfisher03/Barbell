@@ -173,7 +173,7 @@ var WorkoutSettings = function WorkoutSettings() {
   }, "Add Workout")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "flex justify-center pb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "twButtonpurple w-1/3 p-2",
+    className: "twButtonpurple w-1/2 text-sm sm:text-lg sm:w-1/3 p-2",
     variant: "contained",
     style: {
       marginTop: '20px'

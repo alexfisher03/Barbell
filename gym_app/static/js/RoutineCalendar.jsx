@@ -1,11 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import './calendarCSS/RoutineCalendar.css';
+
+// New Component for Alert
+const RoutineCalendarAlert = ({ hasWorkouts }) => {
+    const [showAlert, setShowAlert] = useState(true);
+
+    useEffect(() => {
+        // Set timeout to hide alert after 5 seconds
+        const timer = setTimeout(() => {
+            setShowAlert(false);
+        }, 5000);
+
+        // Cleanup the timeout if component unmounts
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <Collapse in={showAlert}>
+            <div className="flex justify-center mb-6 ">
+                <div className="sm:w-1/2">
+                    <Alert
+                        sx={{ width: '100%' }}
+                        variant="outlined"
+                        severity="info"
+                        action={
+                            <IconButton
+                                aria-label="close"
+                                color="inherit"
+                                size="small"
+                                onClick={() => {
+                                    setShowAlert(false);
+                                }}
+                            >
+                                <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                        }
+                    >
+                        {hasWorkouts
+                            ? "Drag Exercises To The Calendar And Make Your Routine"
+                            : "To Add More Exercises Click Input Exercises"}
+                    </Alert>
+                </div>
+            </div>
+        </Collapse>
+    );
+};
 
 class RoutineCalendar extends React.Component {
     constructor(props) {
@@ -13,10 +61,10 @@ class RoutineCalendar extends React.Component {
 
         let userData = {};
         let workoutsData = [];
-        
+
         const userDataScript = document.getElementById('user-data');
         const workoutsDataScript = document.getElementById('workouts-data');
-        
+
         if (userDataScript) {
             try {
                 userData = JSON.parse(userDataScript.textContent);
@@ -150,11 +198,6 @@ class RoutineCalendar extends React.Component {
         window.location.href = '/input_workouts';
     }
 
-    showRecords() {
-        // TODO:
-        // Logic to switch to the records view 
-    }
-
     render() {
         const { userData, isMobile } = this.state;
         const hasWorkouts = this.state.landingArea[0].tasks.length > 0;
@@ -174,23 +217,12 @@ class RoutineCalendar extends React.Component {
                 <div className='flex justify-center mb-2'>
                     <h3 className="font-bold text-lg mb-2">Your Exercises</h3>
                 </div>       
-                {hasWorkouts && (
-                    <div className="flex justify-center mb-6 ">
-                        <div className="sm:w-1/2">
-                            <Alert sx={{ width: '100%' }} variant="outlined" severity="info">Drag Exercises To The Calendar And Make Your Routine</Alert>
-                        </div>
-                    </div>
-                )}
-                {!hasWorkouts && (
-                    <div className="flex justify-center mb-6 ">
-                        <div className="sm:w-1/2">
-                            <Alert sx={{ width: '100%' }} variant="outlined" severity="info">To Add More Exercises Click Input Exercises</Alert>
-                        </div>
-                    </div>
-                )}
-    
-                <DragDropContext onDragEnd={this.onDragEnd}>
-    
+
+                {/* Replaced old alert with RoutineCalendarAlert component */}
+                <RoutineCalendarAlert hasWorkouts={hasWorkouts} />
+
+                <DragDropContext onDragEnd={this.onDragEnd} dragHandleProps={{ distance: 10 }}>
+
                     {/* Landing Area - Visible on all screen sizes */}
                     <Droppable droppableId="landing-area">
                         {(provided) => (
@@ -221,12 +253,24 @@ class RoutineCalendar extends React.Component {
                             </div>
                         )}
                     </Droppable>
-    
+
                     {/* Swiper for Mobile - Hidden on larger screens */}
                     {isMobile && (
                         <div className="block sm:hidden">
+                            <div className="flex justify-center mb-6 ">
+                                <div className="sm:w-1/2">
+                                    <Alert sx={{ width: '100%' }} variant="outlined" severity="info">Swipe Through Days</Alert>
+                                </div>
+                            </div>
                             <Swiper
-                                pagination={pagination}
+                                pagination={{
+                                    clickable: true,
+                                    el: '.custom-swiper-pagination',
+                                    renderBullet: function (index, className) {
+                                        const dayLabels = ['M', 'T', 'W', 'Th', 'F', 'S', 'Su'];
+                                        return `<span class="${className} mx-12 text-xs p-1.5">${dayLabels[index]}</span>`;
+                                    }
+                                }}
                                 modules={[Pagination]}
                                 className="mySwiper"
                             >
@@ -244,12 +288,14 @@ class RoutineCalendar extends React.Component {
                                                         const task = this.state.tasks.find(task => task.id === taskId);
                                                         return (
                                                             <Draggable draggableId={task.id} index={index} key={task.id}>
-                                                                {(provided) => (
+                                                                {(provided, snapshot) => (
                                                                     <div
                                                                         ref={provided.innerRef}
                                                                         {...provided.draggableProps}
                                                                         {...provided.dragHandleProps}
-                                                                        className="task-item p-2 mt-2 text-center text-xs sm:text-sm"
+                                                                        className={`task-item p-2 mt-2 text-center text-xs sm:text-sm ${
+                                                                            snapshot.isDragging ? 'dragging' : ''
+                                                                        }`}
                                                                     >
                                                                         {task.content}
                                                                     </div>
@@ -264,10 +310,10 @@ class RoutineCalendar extends React.Component {
                                     </SwiperSlide>
                                 ))}
                             </Swiper>
-                            <div className="swiper-pagination" />
+                            <div className="custom-swiper-pagination" />
                         </div>
                     )}
-    
+
                     {/* Regular Grid for larger screens */}
                     {!isMobile && (
                         <div className="hidden sm:flex sm:justify-center">
@@ -308,12 +354,12 @@ class RoutineCalendar extends React.Component {
                             </div>
                         </div>
                     )}
-    
+
                 </DragDropContext>
                 <hr className="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
                 <div className="mt-4 flex flex-col items-center">
-                    <div className='w-1/3 pb-3 sm:pb-2'>
-                        <button className="twButtonblue p-1.5 sm:p-2" onClick={this.showInputWorkouts}>Input Exercises</button>
+                    <div className='w-1/2 sm:w-1/3 pb-3 sm:pb-2'>
+                        <button className="twButtonblue text-sm sm:text-lg p-1.5 sm:p-2" onClick={this.showInputWorkouts}>Input Exercises</button>
                     </div>
                 </div>
             </div>
