@@ -303,6 +303,8 @@ def profile_screen(request, profile_id):
 
     try:
         workouts = list(profile.workout_set.values('id', 'name', 'day', 'order'))
+        if not workouts:
+            workouts = None
     except Exception as e:
         return JsonResponse({'Error at views.profile_screen': str(e)}, status=500)
     
