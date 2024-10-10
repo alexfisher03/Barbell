@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+{% load static %}
+
+<title>{% block title %} Barbell | Input Workouts {% endblock %} </title>
+        
+{% block nav %}
+    <li><a href="{% url 'profile' profile_id=request.user.id %}">GO BACK</a></li>                    
+    {% block header %}
+        <h1 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">Input Workouts</h1> 
+    {% endblock %}
+    
+{% endblock %}
+  {% block content %}
+  <div class="flex justify-center">
+    <form action="{% url 'input_workouts' %}" method="POST" class="w-5/6 sm:w-1/2">
+      {% csrf_token %}
+      <div class="flex justify-center">
+        <div class="p-3 mt-6 transition duration-150 ease-in-out rounded-full w-1/2"
+            data-twe-collapse-init
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            href="#collapseExample"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            <p class="text-lg text-center" 
+              data-twe-toggle="tooltip"
+              data-twe-html="true"
+              title="<div class='text-[#ce2e38]'>Click Here To See Your Current Workouts</div>"
+              >
+              ADD OR REMOVE WORKOUTS
+            </p>
+          </div>
+        </div>
+        
+        <!-- Down arrow -->
+        <div class="flex justify-center">
+          <svg class="w-12 h-12 text-white animate-bounce" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 10 4 4 4-4"/>
+            </svg>
+        </div>
+      
+      
+      <div class="!visible hidden"
+        id="collapseExample"
+        data-twe-collapse-item
+      >
+        <hr
+        class="mb-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+        {% if request.user.workout_set.count != 0 %}
+        <div class="flex justify-center p-3">
+          <div class="grid grid-cols-3 gap-4">
+            {% for workout in request.user.workout_set.all %} 
+              <p class="text-sm text-center">{{workout.name}}</p>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        <hr
+        class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
+      </div>
+
+      <!-- FIXME:-->
+      <div id="input-workout-root" class="flex justify-center"></div>
+      
+      <!-- Errors -->
+      {% if form.non_field_errors %}
+        <div class="alert alert-warning">
+          {% for error in form.non_field_errors %}
+            <p class="text-center underline p-3">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %} 
+    </form>
+  </div>
+    {% endblock %}
+{% block scripts %}
+<script id="user-data" type="application/json">
+    {
+        "username": "{{ custom_user.username|escapejs }}",
+        "profile_id": "{{ request.user.id }}"
+    }
+</script>
+
+<!-- user workout data -->
+{{ workouts_data|json_script:"workouts-data" }}
+
+ <!-- For the dropdown menu -->
+ <script src="{% static 'tw-elements/dist/js/tw-elements.umd.min.js' %}"></script>
+
+<script src="{% static 'dist/inputWorkouts.bundle.js' %}"></script>
+{% endblock %}
+
+
+
+

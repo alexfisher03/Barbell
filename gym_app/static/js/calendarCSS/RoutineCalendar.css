@@ -4,23 +4,52 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .routine-calendar {
+      grid-template-columns: 1fr; /* Stack day columns on mobile */
+      gap: 0.5rem;
   }
+}
   
-.day-column{
+.day-column {
+  background-color: #f7fafc00;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .day-column {
     background-color: #f7fafc00;
     min-height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1rem;
+    width: 100%;
+  }
 }
+
 
 .landing-area {
   display: grid;
   grid-template-columns: repeat(6, 75px);
   gap: 16px;
   justify-content: center;
-  min-width: 450px;
   justify-items: center;
+}
+
+@media (max-width: 768px) {
+  .landing-area {
+      grid-template-columns: repeat(2, 80px); /* 2 items per row on smaller screens */
+      gap: 8px;
+      width: 90%;
+  }
 }
 
 .task-item {
@@ -40,4 +69,43 @@
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
     position: relative;
+}
+
+@media (max-width: 768px) {
+  .routine-calendar-wrapper {
+    max-width: 325px;
+    background-color: rgba(255, 255, 255, 0.064);
+    border-radius: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(122, 113, 189, 0.6);
+    position: relative;
+  }
+}
+
+/* swiper custom styles */
+
+.custom-swiper-pagination {
+  margin-top: 20px; /* Adjust as needed */
+  padding-top: 10px; /* Add some padding to create space between pagination and content */
+  border-top: 1px solid #e0e0e063; /* Horizontal rule line */
+  text-align: center;
+}
+
+/* Adjusting the bullet points in the pagination */
+.swiper-pagination-bullet {
+  background-color: #333; /* Bullet color */
+  opacity: 1; /* Ensure they are fully visible */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #6200ff; /* Active bullet color */
+}
+
+.task-item {
+  position: relative;
+}
+
+.dragging {
+  transform: translate(0, 0) !important;
+  touch-action: none; /* Prevents browser's default handling of touch events */
 }

@@ -5,7 +5,7 @@
 
 {% block nav %}
 <div class="pb-2">
-  <li><a href="/home">HOME</a></li>
+  <!-- <li><a href="/home">HOME</a></li> -->
   {% if current_group %}
     <li><a href="{% url 'group_screen' group_id=current_group.id %}">GROUP</a></li>
   {% else %}
@@ -23,50 +23,53 @@
   <!-- Column 1 -->
   <div>
     <div class="flex justify-center">
-      <div class="backdrop-form-style p-10 w-11/12 sm:w-full">
+      <div class="backdrop-form-style p-10 w-4/5 sm:w-full">
         <div class="flex justify-center">
           <img class="rounded-full w-[150px] h-[150px] p-3 m-3 hover:scale-105 duration-300"
           src="{% if custom_user.profile_picture %}{{ custom_user.profile_picture.url }}{% else %}{% static 'images/profile.png' %}{% endif %}">
         </div>
         <div class="flex-col text-center p-3">
           <p class="text-3xl">{{ custom_user.username }}</p>
-          {% if request.user.current_group != None %}
-            <h1 class="text-xl text-purple-500">{{ custom_user.current_group }}</h1>
-          {% else %}
-            <h1 class="text-xl pt-2 text-purple-500">No Group</h1>
-          {% endif %}
+          <hr class="mt-6 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400" />
         </div>
         <p class="text-center max-w-[300px] p-3 text-sm sm:text-base">{{ custom_user.bio|default:"No bio yet."}}</p>
+        {% if request.user.current_group != None %}
+            <h1 class="text-xl text-purple-500 text-center">{{ custom_user.current_group }}</h1>
+          {% else %}
+            <h1 class="text-xl pt-2 text-purple-500">No Group</h1>
+        {% endif %}
         <p class="content p-3 text-xl font-extrabold">Points: {{ custom_user.points}}</p>
+        <div class="button-group">
+          {% if current_group %}
+          <a href="{% url 'group_screen' group_id=current_group.id %}"><button class="twButtonpurple p-2" role="button">View Group</button></a>
+          {% else %}
+          <a href="{% url 'create_group' %}"><button class="twButtonblue p-2" role="button">Create Group</button></a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div> <!-- End Column 1-->
   
   <div> <!-- Column 2 -->
-    <div id="routine-root"></div>
-
+    <div id="routine-root"></div> <!--Routine Calendar Component-->
     <section class="content-section container button-container">
-      <div class="button-group">
-        {% if current_group %}
-        <a href="{% url 'group_screen' group_id=current_group.id %}"><button class="twButtonblue p-2" role="button">View Group</button></a>
-        {% else %}
-        <a href="{% url 'create_group' %}"><button class="twButtonblue p-2" role="button">Create Group</button></a>
-        {% endif %}
+      <div class='p-2 m-2'>
+        <a href="#"></a><button class="twButtonpurple p-1.5 sm:p-2 sm:text-lg" role="button">Display Records</button>
       </div>
       <div class="p-2 m-2">
         <a href="{% url 'global_leaderboard' %}"><button id="view-global-leaderboard" class="twButtonpurple p-2"
           role="button">View Global Leaderboard</button></a>
       </div>
       {% if current_group %}
-      <a href="{% url 'group_leaderboard' group_id=current_group.id %}"><button id="view-group-leaderboard" class="twButtonpurple p-2" role="button"><strong>
-            View Group Leaderboard </strong></button></a>
+      <a href="{% url 'group_leaderboard' group_id=current_group.id %}">
+        <button id="view-group-leaderboard" class="twButtonpurple p-2" role="button">View Group Leaderboard</button>
+      </a>
       {% else %}
       {% endif %}
     </section>
 
   </div> <!-- End Column 2-->
 </div>
-
 {% endblock %}
 
 
@@ -75,7 +78,16 @@
   <a href="{% url 'logout' %}"><button class="twButtonblue p-2" role="button">Log Out</button></a>
 {% endblock %}
 {% block scripts %}
-<script src="{% static 'dist/bundle.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script id="user-data" type="application/json">
+  {
+    "username": "{{ custom_user.username|escapejs }}",
+    "current_group": "{{ custom_user.current_group|escapejs }}",
+    "points": "{{ custom_user.points }}"
+  }
+</script>
+<script src="{% static 'dist/profile.bundle.js' %}"></script>
+
+<!-- user workout data -->
+{{ workouts_data|json_script:"workouts-data" }}
+
 {% endblock %}

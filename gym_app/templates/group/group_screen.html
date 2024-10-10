@@ -4,7 +4,7 @@
 {% block nav %}
 <ul>
     <li><a href="{% url 'profile' profile_id=request.user.id %}">PROFILE</a></li>
-    <li><a href="/home">HOME</a></li>
+    <!-- <li><a href="/home">HOME</a></li> -->
 </ul>
 {% block header %}<h3 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">{{ group.name }}</h3> {% endblock %}
     <p class="small-container text-base sm:text-xl">{{ group.groupbio }}</p>

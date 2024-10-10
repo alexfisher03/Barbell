@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import RoutineCalendar from './RoutineCalendar.jsx';
 
 document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(<RoutineCalendar />, document.getElementById('routine-root'));
+    const root = createRoot(document.getElementById('routine-root'));
+    root.render(<RoutineCalendar />);
 });
 

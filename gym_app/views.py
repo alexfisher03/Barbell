@@ -6,20 +6,22 @@
        handle and interact with various web requests and render responses
 """
 
+import json
 from typing import Any
 from allauth.account.views import LoginView
 from allauth.account.views import PasswordResetView as AllauthPasswordResetView
-from .models import CustomUser, TableData, Group, StatData, ImageMetadata
+from .models import CustomUser, Group, ImageMetadata, Workout
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate, login, BACKEND_SESSION_KEY
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, StatForm
+from .forms import RegistrationForm, ProfileSettings, CreateGroup, GroupSettings, WorkoutForm
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.middleware.csrf import get_token
+from django.views.decorators.http import require_http_methods
 
 def csrf_test(request):
     csrf_token = get_token(request)
@@ -226,28 +228,53 @@ def home_screen(request):
     return render(request, 'home/home_screen.html')
 
 """
-This function contains a form that collects user inputs to populate the 
-attributes of the StatData model class-object. The POST request is saved
-using the StatForm class-object, which is handled during the URL routing process 
-at the '/get_stats' address; which utilizes the get_stats view function.  
+Function to input the user's workouts. The function first checks if the request method is POST 
+and then creates a new instance of the Workout model and saves it to the database. 
+The function then returns a JSON response with a success status.
 """
 @login_required
-def input_stats_screen(request):
-    if request.method == 'POST':
-        form = StatForm(request.POST)
-        if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-    return render(request, 'input_stats/input_stats_screen.html')
+@require_http_methods(["GET", "POST"])
+def input_workouts(request):
+    user = request.user
+    try:
+        workouts = list(user.workout_set.values('id', 'name', 'day', 'order'))
+    except Exception as e:
+        print(f"Exception occurred: {e}")
+        print(f"Conditional Finality")
+        return redirect('profile', profile_id=user.id)
 
-def get_stats(request):
-    dataS = list(StatData.objects.filter(user=request.user).values())
-    return JsonResponse(dataS, safe=False)
+    if request.method == 'POST':
+        workouts_data = []
+        try:
+            if request.content_type == 'application/json':
+                data = json.loads(request.body)
+                workouts_data = data.get('workouts', [])
+            else:
+                raise ValueError("Unsupported content type")
+
+            user.workout_set.all().delete()
+            new_workouts = [Workout(user=user, name=workout['name']) for workout in workouts_data]
+            Workout.objects.bulk_create(new_workouts)
+
+            return JsonResponse({'status': 'success'}, status=200)
+        except json.JSONDecodeError as e:
+            print(f"Exception occurred: {e}")
+            print(f"Conditional Finality")
+            return redirect('profile', profile_id=user.id)
+        except Exception as e:
+            print(f"Exception occurred: {e}")
+            print(f"Conditional Finality")
+            return redirect('profile', profile_id=user.id)
+    else:
+        return render(request, 'input_workout/input_workouts.html', {
+            'custom_user': user,
+            'workouts_data': workouts
+        })
+
 
 # static render function
 def privacy_screen(request):
     return render(request, 'privacy/privacy_screen.html')
-
 
 """
 This function initializes variables representing the various data attributes of the CustomUser model,
@@ -266,7 +293,6 @@ def profile_screen(request, profile_id):
         profile = get_object_or_404(CustomUser, id=profile_id)
     
     # fetching profile specific data from the model class object
-    table_data = TableData.objects.filter(user=profile)
     images = ImageMetadata.objects.filter(user=profile)
     current_group = profile.current_group
 
@@ -275,13 +301,19 @@ def profile_screen(request, profile_id):
     else:
         my_groups = None
 
+    try:
+        workouts = list(profile.workout_set.values('id', 'name', 'day', 'order'))
+    except Exception as e:
+        return JsonResponse({'Error at views.profile_screen': str(e)}, status=500)
+    
+
     context = {
         'profile': profile,
-        'table_data': table_data, 
         'images': images, 
         'custom_user': request.user,
         'current_group': current_group,
         'my_groups': my_groups,
+        'workouts_data': workouts
     }
     
     return render(request, 'profile/profile_screen.html', context)

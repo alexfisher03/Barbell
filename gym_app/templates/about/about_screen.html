@@ -8,7 +8,7 @@
   {% else %}
     <li><a href="{% url 'signin' %}">LOGIN</a></li>
   {% endif %}
-  <li><a href="/home">HOME</a></li> 
+  <!-- <li><a href="/home">HOME</a></li>  -->
   {% block header %}<h1 class="barbell text-lg p-1 sm:text-2xl md:text-4xl lg:text-6xl md:m-8">About</h1> {% endblock %}
  {% endblock %} 
 
@@ -21,10 +21,11 @@
     
     <div class=" backdrop-form-style w-5/6 sm:w-1/2 p-3">
       <h1 class="text-xl font-extrabold p-3 text-[#4f51c8] text-center">Version History & Background:</h1>
-        <p class="p-1 ml-1">Version 0.0 - Created using raw HTML, CSS, and some JavaScript. Frontend version only, since archived.</p>
-        <p class="p-1 ml-1">Version 1.0 - Integrated Django with Ver.0.0. Developmental version only.</p>
-        <p class="p-1 ml-1">Version 1.1 - Launched live developmental version using Nginx & Gunicorn through the dedicated web server.</p>
-        <p class="p-1 ml-1">Version 2.0 - Complete frontend redesign. Integrated TailwindCSS, restyling the look and feel of the application.</p>
+        <p class="p-1 ml-1">Beta Version 0.0 - Created using raw HTML, CSS, and some JavaScript. Frontend version only, since archived.</p>
+        <p class="p-1 ml-1">Beta Version 1.0 - Integrated Django with Ver.0.0. Developmental version only.</p>
+        <p class="p-1 ml-1">Beta Version 1.1 - Launched live developmental version using Nginx & Gunicorn through the dedicated web server.</p>
+        <p class="p-1 ml-1">Beta Version 2.0 - Complete frontend redesign. Integrated TailwindCSS, restyling the look and feel of the application.</p>
+        <p class="p-1 ml-1">Beta Version 2.1 - Introduced React to Barbell Frontend.</p>
         <p class="flex justify-center text-[#5e3f9b] hover:underline hover:font-bold hover:scale-105 duration-150">
           <a href="https://github.com/alexfisher03/Barbell" target="_blank">Visit Repository</a>
         </p>
