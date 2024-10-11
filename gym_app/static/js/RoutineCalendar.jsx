@@ -18,7 +18,7 @@ const RoutineCalendarAlert = ({ hasWorkouts }) => {
         // Set timeout to hide alert after 5 seconds
         const timer = setTimeout(() => {
             setShowAlert(false);
-        }, 5000);
+        }, 3500);
 
         // Cleanup the timeout if component unmounts
         return () => clearTimeout(timer);
