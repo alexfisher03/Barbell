@@ -175,7 +175,7 @@ html {
 }
 
 .page-wrapper {
-  background-image: url("/static/images/meshgradientbg2.png");
+  background-image: url("/static/images/dark-mesh-gradient.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
@@ -206,13 +206,6 @@ html {
 .barbell {
   text-align: center;
   font-size: 2em;
-  font-family: "Bebas Neue", cursive;
-  font-weight: normal;
-  color: white;
-}
-
-.barbell-username {
-  text-align: center;
   font-family: "Bebas Neue", cursive;
   font-weight: normal;
   color: white;
@@ -687,8 +680,7 @@ form .category label .dot {
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
 #dot-3:checked ~ .category label .three {
-  background: #7ea7ff;
-  border-color: #7ea7ff;
+  border-color: #fbf4ff;
 }
 
 form input[type="radio"] {
@@ -943,16 +935,15 @@ form .member-limit-details .limit-val {
   width: 10%;
 }
 
-
 /** new styles added with feature/tailwindcss **/
 
 /* Tailwind @apply definitions for custom classes */
 .twButtonpurple {
-  @apply bg-[#3336dc6e] hover:bg-gradient-to-r from-[#3336dc6e] via-[#a955f76e] to-[#ec48996e] hover:scale-110 duration-300 text-white font-bold rounded-full;
+  @apply bg-[#3336dc6e] hover:bg-gradient-to-r from-[#3336dc6e] via-[#a955f76e] to-[#ec48996e] text-white font-bold rounded-full transition ease-out hover:-translate-y-1 hover:scale-105 duration-300;
 }
 
 .twButtonblue {
-  @apply bg-[#5bc0ffb9] hover:bg-gradient-to-r from-[#5bc0ffb9] via-[#a955f76e] to-[#ec48996e] hover:scale-110 duration-300 text-white font-bold rounded-full;
+  @apply bg-[#5bc0ffb9] hover:bg-gradient-to-r from-[#5bc0ffb9] via-[#a955f76e] to-[#ec48996e] text-white font-bold rounded-full transition ease-out hover:-translate-y-1 hover:scale-105 duration-300;
 }
 
 .content-label-text  {

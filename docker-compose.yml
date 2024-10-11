@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: >
+      sh -c "if [ \"$${ENVIRONMENT}\" = 'development' ]; 
+             then npm run watch & npm run watch:css & python manage.py runserver 0.0.0.0:8000; 
+             else gunicorn --bind 0.0.0.0:8000 gym_project.wsgi:application; fi"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./ENV/secret.env
+    environment:
+      - ENVIRONMENT=development
