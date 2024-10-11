@@ -197,7 +197,7 @@ DATABASES = {
         'NAME': 'accounts_db',
         'USER': 'barbell_midir',
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',  # Change if your MySQL server is running on a different host
+        'HOST': 'host.docker.internal',
         'PORT': '3306',       # Default MySQL port
     }
 }

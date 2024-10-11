@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-  const theme = getCookie('theme') || 'light';
+  const theme = getCookie('theme') || 'dark';
   applyTheme(theme);
 
   const fadeInElements = [

@@ -6,11 +6,15 @@ cryptography==41.0.3
 defusedxml==0.7.1
 Django==4.2.4
 django-allauth==0.56.0
+django-storages
+google-auth
+google-cloud-storage
 idna==3.4
 mysqlclient==2.2.0
 oauthlib==3.2.2
 Pillow==10.0.0
 pycparser==2.21
+python-decouple
 PyJWT==2.8.0
 python3-openid==3.2.0
 requests==2.31.0
